@@ -13,7 +13,7 @@ export const auth = betterAuth({
     provider: "mongodb", // or "sqlite" or "mysql"
   }),
   emailAndPassword: {
-    enabled: false,
+    enabled: true,
   },
   socialProviders: {
     google: {
