@@ -1,7 +1,7 @@
-import { betterAuth } from "better-auth";
-import { prismaAdapter } from "better-auth/adapters/prisma";
-import { env } from "@/env";
-import { db } from "@/server/db";
+import { betterAuth } from 'better-auth'
+import { prismaAdapter } from 'better-auth/adapters/prisma'
+import { env } from '@/env'
+import { db } from '@/server/db'
 
 export const auth = betterAuth({
   rateLimit: {
@@ -10,24 +10,24 @@ export const auth = betterAuth({
   },
 
   database: prismaAdapter(db, {
-    provider: "mongodb", // or "sqlite" or "mysql"
+    provider: 'mongodb', // or "sqlite" or "mysql"
   }),
   emailAndPassword: {
     enabled: true,
   },
   socialProviders: {
     google: {
-      prompt: "select_account",
+      prompt: 'select_account',
       clientId: env.GOOGLE_CLIENT_ID as string,
       clientSecret: env.GOOGLE_CLIENT_SECRET as string,
       scope: [
         //
 
-        "https://www.googleapis.com/auth/userinfo.email",
-        "https://www.googleapis.com/auth/userinfo.profile",
+        'https://www.googleapis.com/auth/userinfo.email',
+        'https://www.googleapis.com/auth/userinfo.profile',
       ],
     },
   },
-});
+})
 
-export type Session = typeof auth.$Infer.Session;
+export type Session = typeof auth.$Infer.Session
