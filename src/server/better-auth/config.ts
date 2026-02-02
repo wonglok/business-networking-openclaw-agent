@@ -13,7 +13,7 @@ export const auth = betterAuth({
     provider: 'mongodb', // or "sqlite" or "mysql"
   }),
   emailAndPassword: {
-    enabled: true,
+    enabled: false,
   },
   socialProviders: {
     google: {
@@ -31,3 +31,5 @@ export const auth = betterAuth({
 })
 
 export type Session = typeof auth.$Infer.Session
+
+//
