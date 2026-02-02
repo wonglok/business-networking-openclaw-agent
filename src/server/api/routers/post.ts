@@ -1,10 +1,10 @@
 import { z } from "zod";
-
 import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
+import { getID } from "@/server/db";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -20,6 +20,7 @@ export const postRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       return ctx.db.post.create({
         data: {
+          id: getID(),
           name: input.name,
           createdBy: { connect: { id: ctx.session.user.id } },
         },
