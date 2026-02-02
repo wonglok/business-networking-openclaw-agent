@@ -11,13 +11,15 @@ generator client {
 // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Post {
-  id        String   @id @default(cuid())
-  name      String
+  id   String @id @map("_id") 
+  name String
+
+  //
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -28,7 +30,7 @@ model Post {
 }
 
 model User {
-  id            String    @id
+  id            String    @id @map("_id") 
   name          String //@db.Text
   email         String
   emailVerified Boolean   @default(false)
@@ -44,7 +46,7 @@ model User {
 }
 
 model Session {
-  id        String   @id
+  id        String   @id @map("_id") 
   expiresAt DateTime
   token     String
   createdAt DateTime @default(now())
@@ -59,7 +61,7 @@ model Session {
 }
 
 model Account {
-  id                    String    @id
+  id                    String    @id @map("_id") 
   accountId             String //@db.Text
   providerId            String //@db.Text
   userId                String
@@ -78,7 +80,7 @@ model Account {
 }
 
 model Verification {
-  id         String   @id
+  id         String   @id @map("_id") 
   identifier String //@db.Text
   value      String //@db.Text
   expiresAt  DateTime
@@ -86,4 +88,67 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+//
+
+model Team {
+  id               String            @id @map("_id") 
+  name             String
+  slug             String            @unique
+  description      String?
+  teamMembers      TeamMember[]
+  teamVault         TeamVault[]
+
+  agentGroups AgentGroup[]
+
+
+  createdAt             DateTime?  @default(now())
+  updatedAt             DateTime?  @updatedAt
+}
+
+model TeamVault {
+  id    String @id @map("_id") 
+
+  // 
+  openRouterAPIKey  String
+  replicateAPIKey String
+  falAPIKey String
+
+  team   Team   @relation(fields: [teamId], references: [id])
+  teamId String
+}
+
+model TeamMember {
+  id    String @id @map("_id") 
+  email String
+  role  String
+
+  team   Team   @relation(fields: [teamId], references: [id])
+  teamId String
+
+  @@index([email])
+}
+
+type S3MetaData {
+  userID String
+  fileName String
+  bucket String
+  url String
+  fileKey String
+  cdn String
+  uploadURL String
+}
+
+model AgentGroup {
+  id String @id @map("_id") 
+
+  title String
+  team   Team   @relation(fields: [teamId], references: [id])
+  teamId String
+
+  thumbFile S3MetaData?
+
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
 }
