@@ -168,34 +168,21 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.TeamScalarFieldEnum = {
+exports.Prisma.AgentObjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  slug: 'slug',
   description: 'description',
+  userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.TeamVaultScalarFieldEnum = {
+exports.Prisma.AgentSecretScalarFieldEnum = {
   id: 'id',
-  openRouterAPIKey: 'openRouterAPIKey',
-  replicateAPIKey: 'replicateAPIKey',
-  falAPIKey: 'falAPIKey',
-  teamId: 'teamId'
-};
-
-exports.Prisma.TeamMemberScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  role: 'role',
-  teamId: 'teamId'
-};
-
-exports.Prisma.AgentGroupScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  teamId: 'teamId',
+  apiKey: 'apiKey',
+  claimToken: 'claimToken',
+  verificationCode: 'verificationCode',
+  agentObjectId: 'agentObjectId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -217,10 +204,8 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
-  Team: 'Team',
-  TeamVault: 'TeamVault',
-  TeamMember: 'TeamMember',
-  AgentGroup: 'AgentGroup'
+  AgentObject: 'AgentObject',
+  AgentSecret: 'AgentSecret'
 };
 
 /**

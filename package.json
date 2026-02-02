@@ -10,7 +10,7 @@
     "db:migrate": "prisma migrate deploy",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "dev": "next dev --webpack",
+    "dev": "prisma generate; next dev --webpack",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "postinstall": "prisma generate",
@@ -19,7 +19,7 @@
     "preview": "next build && next start",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "tunnel": "ngrok http 3000 --region ap --subdomain wonglok"
+    "tunnel": "ngrok http --url=laptop.wonglok.com 3000"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.2",
@@ -33,6 +33,7 @@
     "lucide-react": "^0.563.0",
     "mongodb": "^7.0.0",
     "next": "^16.1.6",
+    "raw-loader": "^4.0.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "server-only": "^0.0.1",

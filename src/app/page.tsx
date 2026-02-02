@@ -8,18 +8,14 @@ import { getSession } from '@/server/better-auth/server'
 import { api, HydrateClient } from '@/trpc/server'
 import { LoginButton } from './_components/auth/LoginButton'
 import { LogoutButton } from './_components/auth/LogoutButton'
+import { Suspense } from 'react'
 
 export default async function Home() {
   // const hello = await api.post.hello({ text: "from tRPC" });
   const session = await getSession().catch((r) => {
     console.error(r)
-
     return null
   })
-
-  // if (session) {
-  //   void api.post.getLatest.prefetch();
-  // }
 
   return (
     <HydrateClient>
@@ -40,17 +36,9 @@ export default async function Home() {
             </div>
           </div>
 
-          {session?.user && <LatestPost />}
+          <Suspense fallback={null}>{session?.user && <LatestPost />}</Suspense>
         </div>
       </main>
     </HydrateClient>
   )
 }
-
-//
-//
-
-//
-//
-
-//

@@ -14,11 +14,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model S3MetaData
- * 
- */
-export type S3MetaData = $Result.DefaultSelection<Prisma.$S3MetaDataPayload>
-/**
  * Model Post
  * 
  */
@@ -44,25 +39,15 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  */
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
 /**
- * Model Team
+ * Model AgentObject
  * 
  */
-export type Team = $Result.DefaultSelection<Prisma.$TeamPayload>
+export type AgentObject = $Result.DefaultSelection<Prisma.$AgentObjectPayload>
 /**
- * Model TeamVault
+ * Model AgentSecret
  * 
  */
-export type TeamVault = $Result.DefaultSelection<Prisma.$TeamVaultPayload>
-/**
- * Model TeamMember
- * 
- */
-export type TeamMember = $Result.DefaultSelection<Prisma.$TeamMemberPayload>
-/**
- * Model AgentGroup
- * 
- */
-export type AgentGroup = $Result.DefaultSelection<Prisma.$AgentGroupPayload>
+export type AgentSecret = $Result.DefaultSelection<Prisma.$AgentSecretPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -200,44 +185,24 @@ export class PrismaClient<
   get verification(): Prisma.VerificationDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.team`: Exposes CRUD operations for the **Team** model.
+   * `prisma.agentObject`: Exposes CRUD operations for the **AgentObject** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Teams
-    * const teams = await prisma.team.findMany()
+    * // Fetch zero or more AgentObjects
+    * const agentObjects = await prisma.agentObject.findMany()
     * ```
     */
-  get team(): Prisma.TeamDelegate<ExtArgs, ClientOptions>;
+  get agentObject(): Prisma.AgentObjectDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.teamVault`: Exposes CRUD operations for the **TeamVault** model.
+   * `prisma.agentSecret`: Exposes CRUD operations for the **AgentSecret** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more TeamVaults
-    * const teamVaults = await prisma.teamVault.findMany()
+    * // Fetch zero or more AgentSecrets
+    * const agentSecrets = await prisma.agentSecret.findMany()
     * ```
     */
-  get teamVault(): Prisma.TeamVaultDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.teamMember`: Exposes CRUD operations for the **TeamMember** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more TeamMembers
-    * const teamMembers = await prisma.teamMember.findMany()
-    * ```
-    */
-  get teamMember(): Prisma.TeamMemberDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.agentGroup`: Exposes CRUD operations for the **AgentGroup** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more AgentGroups
-    * const agentGroups = await prisma.agentGroup.findMany()
-    * ```
-    */
-  get agentGroup(): Prisma.AgentGroupDelegate<ExtArgs, ClientOptions>;
+  get agentSecret(): Prisma.AgentSecretDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -684,10 +649,8 @@ export namespace Prisma {
     Session: 'Session',
     Account: 'Account',
     Verification: 'Verification',
-    Team: 'Team',
-    TeamVault: 'TeamVault',
-    TeamMember: 'TeamMember',
-    AgentGroup: 'AgentGroup'
+    AgentObject: 'AgentObject',
+    AgentSecret: 'AgentSecret'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -706,7 +669,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "post" | "user" | "session" | "account" | "verification" | "team" | "teamVault" | "teamMember" | "agentGroup"
+      modelProps: "post" | "user" | "session" | "account" | "verification" | "agentObject" | "agentSecret"
       txIsolationLevel: never
     }
     model: {
@@ -1080,299 +1043,151 @@ export namespace Prisma {
           }
         }
       }
-      Team: {
-        payload: Prisma.$TeamPayload<ExtArgs>
-        fields: Prisma.TeamFieldRefs
+      AgentObject: {
+        payload: Prisma.$AgentObjectPayload<ExtArgs>
+        fields: Prisma.AgentObjectFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TeamFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload> | null
+            args: Prisma.AgentObjectFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TeamFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
+            args: Prisma.AgentObjectFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload>
           }
           findFirst: {
-            args: Prisma.TeamFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload> | null
+            args: Prisma.AgentObjectFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TeamFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
+            args: Prisma.AgentObjectFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload>
           }
           findMany: {
-            args: Prisma.TeamFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>[]
+            args: Prisma.AgentObjectFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload>[]
           }
           create: {
-            args: Prisma.TeamCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
+            args: Prisma.AgentObjectCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload>
           }
           createMany: {
-            args: Prisma.TeamCreateManyArgs<ExtArgs>
+            args: Prisma.AgentObjectCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.TeamDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
+            args: Prisma.AgentObjectDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload>
           }
           update: {
-            args: Prisma.TeamUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
+            args: Prisma.AgentObjectUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload>
           }
           deleteMany: {
-            args: Prisma.TeamDeleteManyArgs<ExtArgs>
+            args: Prisma.AgentObjectDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TeamUpdateManyArgs<ExtArgs>
+            args: Prisma.AgentObjectUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.TeamUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamPayload>
+            args: Prisma.AgentObjectUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentObjectPayload>
           }
           aggregate: {
-            args: Prisma.TeamAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTeam>
+            args: Prisma.AgentObjectAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAgentObject>
           }
           groupBy: {
-            args: Prisma.TeamGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TeamGroupByOutputType>[]
+            args: Prisma.AgentObjectGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AgentObjectGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.TeamFindRawArgs<ExtArgs>
+            args: Prisma.AgentObjectFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.TeamAggregateRawArgs<ExtArgs>
+            args: Prisma.AgentObjectAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.TeamCountArgs<ExtArgs>
-            result: $Utils.Optional<TeamCountAggregateOutputType> | number
+            args: Prisma.AgentObjectCountArgs<ExtArgs>
+            result: $Utils.Optional<AgentObjectCountAggregateOutputType> | number
           }
         }
       }
-      TeamVault: {
-        payload: Prisma.$TeamVaultPayload<ExtArgs>
-        fields: Prisma.TeamVaultFieldRefs
+      AgentSecret: {
+        payload: Prisma.$AgentSecretPayload<ExtArgs>
+        fields: Prisma.AgentSecretFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TeamVaultFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload> | null
+            args: Prisma.AgentSecretFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TeamVaultFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload>
+            args: Prisma.AgentSecretFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload>
           }
           findFirst: {
-            args: Prisma.TeamVaultFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload> | null
+            args: Prisma.AgentSecretFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TeamVaultFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload>
+            args: Prisma.AgentSecretFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload>
           }
           findMany: {
-            args: Prisma.TeamVaultFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload>[]
+            args: Prisma.AgentSecretFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload>[]
           }
           create: {
-            args: Prisma.TeamVaultCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload>
+            args: Prisma.AgentSecretCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload>
           }
           createMany: {
-            args: Prisma.TeamVaultCreateManyArgs<ExtArgs>
+            args: Prisma.AgentSecretCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.TeamVaultDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload>
+            args: Prisma.AgentSecretDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload>
           }
           update: {
-            args: Prisma.TeamVaultUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload>
+            args: Prisma.AgentSecretUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload>
           }
           deleteMany: {
-            args: Prisma.TeamVaultDeleteManyArgs<ExtArgs>
+            args: Prisma.AgentSecretDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TeamVaultUpdateManyArgs<ExtArgs>
+            args: Prisma.AgentSecretUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.TeamVaultUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamVaultPayload>
+            args: Prisma.AgentSecretUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentSecretPayload>
           }
           aggregate: {
-            args: Prisma.TeamVaultAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTeamVault>
+            args: Prisma.AgentSecretAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAgentSecret>
           }
           groupBy: {
-            args: Prisma.TeamVaultGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TeamVaultGroupByOutputType>[]
+            args: Prisma.AgentSecretGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AgentSecretGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.TeamVaultFindRawArgs<ExtArgs>
+            args: Prisma.AgentSecretFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.TeamVaultAggregateRawArgs<ExtArgs>
+            args: Prisma.AgentSecretAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.TeamVaultCountArgs<ExtArgs>
-            result: $Utils.Optional<TeamVaultCountAggregateOutputType> | number
-          }
-        }
-      }
-      TeamMember: {
-        payload: Prisma.$TeamMemberPayload<ExtArgs>
-        fields: Prisma.TeamMemberFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.TeamMemberFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.TeamMemberFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload>
-          }
-          findFirst: {
-            args: Prisma.TeamMemberFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.TeamMemberFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload>
-          }
-          findMany: {
-            args: Prisma.TeamMemberFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload>[]
-          }
-          create: {
-            args: Prisma.TeamMemberCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload>
-          }
-          createMany: {
-            args: Prisma.TeamMemberCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.TeamMemberDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload>
-          }
-          update: {
-            args: Prisma.TeamMemberUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload>
-          }
-          deleteMany: {
-            args: Prisma.TeamMemberDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.TeamMemberUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.TeamMemberUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TeamMemberPayload>
-          }
-          aggregate: {
-            args: Prisma.TeamMemberAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTeamMember>
-          }
-          groupBy: {
-            args: Prisma.TeamMemberGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TeamMemberGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.TeamMemberFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.TeamMemberAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.TeamMemberCountArgs<ExtArgs>
-            result: $Utils.Optional<TeamMemberCountAggregateOutputType> | number
-          }
-        }
-      }
-      AgentGroup: {
-        payload: Prisma.$AgentGroupPayload<ExtArgs>
-        fields: Prisma.AgentGroupFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.AgentGroupFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.AgentGroupFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload>
-          }
-          findFirst: {
-            args: Prisma.AgentGroupFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.AgentGroupFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload>
-          }
-          findMany: {
-            args: Prisma.AgentGroupFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload>[]
-          }
-          create: {
-            args: Prisma.AgentGroupCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload>
-          }
-          createMany: {
-            args: Prisma.AgentGroupCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.AgentGroupDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload>
-          }
-          update: {
-            args: Prisma.AgentGroupUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload>
-          }
-          deleteMany: {
-            args: Prisma.AgentGroupDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.AgentGroupUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.AgentGroupUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AgentGroupPayload>
-          }
-          aggregate: {
-            args: Prisma.AgentGroupAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAgentGroup>
-          }
-          groupBy: {
-            args: Prisma.AgentGroupGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AgentGroupGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.AgentGroupFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.AgentGroupAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.AgentGroupCountArgs<ExtArgs>
-            result: $Utils.Optional<AgentGroupCountAggregateOutputType> | number
+            args: Prisma.AgentSecretCountArgs<ExtArgs>
+            result: $Utils.Optional<AgentSecretCountAggregateOutputType> | number
           }
         }
       }
@@ -1460,10 +1275,8 @@ export namespace Prisma {
     session?: SessionOmit
     account?: AccountOmit
     verification?: VerificationOmit
-    team?: TeamOmit
-    teamVault?: TeamVaultOmit
-    teamMember?: TeamMemberOmit
-    agentGroup?: AgentGroupOmit
+    agentObject?: AgentObjectOmit
+    agentSecret?: AgentSecretOmit
   }
 
   /* Types for Logging */
@@ -1547,12 +1360,14 @@ export namespace Prisma {
     sessions: number
     accounts: number
     posts: number
+    agentObjects: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     posts?: boolean | UserCountOutputTypeCountPostsArgs
+    agentObjects?: boolean | UserCountOutputTypeCountAgentObjectsArgs
   }
 
   // Custom InputTypes
@@ -1587,142 +1402,48 @@ export namespace Prisma {
     where?: PostWhereInput
   }
 
-
   /**
-   * Count Type TeamCountOutputType
+   * UserCountOutputType without action
    */
-
-  export type TeamCountOutputType = {
-    teamMembers: number
-    teamVault: number
-    agentGroups: number
+  export type UserCountOutputTypeCountAgentObjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AgentObjectWhereInput
   }
 
-  export type TeamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    teamMembers?: boolean | TeamCountOutputTypeCountTeamMembersArgs
-    teamVault?: boolean | TeamCountOutputTypeCountTeamVaultArgs
-    agentGroups?: boolean | TeamCountOutputTypeCountAgentGroupsArgs
+
+  /**
+   * Count Type AgentObjectCountOutputType
+   */
+
+  export type AgentObjectCountOutputType = {
+    agentSecret: number
+  }
+
+  export type AgentObjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    agentSecret?: boolean | AgentObjectCountOutputTypeCountAgentSecretArgs
   }
 
   // Custom InputTypes
   /**
-   * TeamCountOutputType without action
+   * AgentObjectCountOutputType without action
    */
-  export type TeamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TeamCountOutputType
+     * Select specific fields to fetch from the AgentObjectCountOutputType
      */
-    select?: TeamCountOutputTypeSelect<ExtArgs> | null
+    select?: AgentObjectCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * TeamCountOutputType without action
+   * AgentObjectCountOutputType without action
    */
-  export type TeamCountOutputTypeCountTeamMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TeamMemberWhereInput
-  }
-
-  /**
-   * TeamCountOutputType without action
-   */
-  export type TeamCountOutputTypeCountTeamVaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TeamVaultWhereInput
-  }
-
-  /**
-   * TeamCountOutputType without action
-   */
-  export type TeamCountOutputTypeCountAgentGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AgentGroupWhereInput
+  export type AgentObjectCountOutputTypeCountAgentSecretArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AgentSecretWhereInput
   }
 
 
   /**
    * Models
    */
-
-  /**
-   * Model S3MetaData
-   */
-
-
-
-
-
-  export type S3MetaDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    userID?: boolean
-    fileName?: boolean
-    bucket?: boolean
-    url?: boolean
-    fileKey?: boolean
-    cdn?: boolean
-    uploadURL?: boolean
-  }, ExtArgs["result"]["s3MetaData"]>
-
-
-
-  export type S3MetaDataSelectScalar = {
-    userID?: boolean
-    fileName?: boolean
-    bucket?: boolean
-    url?: boolean
-    fileKey?: boolean
-    cdn?: boolean
-    uploadURL?: boolean
-  }
-
-  export type S3MetaDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userID" | "fileName" | "bucket" | "url" | "fileKey" | "cdn" | "uploadURL", ExtArgs["result"]["s3MetaData"]>
-
-  export type $S3MetaDataPayload = {
-    name: "S3MetaData"
-    objects: {}
-    scalars: {
-      userID: string
-      fileName: string
-      bucket: string
-      url: string
-      fileKey: string
-      cdn: string
-      uploadURL: string
-    }
-    composites: {}
-  }
-
-  type S3MetaDataGetPayload<S extends boolean | null | undefined | S3MetaDataDefaultArgs> = $Result.GetResult<Prisma.$S3MetaDataPayload, S>
-
-
-
-
-
-  /**
-   * Fields of the S3MetaData model
-   */
-  interface S3MetaDataFieldRefs {
-    readonly userID: FieldRef<"S3MetaData", 'String'>
-    readonly fileName: FieldRef<"S3MetaData", 'String'>
-    readonly bucket: FieldRef<"S3MetaData", 'String'>
-    readonly url: FieldRef<"S3MetaData", 'String'>
-    readonly fileKey: FieldRef<"S3MetaData", 'String'>
-    readonly cdn: FieldRef<"S3MetaData", 'String'>
-    readonly uploadURL: FieldRef<"S3MetaData", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * S3MetaData without action
-   */
-  export type S3MetaDataDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the S3MetaData
-     */
-    select?: S3MetaDataSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the S3MetaData
-     */
-    omit?: S3MetaDataOmit<ExtArgs> | null
-  }
-
 
   /**
    * Model Post
@@ -2886,6 +2607,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    agentObjects?: boolean | User$agentObjectsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2906,6 +2628,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    agentObjects?: boolean | User$agentObjectsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2915,6 +2638,7 @@ export namespace Prisma {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       posts: Prisma.$PostPayload<ExtArgs>[]
+      agentObjects: Prisma.$AgentObjectPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3290,6 +3014,7 @@ export namespace Prisma {
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    agentObjects<T extends User$agentObjectsArgs<ExtArgs> = {}>(args?: Subset<T, User$agentObjectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3765,6 +3490,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * User.agentObjects
+   */
+  export type User$agentObjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentObject
+     */
+    select?: AgentObjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentObject
+     */
+    omit?: AgentObjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AgentObjectInclude<ExtArgs> | null
+    where?: AgentObjectWhereInput
+    orderBy?: AgentObjectOrderByWithRelationInput | AgentObjectOrderByWithRelationInput[]
+    cursor?: AgentObjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AgentObjectScalarFieldEnum | AgentObjectScalarFieldEnum[]
   }
 
   /**
@@ -6809,353 +6558,350 @@ export namespace Prisma {
 
 
   /**
-   * Model Team
+   * Model AgentObject
    */
 
-  export type AggregateTeam = {
-    _count: TeamCountAggregateOutputType | null
-    _min: TeamMinAggregateOutputType | null
-    _max: TeamMaxAggregateOutputType | null
+  export type AggregateAgentObject = {
+    _count: AgentObjectCountAggregateOutputType | null
+    _min: AgentObjectMinAggregateOutputType | null
+    _max: AgentObjectMaxAggregateOutputType | null
   }
 
-  export type TeamMinAggregateOutputType = {
+  export type AgentObjectMinAggregateOutputType = {
     id: string | null
     name: string | null
-    slug: string | null
     description: string | null
+    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type TeamMaxAggregateOutputType = {
+  export type AgentObjectMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    slug: string | null
     description: string | null
+    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type TeamCountAggregateOutputType = {
+  export type AgentObjectCountAggregateOutputType = {
     id: number
     name: number
-    slug: number
     description: number
+    userId: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type TeamMinAggregateInputType = {
+  export type AgentObjectMinAggregateInputType = {
     id?: true
     name?: true
-    slug?: true
     description?: true
+    userId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type TeamMaxAggregateInputType = {
+  export type AgentObjectMaxAggregateInputType = {
     id?: true
     name?: true
-    slug?: true
     description?: true
+    userId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type TeamCountAggregateInputType = {
+  export type AgentObjectCountAggregateInputType = {
     id?: true
     name?: true
-    slug?: true
     description?: true
+    userId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type TeamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Team to aggregate.
+     * Filter which AgentObject to aggregate.
      */
-    where?: TeamWhereInput
+    where?: AgentObjectWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Teams to fetch.
+     * Determine the order of AgentObjects to fetch.
      */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
+    orderBy?: AgentObjectOrderByWithRelationInput | AgentObjectOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TeamWhereUniqueInput
+    cursor?: AgentObjectWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Teams from the position of the cursor.
+     * Take `±n` AgentObjects from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Teams.
+     * Skip the first `n` AgentObjects.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Teams
+     * Count returned AgentObjects
     **/
-    _count?: true | TeamCountAggregateInputType
+    _count?: true | AgentObjectCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TeamMinAggregateInputType
+    _min?: AgentObjectMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TeamMaxAggregateInputType
+    _max?: AgentObjectMaxAggregateInputType
   }
 
-  export type GetTeamAggregateType<T extends TeamAggregateArgs> = {
-        [P in keyof T & keyof AggregateTeam]: P extends '_count' | 'count'
+  export type GetAgentObjectAggregateType<T extends AgentObjectAggregateArgs> = {
+        [P in keyof T & keyof AggregateAgentObject]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTeam[P]>
-      : GetScalarType<T[P], AggregateTeam[P]>
+        : GetScalarType<T[P], AggregateAgentObject[P]>
+      : GetScalarType<T[P], AggregateAgentObject[P]>
   }
 
 
 
 
-  export type TeamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TeamWhereInput
-    orderBy?: TeamOrderByWithAggregationInput | TeamOrderByWithAggregationInput[]
-    by: TeamScalarFieldEnum[] | TeamScalarFieldEnum
-    having?: TeamScalarWhereWithAggregatesInput
+  export type AgentObjectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AgentObjectWhereInput
+    orderBy?: AgentObjectOrderByWithAggregationInput | AgentObjectOrderByWithAggregationInput[]
+    by: AgentObjectScalarFieldEnum[] | AgentObjectScalarFieldEnum
+    having?: AgentObjectScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TeamCountAggregateInputType | true
-    _min?: TeamMinAggregateInputType
-    _max?: TeamMaxAggregateInputType
+    _count?: AgentObjectCountAggregateInputType | true
+    _min?: AgentObjectMinAggregateInputType
+    _max?: AgentObjectMaxAggregateInputType
   }
 
-  export type TeamGroupByOutputType = {
+  export type AgentObjectGroupByOutputType = {
     id: string
     name: string
-    slug: string
-    description: string | null
+    description: string
+    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    _count: TeamCountAggregateOutputType | null
-    _min: TeamMinAggregateOutputType | null
-    _max: TeamMaxAggregateOutputType | null
+    _count: AgentObjectCountAggregateOutputType | null
+    _min: AgentObjectMinAggregateOutputType | null
+    _max: AgentObjectMaxAggregateOutputType | null
   }
 
-  type GetTeamGroupByPayload<T extends TeamGroupByArgs> = Prisma.PrismaPromise<
+  type GetAgentObjectGroupByPayload<T extends AgentObjectGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TeamGroupByOutputType, T['by']> &
+      PickEnumerable<AgentObjectGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TeamGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AgentObjectGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TeamGroupByOutputType[P]>
-            : GetScalarType<T[P], TeamGroupByOutputType[P]>
+              : GetScalarType<T[P], AgentObjectGroupByOutputType[P]>
+            : GetScalarType<T[P], AgentObjectGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TeamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AgentObjectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    slug?: boolean
     description?: boolean
+    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    teamMembers?: boolean | Team$teamMembersArgs<ExtArgs>
-    teamVault?: boolean | Team$teamVaultArgs<ExtArgs>
-    agentGroups?: boolean | Team$agentGroupsArgs<ExtArgs>
-    _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["team"]>
+    user?: boolean | AgentObject$userArgs<ExtArgs>
+    agentSecret?: boolean | AgentObject$agentSecretArgs<ExtArgs>
+    _count?: boolean | AgentObjectCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["agentObject"]>
 
 
 
-  export type TeamSelectScalar = {
+  export type AgentObjectSelectScalar = {
     id?: boolean
     name?: boolean
-    slug?: boolean
     description?: boolean
+    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TeamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["team"]>
-  export type TeamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    teamMembers?: boolean | Team$teamMembersArgs<ExtArgs>
-    teamVault?: boolean | Team$teamVaultArgs<ExtArgs>
-    agentGroups?: boolean | Team$agentGroupsArgs<ExtArgs>
-    _count?: boolean | TeamCountOutputTypeDefaultArgs<ExtArgs>
+  export type AgentObjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["agentObject"]>
+  export type AgentObjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | AgentObject$userArgs<ExtArgs>
+    agentSecret?: boolean | AgentObject$agentSecretArgs<ExtArgs>
+    _count?: boolean | AgentObjectCountOutputTypeDefaultArgs<ExtArgs>
   }
 
-  export type $TeamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Team"
+  export type $AgentObjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AgentObject"
     objects: {
-      teamMembers: Prisma.$TeamMemberPayload<ExtArgs>[]
-      teamVault: Prisma.$TeamVaultPayload<ExtArgs>[]
-      agentGroups: Prisma.$AgentGroupPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs> | null
+      agentSecret: Prisma.$AgentSecretPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      slug: string
-      description: string | null
+      description: string
+      userId: string | null
       createdAt: Date | null
       updatedAt: Date | null
-    }, ExtArgs["result"]["team"]>
+    }, ExtArgs["result"]["agentObject"]>
     composites: {}
   }
 
-  type TeamGetPayload<S extends boolean | null | undefined | TeamDefaultArgs> = $Result.GetResult<Prisma.$TeamPayload, S>
+  type AgentObjectGetPayload<S extends boolean | null | undefined | AgentObjectDefaultArgs> = $Result.GetResult<Prisma.$AgentObjectPayload, S>
 
-  type TeamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TeamFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TeamCountAggregateInputType | true
+  type AgentObjectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AgentObjectFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AgentObjectCountAggregateInputType | true
     }
 
-  export interface TeamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Team'], meta: { name: 'Team' } }
+  export interface AgentObjectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AgentObject'], meta: { name: 'AgentObject' } }
     /**
-     * Find zero or one Team that matches the filter.
-     * @param {TeamFindUniqueArgs} args - Arguments to find a Team
+     * Find zero or one AgentObject that matches the filter.
+     * @param {AgentObjectFindUniqueArgs} args - Arguments to find a AgentObject
      * @example
-     * // Get one Team
-     * const team = await prisma.team.findUnique({
+     * // Get one AgentObject
+     * const agentObject = await prisma.agentObject.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TeamFindUniqueArgs>(args: SelectSubset<T, TeamFindUniqueArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends AgentObjectFindUniqueArgs>(args: SelectSubset<T, AgentObjectFindUniqueArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Team that matches the filter or throw an error with `error.code='P2025'`
+     * Find one AgentObject that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TeamFindUniqueOrThrowArgs} args - Arguments to find a Team
+     * @param {AgentObjectFindUniqueOrThrowArgs} args - Arguments to find a AgentObject
      * @example
-     * // Get one Team
-     * const team = await prisma.team.findUniqueOrThrow({
+     * // Get one AgentObject
+     * const agentObject = await prisma.agentObject.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TeamFindUniqueOrThrowArgs>(args: SelectSubset<T, TeamFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends AgentObjectFindUniqueOrThrowArgs>(args: SelectSubset<T, AgentObjectFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Team that matches the filter.
+     * Find the first AgentObject that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamFindFirstArgs} args - Arguments to find a Team
+     * @param {AgentObjectFindFirstArgs} args - Arguments to find a AgentObject
      * @example
-     * // Get one Team
-     * const team = await prisma.team.findFirst({
+     * // Get one AgentObject
+     * const agentObject = await prisma.agentObject.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TeamFindFirstArgs>(args?: SelectSubset<T, TeamFindFirstArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends AgentObjectFindFirstArgs>(args?: SelectSubset<T, AgentObjectFindFirstArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Team that matches the filter or
+     * Find the first AgentObject that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamFindFirstOrThrowArgs} args - Arguments to find a Team
+     * @param {AgentObjectFindFirstOrThrowArgs} args - Arguments to find a AgentObject
      * @example
-     * // Get one Team
-     * const team = await prisma.team.findFirstOrThrow({
+     * // Get one AgentObject
+     * const agentObject = await prisma.agentObject.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TeamFindFirstOrThrowArgs>(args?: SelectSubset<T, TeamFindFirstOrThrowArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends AgentObjectFindFirstOrThrowArgs>(args?: SelectSubset<T, AgentObjectFindFirstOrThrowArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Teams that matches the filter.
+     * Find zero or more AgentObjects that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {AgentObjectFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Teams
-     * const teams = await prisma.team.findMany()
+     * // Get all AgentObjects
+     * const agentObjects = await prisma.agentObject.findMany()
      * 
-     * // Get first 10 Teams
-     * const teams = await prisma.team.findMany({ take: 10 })
+     * // Get first 10 AgentObjects
+     * const agentObjects = await prisma.agentObject.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const teamWithIdOnly = await prisma.team.findMany({ select: { id: true } })
+     * const agentObjectWithIdOnly = await prisma.agentObject.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TeamFindManyArgs>(args?: SelectSubset<T, TeamFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends AgentObjectFindManyArgs>(args?: SelectSubset<T, AgentObjectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Team.
-     * @param {TeamCreateArgs} args - Arguments to create a Team.
+     * Create a AgentObject.
+     * @param {AgentObjectCreateArgs} args - Arguments to create a AgentObject.
      * @example
-     * // Create one Team
-     * const Team = await prisma.team.create({
+     * // Create one AgentObject
+     * const AgentObject = await prisma.agentObject.create({
      *   data: {
-     *     // ... data to create a Team
+     *     // ... data to create a AgentObject
      *   }
      * })
      * 
      */
-    create<T extends TeamCreateArgs>(args: SelectSubset<T, TeamCreateArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends AgentObjectCreateArgs>(args: SelectSubset<T, AgentObjectCreateArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Teams.
-     * @param {TeamCreateManyArgs} args - Arguments to create many Teams.
+     * Create many AgentObjects.
+     * @param {AgentObjectCreateManyArgs} args - Arguments to create many AgentObjects.
      * @example
-     * // Create many Teams
-     * const team = await prisma.team.createMany({
+     * // Create many AgentObjects
+     * const agentObject = await prisma.agentObject.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TeamCreateManyArgs>(args?: SelectSubset<T, TeamCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends AgentObjectCreateManyArgs>(args?: SelectSubset<T, AgentObjectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Team.
-     * @param {TeamDeleteArgs} args - Arguments to delete one Team.
+     * Delete a AgentObject.
+     * @param {AgentObjectDeleteArgs} args - Arguments to delete one AgentObject.
      * @example
-     * // Delete one Team
-     * const Team = await prisma.team.delete({
+     * // Delete one AgentObject
+     * const AgentObject = await prisma.agentObject.delete({
      *   where: {
-     *     // ... filter to delete one Team
+     *     // ... filter to delete one AgentObject
      *   }
      * })
      * 
      */
-    delete<T extends TeamDeleteArgs>(args: SelectSubset<T, TeamDeleteArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends AgentObjectDeleteArgs>(args: SelectSubset<T, AgentObjectDeleteArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Team.
-     * @param {TeamUpdateArgs} args - Arguments to update one Team.
+     * Update one AgentObject.
+     * @param {AgentObjectUpdateArgs} args - Arguments to update one AgentObject.
      * @example
-     * // Update one Team
-     * const team = await prisma.team.update({
+     * // Update one AgentObject
+     * const agentObject = await prisma.agentObject.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7165,30 +6911,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TeamUpdateArgs>(args: SelectSubset<T, TeamUpdateArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends AgentObjectUpdateArgs>(args: SelectSubset<T, AgentObjectUpdateArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Teams.
-     * @param {TeamDeleteManyArgs} args - Arguments to filter Teams to delete.
+     * Delete zero or more AgentObjects.
+     * @param {AgentObjectDeleteManyArgs} args - Arguments to filter AgentObjects to delete.
      * @example
-     * // Delete a few Teams
-     * const { count } = await prisma.team.deleteMany({
+     * // Delete a few AgentObjects
+     * const { count } = await prisma.agentObject.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TeamDeleteManyArgs>(args?: SelectSubset<T, TeamDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends AgentObjectDeleteManyArgs>(args?: SelectSubset<T, AgentObjectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Teams.
+     * Update zero or more AgentObjects.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AgentObjectUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Teams
-     * const team = await prisma.team.updateMany({
+     * // Update many AgentObjects
+     * const agentObject = await prisma.agentObject.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7198,79 +6944,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TeamUpdateManyArgs>(args: SelectSubset<T, TeamUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends AgentObjectUpdateManyArgs>(args: SelectSubset<T, AgentObjectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Team.
-     * @param {TeamUpsertArgs} args - Arguments to update or create a Team.
+     * Create or update one AgentObject.
+     * @param {AgentObjectUpsertArgs} args - Arguments to update or create a AgentObject.
      * @example
-     * // Update or create a Team
-     * const team = await prisma.team.upsert({
+     * // Update or create a AgentObject
+     * const agentObject = await prisma.agentObject.upsert({
      *   create: {
-     *     // ... data to create a Team
+     *     // ... data to create a AgentObject
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Team we want to update
+     *     // ... the filter for the AgentObject we want to update
      *   }
      * })
      */
-    upsert<T extends TeamUpsertArgs>(args: SelectSubset<T, TeamUpsertArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends AgentObjectUpsertArgs>(args: SelectSubset<T, AgentObjectUpsertArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Teams that matches the filter.
-     * @param {TeamFindRawArgs} args - Select which filters you would like to apply.
+     * Find zero or more AgentObjects that matches the filter.
+     * @param {AgentObjectFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const team = await prisma.team.findRaw({
+     * const agentObject = await prisma.agentObject.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: TeamFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: AgentObjectFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a Team.
-     * @param {TeamAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a AgentObject.
+     * @param {AgentObjectAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const team = await prisma.team.aggregateRaw({
+     * const agentObject = await prisma.agentObject.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: TeamAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: AgentObjectAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
-     * Count the number of Teams.
+     * Count the number of AgentObjects.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamCountArgs} args - Arguments to filter Teams to count.
+     * @param {AgentObjectCountArgs} args - Arguments to filter AgentObjects to count.
      * @example
-     * // Count the number of Teams
-     * const count = await prisma.team.count({
+     * // Count the number of AgentObjects
+     * const count = await prisma.agentObject.count({
      *   where: {
-     *     // ... the filter for the Teams we want to count
+     *     // ... the filter for the AgentObjects we want to count
      *   }
      * })
     **/
-    count<T extends TeamCountArgs>(
-      args?: Subset<T, TeamCountArgs>,
+    count<T extends AgentObjectCountArgs>(
+      args?: Subset<T, AgentObjectCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TeamCountAggregateOutputType>
+          : GetScalarType<T['select'], AgentObjectCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Team.
+     * Allows you to perform aggregations operations on a AgentObject.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AgentObjectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -7290,13 +7036,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TeamAggregateArgs>(args: Subset<T, TeamAggregateArgs>): Prisma.PrismaPromise<GetTeamAggregateType<T>>
+    aggregate<T extends AgentObjectAggregateArgs>(args: Subset<T, AgentObjectAggregateArgs>): Prisma.PrismaPromise<GetAgentObjectAggregateType<T>>
 
     /**
-     * Group by Team.
+     * Group by AgentObject.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamGroupByArgs} args - Group by arguments.
+     * @param {AgentObjectGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -7311,14 +7057,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TeamGroupByArgs,
+      T extends AgentObjectGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TeamGroupByArgs['orderBy'] }
-        : { orderBy?: TeamGroupByArgs['orderBy'] },
+        ? { orderBy: AgentObjectGroupByArgs['orderBy'] }
+        : { orderBy?: AgentObjectGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -7367,24 +7113,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TeamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTeamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AgentObjectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAgentObjectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Team model
+   * Fields of the AgentObject model
    */
-  readonly fields: TeamFieldRefs;
+  readonly fields: AgentObjectFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Team.
+   * The delegate class that acts as a "Promise-like" for AgentObject.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TeamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AgentObjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    teamMembers<T extends Team$teamMembersArgs<ExtArgs> = {}>(args?: Subset<T, Team$teamMembersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    teamVault<T extends Team$teamVaultArgs<ExtArgs> = {}>(args?: Subset<T, Team$teamVaultArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    agentGroups<T extends Team$agentGroupsArgs<ExtArgs> = {}>(args?: Subset<T, Team$agentGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends AgentObject$userArgs<ExtArgs> = {}>(args?: Subset<T, AgentObject$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    agentSecret<T extends AgentObject$agentSecretArgs<ExtArgs> = {}>(args?: Subset<T, AgentObject$agentSecretArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7411,360 +7156,360 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Team model
+   * Fields of the AgentObject model
    */
-  interface TeamFieldRefs {
-    readonly id: FieldRef<"Team", 'String'>
-    readonly name: FieldRef<"Team", 'String'>
-    readonly slug: FieldRef<"Team", 'String'>
-    readonly description: FieldRef<"Team", 'String'>
-    readonly createdAt: FieldRef<"Team", 'DateTime'>
-    readonly updatedAt: FieldRef<"Team", 'DateTime'>
+  interface AgentObjectFieldRefs {
+    readonly id: FieldRef<"AgentObject", 'String'>
+    readonly name: FieldRef<"AgentObject", 'String'>
+    readonly description: FieldRef<"AgentObject", 'String'>
+    readonly userId: FieldRef<"AgentObject", 'String'>
+    readonly createdAt: FieldRef<"AgentObject", 'DateTime'>
+    readonly updatedAt: FieldRef<"AgentObject", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Team findUnique
+   * AgentObject findUnique
    */
-  export type TeamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * Filter, which Team to fetch.
+     * Filter, which AgentObject to fetch.
      */
-    where: TeamWhereUniqueInput
+    where: AgentObjectWhereUniqueInput
   }
 
   /**
-   * Team findUniqueOrThrow
+   * AgentObject findUniqueOrThrow
    */
-  export type TeamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * Filter, which Team to fetch.
+     * Filter, which AgentObject to fetch.
      */
-    where: TeamWhereUniqueInput
+    where: AgentObjectWhereUniqueInput
   }
 
   /**
-   * Team findFirst
+   * AgentObject findFirst
    */
-  export type TeamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * Filter, which Team to fetch.
+     * Filter, which AgentObject to fetch.
      */
-    where?: TeamWhereInput
+    where?: AgentObjectWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Teams to fetch.
+     * Determine the order of AgentObjects to fetch.
      */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
+    orderBy?: AgentObjectOrderByWithRelationInput | AgentObjectOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Teams.
+     * Sets the position for searching for AgentObjects.
      */
-    cursor?: TeamWhereUniqueInput
+    cursor?: AgentObjectWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Teams from the position of the cursor.
+     * Take `±n` AgentObjects from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Teams.
+     * Skip the first `n` AgentObjects.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Teams.
+     * Filter by unique combinations of AgentObjects.
      */
-    distinct?: TeamScalarFieldEnum | TeamScalarFieldEnum[]
+    distinct?: AgentObjectScalarFieldEnum | AgentObjectScalarFieldEnum[]
   }
 
   /**
-   * Team findFirstOrThrow
+   * AgentObject findFirstOrThrow
    */
-  export type TeamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * Filter, which Team to fetch.
+     * Filter, which AgentObject to fetch.
      */
-    where?: TeamWhereInput
+    where?: AgentObjectWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Teams to fetch.
+     * Determine the order of AgentObjects to fetch.
      */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
+    orderBy?: AgentObjectOrderByWithRelationInput | AgentObjectOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Teams.
+     * Sets the position for searching for AgentObjects.
      */
-    cursor?: TeamWhereUniqueInput
+    cursor?: AgentObjectWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Teams from the position of the cursor.
+     * Take `±n` AgentObjects from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Teams.
+     * Skip the first `n` AgentObjects.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Teams.
+     * Filter by unique combinations of AgentObjects.
      */
-    distinct?: TeamScalarFieldEnum | TeamScalarFieldEnum[]
+    distinct?: AgentObjectScalarFieldEnum | AgentObjectScalarFieldEnum[]
   }
 
   /**
-   * Team findMany
+   * AgentObject findMany
    */
-  export type TeamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * Filter, which Teams to fetch.
+     * Filter, which AgentObjects to fetch.
      */
-    where?: TeamWhereInput
+    where?: AgentObjectWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Teams to fetch.
+     * Determine the order of AgentObjects to fetch.
      */
-    orderBy?: TeamOrderByWithRelationInput | TeamOrderByWithRelationInput[]
+    orderBy?: AgentObjectOrderByWithRelationInput | AgentObjectOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Teams.
+     * Sets the position for listing AgentObjects.
      */
-    cursor?: TeamWhereUniqueInput
+    cursor?: AgentObjectWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Teams from the position of the cursor.
+     * Take `±n` AgentObjects from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Teams.
+     * Skip the first `n` AgentObjects.
      */
     skip?: number
-    distinct?: TeamScalarFieldEnum | TeamScalarFieldEnum[]
+    distinct?: AgentObjectScalarFieldEnum | AgentObjectScalarFieldEnum[]
   }
 
   /**
-   * Team create
+   * AgentObject create
    */
-  export type TeamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * The data needed to create a Team.
+     * The data needed to create a AgentObject.
      */
-    data: XOR<TeamCreateInput, TeamUncheckedCreateInput>
+    data: XOR<AgentObjectCreateInput, AgentObjectUncheckedCreateInput>
   }
 
   /**
-   * Team createMany
+   * AgentObject createMany
    */
-  export type TeamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Teams.
+     * The data used to create many AgentObjects.
      */
-    data: TeamCreateManyInput | TeamCreateManyInput[]
+    data: AgentObjectCreateManyInput | AgentObjectCreateManyInput[]
   }
 
   /**
-   * Team update
+   * AgentObject update
    */
-  export type TeamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * The data needed to update a Team.
+     * The data needed to update a AgentObject.
      */
-    data: XOR<TeamUpdateInput, TeamUncheckedUpdateInput>
+    data: XOR<AgentObjectUpdateInput, AgentObjectUncheckedUpdateInput>
     /**
-     * Choose, which Team to update.
+     * Choose, which AgentObject to update.
      */
-    where: TeamWhereUniqueInput
+    where: AgentObjectWhereUniqueInput
   }
 
   /**
-   * Team updateMany
+   * AgentObject updateMany
    */
-  export type TeamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Teams.
+     * The data used to update AgentObjects.
      */
-    data: XOR<TeamUpdateManyMutationInput, TeamUncheckedUpdateManyInput>
+    data: XOR<AgentObjectUpdateManyMutationInput, AgentObjectUncheckedUpdateManyInput>
     /**
-     * Filter which Teams to update
+     * Filter which AgentObjects to update
      */
-    where?: TeamWhereInput
+    where?: AgentObjectWhereInput
     /**
-     * Limit how many Teams to update.
+     * Limit how many AgentObjects to update.
      */
     limit?: number
   }
 
   /**
-   * Team upsert
+   * AgentObject upsert
    */
-  export type TeamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * The filter to search for the Team to update in case it exists.
+     * The filter to search for the AgentObject to update in case it exists.
      */
-    where: TeamWhereUniqueInput
+    where: AgentObjectWhereUniqueInput
     /**
-     * In case the Team found by the `where` argument doesn't exist, create a new Team with this data.
+     * In case the AgentObject found by the `where` argument doesn't exist, create a new AgentObject with this data.
      */
-    create: XOR<TeamCreateInput, TeamUncheckedCreateInput>
+    create: XOR<AgentObjectCreateInput, AgentObjectUncheckedCreateInput>
     /**
-     * In case the Team was found with the provided `where` argument, update it with this data.
+     * In case the AgentObject was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<TeamUpdateInput, TeamUncheckedUpdateInput>
+    update: XOR<AgentObjectUpdateInput, AgentObjectUncheckedUpdateInput>
   }
 
   /**
-   * Team delete
+   * AgentObject delete
    */
-  export type TeamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Team
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
     /**
-     * Filter which Team to delete.
+     * Filter which AgentObject to delete.
      */
-    where: TeamWhereUniqueInput
+    where: AgentObjectWhereUniqueInput
   }
 
   /**
-   * Team deleteMany
+   * AgentObject deleteMany
    */
-  export type TeamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Teams to delete
+     * Filter which AgentObjects to delete
      */
-    where?: TeamWhereInput
+    where?: AgentObjectWhereInput
     /**
-     * Limit how many Teams to delete.
+     * Limit how many AgentObjects to delete.
      */
     limit?: number
   }
 
   /**
-   * Team findRaw
+   * AgentObject findRaw
    */
-  export type TeamFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -7776,9 +7521,9 @@ export namespace Prisma {
   }
 
   /**
-   * Team aggregateRaw
+   * AgentObject aggregateRaw
    */
-  export type TeamAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -7790,2376 +7535,417 @@ export namespace Prisma {
   }
 
   /**
-   * Team.teamMembers
+   * AgentObject.user
    */
-  export type Team$teamMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObject$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TeamMember
+     * Select specific fields to fetch from the User
      */
-    select?: TeamMemberSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TeamMember
+     * Omit specific fields from the User
      */
-    omit?: TeamMemberOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamMemberInclude<ExtArgs> | null
-    where?: TeamMemberWhereInput
-    orderBy?: TeamMemberOrderByWithRelationInput | TeamMemberOrderByWithRelationInput[]
-    cursor?: TeamMemberWhereUniqueInput
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * AgentObject.agentSecret
+   */
+  export type AgentObject$agentSecretArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentSecret
+     */
+    select?: AgentSecretSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentSecret
+     */
+    omit?: AgentSecretOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AgentSecretInclude<ExtArgs> | null
+    where?: AgentSecretWhereInput
+    orderBy?: AgentSecretOrderByWithRelationInput | AgentSecretOrderByWithRelationInput[]
+    cursor?: AgentSecretWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: TeamMemberScalarFieldEnum | TeamMemberScalarFieldEnum[]
+    distinct?: AgentSecretScalarFieldEnum | AgentSecretScalarFieldEnum[]
   }
 
   /**
-   * Team.teamVault
+   * AgentObject without action
    */
-  export type Team$teamVaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentObjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TeamVault
+     * Select specific fields to fetch from the AgentObject
      */
-    select?: TeamVaultSelect<ExtArgs> | null
+    select?: AgentObjectSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TeamVault
+     * Omit specific fields from the AgentObject
      */
-    omit?: TeamVaultOmit<ExtArgs> | null
+    omit?: AgentObjectOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TeamVaultInclude<ExtArgs> | null
-    where?: TeamVaultWhereInput
-    orderBy?: TeamVaultOrderByWithRelationInput | TeamVaultOrderByWithRelationInput[]
-    cursor?: TeamVaultWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TeamVaultScalarFieldEnum | TeamVaultScalarFieldEnum[]
-  }
-
-  /**
-   * Team.agentGroups
-   */
-  export type Team$agentGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AgentGroup
-     */
-    select?: AgentGroupSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AgentGroup
-     */
-    omit?: AgentGroupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AgentGroupInclude<ExtArgs> | null
-    where?: AgentGroupWhereInput
-    orderBy?: AgentGroupOrderByWithRelationInput | AgentGroupOrderByWithRelationInput[]
-    cursor?: AgentGroupWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AgentGroupScalarFieldEnum | AgentGroupScalarFieldEnum[]
-  }
-
-  /**
-   * Team without action
-   */
-  export type TeamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Team
-     */
-    select?: TeamSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Team
-     */
-    omit?: TeamOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamInclude<ExtArgs> | null
+    include?: AgentObjectInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model TeamVault
+   * Model AgentSecret
    */
 
-  export type AggregateTeamVault = {
-    _count: TeamVaultCountAggregateOutputType | null
-    _min: TeamVaultMinAggregateOutputType | null
-    _max: TeamVaultMaxAggregateOutputType | null
+  export type AggregateAgentSecret = {
+    _count: AgentSecretCountAggregateOutputType | null
+    _min: AgentSecretMinAggregateOutputType | null
+    _max: AgentSecretMaxAggregateOutputType | null
   }
 
-  export type TeamVaultMinAggregateOutputType = {
+  export type AgentSecretMinAggregateOutputType = {
     id: string | null
-    openRouterAPIKey: string | null
-    replicateAPIKey: string | null
-    falAPIKey: string | null
-    teamId: string | null
-  }
-
-  export type TeamVaultMaxAggregateOutputType = {
-    id: string | null
-    openRouterAPIKey: string | null
-    replicateAPIKey: string | null
-    falAPIKey: string | null
-    teamId: string | null
-  }
-
-  export type TeamVaultCountAggregateOutputType = {
-    id: number
-    openRouterAPIKey: number
-    replicateAPIKey: number
-    falAPIKey: number
-    teamId: number
-    _all: number
-  }
-
-
-  export type TeamVaultMinAggregateInputType = {
-    id?: true
-    openRouterAPIKey?: true
-    replicateAPIKey?: true
-    falAPIKey?: true
-    teamId?: true
-  }
-
-  export type TeamVaultMaxAggregateInputType = {
-    id?: true
-    openRouterAPIKey?: true
-    replicateAPIKey?: true
-    falAPIKey?: true
-    teamId?: true
-  }
-
-  export type TeamVaultCountAggregateInputType = {
-    id?: true
-    openRouterAPIKey?: true
-    replicateAPIKey?: true
-    falAPIKey?: true
-    teamId?: true
-    _all?: true
-  }
-
-  export type TeamVaultAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which TeamVault to aggregate.
-     */
-    where?: TeamVaultWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamVaults to fetch.
-     */
-    orderBy?: TeamVaultOrderByWithRelationInput | TeamVaultOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: TeamVaultWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamVaults from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamVaults.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned TeamVaults
-    **/
-    _count?: true | TeamVaultCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: TeamVaultMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: TeamVaultMaxAggregateInputType
-  }
-
-  export type GetTeamVaultAggregateType<T extends TeamVaultAggregateArgs> = {
-        [P in keyof T & keyof AggregateTeamVault]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTeamVault[P]>
-      : GetScalarType<T[P], AggregateTeamVault[P]>
-  }
-
-
-
-
-  export type TeamVaultGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TeamVaultWhereInput
-    orderBy?: TeamVaultOrderByWithAggregationInput | TeamVaultOrderByWithAggregationInput[]
-    by: TeamVaultScalarFieldEnum[] | TeamVaultScalarFieldEnum
-    having?: TeamVaultScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TeamVaultCountAggregateInputType | true
-    _min?: TeamVaultMinAggregateInputType
-    _max?: TeamVaultMaxAggregateInputType
-  }
-
-  export type TeamVaultGroupByOutputType = {
-    id: string
-    openRouterAPIKey: string
-    replicateAPIKey: string
-    falAPIKey: string
-    teamId: string
-    _count: TeamVaultCountAggregateOutputType | null
-    _min: TeamVaultMinAggregateOutputType | null
-    _max: TeamVaultMaxAggregateOutputType | null
-  }
-
-  type GetTeamVaultGroupByPayload<T extends TeamVaultGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TeamVaultGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TeamVaultGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TeamVaultGroupByOutputType[P]>
-            : GetScalarType<T[P], TeamVaultGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type TeamVaultSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    openRouterAPIKey?: boolean
-    replicateAPIKey?: boolean
-    falAPIKey?: boolean
-    teamId?: boolean
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["teamVault"]>
-
-
-
-  export type TeamVaultSelectScalar = {
-    id?: boolean
-    openRouterAPIKey?: boolean
-    replicateAPIKey?: boolean
-    falAPIKey?: boolean
-    teamId?: boolean
-  }
-
-  export type TeamVaultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "openRouterAPIKey" | "replicateAPIKey" | "falAPIKey" | "teamId", ExtArgs["result"]["teamVault"]>
-  export type TeamVaultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }
-
-  export type $TeamVaultPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TeamVault"
-    objects: {
-      team: Prisma.$TeamPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      openRouterAPIKey: string
-      replicateAPIKey: string
-      falAPIKey: string
-      teamId: string
-    }, ExtArgs["result"]["teamVault"]>
-    composites: {}
-  }
-
-  type TeamVaultGetPayload<S extends boolean | null | undefined | TeamVaultDefaultArgs> = $Result.GetResult<Prisma.$TeamVaultPayload, S>
-
-  type TeamVaultCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TeamVaultFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TeamVaultCountAggregateInputType | true
-    }
-
-  export interface TeamVaultDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TeamVault'], meta: { name: 'TeamVault' } }
-    /**
-     * Find zero or one TeamVault that matches the filter.
-     * @param {TeamVaultFindUniqueArgs} args - Arguments to find a TeamVault
-     * @example
-     * // Get one TeamVault
-     * const teamVault = await prisma.teamVault.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends TeamVaultFindUniqueArgs>(args: SelectSubset<T, TeamVaultFindUniqueArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one TeamVault that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {TeamVaultFindUniqueOrThrowArgs} args - Arguments to find a TeamVault
-     * @example
-     * // Get one TeamVault
-     * const teamVault = await prisma.teamVault.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends TeamVaultFindUniqueOrThrowArgs>(args: SelectSubset<T, TeamVaultFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first TeamVault that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamVaultFindFirstArgs} args - Arguments to find a TeamVault
-     * @example
-     * // Get one TeamVault
-     * const teamVault = await prisma.teamVault.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends TeamVaultFindFirstArgs>(args?: SelectSubset<T, TeamVaultFindFirstArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first TeamVault that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamVaultFindFirstOrThrowArgs} args - Arguments to find a TeamVault
-     * @example
-     * // Get one TeamVault
-     * const teamVault = await prisma.teamVault.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends TeamVaultFindFirstOrThrowArgs>(args?: SelectSubset<T, TeamVaultFindFirstOrThrowArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more TeamVaults that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamVaultFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all TeamVaults
-     * const teamVaults = await prisma.teamVault.findMany()
-     * 
-     * // Get first 10 TeamVaults
-     * const teamVaults = await prisma.teamVault.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const teamVaultWithIdOnly = await prisma.teamVault.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends TeamVaultFindManyArgs>(args?: SelectSubset<T, TeamVaultFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a TeamVault.
-     * @param {TeamVaultCreateArgs} args - Arguments to create a TeamVault.
-     * @example
-     * // Create one TeamVault
-     * const TeamVault = await prisma.teamVault.create({
-     *   data: {
-     *     // ... data to create a TeamVault
-     *   }
-     * })
-     * 
-     */
-    create<T extends TeamVaultCreateArgs>(args: SelectSubset<T, TeamVaultCreateArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many TeamVaults.
-     * @param {TeamVaultCreateManyArgs} args - Arguments to create many TeamVaults.
-     * @example
-     * // Create many TeamVaults
-     * const teamVault = await prisma.teamVault.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends TeamVaultCreateManyArgs>(args?: SelectSubset<T, TeamVaultCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a TeamVault.
-     * @param {TeamVaultDeleteArgs} args - Arguments to delete one TeamVault.
-     * @example
-     * // Delete one TeamVault
-     * const TeamVault = await prisma.teamVault.delete({
-     *   where: {
-     *     // ... filter to delete one TeamVault
-     *   }
-     * })
-     * 
-     */
-    delete<T extends TeamVaultDeleteArgs>(args: SelectSubset<T, TeamVaultDeleteArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one TeamVault.
-     * @param {TeamVaultUpdateArgs} args - Arguments to update one TeamVault.
-     * @example
-     * // Update one TeamVault
-     * const teamVault = await prisma.teamVault.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends TeamVaultUpdateArgs>(args: SelectSubset<T, TeamVaultUpdateArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more TeamVaults.
-     * @param {TeamVaultDeleteManyArgs} args - Arguments to filter TeamVaults to delete.
-     * @example
-     * // Delete a few TeamVaults
-     * const { count } = await prisma.teamVault.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends TeamVaultDeleteManyArgs>(args?: SelectSubset<T, TeamVaultDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more TeamVaults.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamVaultUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many TeamVaults
-     * const teamVault = await prisma.teamVault.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends TeamVaultUpdateManyArgs>(args: SelectSubset<T, TeamVaultUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one TeamVault.
-     * @param {TeamVaultUpsertArgs} args - Arguments to update or create a TeamVault.
-     * @example
-     * // Update or create a TeamVault
-     * const teamVault = await prisma.teamVault.upsert({
-     *   create: {
-     *     // ... data to create a TeamVault
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the TeamVault we want to update
-     *   }
-     * })
-     */
-    upsert<T extends TeamVaultUpsertArgs>(args: SelectSubset<T, TeamVaultUpsertArgs<ExtArgs>>): Prisma__TeamVaultClient<$Result.GetResult<Prisma.$TeamVaultPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more TeamVaults that matches the filter.
-     * @param {TeamVaultFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const teamVault = await prisma.teamVault.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: TeamVaultFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a TeamVault.
-     * @param {TeamVaultAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const teamVault = await prisma.teamVault.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: TeamVaultAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of TeamVaults.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamVaultCountArgs} args - Arguments to filter TeamVaults to count.
-     * @example
-     * // Count the number of TeamVaults
-     * const count = await prisma.teamVault.count({
-     *   where: {
-     *     // ... the filter for the TeamVaults we want to count
-     *   }
-     * })
-    **/
-    count<T extends TeamVaultCountArgs>(
-      args?: Subset<T, TeamVaultCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], TeamVaultCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a TeamVault.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamVaultAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends TeamVaultAggregateArgs>(args: Subset<T, TeamVaultAggregateArgs>): Prisma.PrismaPromise<GetTeamVaultAggregateType<T>>
-
-    /**
-     * Group by TeamVault.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamVaultGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends TeamVaultGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TeamVaultGroupByArgs['orderBy'] }
-        : { orderBy?: TeamVaultGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TeamVaultGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTeamVaultGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the TeamVault model
-   */
-  readonly fields: TeamVaultFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for TeamVault.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__TeamVaultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the TeamVault model
-   */
-  interface TeamVaultFieldRefs {
-    readonly id: FieldRef<"TeamVault", 'String'>
-    readonly openRouterAPIKey: FieldRef<"TeamVault", 'String'>
-    readonly replicateAPIKey: FieldRef<"TeamVault", 'String'>
-    readonly falAPIKey: FieldRef<"TeamVault", 'String'>
-    readonly teamId: FieldRef<"TeamVault", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * TeamVault findUnique
-   */
-  export type TeamVaultFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamVault to fetch.
-     */
-    where: TeamVaultWhereUniqueInput
-  }
-
-  /**
-   * TeamVault findUniqueOrThrow
-   */
-  export type TeamVaultFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamVault to fetch.
-     */
-    where: TeamVaultWhereUniqueInput
-  }
-
-  /**
-   * TeamVault findFirst
-   */
-  export type TeamVaultFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamVault to fetch.
-     */
-    where?: TeamVaultWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamVaults to fetch.
-     */
-    orderBy?: TeamVaultOrderByWithRelationInput | TeamVaultOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for TeamVaults.
-     */
-    cursor?: TeamVaultWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamVaults from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamVaults.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of TeamVaults.
-     */
-    distinct?: TeamVaultScalarFieldEnum | TeamVaultScalarFieldEnum[]
-  }
-
-  /**
-   * TeamVault findFirstOrThrow
-   */
-  export type TeamVaultFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamVault to fetch.
-     */
-    where?: TeamVaultWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamVaults to fetch.
-     */
-    orderBy?: TeamVaultOrderByWithRelationInput | TeamVaultOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for TeamVaults.
-     */
-    cursor?: TeamVaultWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamVaults from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamVaults.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of TeamVaults.
-     */
-    distinct?: TeamVaultScalarFieldEnum | TeamVaultScalarFieldEnum[]
-  }
-
-  /**
-   * TeamVault findMany
-   */
-  export type TeamVaultFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamVaults to fetch.
-     */
-    where?: TeamVaultWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamVaults to fetch.
-     */
-    orderBy?: TeamVaultOrderByWithRelationInput | TeamVaultOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing TeamVaults.
-     */
-    cursor?: TeamVaultWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamVaults from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamVaults.
-     */
-    skip?: number
-    distinct?: TeamVaultScalarFieldEnum | TeamVaultScalarFieldEnum[]
-  }
-
-  /**
-   * TeamVault create
-   */
-  export type TeamVaultCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * The data needed to create a TeamVault.
-     */
-    data: XOR<TeamVaultCreateInput, TeamVaultUncheckedCreateInput>
-  }
-
-  /**
-   * TeamVault createMany
-   */
-  export type TeamVaultCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many TeamVaults.
-     */
-    data: TeamVaultCreateManyInput | TeamVaultCreateManyInput[]
-  }
-
-  /**
-   * TeamVault update
-   */
-  export type TeamVaultUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * The data needed to update a TeamVault.
-     */
-    data: XOR<TeamVaultUpdateInput, TeamVaultUncheckedUpdateInput>
-    /**
-     * Choose, which TeamVault to update.
-     */
-    where: TeamVaultWhereUniqueInput
-  }
-
-  /**
-   * TeamVault updateMany
-   */
-  export type TeamVaultUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update TeamVaults.
-     */
-    data: XOR<TeamVaultUpdateManyMutationInput, TeamVaultUncheckedUpdateManyInput>
-    /**
-     * Filter which TeamVaults to update
-     */
-    where?: TeamVaultWhereInput
-    /**
-     * Limit how many TeamVaults to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * TeamVault upsert
-   */
-  export type TeamVaultUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * The filter to search for the TeamVault to update in case it exists.
-     */
-    where: TeamVaultWhereUniqueInput
-    /**
-     * In case the TeamVault found by the `where` argument doesn't exist, create a new TeamVault with this data.
-     */
-    create: XOR<TeamVaultCreateInput, TeamVaultUncheckedCreateInput>
-    /**
-     * In case the TeamVault was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TeamVaultUpdateInput, TeamVaultUncheckedUpdateInput>
-  }
-
-  /**
-   * TeamVault delete
-   */
-  export type TeamVaultDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-    /**
-     * Filter which TeamVault to delete.
-     */
-    where: TeamVaultWhereUniqueInput
-  }
-
-  /**
-   * TeamVault deleteMany
-   */
-  export type TeamVaultDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which TeamVaults to delete
-     */
-    where?: TeamVaultWhereInput
-    /**
-     * Limit how many TeamVaults to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * TeamVault findRaw
-   */
-  export type TeamVaultFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * TeamVault aggregateRaw
-   */
-  export type TeamVaultAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * TeamVault without action
-   */
-  export type TeamVaultDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamVault
-     */
-    select?: TeamVaultSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamVault
-     */
-    omit?: TeamVaultOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamVaultInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model TeamMember
-   */
-
-  export type AggregateTeamMember = {
-    _count: TeamMemberCountAggregateOutputType | null
-    _min: TeamMemberMinAggregateOutputType | null
-    _max: TeamMemberMaxAggregateOutputType | null
-  }
-
-  export type TeamMemberMinAggregateOutputType = {
-    id: string | null
-    email: string | null
-    role: string | null
-    teamId: string | null
-  }
-
-  export type TeamMemberMaxAggregateOutputType = {
-    id: string | null
-    email: string | null
-    role: string | null
-    teamId: string | null
-  }
-
-  export type TeamMemberCountAggregateOutputType = {
-    id: number
-    email: number
-    role: number
-    teamId: number
-    _all: number
-  }
-
-
-  export type TeamMemberMinAggregateInputType = {
-    id?: true
-    email?: true
-    role?: true
-    teamId?: true
-  }
-
-  export type TeamMemberMaxAggregateInputType = {
-    id?: true
-    email?: true
-    role?: true
-    teamId?: true
-  }
-
-  export type TeamMemberCountAggregateInputType = {
-    id?: true
-    email?: true
-    role?: true
-    teamId?: true
-    _all?: true
-  }
-
-  export type TeamMemberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which TeamMember to aggregate.
-     */
-    where?: TeamMemberWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamMembers to fetch.
-     */
-    orderBy?: TeamMemberOrderByWithRelationInput | TeamMemberOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: TeamMemberWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamMembers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamMembers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned TeamMembers
-    **/
-    _count?: true | TeamMemberCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: TeamMemberMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: TeamMemberMaxAggregateInputType
-  }
-
-  export type GetTeamMemberAggregateType<T extends TeamMemberAggregateArgs> = {
-        [P in keyof T & keyof AggregateTeamMember]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTeamMember[P]>
-      : GetScalarType<T[P], AggregateTeamMember[P]>
-  }
-
-
-
-
-  export type TeamMemberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TeamMemberWhereInput
-    orderBy?: TeamMemberOrderByWithAggregationInput | TeamMemberOrderByWithAggregationInput[]
-    by: TeamMemberScalarFieldEnum[] | TeamMemberScalarFieldEnum
-    having?: TeamMemberScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TeamMemberCountAggregateInputType | true
-    _min?: TeamMemberMinAggregateInputType
-    _max?: TeamMemberMaxAggregateInputType
-  }
-
-  export type TeamMemberGroupByOutputType = {
-    id: string
-    email: string
-    role: string
-    teamId: string
-    _count: TeamMemberCountAggregateOutputType | null
-    _min: TeamMemberMinAggregateOutputType | null
-    _max: TeamMemberMaxAggregateOutputType | null
-  }
-
-  type GetTeamMemberGroupByPayload<T extends TeamMemberGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TeamMemberGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TeamMemberGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TeamMemberGroupByOutputType[P]>
-            : GetScalarType<T[P], TeamMemberGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type TeamMemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    email?: boolean
-    role?: boolean
-    teamId?: boolean
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["teamMember"]>
-
-
-
-  export type TeamMemberSelectScalar = {
-    id?: boolean
-    email?: boolean
-    role?: boolean
-    teamId?: boolean
-  }
-
-  export type TeamMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "role" | "teamId", ExtArgs["result"]["teamMember"]>
-  export type TeamMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }
-
-  export type $TeamMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TeamMember"
-    objects: {
-      team: Prisma.$TeamPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      email: string
-      role: string
-      teamId: string
-    }, ExtArgs["result"]["teamMember"]>
-    composites: {}
-  }
-
-  type TeamMemberGetPayload<S extends boolean | null | undefined | TeamMemberDefaultArgs> = $Result.GetResult<Prisma.$TeamMemberPayload, S>
-
-  type TeamMemberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TeamMemberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TeamMemberCountAggregateInputType | true
-    }
-
-  export interface TeamMemberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TeamMember'], meta: { name: 'TeamMember' } }
-    /**
-     * Find zero or one TeamMember that matches the filter.
-     * @param {TeamMemberFindUniqueArgs} args - Arguments to find a TeamMember
-     * @example
-     * // Get one TeamMember
-     * const teamMember = await prisma.teamMember.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends TeamMemberFindUniqueArgs>(args: SelectSubset<T, TeamMemberFindUniqueArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one TeamMember that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {TeamMemberFindUniqueOrThrowArgs} args - Arguments to find a TeamMember
-     * @example
-     * // Get one TeamMember
-     * const teamMember = await prisma.teamMember.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends TeamMemberFindUniqueOrThrowArgs>(args: SelectSubset<T, TeamMemberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first TeamMember that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamMemberFindFirstArgs} args - Arguments to find a TeamMember
-     * @example
-     * // Get one TeamMember
-     * const teamMember = await prisma.teamMember.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends TeamMemberFindFirstArgs>(args?: SelectSubset<T, TeamMemberFindFirstArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first TeamMember that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamMemberFindFirstOrThrowArgs} args - Arguments to find a TeamMember
-     * @example
-     * // Get one TeamMember
-     * const teamMember = await prisma.teamMember.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends TeamMemberFindFirstOrThrowArgs>(args?: SelectSubset<T, TeamMemberFindFirstOrThrowArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more TeamMembers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamMemberFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all TeamMembers
-     * const teamMembers = await prisma.teamMember.findMany()
-     * 
-     * // Get first 10 TeamMembers
-     * const teamMembers = await prisma.teamMember.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const teamMemberWithIdOnly = await prisma.teamMember.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends TeamMemberFindManyArgs>(args?: SelectSubset<T, TeamMemberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a TeamMember.
-     * @param {TeamMemberCreateArgs} args - Arguments to create a TeamMember.
-     * @example
-     * // Create one TeamMember
-     * const TeamMember = await prisma.teamMember.create({
-     *   data: {
-     *     // ... data to create a TeamMember
-     *   }
-     * })
-     * 
-     */
-    create<T extends TeamMemberCreateArgs>(args: SelectSubset<T, TeamMemberCreateArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many TeamMembers.
-     * @param {TeamMemberCreateManyArgs} args - Arguments to create many TeamMembers.
-     * @example
-     * // Create many TeamMembers
-     * const teamMember = await prisma.teamMember.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends TeamMemberCreateManyArgs>(args?: SelectSubset<T, TeamMemberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a TeamMember.
-     * @param {TeamMemberDeleteArgs} args - Arguments to delete one TeamMember.
-     * @example
-     * // Delete one TeamMember
-     * const TeamMember = await prisma.teamMember.delete({
-     *   where: {
-     *     // ... filter to delete one TeamMember
-     *   }
-     * })
-     * 
-     */
-    delete<T extends TeamMemberDeleteArgs>(args: SelectSubset<T, TeamMemberDeleteArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one TeamMember.
-     * @param {TeamMemberUpdateArgs} args - Arguments to update one TeamMember.
-     * @example
-     * // Update one TeamMember
-     * const teamMember = await prisma.teamMember.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends TeamMemberUpdateArgs>(args: SelectSubset<T, TeamMemberUpdateArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more TeamMembers.
-     * @param {TeamMemberDeleteManyArgs} args - Arguments to filter TeamMembers to delete.
-     * @example
-     * // Delete a few TeamMembers
-     * const { count } = await prisma.teamMember.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends TeamMemberDeleteManyArgs>(args?: SelectSubset<T, TeamMemberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more TeamMembers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamMemberUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many TeamMembers
-     * const teamMember = await prisma.teamMember.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends TeamMemberUpdateManyArgs>(args: SelectSubset<T, TeamMemberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one TeamMember.
-     * @param {TeamMemberUpsertArgs} args - Arguments to update or create a TeamMember.
-     * @example
-     * // Update or create a TeamMember
-     * const teamMember = await prisma.teamMember.upsert({
-     *   create: {
-     *     // ... data to create a TeamMember
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the TeamMember we want to update
-     *   }
-     * })
-     */
-    upsert<T extends TeamMemberUpsertArgs>(args: SelectSubset<T, TeamMemberUpsertArgs<ExtArgs>>): Prisma__TeamMemberClient<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more TeamMembers that matches the filter.
-     * @param {TeamMemberFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const teamMember = await prisma.teamMember.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: TeamMemberFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a TeamMember.
-     * @param {TeamMemberAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const teamMember = await prisma.teamMember.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: TeamMemberAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of TeamMembers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamMemberCountArgs} args - Arguments to filter TeamMembers to count.
-     * @example
-     * // Count the number of TeamMembers
-     * const count = await prisma.teamMember.count({
-     *   where: {
-     *     // ... the filter for the TeamMembers we want to count
-     *   }
-     * })
-    **/
-    count<T extends TeamMemberCountArgs>(
-      args?: Subset<T, TeamMemberCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], TeamMemberCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a TeamMember.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamMemberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends TeamMemberAggregateArgs>(args: Subset<T, TeamMemberAggregateArgs>): Prisma.PrismaPromise<GetTeamMemberAggregateType<T>>
-
-    /**
-     * Group by TeamMember.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TeamMemberGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends TeamMemberGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TeamMemberGroupByArgs['orderBy'] }
-        : { orderBy?: TeamMemberGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TeamMemberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTeamMemberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the TeamMember model
-   */
-  readonly fields: TeamMemberFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for TeamMember.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__TeamMemberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the TeamMember model
-   */
-  interface TeamMemberFieldRefs {
-    readonly id: FieldRef<"TeamMember", 'String'>
-    readonly email: FieldRef<"TeamMember", 'String'>
-    readonly role: FieldRef<"TeamMember", 'String'>
-    readonly teamId: FieldRef<"TeamMember", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * TeamMember findUnique
-   */
-  export type TeamMemberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamMember to fetch.
-     */
-    where: TeamMemberWhereUniqueInput
-  }
-
-  /**
-   * TeamMember findUniqueOrThrow
-   */
-  export type TeamMemberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamMember to fetch.
-     */
-    where: TeamMemberWhereUniqueInput
-  }
-
-  /**
-   * TeamMember findFirst
-   */
-  export type TeamMemberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamMember to fetch.
-     */
-    where?: TeamMemberWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamMembers to fetch.
-     */
-    orderBy?: TeamMemberOrderByWithRelationInput | TeamMemberOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for TeamMembers.
-     */
-    cursor?: TeamMemberWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamMembers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamMembers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of TeamMembers.
-     */
-    distinct?: TeamMemberScalarFieldEnum | TeamMemberScalarFieldEnum[]
-  }
-
-  /**
-   * TeamMember findFirstOrThrow
-   */
-  export type TeamMemberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamMember to fetch.
-     */
-    where?: TeamMemberWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamMembers to fetch.
-     */
-    orderBy?: TeamMemberOrderByWithRelationInput | TeamMemberOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for TeamMembers.
-     */
-    cursor?: TeamMemberWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamMembers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamMembers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of TeamMembers.
-     */
-    distinct?: TeamMemberScalarFieldEnum | TeamMemberScalarFieldEnum[]
-  }
-
-  /**
-   * TeamMember findMany
-   */
-  export type TeamMemberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * Filter, which TeamMembers to fetch.
-     */
-    where?: TeamMemberWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TeamMembers to fetch.
-     */
-    orderBy?: TeamMemberOrderByWithRelationInput | TeamMemberOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing TeamMembers.
-     */
-    cursor?: TeamMemberWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TeamMembers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TeamMembers.
-     */
-    skip?: number
-    distinct?: TeamMemberScalarFieldEnum | TeamMemberScalarFieldEnum[]
-  }
-
-  /**
-   * TeamMember create
-   */
-  export type TeamMemberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * The data needed to create a TeamMember.
-     */
-    data: XOR<TeamMemberCreateInput, TeamMemberUncheckedCreateInput>
-  }
-
-  /**
-   * TeamMember createMany
-   */
-  export type TeamMemberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many TeamMembers.
-     */
-    data: TeamMemberCreateManyInput | TeamMemberCreateManyInput[]
-  }
-
-  /**
-   * TeamMember update
-   */
-  export type TeamMemberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * The data needed to update a TeamMember.
-     */
-    data: XOR<TeamMemberUpdateInput, TeamMemberUncheckedUpdateInput>
-    /**
-     * Choose, which TeamMember to update.
-     */
-    where: TeamMemberWhereUniqueInput
-  }
-
-  /**
-   * TeamMember updateMany
-   */
-  export type TeamMemberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update TeamMembers.
-     */
-    data: XOR<TeamMemberUpdateManyMutationInput, TeamMemberUncheckedUpdateManyInput>
-    /**
-     * Filter which TeamMembers to update
-     */
-    where?: TeamMemberWhereInput
-    /**
-     * Limit how many TeamMembers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * TeamMember upsert
-   */
-  export type TeamMemberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * The filter to search for the TeamMember to update in case it exists.
-     */
-    where: TeamMemberWhereUniqueInput
-    /**
-     * In case the TeamMember found by the `where` argument doesn't exist, create a new TeamMember with this data.
-     */
-    create: XOR<TeamMemberCreateInput, TeamMemberUncheckedCreateInput>
-    /**
-     * In case the TeamMember was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TeamMemberUpdateInput, TeamMemberUncheckedUpdateInput>
-  }
-
-  /**
-   * TeamMember delete
-   */
-  export type TeamMemberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-    /**
-     * Filter which TeamMember to delete.
-     */
-    where: TeamMemberWhereUniqueInput
-  }
-
-  /**
-   * TeamMember deleteMany
-   */
-  export type TeamMemberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which TeamMembers to delete
-     */
-    where?: TeamMemberWhereInput
-    /**
-     * Limit how many TeamMembers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * TeamMember findRaw
-   */
-  export type TeamMemberFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * TeamMember aggregateRaw
-   */
-  export type TeamMemberAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * TeamMember without action
-   */
-  export type TeamMemberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeamMember
-     */
-    select?: TeamMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeamMember
-     */
-    omit?: TeamMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeamMemberInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model AgentGroup
-   */
-
-  export type AggregateAgentGroup = {
-    _count: AgentGroupCountAggregateOutputType | null
-    _min: AgentGroupMinAggregateOutputType | null
-    _max: AgentGroupMaxAggregateOutputType | null
-  }
-
-  export type AgentGroupMinAggregateOutputType = {
-    id: string | null
-    title: string | null
-    teamId: string | null
+    apiKey: string | null
+    claimToken: string | null
+    verificationCode: string | null
+    agentObjectId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type AgentGroupMaxAggregateOutputType = {
+  export type AgentSecretMaxAggregateOutputType = {
     id: string | null
-    title: string | null
-    teamId: string | null
+    apiKey: string | null
+    claimToken: string | null
+    verificationCode: string | null
+    agentObjectId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type AgentGroupCountAggregateOutputType = {
+  export type AgentSecretCountAggregateOutputType = {
     id: number
-    title: number
-    teamId: number
+    apiKey: number
+    claimToken: number
+    verificationCode: number
+    agentObjectId: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type AgentGroupMinAggregateInputType = {
+  export type AgentSecretMinAggregateInputType = {
     id?: true
-    title?: true
-    teamId?: true
+    apiKey?: true
+    claimToken?: true
+    verificationCode?: true
+    agentObjectId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type AgentGroupMaxAggregateInputType = {
+  export type AgentSecretMaxAggregateInputType = {
     id?: true
-    title?: true
-    teamId?: true
+    apiKey?: true
+    claimToken?: true
+    verificationCode?: true
+    agentObjectId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type AgentGroupCountAggregateInputType = {
+  export type AgentSecretCountAggregateInputType = {
     id?: true
-    title?: true
-    teamId?: true
+    apiKey?: true
+    claimToken?: true
+    verificationCode?: true
+    agentObjectId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type AgentGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AgentGroup to aggregate.
+     * Filter which AgentSecret to aggregate.
      */
-    where?: AgentGroupWhereInput
+    where?: AgentSecretWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AgentGroups to fetch.
+     * Determine the order of AgentSecrets to fetch.
      */
-    orderBy?: AgentGroupOrderByWithRelationInput | AgentGroupOrderByWithRelationInput[]
+    orderBy?: AgentSecretOrderByWithRelationInput | AgentSecretOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: AgentGroupWhereUniqueInput
+    cursor?: AgentSecretWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AgentGroups from the position of the cursor.
+     * Take `±n` AgentSecrets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AgentGroups.
+     * Skip the first `n` AgentSecrets.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned AgentGroups
+     * Count returned AgentSecrets
     **/
-    _count?: true | AgentGroupCountAggregateInputType
+    _count?: true | AgentSecretCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: AgentGroupMinAggregateInputType
+    _min?: AgentSecretMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: AgentGroupMaxAggregateInputType
+    _max?: AgentSecretMaxAggregateInputType
   }
 
-  export type GetAgentGroupAggregateType<T extends AgentGroupAggregateArgs> = {
-        [P in keyof T & keyof AggregateAgentGroup]: P extends '_count' | 'count'
+  export type GetAgentSecretAggregateType<T extends AgentSecretAggregateArgs> = {
+        [P in keyof T & keyof AggregateAgentSecret]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAgentGroup[P]>
-      : GetScalarType<T[P], AggregateAgentGroup[P]>
+        : GetScalarType<T[P], AggregateAgentSecret[P]>
+      : GetScalarType<T[P], AggregateAgentSecret[P]>
   }
 
 
 
 
-  export type AgentGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AgentGroupWhereInput
-    orderBy?: AgentGroupOrderByWithAggregationInput | AgentGroupOrderByWithAggregationInput[]
-    by: AgentGroupScalarFieldEnum[] | AgentGroupScalarFieldEnum
-    having?: AgentGroupScalarWhereWithAggregatesInput
+  export type AgentSecretGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AgentSecretWhereInput
+    orderBy?: AgentSecretOrderByWithAggregationInput | AgentSecretOrderByWithAggregationInput[]
+    by: AgentSecretScalarFieldEnum[] | AgentSecretScalarFieldEnum
+    having?: AgentSecretScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: AgentGroupCountAggregateInputType | true
-    _min?: AgentGroupMinAggregateInputType
-    _max?: AgentGroupMaxAggregateInputType
+    _count?: AgentSecretCountAggregateInputType | true
+    _min?: AgentSecretMinAggregateInputType
+    _max?: AgentSecretMaxAggregateInputType
   }
 
-  export type AgentGroupGroupByOutputType = {
+  export type AgentSecretGroupByOutputType = {
     id: string
-    title: string
-    teamId: string
+    apiKey: string
+    claimToken: string
+    verificationCode: string
+    agentObjectId: string
     createdAt: Date | null
     updatedAt: Date | null
-    _count: AgentGroupCountAggregateOutputType | null
-    _min: AgentGroupMinAggregateOutputType | null
-    _max: AgentGroupMaxAggregateOutputType | null
+    _count: AgentSecretCountAggregateOutputType | null
+    _min: AgentSecretMinAggregateOutputType | null
+    _max: AgentSecretMaxAggregateOutputType | null
   }
 
-  type GetAgentGroupGroupByPayload<T extends AgentGroupGroupByArgs> = Prisma.PrismaPromise<
+  type GetAgentSecretGroupByPayload<T extends AgentSecretGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<AgentGroupGroupByOutputType, T['by']> &
+      PickEnumerable<AgentSecretGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof AgentGroupGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AgentSecretGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], AgentGroupGroupByOutputType[P]>
-            : GetScalarType<T[P], AgentGroupGroupByOutputType[P]>
+              : GetScalarType<T[P], AgentSecretGroupByOutputType[P]>
+            : GetScalarType<T[P], AgentSecretGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type AgentGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type AgentSecretSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    teamId?: boolean
-    thumbFile?: boolean | S3MetaDataDefaultArgs<ExtArgs>
+    apiKey?: boolean
+    claimToken?: boolean
+    verificationCode?: boolean
+    agentObjectId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    team?: boolean | TeamDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["agentGroup"]>
+    agentObject?: boolean | AgentObjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["agentSecret"]>
 
 
 
-  export type AgentGroupSelectScalar = {
+  export type AgentSecretSelectScalar = {
     id?: boolean
-    title?: boolean
-    teamId?: boolean
+    apiKey?: boolean
+    claimToken?: boolean
+    verificationCode?: boolean
+    agentObjectId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AgentGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "teamId" | "thumbFile" | "createdAt" | "updatedAt", ExtArgs["result"]["agentGroup"]>
-  export type AgentGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    team?: boolean | TeamDefaultArgs<ExtArgs>
+  export type AgentSecretOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "apiKey" | "claimToken" | "verificationCode" | "agentObjectId" | "createdAt" | "updatedAt", ExtArgs["result"]["agentSecret"]>
+  export type AgentSecretInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    agentObject?: boolean | AgentObjectDefaultArgs<ExtArgs>
   }
 
-  export type $AgentGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AgentGroup"
+  export type $AgentSecretPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AgentSecret"
     objects: {
-      team: Prisma.$TeamPayload<ExtArgs>
+      agentObject: Prisma.$AgentObjectPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      title: string
-      teamId: string
+      apiKey: string
+      claimToken: string
+      verificationCode: string
+      agentObjectId: string
       createdAt: Date | null
       updatedAt: Date | null
-    }, ExtArgs["result"]["agentGroup"]>
-    composites: {
-      thumbFile: Prisma.$S3MetaDataPayload | null
-    }
+    }, ExtArgs["result"]["agentSecret"]>
+    composites: {}
   }
 
-  type AgentGroupGetPayload<S extends boolean | null | undefined | AgentGroupDefaultArgs> = $Result.GetResult<Prisma.$AgentGroupPayload, S>
+  type AgentSecretGetPayload<S extends boolean | null | undefined | AgentSecretDefaultArgs> = $Result.GetResult<Prisma.$AgentSecretPayload, S>
 
-  type AgentGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<AgentGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AgentGroupCountAggregateInputType | true
+  type AgentSecretCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AgentSecretFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AgentSecretCountAggregateInputType | true
     }
 
-  export interface AgentGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AgentGroup'], meta: { name: 'AgentGroup' } }
+  export interface AgentSecretDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AgentSecret'], meta: { name: 'AgentSecret' } }
     /**
-     * Find zero or one AgentGroup that matches the filter.
-     * @param {AgentGroupFindUniqueArgs} args - Arguments to find a AgentGroup
+     * Find zero or one AgentSecret that matches the filter.
+     * @param {AgentSecretFindUniqueArgs} args - Arguments to find a AgentSecret
      * @example
-     * // Get one AgentGroup
-     * const agentGroup = await prisma.agentGroup.findUnique({
+     * // Get one AgentSecret
+     * const agentSecret = await prisma.agentSecret.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends AgentGroupFindUniqueArgs>(args: SelectSubset<T, AgentGroupFindUniqueArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends AgentSecretFindUniqueArgs>(args: SelectSubset<T, AgentSecretFindUniqueArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one AgentGroup that matches the filter or throw an error with `error.code='P2025'`
+     * Find one AgentSecret that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {AgentGroupFindUniqueOrThrowArgs} args - Arguments to find a AgentGroup
+     * @param {AgentSecretFindUniqueOrThrowArgs} args - Arguments to find a AgentSecret
      * @example
-     * // Get one AgentGroup
-     * const agentGroup = await prisma.agentGroup.findUniqueOrThrow({
+     * // Get one AgentSecret
+     * const agentSecret = await prisma.agentSecret.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends AgentGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, AgentGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends AgentSecretFindUniqueOrThrowArgs>(args: SelectSubset<T, AgentSecretFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first AgentGroup that matches the filter.
+     * Find the first AgentSecret that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AgentGroupFindFirstArgs} args - Arguments to find a AgentGroup
+     * @param {AgentSecretFindFirstArgs} args - Arguments to find a AgentSecret
      * @example
-     * // Get one AgentGroup
-     * const agentGroup = await prisma.agentGroup.findFirst({
+     * // Get one AgentSecret
+     * const agentSecret = await prisma.agentSecret.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends AgentGroupFindFirstArgs>(args?: SelectSubset<T, AgentGroupFindFirstArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends AgentSecretFindFirstArgs>(args?: SelectSubset<T, AgentSecretFindFirstArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first AgentGroup that matches the filter or
+     * Find the first AgentSecret that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AgentGroupFindFirstOrThrowArgs} args - Arguments to find a AgentGroup
+     * @param {AgentSecretFindFirstOrThrowArgs} args - Arguments to find a AgentSecret
      * @example
-     * // Get one AgentGroup
-     * const agentGroup = await prisma.agentGroup.findFirstOrThrow({
+     * // Get one AgentSecret
+     * const agentSecret = await prisma.agentSecret.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends AgentGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, AgentGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends AgentSecretFindFirstOrThrowArgs>(args?: SelectSubset<T, AgentSecretFindFirstOrThrowArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more AgentGroups that matches the filter.
+     * Find zero or more AgentSecrets that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AgentGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {AgentSecretFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all AgentGroups
-     * const agentGroups = await prisma.agentGroup.findMany()
+     * // Get all AgentSecrets
+     * const agentSecrets = await prisma.agentSecret.findMany()
      * 
-     * // Get first 10 AgentGroups
-     * const agentGroups = await prisma.agentGroup.findMany({ take: 10 })
+     * // Get first 10 AgentSecrets
+     * const agentSecrets = await prisma.agentSecret.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const agentGroupWithIdOnly = await prisma.agentGroup.findMany({ select: { id: true } })
+     * const agentSecretWithIdOnly = await prisma.agentSecret.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends AgentGroupFindManyArgs>(args?: SelectSubset<T, AgentGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends AgentSecretFindManyArgs>(args?: SelectSubset<T, AgentSecretFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a AgentGroup.
-     * @param {AgentGroupCreateArgs} args - Arguments to create a AgentGroup.
+     * Create a AgentSecret.
+     * @param {AgentSecretCreateArgs} args - Arguments to create a AgentSecret.
      * @example
-     * // Create one AgentGroup
-     * const AgentGroup = await prisma.agentGroup.create({
+     * // Create one AgentSecret
+     * const AgentSecret = await prisma.agentSecret.create({
      *   data: {
-     *     // ... data to create a AgentGroup
+     *     // ... data to create a AgentSecret
      *   }
      * })
      * 
      */
-    create<T extends AgentGroupCreateArgs>(args: SelectSubset<T, AgentGroupCreateArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends AgentSecretCreateArgs>(args: SelectSubset<T, AgentSecretCreateArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many AgentGroups.
-     * @param {AgentGroupCreateManyArgs} args - Arguments to create many AgentGroups.
+     * Create many AgentSecrets.
+     * @param {AgentSecretCreateManyArgs} args - Arguments to create many AgentSecrets.
      * @example
-     * // Create many AgentGroups
-     * const agentGroup = await prisma.agentGroup.createMany({
+     * // Create many AgentSecrets
+     * const agentSecret = await prisma.agentSecret.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends AgentGroupCreateManyArgs>(args?: SelectSubset<T, AgentGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends AgentSecretCreateManyArgs>(args?: SelectSubset<T, AgentSecretCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a AgentGroup.
-     * @param {AgentGroupDeleteArgs} args - Arguments to delete one AgentGroup.
+     * Delete a AgentSecret.
+     * @param {AgentSecretDeleteArgs} args - Arguments to delete one AgentSecret.
      * @example
-     * // Delete one AgentGroup
-     * const AgentGroup = await prisma.agentGroup.delete({
+     * // Delete one AgentSecret
+     * const AgentSecret = await prisma.agentSecret.delete({
      *   where: {
-     *     // ... filter to delete one AgentGroup
+     *     // ... filter to delete one AgentSecret
      *   }
      * })
      * 
      */
-    delete<T extends AgentGroupDeleteArgs>(args: SelectSubset<T, AgentGroupDeleteArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends AgentSecretDeleteArgs>(args: SelectSubset<T, AgentSecretDeleteArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one AgentGroup.
-     * @param {AgentGroupUpdateArgs} args - Arguments to update one AgentGroup.
+     * Update one AgentSecret.
+     * @param {AgentSecretUpdateArgs} args - Arguments to update one AgentSecret.
      * @example
-     * // Update one AgentGroup
-     * const agentGroup = await prisma.agentGroup.update({
+     * // Update one AgentSecret
+     * const agentSecret = await prisma.agentSecret.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10169,30 +7955,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends AgentGroupUpdateArgs>(args: SelectSubset<T, AgentGroupUpdateArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends AgentSecretUpdateArgs>(args: SelectSubset<T, AgentSecretUpdateArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more AgentGroups.
-     * @param {AgentGroupDeleteManyArgs} args - Arguments to filter AgentGroups to delete.
+     * Delete zero or more AgentSecrets.
+     * @param {AgentSecretDeleteManyArgs} args - Arguments to filter AgentSecrets to delete.
      * @example
-     * // Delete a few AgentGroups
-     * const { count } = await prisma.agentGroup.deleteMany({
+     * // Delete a few AgentSecrets
+     * const { count } = await prisma.agentSecret.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends AgentGroupDeleteManyArgs>(args?: SelectSubset<T, AgentGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends AgentSecretDeleteManyArgs>(args?: SelectSubset<T, AgentSecretDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more AgentGroups.
+     * Update zero or more AgentSecrets.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AgentGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AgentSecretUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many AgentGroups
-     * const agentGroup = await prisma.agentGroup.updateMany({
+     * // Update many AgentSecrets
+     * const agentSecret = await prisma.agentSecret.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -10202,79 +7988,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends AgentGroupUpdateManyArgs>(args: SelectSubset<T, AgentGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends AgentSecretUpdateManyArgs>(args: SelectSubset<T, AgentSecretUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one AgentGroup.
-     * @param {AgentGroupUpsertArgs} args - Arguments to update or create a AgentGroup.
+     * Create or update one AgentSecret.
+     * @param {AgentSecretUpsertArgs} args - Arguments to update or create a AgentSecret.
      * @example
-     * // Update or create a AgentGroup
-     * const agentGroup = await prisma.agentGroup.upsert({
+     * // Update or create a AgentSecret
+     * const agentSecret = await prisma.agentSecret.upsert({
      *   create: {
-     *     // ... data to create a AgentGroup
+     *     // ... data to create a AgentSecret
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the AgentGroup we want to update
+     *     // ... the filter for the AgentSecret we want to update
      *   }
      * })
      */
-    upsert<T extends AgentGroupUpsertArgs>(args: SelectSubset<T, AgentGroupUpsertArgs<ExtArgs>>): Prisma__AgentGroupClient<$Result.GetResult<Prisma.$AgentGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends AgentSecretUpsertArgs>(args: SelectSubset<T, AgentSecretUpsertArgs<ExtArgs>>): Prisma__AgentSecretClient<$Result.GetResult<Prisma.$AgentSecretPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more AgentGroups that matches the filter.
-     * @param {AgentGroupFindRawArgs} args - Select which filters you would like to apply.
+     * Find zero or more AgentSecrets that matches the filter.
+     * @param {AgentSecretFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const agentGroup = await prisma.agentGroup.findRaw({
+     * const agentSecret = await prisma.agentSecret.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: AgentGroupFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: AgentSecretFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a AgentGroup.
-     * @param {AgentGroupAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a AgentSecret.
+     * @param {AgentSecretAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const agentGroup = await prisma.agentGroup.aggregateRaw({
+     * const agentSecret = await prisma.agentSecret.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: AgentGroupAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: AgentSecretAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
-     * Count the number of AgentGroups.
+     * Count the number of AgentSecrets.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AgentGroupCountArgs} args - Arguments to filter AgentGroups to count.
+     * @param {AgentSecretCountArgs} args - Arguments to filter AgentSecrets to count.
      * @example
-     * // Count the number of AgentGroups
-     * const count = await prisma.agentGroup.count({
+     * // Count the number of AgentSecrets
+     * const count = await prisma.agentSecret.count({
      *   where: {
-     *     // ... the filter for the AgentGroups we want to count
+     *     // ... the filter for the AgentSecrets we want to count
      *   }
      * })
     **/
-    count<T extends AgentGroupCountArgs>(
-      args?: Subset<T, AgentGroupCountArgs>,
+    count<T extends AgentSecretCountArgs>(
+      args?: Subset<T, AgentSecretCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], AgentGroupCountAggregateOutputType>
+          : GetScalarType<T['select'], AgentSecretCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a AgentGroup.
+     * Allows you to perform aggregations operations on a AgentSecret.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AgentGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AgentSecretAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -10294,13 +8080,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends AgentGroupAggregateArgs>(args: Subset<T, AgentGroupAggregateArgs>): Prisma.PrismaPromise<GetAgentGroupAggregateType<T>>
+    aggregate<T extends AgentSecretAggregateArgs>(args: Subset<T, AgentSecretAggregateArgs>): Prisma.PrismaPromise<GetAgentSecretAggregateType<T>>
 
     /**
-     * Group by AgentGroup.
+     * Group by AgentSecret.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AgentGroupGroupByArgs} args - Group by arguments.
+     * @param {AgentSecretGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -10315,14 +8101,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends AgentGroupGroupByArgs,
+      T extends AgentSecretGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AgentGroupGroupByArgs['orderBy'] }
-        : { orderBy?: AgentGroupGroupByArgs['orderBy'] },
+        ? { orderBy: AgentSecretGroupByArgs['orderBy'] }
+        : { orderBy?: AgentSecretGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -10371,22 +8157,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, AgentGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAgentGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AgentSecretGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAgentSecretGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the AgentGroup model
+   * Fields of the AgentSecret model
    */
-  readonly fields: AgentGroupFieldRefs;
+  readonly fields: AgentSecretFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for AgentGroup.
+   * The delegate class that acts as a "Promise-like" for AgentSecret.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AgentGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AgentSecretClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    agentObject<T extends AgentObjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AgentObjectDefaultArgs<ExtArgs>>): Prisma__AgentObjectClient<$Result.GetResult<Prisma.$AgentObjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10413,359 +8199,361 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the AgentGroup model
+   * Fields of the AgentSecret model
    */
-  interface AgentGroupFieldRefs {
-    readonly id: FieldRef<"AgentGroup", 'String'>
-    readonly title: FieldRef<"AgentGroup", 'String'>
-    readonly teamId: FieldRef<"AgentGroup", 'String'>
-    readonly createdAt: FieldRef<"AgentGroup", 'DateTime'>
-    readonly updatedAt: FieldRef<"AgentGroup", 'DateTime'>
+  interface AgentSecretFieldRefs {
+    readonly id: FieldRef<"AgentSecret", 'String'>
+    readonly apiKey: FieldRef<"AgentSecret", 'String'>
+    readonly claimToken: FieldRef<"AgentSecret", 'String'>
+    readonly verificationCode: FieldRef<"AgentSecret", 'String'>
+    readonly agentObjectId: FieldRef<"AgentSecret", 'String'>
+    readonly createdAt: FieldRef<"AgentSecret", 'DateTime'>
+    readonly updatedAt: FieldRef<"AgentSecret", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * AgentGroup findUnique
+   * AgentSecret findUnique
    */
-  export type AgentGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * Filter, which AgentGroup to fetch.
+     * Filter, which AgentSecret to fetch.
      */
-    where: AgentGroupWhereUniqueInput
+    where: AgentSecretWhereUniqueInput
   }
 
   /**
-   * AgentGroup findUniqueOrThrow
+   * AgentSecret findUniqueOrThrow
    */
-  export type AgentGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * Filter, which AgentGroup to fetch.
+     * Filter, which AgentSecret to fetch.
      */
-    where: AgentGroupWhereUniqueInput
+    where: AgentSecretWhereUniqueInput
   }
 
   /**
-   * AgentGroup findFirst
+   * AgentSecret findFirst
    */
-  export type AgentGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * Filter, which AgentGroup to fetch.
+     * Filter, which AgentSecret to fetch.
      */
-    where?: AgentGroupWhereInput
+    where?: AgentSecretWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AgentGroups to fetch.
+     * Determine the order of AgentSecrets to fetch.
      */
-    orderBy?: AgentGroupOrderByWithRelationInput | AgentGroupOrderByWithRelationInput[]
+    orderBy?: AgentSecretOrderByWithRelationInput | AgentSecretOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AgentGroups.
+     * Sets the position for searching for AgentSecrets.
      */
-    cursor?: AgentGroupWhereUniqueInput
+    cursor?: AgentSecretWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AgentGroups from the position of the cursor.
+     * Take `±n` AgentSecrets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AgentGroups.
+     * Skip the first `n` AgentSecrets.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AgentGroups.
+     * Filter by unique combinations of AgentSecrets.
      */
-    distinct?: AgentGroupScalarFieldEnum | AgentGroupScalarFieldEnum[]
+    distinct?: AgentSecretScalarFieldEnum | AgentSecretScalarFieldEnum[]
   }
 
   /**
-   * AgentGroup findFirstOrThrow
+   * AgentSecret findFirstOrThrow
    */
-  export type AgentGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * Filter, which AgentGroup to fetch.
+     * Filter, which AgentSecret to fetch.
      */
-    where?: AgentGroupWhereInput
+    where?: AgentSecretWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AgentGroups to fetch.
+     * Determine the order of AgentSecrets to fetch.
      */
-    orderBy?: AgentGroupOrderByWithRelationInput | AgentGroupOrderByWithRelationInput[]
+    orderBy?: AgentSecretOrderByWithRelationInput | AgentSecretOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AgentGroups.
+     * Sets the position for searching for AgentSecrets.
      */
-    cursor?: AgentGroupWhereUniqueInput
+    cursor?: AgentSecretWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AgentGroups from the position of the cursor.
+     * Take `±n` AgentSecrets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AgentGroups.
+     * Skip the first `n` AgentSecrets.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AgentGroups.
+     * Filter by unique combinations of AgentSecrets.
      */
-    distinct?: AgentGroupScalarFieldEnum | AgentGroupScalarFieldEnum[]
+    distinct?: AgentSecretScalarFieldEnum | AgentSecretScalarFieldEnum[]
   }
 
   /**
-   * AgentGroup findMany
+   * AgentSecret findMany
    */
-  export type AgentGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * Filter, which AgentGroups to fetch.
+     * Filter, which AgentSecrets to fetch.
      */
-    where?: AgentGroupWhereInput
+    where?: AgentSecretWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AgentGroups to fetch.
+     * Determine the order of AgentSecrets to fetch.
      */
-    orderBy?: AgentGroupOrderByWithRelationInput | AgentGroupOrderByWithRelationInput[]
+    orderBy?: AgentSecretOrderByWithRelationInput | AgentSecretOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing AgentGroups.
+     * Sets the position for listing AgentSecrets.
      */
-    cursor?: AgentGroupWhereUniqueInput
+    cursor?: AgentSecretWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AgentGroups from the position of the cursor.
+     * Take `±n` AgentSecrets from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AgentGroups.
+     * Skip the first `n` AgentSecrets.
      */
     skip?: number
-    distinct?: AgentGroupScalarFieldEnum | AgentGroupScalarFieldEnum[]
+    distinct?: AgentSecretScalarFieldEnum | AgentSecretScalarFieldEnum[]
   }
 
   /**
-   * AgentGroup create
+   * AgentSecret create
    */
-  export type AgentGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * The data needed to create a AgentGroup.
+     * The data needed to create a AgentSecret.
      */
-    data: XOR<AgentGroupCreateInput, AgentGroupUncheckedCreateInput>
+    data: XOR<AgentSecretCreateInput, AgentSecretUncheckedCreateInput>
   }
 
   /**
-   * AgentGroup createMany
+   * AgentSecret createMany
    */
-  export type AgentGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many AgentGroups.
+     * The data used to create many AgentSecrets.
      */
-    data: AgentGroupCreateManyInput | AgentGroupCreateManyInput[]
+    data: AgentSecretCreateManyInput | AgentSecretCreateManyInput[]
   }
 
   /**
-   * AgentGroup update
+   * AgentSecret update
    */
-  export type AgentGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * The data needed to update a AgentGroup.
+     * The data needed to update a AgentSecret.
      */
-    data: XOR<AgentGroupUpdateInput, AgentGroupUncheckedUpdateInput>
+    data: XOR<AgentSecretUpdateInput, AgentSecretUncheckedUpdateInput>
     /**
-     * Choose, which AgentGroup to update.
+     * Choose, which AgentSecret to update.
      */
-    where: AgentGroupWhereUniqueInput
+    where: AgentSecretWhereUniqueInput
   }
 
   /**
-   * AgentGroup updateMany
+   * AgentSecret updateMany
    */
-  export type AgentGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update AgentGroups.
+     * The data used to update AgentSecrets.
      */
-    data: XOR<AgentGroupUpdateManyMutationInput, AgentGroupUncheckedUpdateManyInput>
+    data: XOR<AgentSecretUpdateManyMutationInput, AgentSecretUncheckedUpdateManyInput>
     /**
-     * Filter which AgentGroups to update
+     * Filter which AgentSecrets to update
      */
-    where?: AgentGroupWhereInput
+    where?: AgentSecretWhereInput
     /**
-     * Limit how many AgentGroups to update.
+     * Limit how many AgentSecrets to update.
      */
     limit?: number
   }
 
   /**
-   * AgentGroup upsert
+   * AgentSecret upsert
    */
-  export type AgentGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * The filter to search for the AgentGroup to update in case it exists.
+     * The filter to search for the AgentSecret to update in case it exists.
      */
-    where: AgentGroupWhereUniqueInput
+    where: AgentSecretWhereUniqueInput
     /**
-     * In case the AgentGroup found by the `where` argument doesn't exist, create a new AgentGroup with this data.
+     * In case the AgentSecret found by the `where` argument doesn't exist, create a new AgentSecret with this data.
      */
-    create: XOR<AgentGroupCreateInput, AgentGroupUncheckedCreateInput>
+    create: XOR<AgentSecretCreateInput, AgentSecretUncheckedCreateInput>
     /**
-     * In case the AgentGroup was found with the provided `where` argument, update it with this data.
+     * In case the AgentSecret was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<AgentGroupUpdateInput, AgentGroupUncheckedUpdateInput>
+    update: XOR<AgentSecretUpdateInput, AgentSecretUncheckedUpdateInput>
   }
 
   /**
-   * AgentGroup delete
+   * AgentSecret delete
    */
-  export type AgentGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
     /**
-     * Filter which AgentGroup to delete.
+     * Filter which AgentSecret to delete.
      */
-    where: AgentGroupWhereUniqueInput
+    where: AgentSecretWhereUniqueInput
   }
 
   /**
-   * AgentGroup deleteMany
+   * AgentSecret deleteMany
    */
-  export type AgentGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AgentGroups to delete
+     * Filter which AgentSecrets to delete
      */
-    where?: AgentGroupWhereInput
+    where?: AgentSecretWhereInput
     /**
-     * Limit how many AgentGroups to delete.
+     * Limit how many AgentSecrets to delete.
      */
     limit?: number
   }
 
   /**
-   * AgentGroup findRaw
+   * AgentSecret findRaw
    */
-  export type AgentGroupFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -10777,9 +8565,9 @@ export namespace Prisma {
   }
 
   /**
-   * AgentGroup aggregateRaw
+   * AgentSecret aggregateRaw
    */
-  export type AgentGroupAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -10791,21 +8579,21 @@ export namespace Prisma {
   }
 
   /**
-   * AgentGroup without action
+   * AgentSecret without action
    */
-  export type AgentGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AgentSecretDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AgentGroup
+     * Select specific fields to fetch from the AgentSecret
      */
-    select?: AgentGroupSelect<ExtArgs> | null
+    select?: AgentSecretSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AgentGroup
+     * Omit specific fields from the AgentSecret
      */
-    omit?: AgentGroupOmit<ExtArgs> | null
+    omit?: AgentSecretOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AgentGroupInclude<ExtArgs> | null
+    include?: AgentSecretInclude<ExtArgs> | null
   }
 
 
@@ -10882,48 +8670,29 @@ export namespace Prisma {
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
 
 
-  export const TeamScalarFieldEnum: {
+  export const AgentObjectScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    slug: 'slug',
     description: 'description',
+    userId: 'userId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
+  export type AgentObjectScalarFieldEnum = (typeof AgentObjectScalarFieldEnum)[keyof typeof AgentObjectScalarFieldEnum]
 
 
-  export const TeamVaultScalarFieldEnum: {
+  export const AgentSecretScalarFieldEnum: {
     id: 'id',
-    openRouterAPIKey: 'openRouterAPIKey',
-    replicateAPIKey: 'replicateAPIKey',
-    falAPIKey: 'falAPIKey',
-    teamId: 'teamId'
-  };
-
-  export type TeamVaultScalarFieldEnum = (typeof TeamVaultScalarFieldEnum)[keyof typeof TeamVaultScalarFieldEnum]
-
-
-  export const TeamMemberScalarFieldEnum: {
-    id: 'id',
-    email: 'email',
-    role: 'role',
-    teamId: 'teamId'
-  };
-
-  export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
-
-
-  export const AgentGroupScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    teamId: 'teamId',
+    apiKey: 'apiKey',
+    claimToken: 'claimToken',
+    verificationCode: 'verificationCode',
+    agentObjectId: 'agentObjectId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type AgentGroupScalarFieldEnum = (typeof AgentGroupScalarFieldEnum)[keyof typeof AgentGroupScalarFieldEnum]
+  export type AgentSecretScalarFieldEnum = (typeof AgentSecretScalarFieldEnum)[keyof typeof AgentSecretScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -11068,6 +8837,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
+    agentObjects?: AgentObjectListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11081,6 +8851,7 @@ export namespace Prisma {
     sessions?: SessionOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
+    agentObjects?: AgentObjectOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11097,6 +8868,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
+    agentObjects?: AgentObjectListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11347,233 +9119,132 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
   }
 
-  export type TeamWhereInput = {
-    AND?: TeamWhereInput | TeamWhereInput[]
-    OR?: TeamWhereInput[]
-    NOT?: TeamWhereInput | TeamWhereInput[]
-    id?: StringFilter<"Team"> | string
-    name?: StringFilter<"Team"> | string
-    slug?: StringFilter<"Team"> | string
-    description?: StringNullableFilter<"Team"> | string | null
-    createdAt?: DateTimeNullableFilter<"Team"> | Date | string | null
-    updatedAt?: DateTimeNullableFilter<"Team"> | Date | string | null
-    teamMembers?: TeamMemberListRelationFilter
-    teamVault?: TeamVaultListRelationFilter
-    agentGroups?: AgentGroupListRelationFilter
+  export type AgentObjectWhereInput = {
+    AND?: AgentObjectWhereInput | AgentObjectWhereInput[]
+    OR?: AgentObjectWhereInput[]
+    NOT?: AgentObjectWhereInput | AgentObjectWhereInput[]
+    id?: StringFilter<"AgentObject"> | string
+    name?: StringFilter<"AgentObject"> | string
+    description?: StringFilter<"AgentObject"> | string
+    userId?: StringNullableFilter<"AgentObject"> | string | null
+    createdAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    agentSecret?: AgentSecretListRelationFilter
   }
 
-  export type TeamOrderByWithRelationInput = {
+  export type AgentObjectOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    slug?: SortOrder
     description?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    teamMembers?: TeamMemberOrderByRelationAggregateInput
-    teamVault?: TeamVaultOrderByRelationAggregateInput
-    agentGroups?: AgentGroupOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
+    agentSecret?: AgentSecretOrderByRelationAggregateInput
   }
 
-  export type TeamWhereUniqueInput = Prisma.AtLeast<{
+  export type AgentObjectWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    slug?: string
-    AND?: TeamWhereInput | TeamWhereInput[]
-    OR?: TeamWhereInput[]
-    NOT?: TeamWhereInput | TeamWhereInput[]
-    name?: StringFilter<"Team"> | string
-    description?: StringNullableFilter<"Team"> | string | null
-    createdAt?: DateTimeNullableFilter<"Team"> | Date | string | null
-    updatedAt?: DateTimeNullableFilter<"Team"> | Date | string | null
-    teamMembers?: TeamMemberListRelationFilter
-    teamVault?: TeamVaultListRelationFilter
-    agentGroups?: AgentGroupListRelationFilter
-  }, "id" | "slug">
+    AND?: AgentObjectWhereInput | AgentObjectWhereInput[]
+    OR?: AgentObjectWhereInput[]
+    NOT?: AgentObjectWhereInput | AgentObjectWhereInput[]
+    name?: StringFilter<"AgentObject"> | string
+    description?: StringFilter<"AgentObject"> | string
+    userId?: StringNullableFilter<"AgentObject"> | string | null
+    createdAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    agentSecret?: AgentSecretListRelationFilter
+  }, "id">
 
-  export type TeamOrderByWithAggregationInput = {
+  export type AgentObjectOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    slug?: SortOrder
     description?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: TeamCountOrderByAggregateInput
-    _max?: TeamMaxOrderByAggregateInput
-    _min?: TeamMinOrderByAggregateInput
+    _count?: AgentObjectCountOrderByAggregateInput
+    _max?: AgentObjectMaxOrderByAggregateInput
+    _min?: AgentObjectMinOrderByAggregateInput
   }
 
-  export type TeamScalarWhereWithAggregatesInput = {
-    AND?: TeamScalarWhereWithAggregatesInput | TeamScalarWhereWithAggregatesInput[]
-    OR?: TeamScalarWhereWithAggregatesInput[]
-    NOT?: TeamScalarWhereWithAggregatesInput | TeamScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Team"> | string
-    name?: StringWithAggregatesFilter<"Team"> | string
-    slug?: StringWithAggregatesFilter<"Team"> | string
-    description?: StringNullableWithAggregatesFilter<"Team"> | string | null
-    createdAt?: DateTimeNullableWithAggregatesFilter<"Team"> | Date | string | null
-    updatedAt?: DateTimeNullableWithAggregatesFilter<"Team"> | Date | string | null
+  export type AgentObjectScalarWhereWithAggregatesInput = {
+    AND?: AgentObjectScalarWhereWithAggregatesInput | AgentObjectScalarWhereWithAggregatesInput[]
+    OR?: AgentObjectScalarWhereWithAggregatesInput[]
+    NOT?: AgentObjectScalarWhereWithAggregatesInput | AgentObjectScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AgentObject"> | string
+    name?: StringWithAggregatesFilter<"AgentObject"> | string
+    description?: StringWithAggregatesFilter<"AgentObject"> | string
+    userId?: StringNullableWithAggregatesFilter<"AgentObject"> | string | null
+    createdAt?: DateTimeNullableWithAggregatesFilter<"AgentObject"> | Date | string | null
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"AgentObject"> | Date | string | null
   }
 
-  export type TeamVaultWhereInput = {
-    AND?: TeamVaultWhereInput | TeamVaultWhereInput[]
-    OR?: TeamVaultWhereInput[]
-    NOT?: TeamVaultWhereInput | TeamVaultWhereInput[]
-    id?: StringFilter<"TeamVault"> | string
-    openRouterAPIKey?: StringFilter<"TeamVault"> | string
-    replicateAPIKey?: StringFilter<"TeamVault"> | string
-    falAPIKey?: StringFilter<"TeamVault"> | string
-    teamId?: StringFilter<"TeamVault"> | string
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
+  export type AgentSecretWhereInput = {
+    AND?: AgentSecretWhereInput | AgentSecretWhereInput[]
+    OR?: AgentSecretWhereInput[]
+    NOT?: AgentSecretWhereInput | AgentSecretWhereInput[]
+    id?: StringFilter<"AgentSecret"> | string
+    apiKey?: StringFilter<"AgentSecret"> | string
+    claimToken?: StringFilter<"AgentSecret"> | string
+    verificationCode?: StringFilter<"AgentSecret"> | string
+    agentObjectId?: StringFilter<"AgentSecret"> | string
+    createdAt?: DateTimeNullableFilter<"AgentSecret"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentSecret"> | Date | string | null
+    agentObject?: XOR<AgentObjectScalarRelationFilter, AgentObjectWhereInput>
   }
 
-  export type TeamVaultOrderByWithRelationInput = {
+  export type AgentSecretOrderByWithRelationInput = {
     id?: SortOrder
-    openRouterAPIKey?: SortOrder
-    replicateAPIKey?: SortOrder
-    falAPIKey?: SortOrder
-    teamId?: SortOrder
-    team?: TeamOrderByWithRelationInput
-  }
-
-  export type TeamVaultWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: TeamVaultWhereInput | TeamVaultWhereInput[]
-    OR?: TeamVaultWhereInput[]
-    NOT?: TeamVaultWhereInput | TeamVaultWhereInput[]
-    openRouterAPIKey?: StringFilter<"TeamVault"> | string
-    replicateAPIKey?: StringFilter<"TeamVault"> | string
-    falAPIKey?: StringFilter<"TeamVault"> | string
-    teamId?: StringFilter<"TeamVault"> | string
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
-  }, "id">
-
-  export type TeamVaultOrderByWithAggregationInput = {
-    id?: SortOrder
-    openRouterAPIKey?: SortOrder
-    replicateAPIKey?: SortOrder
-    falAPIKey?: SortOrder
-    teamId?: SortOrder
-    _count?: TeamVaultCountOrderByAggregateInput
-    _max?: TeamVaultMaxOrderByAggregateInput
-    _min?: TeamVaultMinOrderByAggregateInput
-  }
-
-  export type TeamVaultScalarWhereWithAggregatesInput = {
-    AND?: TeamVaultScalarWhereWithAggregatesInput | TeamVaultScalarWhereWithAggregatesInput[]
-    OR?: TeamVaultScalarWhereWithAggregatesInput[]
-    NOT?: TeamVaultScalarWhereWithAggregatesInput | TeamVaultScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"TeamVault"> | string
-    openRouterAPIKey?: StringWithAggregatesFilter<"TeamVault"> | string
-    replicateAPIKey?: StringWithAggregatesFilter<"TeamVault"> | string
-    falAPIKey?: StringWithAggregatesFilter<"TeamVault"> | string
-    teamId?: StringWithAggregatesFilter<"TeamVault"> | string
-  }
-
-  export type TeamMemberWhereInput = {
-    AND?: TeamMemberWhereInput | TeamMemberWhereInput[]
-    OR?: TeamMemberWhereInput[]
-    NOT?: TeamMemberWhereInput | TeamMemberWhereInput[]
-    id?: StringFilter<"TeamMember"> | string
-    email?: StringFilter<"TeamMember"> | string
-    role?: StringFilter<"TeamMember"> | string
-    teamId?: StringFilter<"TeamMember"> | string
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
-  }
-
-  export type TeamMemberOrderByWithRelationInput = {
-    id?: SortOrder
-    email?: SortOrder
-    role?: SortOrder
-    teamId?: SortOrder
-    team?: TeamOrderByWithRelationInput
-  }
-
-  export type TeamMemberWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: TeamMemberWhereInput | TeamMemberWhereInput[]
-    OR?: TeamMemberWhereInput[]
-    NOT?: TeamMemberWhereInput | TeamMemberWhereInput[]
-    email?: StringFilter<"TeamMember"> | string
-    role?: StringFilter<"TeamMember"> | string
-    teamId?: StringFilter<"TeamMember"> | string
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
-  }, "id">
-
-  export type TeamMemberOrderByWithAggregationInput = {
-    id?: SortOrder
-    email?: SortOrder
-    role?: SortOrder
-    teamId?: SortOrder
-    _count?: TeamMemberCountOrderByAggregateInput
-    _max?: TeamMemberMaxOrderByAggregateInput
-    _min?: TeamMemberMinOrderByAggregateInput
-  }
-
-  export type TeamMemberScalarWhereWithAggregatesInput = {
-    AND?: TeamMemberScalarWhereWithAggregatesInput | TeamMemberScalarWhereWithAggregatesInput[]
-    OR?: TeamMemberScalarWhereWithAggregatesInput[]
-    NOT?: TeamMemberScalarWhereWithAggregatesInput | TeamMemberScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"TeamMember"> | string
-    email?: StringWithAggregatesFilter<"TeamMember"> | string
-    role?: StringWithAggregatesFilter<"TeamMember"> | string
-    teamId?: StringWithAggregatesFilter<"TeamMember"> | string
-  }
-
-  export type AgentGroupWhereInput = {
-    AND?: AgentGroupWhereInput | AgentGroupWhereInput[]
-    OR?: AgentGroupWhereInput[]
-    NOT?: AgentGroupWhereInput | AgentGroupWhereInput[]
-    id?: StringFilter<"AgentGroup"> | string
-    title?: StringFilter<"AgentGroup"> | string
-    teamId?: StringFilter<"AgentGroup"> | string
-    thumbFile?: XOR<S3MetaDataNullableCompositeFilter, S3MetaDataObjectEqualityInput> | null
-    createdAt?: DateTimeNullableFilter<"AgentGroup"> | Date | string | null
-    updatedAt?: DateTimeNullableFilter<"AgentGroup"> | Date | string | null
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
-  }
-
-  export type AgentGroupOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    teamId?: SortOrder
-    thumbFile?: S3MetaDataOrderByInput
+    apiKey?: SortOrder
+    claimToken?: SortOrder
+    verificationCode?: SortOrder
+    agentObjectId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    team?: TeamOrderByWithRelationInput
+    agentObject?: AgentObjectOrderByWithRelationInput
   }
 
-  export type AgentGroupWhereUniqueInput = Prisma.AtLeast<{
+  export type AgentSecretWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: AgentGroupWhereInput | AgentGroupWhereInput[]
-    OR?: AgentGroupWhereInput[]
-    NOT?: AgentGroupWhereInput | AgentGroupWhereInput[]
-    title?: StringFilter<"AgentGroup"> | string
-    teamId?: StringFilter<"AgentGroup"> | string
-    thumbFile?: XOR<S3MetaDataNullableCompositeFilter, S3MetaDataObjectEqualityInput> | null
-    createdAt?: DateTimeNullableFilter<"AgentGroup"> | Date | string | null
-    updatedAt?: DateTimeNullableFilter<"AgentGroup"> | Date | string | null
-    team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
+    AND?: AgentSecretWhereInput | AgentSecretWhereInput[]
+    OR?: AgentSecretWhereInput[]
+    NOT?: AgentSecretWhereInput | AgentSecretWhereInput[]
+    apiKey?: StringFilter<"AgentSecret"> | string
+    claimToken?: StringFilter<"AgentSecret"> | string
+    verificationCode?: StringFilter<"AgentSecret"> | string
+    agentObjectId?: StringFilter<"AgentSecret"> | string
+    createdAt?: DateTimeNullableFilter<"AgentSecret"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentSecret"> | Date | string | null
+    agentObject?: XOR<AgentObjectScalarRelationFilter, AgentObjectWhereInput>
   }, "id">
 
-  export type AgentGroupOrderByWithAggregationInput = {
+  export type AgentSecretOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
-    teamId?: SortOrder
+    apiKey?: SortOrder
+    claimToken?: SortOrder
+    verificationCode?: SortOrder
+    agentObjectId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: AgentGroupCountOrderByAggregateInput
-    _max?: AgentGroupMaxOrderByAggregateInput
-    _min?: AgentGroupMinOrderByAggregateInput
+    _count?: AgentSecretCountOrderByAggregateInput
+    _max?: AgentSecretMaxOrderByAggregateInput
+    _min?: AgentSecretMinOrderByAggregateInput
   }
 
-  export type AgentGroupScalarWhereWithAggregatesInput = {
-    AND?: AgentGroupScalarWhereWithAggregatesInput | AgentGroupScalarWhereWithAggregatesInput[]
-    OR?: AgentGroupScalarWhereWithAggregatesInput[]
-    NOT?: AgentGroupScalarWhereWithAggregatesInput | AgentGroupScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"AgentGroup"> | string
-    title?: StringWithAggregatesFilter<"AgentGroup"> | string
-    teamId?: StringWithAggregatesFilter<"AgentGroup"> | string
-    createdAt?: DateTimeNullableWithAggregatesFilter<"AgentGroup"> | Date | string | null
-    updatedAt?: DateTimeNullableWithAggregatesFilter<"AgentGroup"> | Date | string | null
+  export type AgentSecretScalarWhereWithAggregatesInput = {
+    AND?: AgentSecretScalarWhereWithAggregatesInput | AgentSecretScalarWhereWithAggregatesInput[]
+    OR?: AgentSecretScalarWhereWithAggregatesInput[]
+    NOT?: AgentSecretScalarWhereWithAggregatesInput | AgentSecretScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AgentSecret"> | string
+    apiKey?: StringWithAggregatesFilter<"AgentSecret"> | string
+    claimToken?: StringWithAggregatesFilter<"AgentSecret"> | string
+    verificationCode?: StringWithAggregatesFilter<"AgentSecret"> | string
+    agentObjectId?: StringWithAggregatesFilter<"AgentSecret"> | string
+    createdAt?: DateTimeNullableWithAggregatesFilter<"AgentSecret"> | Date | string | null
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"AgentSecret"> | Date | string | null
   }
 
   export type PostCreateInput = {
@@ -11638,6 +9309,7 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutCreatedByInput
+    agentObjects?: AgentObjectCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11651,6 +9323,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
+    agentObjects?: AgentObjectUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -11663,6 +9336,7 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutCreatedByNestedInput
+    agentObjects?: AgentObjectUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11675,6 +9349,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
+    agentObjects?: AgentObjectUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -11943,226 +9618,129 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TeamCreateInput = {
+  export type AgentObjectCreateInput = {
     id: string
     name: string
-    slug: string
-    description?: string | null
+    description: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    teamMembers?: TeamMemberCreateNestedManyWithoutTeamInput
-    teamVault?: TeamVaultCreateNestedManyWithoutTeamInput
-    agentGroups?: AgentGroupCreateNestedManyWithoutTeamInput
+    user?: UserCreateNestedOneWithoutAgentObjectsInput
+    agentSecret?: AgentSecretCreateNestedManyWithoutAgentObjectInput
   }
 
-  export type TeamUncheckedCreateInput = {
+  export type AgentObjectUncheckedCreateInput = {
     id: string
     name: string
-    slug: string
-    description?: string | null
+    description: string
+    userId?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    teamMembers?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
-    teamVault?: TeamVaultUncheckedCreateNestedManyWithoutTeamInput
-    agentGroups?: AgentGroupUncheckedCreateNestedManyWithoutTeamInput
+    agentSecret?: AgentSecretUncheckedCreateNestedManyWithoutAgentObjectInput
   }
 
-  export type TeamUpdateInput = {
+  export type AgentObjectUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamMembers?: TeamMemberUpdateManyWithoutTeamNestedInput
-    teamVault?: TeamVaultUpdateManyWithoutTeamNestedInput
-    agentGroups?: AgentGroupUpdateManyWithoutTeamNestedInput
+    user?: UserUpdateOneWithoutAgentObjectsNestedInput
+    agentSecret?: AgentSecretUpdateManyWithoutAgentObjectNestedInput
   }
 
-  export type TeamUncheckedUpdateInput = {
+  export type AgentObjectUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamMembers?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
-    teamVault?: TeamVaultUncheckedUpdateManyWithoutTeamNestedInput
-    agentGroups?: AgentGroupUncheckedUpdateManyWithoutTeamNestedInput
+    agentSecret?: AgentSecretUncheckedUpdateManyWithoutAgentObjectNestedInput
   }
 
-  export type TeamCreateManyInput = {
+  export type AgentObjectCreateManyInput = {
     id: string
     name: string
-    slug: string
-    description?: string | null
+    description: string
+    userId?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
 
-  export type TeamUpdateManyMutationInput = {
+  export type AgentObjectUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type TeamUncheckedUpdateManyInput = {
+  export type AgentObjectUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type TeamVaultCreateInput = {
+  export type AgentSecretCreateInput = {
     id: string
-    openRouterAPIKey: string
-    replicateAPIKey: string
-    falAPIKey: string
-    team: TeamCreateNestedOneWithoutTeamVaultInput
-  }
-
-  export type TeamVaultUncheckedCreateInput = {
-    id: string
-    openRouterAPIKey: string
-    replicateAPIKey: string
-    falAPIKey: string
-    teamId: string
-  }
-
-  export type TeamVaultUpdateInput = {
-    openRouterAPIKey?: StringFieldUpdateOperationsInput | string
-    replicateAPIKey?: StringFieldUpdateOperationsInput | string
-    falAPIKey?: StringFieldUpdateOperationsInput | string
-    team?: TeamUpdateOneRequiredWithoutTeamVaultNestedInput
-  }
-
-  export type TeamVaultUncheckedUpdateInput = {
-    openRouterAPIKey?: StringFieldUpdateOperationsInput | string
-    replicateAPIKey?: StringFieldUpdateOperationsInput | string
-    falAPIKey?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamVaultCreateManyInput = {
-    id: string
-    openRouterAPIKey: string
-    replicateAPIKey: string
-    falAPIKey: string
-    teamId: string
-  }
-
-  export type TeamVaultUpdateManyMutationInput = {
-    openRouterAPIKey?: StringFieldUpdateOperationsInput | string
-    replicateAPIKey?: StringFieldUpdateOperationsInput | string
-    falAPIKey?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamVaultUncheckedUpdateManyInput = {
-    openRouterAPIKey?: StringFieldUpdateOperationsInput | string
-    replicateAPIKey?: StringFieldUpdateOperationsInput | string
-    falAPIKey?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamMemberCreateInput = {
-    id: string
-    email: string
-    role: string
-    team: TeamCreateNestedOneWithoutTeamMembersInput
-  }
-
-  export type TeamMemberUncheckedCreateInput = {
-    id: string
-    email: string
-    role: string
-    teamId: string
-  }
-
-  export type TeamMemberUpdateInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    team?: TeamUpdateOneRequiredWithoutTeamMembersNestedInput
-  }
-
-  export type TeamMemberUncheckedUpdateInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamMemberCreateManyInput = {
-    id: string
-    email: string
-    role: string
-    teamId: string
-  }
-
-  export type TeamMemberUpdateManyMutationInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamMemberUncheckedUpdateManyInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AgentGroupCreateInput = {
-    id: string
-    title: string
-    thumbFile?: XOR<S3MetaDataNullableCreateEnvelopeInput, S3MetaDataCreateInput> | null
+    apiKey: string
+    claimToken: string
+    verificationCode: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    team: TeamCreateNestedOneWithoutAgentGroupsInput
+    agentObject: AgentObjectCreateNestedOneWithoutAgentSecretInput
   }
 
-  export type AgentGroupUncheckedCreateInput = {
+  export type AgentSecretUncheckedCreateInput = {
     id: string
-    title: string
-    teamId: string
-    thumbFile?: XOR<S3MetaDataNullableCreateEnvelopeInput, S3MetaDataCreateInput> | null
+    apiKey: string
+    claimToken: string
+    verificationCode: string
+    agentObjectId: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
 
-  export type AgentGroupUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    thumbFile?: XOR<S3MetaDataNullableUpdateEnvelopeInput, S3MetaDataCreateInput> | null
+  export type AgentSecretUpdateInput = {
+    apiKey?: StringFieldUpdateOperationsInput | string
+    claimToken?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    team?: TeamUpdateOneRequiredWithoutAgentGroupsNestedInput
+    agentObject?: AgentObjectUpdateOneRequiredWithoutAgentSecretNestedInput
   }
 
-  export type AgentGroupUncheckedUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    thumbFile?: XOR<S3MetaDataNullableUpdateEnvelopeInput, S3MetaDataCreateInput> | null
+  export type AgentSecretUncheckedUpdateInput = {
+    apiKey?: StringFieldUpdateOperationsInput | string
+    claimToken?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    agentObjectId?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type AgentGroupCreateManyInput = {
+  export type AgentSecretCreateManyInput = {
     id: string
-    title: string
-    teamId: string
-    thumbFile?: XOR<S3MetaDataNullableCreateEnvelopeInput, S3MetaDataCreateInput> | null
+    apiKey: string
+    claimToken: string
+    verificationCode: string
+    agentObjectId: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
 
-  export type AgentGroupUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    thumbFile?: XOR<S3MetaDataNullableUpdateEnvelopeInput, S3MetaDataCreateInput> | null
+  export type AgentSecretUpdateManyMutationInput = {
+    apiKey?: StringFieldUpdateOperationsInput | string
+    claimToken?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type AgentGroupUncheckedUpdateManyInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    teamId?: StringFieldUpdateOperationsInput | string
-    thumbFile?: XOR<S3MetaDataNullableUpdateEnvelopeInput, S3MetaDataCreateInput> | null
+  export type AgentSecretUncheckedUpdateManyInput = {
+    apiKey?: StringFieldUpdateOperationsInput | string
+    claimToken?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
+    agentObjectId?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -12293,6 +9871,12 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
+  export type AgentObjectListRelationFilter = {
+    every?: AgentObjectWhereInput
+    some?: AgentObjectWhereInput
+    none?: AgentObjectWhereInput
+  }
+
   export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -12302,6 +9886,10 @@ export namespace Prisma {
   }
 
   export type PostOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AgentObjectOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12497,160 +10085,79 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type TeamMemberListRelationFilter = {
-    every?: TeamMemberWhereInput
-    some?: TeamMemberWhereInput
-    none?: TeamMemberWhereInput
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
   }
 
-  export type TeamVaultListRelationFilter = {
-    every?: TeamVaultWhereInput
-    some?: TeamVaultWhereInput
-    none?: TeamVaultWhereInput
+  export type AgentSecretListRelationFilter = {
+    every?: AgentSecretWhereInput
+    some?: AgentSecretWhereInput
+    none?: AgentSecretWhereInput
   }
 
-  export type AgentGroupListRelationFilter = {
-    every?: AgentGroupWhereInput
-    some?: AgentGroupWhereInput
-    none?: AgentGroupWhereInput
-  }
-
-  export type TeamMemberOrderByRelationAggregateInput = {
+  export type AgentSecretOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type TeamVaultOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type AgentGroupOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type TeamCountOrderByAggregateInput = {
+  export type AgentObjectCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    slug?: SortOrder
     description?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type TeamMaxOrderByAggregateInput = {
+  export type AgentObjectMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    slug?: SortOrder
     description?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type TeamMinOrderByAggregateInput = {
+  export type AgentObjectMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    slug?: SortOrder
     description?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type TeamScalarRelationFilter = {
-    is?: TeamWhereInput
-    isNot?: TeamWhereInput
+  export type AgentObjectScalarRelationFilter = {
+    is?: AgentObjectWhereInput
+    isNot?: AgentObjectWhereInput
   }
 
-  export type TeamVaultCountOrderByAggregateInput = {
+  export type AgentSecretCountOrderByAggregateInput = {
     id?: SortOrder
-    openRouterAPIKey?: SortOrder
-    replicateAPIKey?: SortOrder
-    falAPIKey?: SortOrder
-    teamId?: SortOrder
-  }
-
-  export type TeamVaultMaxOrderByAggregateInput = {
-    id?: SortOrder
-    openRouterAPIKey?: SortOrder
-    replicateAPIKey?: SortOrder
-    falAPIKey?: SortOrder
-    teamId?: SortOrder
-  }
-
-  export type TeamVaultMinOrderByAggregateInput = {
-    id?: SortOrder
-    openRouterAPIKey?: SortOrder
-    replicateAPIKey?: SortOrder
-    falAPIKey?: SortOrder
-    teamId?: SortOrder
-  }
-
-  export type TeamMemberCountOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    role?: SortOrder
-    teamId?: SortOrder
-  }
-
-  export type TeamMemberMaxOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    role?: SortOrder
-    teamId?: SortOrder
-  }
-
-  export type TeamMemberMinOrderByAggregateInput = {
-    id?: SortOrder
-    email?: SortOrder
-    role?: SortOrder
-    teamId?: SortOrder
-  }
-
-  export type S3MetaDataNullableCompositeFilter = {
-    equals?: S3MetaDataObjectEqualityInput | null
-    is?: S3MetaDataWhereInput | null
-    isNot?: S3MetaDataWhereInput | null
-    isSet?: boolean
-  }
-
-  export type S3MetaDataObjectEqualityInput = {
-    userID: string
-    fileName: string
-    bucket: string
-    url: string
-    fileKey: string
-    cdn: string
-    uploadURL: string
-  }
-
-  export type S3MetaDataOrderByInput = {
-    userID?: SortOrder
-    fileName?: SortOrder
-    bucket?: SortOrder
-    url?: SortOrder
-    fileKey?: SortOrder
-    cdn?: SortOrder
-    uploadURL?: SortOrder
-  }
-
-  export type AgentGroupCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    teamId?: SortOrder
+    apiKey?: SortOrder
+    claimToken?: SortOrder
+    verificationCode?: SortOrder
+    agentObjectId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type AgentGroupMaxOrderByAggregateInput = {
+  export type AgentSecretMaxOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    teamId?: SortOrder
+    apiKey?: SortOrder
+    claimToken?: SortOrder
+    verificationCode?: SortOrder
+    agentObjectId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type AgentGroupMinOrderByAggregateInput = {
+  export type AgentSecretMinOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    teamId?: SortOrder
+    apiKey?: SortOrder
+    claimToken?: SortOrder
+    verificationCode?: SortOrder
+    agentObjectId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12698,6 +10205,13 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
+  export type AgentObjectCreateNestedManyWithoutUserInput = {
+    create?: XOR<AgentObjectCreateWithoutUserInput, AgentObjectUncheckedCreateWithoutUserInput> | AgentObjectCreateWithoutUserInput[] | AgentObjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AgentObjectCreateOrConnectWithoutUserInput | AgentObjectCreateOrConnectWithoutUserInput[]
+    createMany?: AgentObjectCreateManyUserInputEnvelope
+    connect?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -12717,6 +10231,13 @@ export namespace Prisma {
     connectOrCreate?: PostCreateOrConnectWithoutCreatedByInput | PostCreateOrConnectWithoutCreatedByInput[]
     createMany?: PostCreateManyCreatedByInputEnvelope
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type AgentObjectUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AgentObjectCreateWithoutUserInput, AgentObjectUncheckedCreateWithoutUserInput> | AgentObjectCreateWithoutUserInput[] | AgentObjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AgentObjectCreateOrConnectWithoutUserInput | AgentObjectCreateOrConnectWithoutUserInput[]
+    createMany?: AgentObjectCreateManyUserInputEnvelope
+    connect?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -12770,6 +10291,20 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
+  export type AgentObjectUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AgentObjectCreateWithoutUserInput, AgentObjectUncheckedCreateWithoutUserInput> | AgentObjectCreateWithoutUserInput[] | AgentObjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AgentObjectCreateOrConnectWithoutUserInput | AgentObjectCreateOrConnectWithoutUserInput[]
+    upsert?: AgentObjectUpsertWithWhereUniqueWithoutUserInput | AgentObjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AgentObjectCreateManyUserInputEnvelope
+    set?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    disconnect?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    delete?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    connect?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    update?: AgentObjectUpdateWithWhereUniqueWithoutUserInput | AgentObjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AgentObjectUpdateManyWithWhereWithoutUserInput | AgentObjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AgentObjectScalarWhereInput | AgentObjectScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -12812,6 +10347,20 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
+  export type AgentObjectUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AgentObjectCreateWithoutUserInput, AgentObjectUncheckedCreateWithoutUserInput> | AgentObjectCreateWithoutUserInput[] | AgentObjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AgentObjectCreateOrConnectWithoutUserInput | AgentObjectCreateOrConnectWithoutUserInput[]
+    upsert?: AgentObjectUpsertWithWhereUniqueWithoutUserInput | AgentObjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AgentObjectCreateManyUserInputEnvelope
+    set?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    disconnect?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    delete?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    connect?: AgentObjectWhereUniqueInput | AgentObjectWhereUniqueInput[]
+    update?: AgentObjectUpdateWithWhereUniqueWithoutUserInput | AgentObjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AgentObjectUpdateManyWithWhereWithoutUserInput | AgentObjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AgentObjectScalarWhereInput | AgentObjectScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutSessionsInput = {
     create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
     connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
@@ -12845,192 +10394,76 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
   }
 
-  export type TeamMemberCreateNestedManyWithoutTeamInput = {
-    create?: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput> | TeamMemberCreateWithoutTeamInput[] | TeamMemberUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamMemberCreateOrConnectWithoutTeamInput | TeamMemberCreateOrConnectWithoutTeamInput[]
-    createMany?: TeamMemberCreateManyTeamInputEnvelope
-    connect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
+  export type UserCreateNestedOneWithoutAgentObjectsInput = {
+    create?: XOR<UserCreateWithoutAgentObjectsInput, UserUncheckedCreateWithoutAgentObjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAgentObjectsInput
+    connect?: UserWhereUniqueInput
   }
 
-  export type TeamVaultCreateNestedManyWithoutTeamInput = {
-    create?: XOR<TeamVaultCreateWithoutTeamInput, TeamVaultUncheckedCreateWithoutTeamInput> | TeamVaultCreateWithoutTeamInput[] | TeamVaultUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamVaultCreateOrConnectWithoutTeamInput | TeamVaultCreateOrConnectWithoutTeamInput[]
-    createMany?: TeamVaultCreateManyTeamInputEnvelope
-    connect?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
+  export type AgentSecretCreateNestedManyWithoutAgentObjectInput = {
+    create?: XOR<AgentSecretCreateWithoutAgentObjectInput, AgentSecretUncheckedCreateWithoutAgentObjectInput> | AgentSecretCreateWithoutAgentObjectInput[] | AgentSecretUncheckedCreateWithoutAgentObjectInput[]
+    connectOrCreate?: AgentSecretCreateOrConnectWithoutAgentObjectInput | AgentSecretCreateOrConnectWithoutAgentObjectInput[]
+    createMany?: AgentSecretCreateManyAgentObjectInputEnvelope
+    connect?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
   }
 
-  export type AgentGroupCreateNestedManyWithoutTeamInput = {
-    create?: XOR<AgentGroupCreateWithoutTeamInput, AgentGroupUncheckedCreateWithoutTeamInput> | AgentGroupCreateWithoutTeamInput[] | AgentGroupUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: AgentGroupCreateOrConnectWithoutTeamInput | AgentGroupCreateOrConnectWithoutTeamInput[]
-    createMany?: AgentGroupCreateManyTeamInputEnvelope
-    connect?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
+  export type AgentSecretUncheckedCreateNestedManyWithoutAgentObjectInput = {
+    create?: XOR<AgentSecretCreateWithoutAgentObjectInput, AgentSecretUncheckedCreateWithoutAgentObjectInput> | AgentSecretCreateWithoutAgentObjectInput[] | AgentSecretUncheckedCreateWithoutAgentObjectInput[]
+    connectOrCreate?: AgentSecretCreateOrConnectWithoutAgentObjectInput | AgentSecretCreateOrConnectWithoutAgentObjectInput[]
+    createMany?: AgentSecretCreateManyAgentObjectInputEnvelope
+    connect?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
   }
 
-  export type TeamMemberUncheckedCreateNestedManyWithoutTeamInput = {
-    create?: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput> | TeamMemberCreateWithoutTeamInput[] | TeamMemberUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamMemberCreateOrConnectWithoutTeamInput | TeamMemberCreateOrConnectWithoutTeamInput[]
-    createMany?: TeamMemberCreateManyTeamInputEnvelope
-    connect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
+  export type UserUpdateOneWithoutAgentObjectsNestedInput = {
+    create?: XOR<UserCreateWithoutAgentObjectsInput, UserUncheckedCreateWithoutAgentObjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAgentObjectsInput
+    upsert?: UserUpsertWithoutAgentObjectsInput
+    disconnect?: boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAgentObjectsInput, UserUpdateWithoutAgentObjectsInput>, UserUncheckedUpdateWithoutAgentObjectsInput>
   }
 
-  export type TeamVaultUncheckedCreateNestedManyWithoutTeamInput = {
-    create?: XOR<TeamVaultCreateWithoutTeamInput, TeamVaultUncheckedCreateWithoutTeamInput> | TeamVaultCreateWithoutTeamInput[] | TeamVaultUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamVaultCreateOrConnectWithoutTeamInput | TeamVaultCreateOrConnectWithoutTeamInput[]
-    createMany?: TeamVaultCreateManyTeamInputEnvelope
-    connect?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
+  export type AgentSecretUpdateManyWithoutAgentObjectNestedInput = {
+    create?: XOR<AgentSecretCreateWithoutAgentObjectInput, AgentSecretUncheckedCreateWithoutAgentObjectInput> | AgentSecretCreateWithoutAgentObjectInput[] | AgentSecretUncheckedCreateWithoutAgentObjectInput[]
+    connectOrCreate?: AgentSecretCreateOrConnectWithoutAgentObjectInput | AgentSecretCreateOrConnectWithoutAgentObjectInput[]
+    upsert?: AgentSecretUpsertWithWhereUniqueWithoutAgentObjectInput | AgentSecretUpsertWithWhereUniqueWithoutAgentObjectInput[]
+    createMany?: AgentSecretCreateManyAgentObjectInputEnvelope
+    set?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    disconnect?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    delete?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    connect?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    update?: AgentSecretUpdateWithWhereUniqueWithoutAgentObjectInput | AgentSecretUpdateWithWhereUniqueWithoutAgentObjectInput[]
+    updateMany?: AgentSecretUpdateManyWithWhereWithoutAgentObjectInput | AgentSecretUpdateManyWithWhereWithoutAgentObjectInput[]
+    deleteMany?: AgentSecretScalarWhereInput | AgentSecretScalarWhereInput[]
   }
 
-  export type AgentGroupUncheckedCreateNestedManyWithoutTeamInput = {
-    create?: XOR<AgentGroupCreateWithoutTeamInput, AgentGroupUncheckedCreateWithoutTeamInput> | AgentGroupCreateWithoutTeamInput[] | AgentGroupUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: AgentGroupCreateOrConnectWithoutTeamInput | AgentGroupCreateOrConnectWithoutTeamInput[]
-    createMany?: AgentGroupCreateManyTeamInputEnvelope
-    connect?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
+  export type AgentSecretUncheckedUpdateManyWithoutAgentObjectNestedInput = {
+    create?: XOR<AgentSecretCreateWithoutAgentObjectInput, AgentSecretUncheckedCreateWithoutAgentObjectInput> | AgentSecretCreateWithoutAgentObjectInput[] | AgentSecretUncheckedCreateWithoutAgentObjectInput[]
+    connectOrCreate?: AgentSecretCreateOrConnectWithoutAgentObjectInput | AgentSecretCreateOrConnectWithoutAgentObjectInput[]
+    upsert?: AgentSecretUpsertWithWhereUniqueWithoutAgentObjectInput | AgentSecretUpsertWithWhereUniqueWithoutAgentObjectInput[]
+    createMany?: AgentSecretCreateManyAgentObjectInputEnvelope
+    set?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    disconnect?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    delete?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    connect?: AgentSecretWhereUniqueInput | AgentSecretWhereUniqueInput[]
+    update?: AgentSecretUpdateWithWhereUniqueWithoutAgentObjectInput | AgentSecretUpdateWithWhereUniqueWithoutAgentObjectInput[]
+    updateMany?: AgentSecretUpdateManyWithWhereWithoutAgentObjectInput | AgentSecretUpdateManyWithWhereWithoutAgentObjectInput[]
+    deleteMany?: AgentSecretScalarWhereInput | AgentSecretScalarWhereInput[]
   }
 
-  export type TeamMemberUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput> | TeamMemberCreateWithoutTeamInput[] | TeamMemberUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamMemberCreateOrConnectWithoutTeamInput | TeamMemberCreateOrConnectWithoutTeamInput[]
-    upsert?: TeamMemberUpsertWithWhereUniqueWithoutTeamInput | TeamMemberUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: TeamMemberCreateManyTeamInputEnvelope
-    set?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    disconnect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    delete?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    connect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    update?: TeamMemberUpdateWithWhereUniqueWithoutTeamInput | TeamMemberUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: TeamMemberUpdateManyWithWhereWithoutTeamInput | TeamMemberUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: TeamMemberScalarWhereInput | TeamMemberScalarWhereInput[]
+  export type AgentObjectCreateNestedOneWithoutAgentSecretInput = {
+    create?: XOR<AgentObjectCreateWithoutAgentSecretInput, AgentObjectUncheckedCreateWithoutAgentSecretInput>
+    connectOrCreate?: AgentObjectCreateOrConnectWithoutAgentSecretInput
+    connect?: AgentObjectWhereUniqueInput
   }
 
-  export type TeamVaultUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<TeamVaultCreateWithoutTeamInput, TeamVaultUncheckedCreateWithoutTeamInput> | TeamVaultCreateWithoutTeamInput[] | TeamVaultUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamVaultCreateOrConnectWithoutTeamInput | TeamVaultCreateOrConnectWithoutTeamInput[]
-    upsert?: TeamVaultUpsertWithWhereUniqueWithoutTeamInput | TeamVaultUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: TeamVaultCreateManyTeamInputEnvelope
-    set?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    disconnect?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    delete?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    connect?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    update?: TeamVaultUpdateWithWhereUniqueWithoutTeamInput | TeamVaultUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: TeamVaultUpdateManyWithWhereWithoutTeamInput | TeamVaultUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: TeamVaultScalarWhereInput | TeamVaultScalarWhereInput[]
-  }
-
-  export type AgentGroupUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<AgentGroupCreateWithoutTeamInput, AgentGroupUncheckedCreateWithoutTeamInput> | AgentGroupCreateWithoutTeamInput[] | AgentGroupUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: AgentGroupCreateOrConnectWithoutTeamInput | AgentGroupCreateOrConnectWithoutTeamInput[]
-    upsert?: AgentGroupUpsertWithWhereUniqueWithoutTeamInput | AgentGroupUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: AgentGroupCreateManyTeamInputEnvelope
-    set?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    disconnect?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    delete?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    connect?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    update?: AgentGroupUpdateWithWhereUniqueWithoutTeamInput | AgentGroupUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: AgentGroupUpdateManyWithWhereWithoutTeamInput | AgentGroupUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: AgentGroupScalarWhereInput | AgentGroupScalarWhereInput[]
-  }
-
-  export type TeamMemberUncheckedUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput> | TeamMemberCreateWithoutTeamInput[] | TeamMemberUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamMemberCreateOrConnectWithoutTeamInput | TeamMemberCreateOrConnectWithoutTeamInput[]
-    upsert?: TeamMemberUpsertWithWhereUniqueWithoutTeamInput | TeamMemberUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: TeamMemberCreateManyTeamInputEnvelope
-    set?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    disconnect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    delete?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    connect?: TeamMemberWhereUniqueInput | TeamMemberWhereUniqueInput[]
-    update?: TeamMemberUpdateWithWhereUniqueWithoutTeamInput | TeamMemberUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: TeamMemberUpdateManyWithWhereWithoutTeamInput | TeamMemberUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: TeamMemberScalarWhereInput | TeamMemberScalarWhereInput[]
-  }
-
-  export type TeamVaultUncheckedUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<TeamVaultCreateWithoutTeamInput, TeamVaultUncheckedCreateWithoutTeamInput> | TeamVaultCreateWithoutTeamInput[] | TeamVaultUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: TeamVaultCreateOrConnectWithoutTeamInput | TeamVaultCreateOrConnectWithoutTeamInput[]
-    upsert?: TeamVaultUpsertWithWhereUniqueWithoutTeamInput | TeamVaultUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: TeamVaultCreateManyTeamInputEnvelope
-    set?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    disconnect?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    delete?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    connect?: TeamVaultWhereUniqueInput | TeamVaultWhereUniqueInput[]
-    update?: TeamVaultUpdateWithWhereUniqueWithoutTeamInput | TeamVaultUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: TeamVaultUpdateManyWithWhereWithoutTeamInput | TeamVaultUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: TeamVaultScalarWhereInput | TeamVaultScalarWhereInput[]
-  }
-
-  export type AgentGroupUncheckedUpdateManyWithoutTeamNestedInput = {
-    create?: XOR<AgentGroupCreateWithoutTeamInput, AgentGroupUncheckedCreateWithoutTeamInput> | AgentGroupCreateWithoutTeamInput[] | AgentGroupUncheckedCreateWithoutTeamInput[]
-    connectOrCreate?: AgentGroupCreateOrConnectWithoutTeamInput | AgentGroupCreateOrConnectWithoutTeamInput[]
-    upsert?: AgentGroupUpsertWithWhereUniqueWithoutTeamInput | AgentGroupUpsertWithWhereUniqueWithoutTeamInput[]
-    createMany?: AgentGroupCreateManyTeamInputEnvelope
-    set?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    disconnect?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    delete?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    connect?: AgentGroupWhereUniqueInput | AgentGroupWhereUniqueInput[]
-    update?: AgentGroupUpdateWithWhereUniqueWithoutTeamInput | AgentGroupUpdateWithWhereUniqueWithoutTeamInput[]
-    updateMany?: AgentGroupUpdateManyWithWhereWithoutTeamInput | AgentGroupUpdateManyWithWhereWithoutTeamInput[]
-    deleteMany?: AgentGroupScalarWhereInput | AgentGroupScalarWhereInput[]
-  }
-
-  export type TeamCreateNestedOneWithoutTeamVaultInput = {
-    create?: XOR<TeamCreateWithoutTeamVaultInput, TeamUncheckedCreateWithoutTeamVaultInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutTeamVaultInput
-    connect?: TeamWhereUniqueInput
-  }
-
-  export type TeamUpdateOneRequiredWithoutTeamVaultNestedInput = {
-    create?: XOR<TeamCreateWithoutTeamVaultInput, TeamUncheckedCreateWithoutTeamVaultInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutTeamVaultInput
-    upsert?: TeamUpsertWithoutTeamVaultInput
-    connect?: TeamWhereUniqueInput
-    update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutTeamVaultInput, TeamUpdateWithoutTeamVaultInput>, TeamUncheckedUpdateWithoutTeamVaultInput>
-  }
-
-  export type TeamCreateNestedOneWithoutTeamMembersInput = {
-    create?: XOR<TeamCreateWithoutTeamMembersInput, TeamUncheckedCreateWithoutTeamMembersInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutTeamMembersInput
-    connect?: TeamWhereUniqueInput
-  }
-
-  export type TeamUpdateOneRequiredWithoutTeamMembersNestedInput = {
-    create?: XOR<TeamCreateWithoutTeamMembersInput, TeamUncheckedCreateWithoutTeamMembersInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutTeamMembersInput
-    upsert?: TeamUpsertWithoutTeamMembersInput
-    connect?: TeamWhereUniqueInput
-    update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutTeamMembersInput, TeamUpdateWithoutTeamMembersInput>, TeamUncheckedUpdateWithoutTeamMembersInput>
-  }
-
-  export type S3MetaDataNullableCreateEnvelopeInput = {
-    set?: S3MetaDataCreateInput | null
-  }
-
-  export type S3MetaDataCreateInput = {
-    userID: string
-    fileName: string
-    bucket: string
-    url: string
-    fileKey: string
-    cdn: string
-    uploadURL: string
-  }
-
-  export type TeamCreateNestedOneWithoutAgentGroupsInput = {
-    create?: XOR<TeamCreateWithoutAgentGroupsInput, TeamUncheckedCreateWithoutAgentGroupsInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutAgentGroupsInput
-    connect?: TeamWhereUniqueInput
-  }
-
-  export type S3MetaDataNullableUpdateEnvelopeInput = {
-    set?: S3MetaDataCreateInput | null
-    upsert?: S3MetaDataUpsertInput
-    unset?: boolean
-  }
-
-  export type TeamUpdateOneRequiredWithoutAgentGroupsNestedInput = {
-    create?: XOR<TeamCreateWithoutAgentGroupsInput, TeamUncheckedCreateWithoutAgentGroupsInput>
-    connectOrCreate?: TeamCreateOrConnectWithoutAgentGroupsInput
-    upsert?: TeamUpsertWithoutAgentGroupsInput
-    connect?: TeamWhereUniqueInput
-    update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutAgentGroupsInput, TeamUpdateWithoutAgentGroupsInput>, TeamUncheckedUpdateWithoutAgentGroupsInput>
+  export type AgentObjectUpdateOneRequiredWithoutAgentSecretNestedInput = {
+    create?: XOR<AgentObjectCreateWithoutAgentSecretInput, AgentObjectUncheckedCreateWithoutAgentSecretInput>
+    connectOrCreate?: AgentObjectCreateOrConnectWithoutAgentSecretInput
+    upsert?: AgentObjectUpsertWithoutAgentSecretInput
+    connect?: AgentObjectWhereUniqueInput
+    update?: XOR<XOR<AgentObjectUpdateToOneWithWhereWithoutAgentSecretInput, AgentObjectUpdateWithoutAgentSecretInput>, AgentObjectUncheckedUpdateWithoutAgentSecretInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -13185,19 +10618,6 @@ export namespace Prisma {
     isSet?: boolean
   }
 
-  export type S3MetaDataWhereInput = {
-    AND?: S3MetaDataWhereInput | S3MetaDataWhereInput[]
-    OR?: S3MetaDataWhereInput[]
-    NOT?: S3MetaDataWhereInput | S3MetaDataWhereInput[]
-    userID?: StringFilter<"S3MetaData"> | string
-    fileName?: StringFilter<"S3MetaData"> | string
-    bucket?: StringFilter<"S3MetaData"> | string
-    url?: StringFilter<"S3MetaData"> | string
-    fileKey?: StringFilter<"S3MetaData"> | string
-    cdn?: StringFilter<"S3MetaData"> | string
-    uploadURL?: StringFilter<"S3MetaData"> | string
-  }
-
   export type UserCreateWithoutPostsInput = {
     id: string
     name: string
@@ -13208,6 +10628,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
+    agentObjects?: AgentObjectCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -13220,6 +10641,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    agentObjects?: AgentObjectUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -13247,6 +10669,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    agentObjects?: AgentObjectUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -13258,6 +10681,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    agentObjects?: AgentObjectUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -13349,6 +10773,33 @@ export namespace Prisma {
 
   export type PostCreateManyCreatedByInputEnvelope = {
     data: PostCreateManyCreatedByInput | PostCreateManyCreatedByInput[]
+  }
+
+  export type AgentObjectCreateWithoutUserInput = {
+    id: string
+    name: string
+    description: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+    agentSecret?: AgentSecretCreateNestedManyWithoutAgentObjectInput
+  }
+
+  export type AgentObjectUncheckedCreateWithoutUserInput = {
+    id: string
+    name: string
+    description: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+    agentSecret?: AgentSecretUncheckedCreateNestedManyWithoutAgentObjectInput
+  }
+
+  export type AgentObjectCreateOrConnectWithoutUserInput = {
+    where: AgentObjectWhereUniqueInput
+    create: XOR<AgentObjectCreateWithoutUserInput, AgentObjectUncheckedCreateWithoutUserInput>
+  }
+
+  export type AgentObjectCreateManyUserInputEnvelope = {
+    data: AgentObjectCreateManyUserInput | AgentObjectCreateManyUserInput[]
   }
 
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
@@ -13443,6 +10894,34 @@ export namespace Prisma {
     createdById?: StringFilter<"Post"> | string
   }
 
+  export type AgentObjectUpsertWithWhereUniqueWithoutUserInput = {
+    where: AgentObjectWhereUniqueInput
+    update: XOR<AgentObjectUpdateWithoutUserInput, AgentObjectUncheckedUpdateWithoutUserInput>
+    create: XOR<AgentObjectCreateWithoutUserInput, AgentObjectUncheckedCreateWithoutUserInput>
+  }
+
+  export type AgentObjectUpdateWithWhereUniqueWithoutUserInput = {
+    where: AgentObjectWhereUniqueInput
+    data: XOR<AgentObjectUpdateWithoutUserInput, AgentObjectUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AgentObjectUpdateManyWithWhereWithoutUserInput = {
+    where: AgentObjectScalarWhereInput
+    data: XOR<AgentObjectUpdateManyMutationInput, AgentObjectUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AgentObjectScalarWhereInput = {
+    AND?: AgentObjectScalarWhereInput | AgentObjectScalarWhereInput[]
+    OR?: AgentObjectScalarWhereInput[]
+    NOT?: AgentObjectScalarWhereInput | AgentObjectScalarWhereInput[]
+    id?: StringFilter<"AgentObject"> | string
+    name?: StringFilter<"AgentObject"> | string
+    description?: StringFilter<"AgentObject"> | string
+    userId?: StringNullableFilter<"AgentObject"> | string | null
+    createdAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id: string
     name: string
@@ -13453,6 +10932,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutCreatedByInput
+    agentObjects?: AgentObjectCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -13465,6 +10945,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
+    agentObjects?: AgentObjectUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -13492,6 +10973,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutCreatedByNestedInput
+    agentObjects?: AgentObjectUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -13503,6 +10985,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
+    agentObjects?: AgentObjectUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -13515,6 +10998,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutCreatedByInput
+    agentObjects?: AgentObjectCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -13527,6 +11011,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
+    agentObjects?: AgentObjectUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -13554,6 +11039,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutCreatedByNestedInput
+    agentObjects?: AgentObjectUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -13565,334 +11051,179 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
+    agentObjects?: AgentObjectUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type TeamMemberCreateWithoutTeamInput = {
+  export type UserCreateWithoutAgentObjectsInput = {
     id: string
+    name: string
     email: string
-    role: string
+    emailVerified?: boolean
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutCreatedByInput
   }
 
-  export type TeamMemberUncheckedCreateWithoutTeamInput = {
+  export type UserUncheckedCreateWithoutAgentObjectsInput = {
     id: string
+    name: string
     email: string
-    role: string
+    emailVerified?: boolean
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutCreatedByInput
   }
 
-  export type TeamMemberCreateOrConnectWithoutTeamInput = {
-    where: TeamMemberWhereUniqueInput
-    create: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput>
+  export type UserCreateOrConnectWithoutAgentObjectsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAgentObjectsInput, UserUncheckedCreateWithoutAgentObjectsInput>
   }
 
-  export type TeamMemberCreateManyTeamInputEnvelope = {
-    data: TeamMemberCreateManyTeamInput | TeamMemberCreateManyTeamInput[]
-  }
-
-  export type TeamVaultCreateWithoutTeamInput = {
+  export type AgentSecretCreateWithoutAgentObjectInput = {
     id: string
-    openRouterAPIKey: string
-    replicateAPIKey: string
-    falAPIKey: string
-  }
-
-  export type TeamVaultUncheckedCreateWithoutTeamInput = {
-    id: string
-    openRouterAPIKey: string
-    replicateAPIKey: string
-    falAPIKey: string
-  }
-
-  export type TeamVaultCreateOrConnectWithoutTeamInput = {
-    where: TeamVaultWhereUniqueInput
-    create: XOR<TeamVaultCreateWithoutTeamInput, TeamVaultUncheckedCreateWithoutTeamInput>
-  }
-
-  export type TeamVaultCreateManyTeamInputEnvelope = {
-    data: TeamVaultCreateManyTeamInput | TeamVaultCreateManyTeamInput[]
-  }
-
-  export type AgentGroupCreateWithoutTeamInput = {
-    id: string
-    title: string
-    thumbFile?: XOR<S3MetaDataNullableCreateEnvelopeInput, S3MetaDataCreateInput> | null
+    apiKey: string
+    claimToken: string
+    verificationCode: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
 
-  export type AgentGroupUncheckedCreateWithoutTeamInput = {
+  export type AgentSecretUncheckedCreateWithoutAgentObjectInput = {
     id: string
-    title: string
-    thumbFile?: XOR<S3MetaDataNullableCreateEnvelopeInput, S3MetaDataCreateInput> | null
+    apiKey: string
+    claimToken: string
+    verificationCode: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
 
-  export type AgentGroupCreateOrConnectWithoutTeamInput = {
-    where: AgentGroupWhereUniqueInput
-    create: XOR<AgentGroupCreateWithoutTeamInput, AgentGroupUncheckedCreateWithoutTeamInput>
+  export type AgentSecretCreateOrConnectWithoutAgentObjectInput = {
+    where: AgentSecretWhereUniqueInput
+    create: XOR<AgentSecretCreateWithoutAgentObjectInput, AgentSecretUncheckedCreateWithoutAgentObjectInput>
   }
 
-  export type AgentGroupCreateManyTeamInputEnvelope = {
-    data: AgentGroupCreateManyTeamInput | AgentGroupCreateManyTeamInput[]
+  export type AgentSecretCreateManyAgentObjectInputEnvelope = {
+    data: AgentSecretCreateManyAgentObjectInput | AgentSecretCreateManyAgentObjectInput[]
   }
 
-  export type TeamMemberUpsertWithWhereUniqueWithoutTeamInput = {
-    where: TeamMemberWhereUniqueInput
-    update: XOR<TeamMemberUpdateWithoutTeamInput, TeamMemberUncheckedUpdateWithoutTeamInput>
-    create: XOR<TeamMemberCreateWithoutTeamInput, TeamMemberUncheckedCreateWithoutTeamInput>
+  export type UserUpsertWithoutAgentObjectsInput = {
+    update: XOR<UserUpdateWithoutAgentObjectsInput, UserUncheckedUpdateWithoutAgentObjectsInput>
+    create: XOR<UserCreateWithoutAgentObjectsInput, UserUncheckedCreateWithoutAgentObjectsInput>
+    where?: UserWhereInput
   }
 
-  export type TeamMemberUpdateWithWhereUniqueWithoutTeamInput = {
-    where: TeamMemberWhereUniqueInput
-    data: XOR<TeamMemberUpdateWithoutTeamInput, TeamMemberUncheckedUpdateWithoutTeamInput>
+  export type UserUpdateToOneWithWhereWithoutAgentObjectsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAgentObjectsInput, UserUncheckedUpdateWithoutAgentObjectsInput>
   }
 
-  export type TeamMemberUpdateManyWithWhereWithoutTeamInput = {
-    where: TeamMemberScalarWhereInput
-    data: XOR<TeamMemberUpdateManyMutationInput, TeamMemberUncheckedUpdateManyWithoutTeamInput>
+  export type UserUpdateWithoutAgentObjectsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutCreatedByNestedInput
   }
 
-  export type TeamMemberScalarWhereInput = {
-    AND?: TeamMemberScalarWhereInput | TeamMemberScalarWhereInput[]
-    OR?: TeamMemberScalarWhereInput[]
-    NOT?: TeamMemberScalarWhereInput | TeamMemberScalarWhereInput[]
-    id?: StringFilter<"TeamMember"> | string
-    email?: StringFilter<"TeamMember"> | string
-    role?: StringFilter<"TeamMember"> | string
-    teamId?: StringFilter<"TeamMember"> | string
+  export type UserUncheckedUpdateWithoutAgentObjectsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutCreatedByNestedInput
   }
 
-  export type TeamVaultUpsertWithWhereUniqueWithoutTeamInput = {
-    where: TeamVaultWhereUniqueInput
-    update: XOR<TeamVaultUpdateWithoutTeamInput, TeamVaultUncheckedUpdateWithoutTeamInput>
-    create: XOR<TeamVaultCreateWithoutTeamInput, TeamVaultUncheckedCreateWithoutTeamInput>
+  export type AgentSecretUpsertWithWhereUniqueWithoutAgentObjectInput = {
+    where: AgentSecretWhereUniqueInput
+    update: XOR<AgentSecretUpdateWithoutAgentObjectInput, AgentSecretUncheckedUpdateWithoutAgentObjectInput>
+    create: XOR<AgentSecretCreateWithoutAgentObjectInput, AgentSecretUncheckedCreateWithoutAgentObjectInput>
   }
 
-  export type TeamVaultUpdateWithWhereUniqueWithoutTeamInput = {
-    where: TeamVaultWhereUniqueInput
-    data: XOR<TeamVaultUpdateWithoutTeamInput, TeamVaultUncheckedUpdateWithoutTeamInput>
+  export type AgentSecretUpdateWithWhereUniqueWithoutAgentObjectInput = {
+    where: AgentSecretWhereUniqueInput
+    data: XOR<AgentSecretUpdateWithoutAgentObjectInput, AgentSecretUncheckedUpdateWithoutAgentObjectInput>
   }
 
-  export type TeamVaultUpdateManyWithWhereWithoutTeamInput = {
-    where: TeamVaultScalarWhereInput
-    data: XOR<TeamVaultUpdateManyMutationInput, TeamVaultUncheckedUpdateManyWithoutTeamInput>
+  export type AgentSecretUpdateManyWithWhereWithoutAgentObjectInput = {
+    where: AgentSecretScalarWhereInput
+    data: XOR<AgentSecretUpdateManyMutationInput, AgentSecretUncheckedUpdateManyWithoutAgentObjectInput>
   }
 
-  export type TeamVaultScalarWhereInput = {
-    AND?: TeamVaultScalarWhereInput | TeamVaultScalarWhereInput[]
-    OR?: TeamVaultScalarWhereInput[]
-    NOT?: TeamVaultScalarWhereInput | TeamVaultScalarWhereInput[]
-    id?: StringFilter<"TeamVault"> | string
-    openRouterAPIKey?: StringFilter<"TeamVault"> | string
-    replicateAPIKey?: StringFilter<"TeamVault"> | string
-    falAPIKey?: StringFilter<"TeamVault"> | string
-    teamId?: StringFilter<"TeamVault"> | string
+  export type AgentSecretScalarWhereInput = {
+    AND?: AgentSecretScalarWhereInput | AgentSecretScalarWhereInput[]
+    OR?: AgentSecretScalarWhereInput[]
+    NOT?: AgentSecretScalarWhereInput | AgentSecretScalarWhereInput[]
+    id?: StringFilter<"AgentSecret"> | string
+    apiKey?: StringFilter<"AgentSecret"> | string
+    claimToken?: StringFilter<"AgentSecret"> | string
+    verificationCode?: StringFilter<"AgentSecret"> | string
+    agentObjectId?: StringFilter<"AgentSecret"> | string
+    createdAt?: DateTimeNullableFilter<"AgentSecret"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentSecret"> | Date | string | null
   }
 
-  export type AgentGroupUpsertWithWhereUniqueWithoutTeamInput = {
-    where: AgentGroupWhereUniqueInput
-    update: XOR<AgentGroupUpdateWithoutTeamInput, AgentGroupUncheckedUpdateWithoutTeamInput>
-    create: XOR<AgentGroupCreateWithoutTeamInput, AgentGroupUncheckedCreateWithoutTeamInput>
-  }
-
-  export type AgentGroupUpdateWithWhereUniqueWithoutTeamInput = {
-    where: AgentGroupWhereUniqueInput
-    data: XOR<AgentGroupUpdateWithoutTeamInput, AgentGroupUncheckedUpdateWithoutTeamInput>
-  }
-
-  export type AgentGroupUpdateManyWithWhereWithoutTeamInput = {
-    where: AgentGroupScalarWhereInput
-    data: XOR<AgentGroupUpdateManyMutationInput, AgentGroupUncheckedUpdateManyWithoutTeamInput>
-  }
-
-  export type AgentGroupScalarWhereInput = {
-    AND?: AgentGroupScalarWhereInput | AgentGroupScalarWhereInput[]
-    OR?: AgentGroupScalarWhereInput[]
-    NOT?: AgentGroupScalarWhereInput | AgentGroupScalarWhereInput[]
-    id?: StringFilter<"AgentGroup"> | string
-    title?: StringFilter<"AgentGroup"> | string
-    teamId?: StringFilter<"AgentGroup"> | string
-    createdAt?: DateTimeNullableFilter<"AgentGroup"> | Date | string | null
-    updatedAt?: DateTimeNullableFilter<"AgentGroup"> | Date | string | null
-  }
-
-  export type TeamCreateWithoutTeamVaultInput = {
+  export type AgentObjectCreateWithoutAgentSecretInput = {
     id: string
     name: string
-    slug: string
-    description?: string | null
+    description: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    teamMembers?: TeamMemberCreateNestedManyWithoutTeamInput
-    agentGroups?: AgentGroupCreateNestedManyWithoutTeamInput
+    user?: UserCreateNestedOneWithoutAgentObjectsInput
   }
 
-  export type TeamUncheckedCreateWithoutTeamVaultInput = {
+  export type AgentObjectUncheckedCreateWithoutAgentSecretInput = {
     id: string
     name: string
-    slug: string
-    description?: string | null
+    description: string
+    userId?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    teamMembers?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
-    agentGroups?: AgentGroupUncheckedCreateNestedManyWithoutTeamInput
   }
 
-  export type TeamCreateOrConnectWithoutTeamVaultInput = {
-    where: TeamWhereUniqueInput
-    create: XOR<TeamCreateWithoutTeamVaultInput, TeamUncheckedCreateWithoutTeamVaultInput>
+  export type AgentObjectCreateOrConnectWithoutAgentSecretInput = {
+    where: AgentObjectWhereUniqueInput
+    create: XOR<AgentObjectCreateWithoutAgentSecretInput, AgentObjectUncheckedCreateWithoutAgentSecretInput>
   }
 
-  export type TeamUpsertWithoutTeamVaultInput = {
-    update: XOR<TeamUpdateWithoutTeamVaultInput, TeamUncheckedUpdateWithoutTeamVaultInput>
-    create: XOR<TeamCreateWithoutTeamVaultInput, TeamUncheckedCreateWithoutTeamVaultInput>
-    where?: TeamWhereInput
+  export type AgentObjectUpsertWithoutAgentSecretInput = {
+    update: XOR<AgentObjectUpdateWithoutAgentSecretInput, AgentObjectUncheckedUpdateWithoutAgentSecretInput>
+    create: XOR<AgentObjectCreateWithoutAgentSecretInput, AgentObjectUncheckedCreateWithoutAgentSecretInput>
+    where?: AgentObjectWhereInput
   }
 
-  export type TeamUpdateToOneWithWhereWithoutTeamVaultInput = {
-    where?: TeamWhereInput
-    data: XOR<TeamUpdateWithoutTeamVaultInput, TeamUncheckedUpdateWithoutTeamVaultInput>
+  export type AgentObjectUpdateToOneWithWhereWithoutAgentSecretInput = {
+    where?: AgentObjectWhereInput
+    data: XOR<AgentObjectUpdateWithoutAgentSecretInput, AgentObjectUncheckedUpdateWithoutAgentSecretInput>
   }
 
-  export type TeamUpdateWithoutTeamVaultInput = {
+  export type AgentObjectUpdateWithoutAgentSecretInput = {
     name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamMembers?: TeamMemberUpdateManyWithoutTeamNestedInput
-    agentGroups?: AgentGroupUpdateManyWithoutTeamNestedInput
+    user?: UserUpdateOneWithoutAgentObjectsNestedInput
   }
 
-  export type TeamUncheckedUpdateWithoutTeamVaultInput = {
+  export type AgentObjectUncheckedUpdateWithoutAgentSecretInput = {
     name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamMembers?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
-    agentGroups?: AgentGroupUncheckedUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamCreateWithoutTeamMembersInput = {
-    id: string
-    name: string
-    slug: string
-    description?: string | null
-    createdAt?: Date | string | null
-    updatedAt?: Date | string | null
-    teamVault?: TeamVaultCreateNestedManyWithoutTeamInput
-    agentGroups?: AgentGroupCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamUncheckedCreateWithoutTeamMembersInput = {
-    id: string
-    name: string
-    slug: string
-    description?: string | null
-    createdAt?: Date | string | null
-    updatedAt?: Date | string | null
-    teamVault?: TeamVaultUncheckedCreateNestedManyWithoutTeamInput
-    agentGroups?: AgentGroupUncheckedCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamCreateOrConnectWithoutTeamMembersInput = {
-    where: TeamWhereUniqueInput
-    create: XOR<TeamCreateWithoutTeamMembersInput, TeamUncheckedCreateWithoutTeamMembersInput>
-  }
-
-  export type TeamUpsertWithoutTeamMembersInput = {
-    update: XOR<TeamUpdateWithoutTeamMembersInput, TeamUncheckedUpdateWithoutTeamMembersInput>
-    create: XOR<TeamCreateWithoutTeamMembersInput, TeamUncheckedCreateWithoutTeamMembersInput>
-    where?: TeamWhereInput
-  }
-
-  export type TeamUpdateToOneWithWhereWithoutTeamMembersInput = {
-    where?: TeamWhereInput
-    data: XOR<TeamUpdateWithoutTeamMembersInput, TeamUncheckedUpdateWithoutTeamMembersInput>
-  }
-
-  export type TeamUpdateWithoutTeamMembersInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamVault?: TeamVaultUpdateManyWithoutTeamNestedInput
-    agentGroups?: AgentGroupUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamUncheckedUpdateWithoutTeamMembersInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamVault?: TeamVaultUncheckedUpdateManyWithoutTeamNestedInput
-    agentGroups?: AgentGroupUncheckedUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamCreateWithoutAgentGroupsInput = {
-    id: string
-    name: string
-    slug: string
-    description?: string | null
-    createdAt?: Date | string | null
-    updatedAt?: Date | string | null
-    teamMembers?: TeamMemberCreateNestedManyWithoutTeamInput
-    teamVault?: TeamVaultCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamUncheckedCreateWithoutAgentGroupsInput = {
-    id: string
-    name: string
-    slug: string
-    description?: string | null
-    createdAt?: Date | string | null
-    updatedAt?: Date | string | null
-    teamMembers?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
-    teamVault?: TeamVaultUncheckedCreateNestedManyWithoutTeamInput
-  }
-
-  export type TeamCreateOrConnectWithoutAgentGroupsInput = {
-    where: TeamWhereUniqueInput
-    create: XOR<TeamCreateWithoutAgentGroupsInput, TeamUncheckedCreateWithoutAgentGroupsInput>
-  }
-
-  export type S3MetaDataUpsertInput = {
-    set: S3MetaDataCreateInput | null
-    update: S3MetaDataUpdateInput
-  }
-
-  export type TeamUpsertWithoutAgentGroupsInput = {
-    update: XOR<TeamUpdateWithoutAgentGroupsInput, TeamUncheckedUpdateWithoutAgentGroupsInput>
-    create: XOR<TeamCreateWithoutAgentGroupsInput, TeamUncheckedCreateWithoutAgentGroupsInput>
-    where?: TeamWhereInput
-  }
-
-  export type TeamUpdateToOneWithWhereWithoutAgentGroupsInput = {
-    where?: TeamWhereInput
-    data: XOR<TeamUpdateWithoutAgentGroupsInput, TeamUncheckedUpdateWithoutAgentGroupsInput>
-  }
-
-  export type TeamUpdateWithoutAgentGroupsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamMembers?: TeamMemberUpdateManyWithoutTeamNestedInput
-    teamVault?: TeamVaultUpdateManyWithoutTeamNestedInput
-  }
-
-  export type TeamUncheckedUpdateWithoutAgentGroupsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    teamMembers?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
-    teamVault?: TeamVaultUncheckedUpdateManyWithoutTeamNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -13925,6 +11256,14 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type AgentObjectCreateManyUserInput = {
+    id: string
+    name: string
+    description: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -14014,89 +11353,60 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TeamMemberCreateManyTeamInput = {
-    id: string
-    email: string
-    role: string
+  export type AgentObjectUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agentSecret?: AgentSecretUpdateManyWithoutAgentObjectNestedInput
   }
 
-  export type TeamVaultCreateManyTeamInput = {
-    id: string
-    openRouterAPIKey: string
-    replicateAPIKey: string
-    falAPIKey: string
+  export type AgentObjectUncheckedUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    agentSecret?: AgentSecretUncheckedUpdateManyWithoutAgentObjectNestedInput
   }
 
-  export type AgentGroupCreateManyTeamInput = {
+  export type AgentObjectUncheckedUpdateManyWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AgentSecretCreateManyAgentObjectInput = {
     id: string
-    title: string
-    thumbFile?: XOR<S3MetaDataNullableCreateEnvelopeInput, S3MetaDataCreateInput> | null
+    apiKey: string
+    claimToken: string
+    verificationCode: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
 
-  export type TeamMemberUpdateWithoutTeamInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamMemberUncheckedUpdateWithoutTeamInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamMemberUncheckedUpdateManyWithoutTeamInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamVaultUpdateWithoutTeamInput = {
-    openRouterAPIKey?: StringFieldUpdateOperationsInput | string
-    replicateAPIKey?: StringFieldUpdateOperationsInput | string
-    falAPIKey?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamVaultUncheckedUpdateWithoutTeamInput = {
-    openRouterAPIKey?: StringFieldUpdateOperationsInput | string
-    replicateAPIKey?: StringFieldUpdateOperationsInput | string
-    falAPIKey?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TeamVaultUncheckedUpdateManyWithoutTeamInput = {
-    openRouterAPIKey?: StringFieldUpdateOperationsInput | string
-    replicateAPIKey?: StringFieldUpdateOperationsInput | string
-    falAPIKey?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AgentGroupUpdateWithoutTeamInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    thumbFile?: XOR<S3MetaDataNullableUpdateEnvelopeInput, S3MetaDataCreateInput> | null
+  export type AgentSecretUpdateWithoutAgentObjectInput = {
+    apiKey?: StringFieldUpdateOperationsInput | string
+    claimToken?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type AgentGroupUncheckedUpdateWithoutTeamInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    thumbFile?: XOR<S3MetaDataNullableUpdateEnvelopeInput, S3MetaDataCreateInput> | null
+  export type AgentSecretUncheckedUpdateWithoutAgentObjectInput = {
+    apiKey?: StringFieldUpdateOperationsInput | string
+    claimToken?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type AgentGroupUncheckedUpdateManyWithoutTeamInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    thumbFile?: XOR<S3MetaDataNullableUpdateEnvelopeInput, S3MetaDataCreateInput> | null
+  export type AgentSecretUncheckedUpdateManyWithoutAgentObjectInput = {
+    apiKey?: StringFieldUpdateOperationsInput | string
+    claimToken?: StringFieldUpdateOperationsInput | string
+    verificationCode?: StringFieldUpdateOperationsInput | string
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type S3MetaDataUpdateInput = {
-    userID?: StringFieldUpdateOperationsInput | string
-    fileName?: StringFieldUpdateOperationsInput | string
-    bucket?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    fileKey?: StringFieldUpdateOperationsInput | string
-    cdn?: StringFieldUpdateOperationsInput | string
-    uploadURL?: StringFieldUpdateOperationsInput | string
   }
 
 
