@@ -16,7 +16,8 @@ export function LoginButton() {
             //   "https://www.googleapis.com/auth/userinfo.profile",
             // ],
           });
-          console.log(response.data?.url);
+          location.assign(response?.data?.url || "/");
+          console.log(response?.data?.url);
         }}
       >
         <svg

@@ -33,9 +33,7 @@ export default async function Home() {
               {/*  */}
 
               {!session ? (
-                <form>
-                  <LoginButton></LoginButton>
-                </form>
+                <LoginButton></LoginButton>
               ) : (
                 <LogoutButton></LogoutButton>
               )}
@@ -53,4 +51,6 @@ export default async function Home() {
 //
 
 //
+//
+
 //
