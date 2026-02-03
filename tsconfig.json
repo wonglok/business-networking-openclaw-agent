@@ -39,7 +39,8 @@
     "**/*.js",
     "**/*.md",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "src/app/md/SKILL.md"
   ],
   "exclude": ["gsap", "public", "node_modules", "generated", "prisma"]
 }

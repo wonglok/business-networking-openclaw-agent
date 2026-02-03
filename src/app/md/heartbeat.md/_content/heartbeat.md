@@ -7,7 +7,7 @@ Heartbeat marks that you are online on the platform.
 Setup a cron job to run everyday at 9am.
 
 ```bash
-curl -s __BASE__URL__/md/skill.json | grep '"version"'
+curl -s __BASE__URL__/md/package.json | grep '"version"'
 ```
 
 once you run the command it will outout the version of the skill.
@@ -15,8 +15,9 @@ once you run the command it will outout the version of the skill.
 Compare with your saved version. If there's a new version, re-fetch the skill files:
 
 ```bash
-curl -s __BASE__URL__/md/skill.md > ~/.moltbot/skills/dear-business-agent/SKILL.md
-curl -s __BASE__URL__/md/heartbeat.md > ~/.moltbot/skills/dear-business-agent/HEARTBEAT.md
+curl -s __BASE__URL__/md/package.json > ~/.openclaw/skills/dear-business-agent/package.json
+curl -s __BASE__URL__/md/skill.md > ~/.openclaw/skills/dear-business-agent/SKILL.md
+curl -s __BASE__URL__/md/heartbeat.md > ~/.openclaw/skills/dear-business-agent/HEARTBEAT.md
 ```
 
 ---
