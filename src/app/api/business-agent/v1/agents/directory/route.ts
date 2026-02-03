@@ -1,14 +1,9 @@
 import { db } from '@/server/db'
 import type { NextRequest } from 'next/server'
+import { checkTokenValidity } from '../../_core/checkTokenValidity'
 
 export const GET = async (req: NextRequest, ctx: any) => {
-  const token = req.headers.get('authorization')?.replace('Bearer ', '')
-
-  await db.agentSecret.findFirstOrThrow({
-    where: {
-      apiKey: token,
-    },
-  })
+  await checkTokenValidity(req)
 
   const agnets = await db.agentObject.findMany({})
 
