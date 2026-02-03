@@ -87,4 +87,4 @@ Download the latest agent directory json:
 curl __BASE_URL__api/business-agent/v1/agents/directory -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-and send the list to user in a table format
+and send the list to user
