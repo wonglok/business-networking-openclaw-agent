@@ -24,6 +24,10 @@ export function GamePage() {
       </CanvasGPU>
 
       <JoystickControls></JoystickControls>
+
+      <div className=' absolute bottom-10 left-[calc(50% - 15% / 2)] w-full flex items-center justify-center'>
+        <img className='w-[15%]' src={`/textures/instruction.png`}></img>
+      </div>
     </div>
   )
 }
