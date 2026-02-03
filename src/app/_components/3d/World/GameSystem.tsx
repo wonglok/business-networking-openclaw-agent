@@ -27,6 +27,7 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
     if (!colliderSource) {
       return
     }
+    ecctrlRef.current?.group?.position.set(0, 5, 0)
 
     setTimeout(() => {
       const tt = setInterval(() => {
@@ -36,11 +37,11 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
           //
           ecctrlRef.current?.resetLinVel()
           ecctrlRef.current?.setLinVel(new Vector3(0, 5, 0))
-          characterStatus.position.set(0, 5, 0)
           ecctrlRef.current?.group?.position.set(0, 5, 0)
         }
       }, 1)
-    }, 1000)
+    }, 5)
+    //
   }, [colliderSource])
 
   const colliderMeshesArray = useEcctrlStore((state) => state.colliderMeshesArray)

@@ -14,6 +14,8 @@ export function EnvLoader({
 }) {
   const [sun, setSun] = useState<ReactNode>(null)
   const scene = useThree((r) => r.scene)
+
+  //
   useEffect(() => {
     rgbeLoader.loadAsync(url).then((data) => {
       data.mapping = EquirectangularReflectionMapping
@@ -32,7 +34,10 @@ export function EnvLoader({
 
     const object: any = new Object3D()
 
-    object.sunLight = new DirectionalLight(0xffffff, 1)
+    const dirL = new DirectionalLight(0xffffff, 1)
+    dirL.position.set(20, 10, 0)
+
+    object.sunLight = dirL
     object.sunLight.castShadow = true
 
     object.add(object.sunLight)
@@ -57,6 +62,10 @@ export function EnvLoader({
 
     setSun(<primitive object={object}></primitive>)
     //
+
+    return () => {
+      dirL.removeFromParent()
+    }
   }, [url, scene, env, background])
 
   //
