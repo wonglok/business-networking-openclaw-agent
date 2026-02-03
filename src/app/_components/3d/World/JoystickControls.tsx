@@ -22,6 +22,13 @@ export const JoystickControls = () => {
           <VirtualButton id='jump' label='JUMP' buttonWrapperStyle={{ right: '40px', bottom: '100px' }} />
         </>
       )}
+      {!isTouchScreen && (
+        <>
+          <div className='hidden lg:flex absolute bottom-10 left-[calc(50% - 15% / 2)] w-full items-center justify-center'>
+            <img className='w-[15%]' src={`/textures/instruction.png`}></img>
+          </div>
+        </>
+      )}
     </>
   )
 }
