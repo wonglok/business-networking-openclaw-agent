@@ -5,11 +5,11 @@ import { Suspense, useEffect, useMemo, useState } from 'react'
 import { Joystick, VirtualButton } from 'bvhecctrl'
 import { CanvasGPU } from '../CanvasGPU/CanvasGPU'
 import { Bvh, useGLTF } from '@react-three/drei'
-import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 import { EnvLoader } from '../CanvasGPU/EnvLoader'
 import { JoystickControls } from './JoystickControls'
 import { GameSystem } from './GameSystem'
 import { useAppState } from './useAppState'
+import type { Scene } from 'three'
 
 export function GamePage() {
   return (
@@ -24,17 +24,7 @@ export function GamePage() {
               url={`/hdr/default.hdr`}
             ></EnvLoader>
 
-            {/*  */}
-
-            <GameSystem
-              //
-              sceneDisplay={
-                <ContentGL
-                  //
-                  glbSRC={`/env/digital-palace-loklok.glb`}
-                ></ContentGL>
-              }
-            ></GameSystem>
+            <GameSystem glbSRC={`/env/digital-palace-loklok.glb`}></GameSystem>
 
             {/*  */}
           </Bvh>
@@ -43,31 +33,5 @@ export function GamePage() {
 
       <JoystickControls></JoystickControls>
     </div>
-  )
-}
-
-function ContentGL({ glbSRC = '/env/digital-palace-loklok.glb' }) {
-  const glb = useGLTF(glbSRC) as any
-
-  const cloned = useMemo(() => {
-    return clone(glb?.scene) as any
-  }, [glb?.scene?.uuid])
-
-  useEffect(() => {
-    useAppState.setState({
-      colliderSource: cloned,
-    })
-  }, [cloned.uuid])
-
-  return (
-    <>
-      <group
-        onClick={(ev) => {
-          console.log('clicked', ev.point.toArray(), ev.object.name)
-        }}
-      >
-        <primitive object={cloned}></primitive>
-      </group>
-    </>
   )
 }

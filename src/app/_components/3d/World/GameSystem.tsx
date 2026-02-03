@@ -1,7 +1,11 @@
+'use client'
+
+import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
+
 // //
 // const meshes: Mesh[] = []
 
-import { CameraControls, KeyboardControls } from '@react-three/drei'
+import { CameraControls, KeyboardControls, useGLTF } from '@react-three/drei'
 import BVHEcctrl, { characterStatus, StaticCollider, useEcctrlStore, type BVHEcctrlApi } from 'bvhecctrl'
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 // import { Group, Vector3 } from 'three'
@@ -11,12 +15,12 @@ import { useFrame } from '@react-three/fiber'
 // import Avatar from './Avatar'
 import { AvatarRPM } from './AvatarRPM'
 import { useAppState } from './useAppState'
-import { Vector3 } from 'three'
+import { Scene, Vector3 } from 'three'
 // import { findPathByObjects } from './simple-nav'
 // import { CatmullRomCurve3, Object3D, Vector3 } from 'three'
 // import { gsap } from 'gsap'
 
-export function GameSystem({ sceneDisplay }: { sceneDisplay?: ReactNode }) {
+export function GameSystem({ glbSRC }: { glbSRC?: string }) {
   const colliderSource = useAppState((r) => r.colliderSource)
 
   useEffect(() => {
@@ -31,6 +35,7 @@ export function GameSystem({ sceneDisplay }: { sceneDisplay?: ReactNode }) {
 
           //
           ecctrlRef.current?.resetLinVel()
+          ecctrlRef.current?.setLinVel(new Vector3(0, 5, 0))
           characterStatus.position.set(0, 5, 0)
           ecctrlRef.current?.group?.position.set(0, 5, 0)
         }
@@ -85,26 +90,16 @@ export function GameSystem({ sceneDisplay }: { sceneDisplay?: ReactNode }) {
 
       <>
         <KeyboardControls map={keyboardMap}>
-          <BVHEcctrl
-            position={[0, 7.5, 0]}
-            ref={(v) => {
-              ecctrlRef.current = v
-              v?.resetLinVel()
-              v?.setLinVel(new Vector3(0, 0, 0))
-              v?.setMovement({
-                run: false,
-                jump: false,
-              })
-            }}
-            colliderCapsuleArgs={[0.3, 0.8, 4, 8]}
-          >
-            <AvatarRPM></AvatarRPM>
-          </BVHEcctrl>
+          <group position={[0, 0, 0]}>
+            <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
+              <AvatarRPM></AvatarRPM>
+            </BVHEcctrl>
+          </group>
         </KeyboardControls>
 
         <StaticCollider uuid={colliderSource?.uuid}>
           <group visible={true} onClick={(ev) => {}}>
-            {sceneDisplay}
+            {<ContentGL glbSRC={glbSRC}></ContentGL>}
           </group>
         </StaticCollider>
       </>
@@ -113,3 +108,35 @@ export function GameSystem({ sceneDisplay }: { sceneDisplay?: ReactNode }) {
 }
 
 //
+
+function ContentGL({ glbSRC = '/env/digital-palace-loklok.glb' }) {
+  const glb = useGLTF(glbSRC) as any
+
+  const cloned = useMemo(() => {
+    return clone(glb?.scene) as any
+  }, [glb?.scene?.uuid])
+
+  useEffect(() => {
+    ;(cloned as Scene).traverse((it: any) => {
+      if (it.isMesh) {
+        it.castShadow = true
+        it.receiveShadow = true
+      }
+    })
+    useAppState.setState({
+      colliderSource: cloned,
+    })
+  }, [cloned.uuid])
+
+  return (
+    <>
+      <group
+        onClick={(ev) => {
+          console.log('clicked', ev.point.toArray(), ev.object.name)
+        }}
+      >
+        <primitive object={cloned}></primitive>
+      </group>
+    </>
+  )
+}
