@@ -10,6 +10,7 @@ export function LoginButton() {
         onClick={async () => {
           const response = await authClient.signIn.social({
             provider: 'google',
+            disableRedirect: true,
             // callbackURL: `/api/auth/callback/google`,
             // scopes: [
             //   "https://www.googleapis.com/auth/userinfo.email",
