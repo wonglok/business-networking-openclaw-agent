@@ -1,6 +1,6 @@
 import { env } from '@/env'
 
-import heartbeat from 'raw-loader!./_content/skill.md' // substitute this path with your README.md file path
+import heartbeat from 'raw-loader!./_content/heartbeat.md'
 
 export const GET = async () => {
   let note = `${heartbeat}`
