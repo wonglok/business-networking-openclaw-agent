@@ -67,6 +67,11 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
         )
       }
 
+      const target = state.scene.getObjectByName('light-player-target')
+      if (target && ecctrlRef.current.group) {
+        target.position.copy(ecctrlRef.current.group.position)
+      }
+
       if (ecctrlRef.current.group) {
         ecctrlRef.current.group.visible = camControlRef.current.distance > 2
       }

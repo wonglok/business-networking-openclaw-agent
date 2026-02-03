@@ -63,7 +63,7 @@ export const CanvasGPU: any = ({
             const renderer = new THREE.WebGPURenderer({
               ...(props as any),
               // multiview: true,
-              antialias: true,
+              antialias: false,
               alpha: true,
               logarithmicDepthBuffer: false,
               forceWebGL: webgpu ? false : webgl,
