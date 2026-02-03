@@ -1,22 +1,19 @@
-import { headers } from 'next/headers'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
+// import { headers } from 'next/headers'
+// import Link from 'next/link'
+// import { redirect } from 'next/navigation'
 
-import { LatestPost } from '@/app/_components/post'
+// import { LatestPost } from '@/app/_components/post'
 // import { auth } from "@/server/better-auth";
 import { getSession } from '@/server/better-auth/server'
 import { api, HydrateClient } from '@/trpc/server'
 import { LoginButton } from './_components/auth/LoginButton'
 import { LogoutButton } from './_components/auth/LogoutButton'
-import { Suspense } from 'react'
+// import { Suspense } from 'react'
 import { CheckClaim } from './_components/auth/CheckClaim'
 
 export default async function Home() {
   // const hello = await api.post.hello({ text: "from tRPC" });
-  const session = await getSession().catch((r) => {
-    console.error(r)
-    return null
-  })
+  const session = await getSession()
 
   return (
     <HydrateClient>
@@ -39,7 +36,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <Suspense fallback={null}>{session?.user && <LatestPost />}</Suspense>
+          {/* <Suspense fallback={null}>{session?.user && <LatestPost />}</Suspense> */}
         </div>
       </main>
     </HydrateClient>
