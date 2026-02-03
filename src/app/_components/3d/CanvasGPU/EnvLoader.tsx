@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { rgbeLoader } from './CanvasGPU'
 import { useThree } from '@react-three/fiber'
-import { EquirectangularReflectionMapping } from 'three'
+import { Color, EquirectangularReflectionMapping } from 'three'
 
 export function EnvLoader({
   url,
@@ -20,7 +20,7 @@ export function EnvLoader({
 
       data.mapping = EquirectangularReflectionMapping
 
-      scene.backgroundBlurriness = 0.5
+      // scene.backgroundBlurriness = 0.5
       if (background) {
         scene.background = data
       }

@@ -64,6 +64,7 @@ export const CanvasGPU: any = ({
               ...(props as any),
               // multiview: true,
               antialias: true,
+              alpha: true,
               logarithmicDepthBuffer: false,
               forceWebGL: webgpu ? false : webgl,
 
