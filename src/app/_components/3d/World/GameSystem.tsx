@@ -7,7 +7,7 @@ import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 
 import { CameraControls, KeyboardControls, useGLTF } from '@react-three/drei'
 import BVHEcctrl, { characterStatus, StaticCollider, useEcctrlStore, type BVHEcctrlApi } from 'bvhecctrl'
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 // import { Group, Vector3 } from 'three'
 // import { useControls, folder, button } from 'leva'
 import { useFrame } from '@react-three/fiber'
@@ -24,9 +24,6 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
   const colliderSource = useAppState((r) => r.colliderSource)
 
   useEffect(() => {
-    if (!colliderSource) {
-      return
-    }
     ecctrlRef.current?.group?.position.set(0, 5, 0)
 
     setTimeout(() => {
@@ -42,7 +39,7 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
       }, 1)
     }, 5)
     //
-  }, [colliderSource])
+  }, [])
 
   const colliderMeshesArray = useEcctrlStore((state) => state.colliderMeshesArray)
 
@@ -100,7 +97,7 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
 
         <StaticCollider uuid={colliderSource?.uuid}>
           <group visible={true} onClick={(ev) => {}}>
-            {<ContentGL glbSRC={glbSRC}></ContentGL>}
+            {glbSRC && <ContentGL glbSRC={glbSRC}></ContentGL>}
           </group>
         </StaticCollider>
       </>
@@ -108,9 +105,7 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
   )
 }
 
-//
-
-function ContentGL({ glbSRC = '/env/digital-palace-loklok.glb' }) {
+function ContentGL({ glbSRC }: { glbSRC: string }) {
   const glb = useGLTF(glbSRC) as any
 
   const cloned = useMemo(() => {
@@ -118,6 +113,7 @@ function ContentGL({ glbSRC = '/env/digital-palace-loklok.glb' }) {
   }, [glb?.scene?.uuid])
 
   useEffect(() => {
+    cloned.position.y = -2.5
     ;(cloned as Scene).traverse((it: any) => {
       if (it.isMesh) {
         it.castShadow = true
