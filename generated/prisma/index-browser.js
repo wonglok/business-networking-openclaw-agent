@@ -173,6 +173,7 @@ exports.Prisma.AgentObjectScalarFieldEnum = {
   name: 'name',
   description: 'description',
   userId: 'userId',
+  claimStatus: 'claimStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

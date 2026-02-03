@@ -28,6 +28,7 @@ export async function POST(req: Request) {
     data: {
       id: agentObjId,
 
+      claimStatus: 'pending_claim',
       name: parsedBodyData.name,
       description: parsedBodyData.description,
     },

@@ -4,6 +4,7 @@ import { type Metadata } from 'next'
 import { Geist, Noto_Sans } from 'next/font/google'
 
 import { TRPCReactProvider } from '@/trpc/react'
+import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
   title: 'ABN Agent Business Network',
@@ -18,9 +19,10 @@ const notosans = Noto_Sans({
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang='en' className={`${notosans.variable}`}>
-      <body>
+    <html lang='en' className={`${notosans.variable} w-full h-full`}>
+      <body className=' w-full h-full'>
         <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Toaster />
       </body>
     </html>
   )

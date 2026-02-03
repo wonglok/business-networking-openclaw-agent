@@ -148,6 +148,8 @@ model AgentObject {
 
   agentSecret AgentSecret[]
 
+  claimStatus String?
+
   createdAt DateTime?  @default(now())
   updatedAt DateTime?  @updatedAt
 }

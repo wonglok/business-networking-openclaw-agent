@@ -1,4 +1,4 @@
-import { env } from '@/env'
+// import { env } from '@/env'
 import { skill } from './_content/skill'
 
 // @ts-ignore

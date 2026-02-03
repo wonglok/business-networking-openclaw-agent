@@ -6572,6 +6572,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     userId: string | null
+    claimStatus: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6581,6 +6582,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     userId: string | null
+    claimStatus: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6590,6 +6592,7 @@ export namespace Prisma {
     name: number
     description: number
     userId: number
+    claimStatus: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6601,6 +6604,7 @@ export namespace Prisma {
     name?: true
     description?: true
     userId?: true
+    claimStatus?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6610,6 +6614,7 @@ export namespace Prisma {
     name?: true
     description?: true
     userId?: true
+    claimStatus?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6619,6 +6624,7 @@ export namespace Prisma {
     name?: true
     description?: true
     userId?: true
+    claimStatus?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6701,6 +6707,7 @@ export namespace Prisma {
     name: string
     description: string
     userId: string | null
+    claimStatus: string | null
     createdAt: Date | null
     updatedAt: Date | null
     _count: AgentObjectCountAggregateOutputType | null
@@ -6727,6 +6734,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     userId?: boolean
+    claimStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | AgentObject$userArgs<ExtArgs>
@@ -6741,11 +6749,12 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     userId?: boolean
+    claimStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AgentObjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["agentObject"]>
+  export type AgentObjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "userId" | "claimStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["agentObject"]>
   export type AgentObjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | AgentObject$userArgs<ExtArgs>
     agentSecret?: boolean | AgentObject$agentSecretArgs<ExtArgs>
@@ -6763,6 +6772,7 @@ export namespace Prisma {
       name: string
       description: string
       userId: string | null
+      claimStatus: string | null
       createdAt: Date | null
       updatedAt: Date | null
     }, ExtArgs["result"]["agentObject"]>
@@ -7163,6 +7173,7 @@ export namespace Prisma {
     readonly name: FieldRef<"AgentObject", 'String'>
     readonly description: FieldRef<"AgentObject", 'String'>
     readonly userId: FieldRef<"AgentObject", 'String'>
+    readonly claimStatus: FieldRef<"AgentObject", 'String'>
     readonly createdAt: FieldRef<"AgentObject", 'DateTime'>
     readonly updatedAt: FieldRef<"AgentObject", 'DateTime'>
   }
@@ -8675,6 +8686,7 @@ export namespace Prisma {
     name: 'name',
     description: 'description',
     userId: 'userId',
+    claimStatus: 'claimStatus',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9127,6 +9139,7 @@ export namespace Prisma {
     name?: StringFilter<"AgentObject"> | string
     description?: StringFilter<"AgentObject"> | string
     userId?: StringNullableFilter<"AgentObject"> | string | null
+    claimStatus?: StringNullableFilter<"AgentObject"> | string | null
     createdAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -9138,6 +9151,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    claimStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -9152,6 +9166,7 @@ export namespace Prisma {
     name?: StringFilter<"AgentObject"> | string
     description?: StringFilter<"AgentObject"> | string
     userId?: StringNullableFilter<"AgentObject"> | string | null
+    claimStatus?: StringNullableFilter<"AgentObject"> | string | null
     createdAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -9163,6 +9178,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    claimStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AgentObjectCountOrderByAggregateInput
@@ -9178,6 +9194,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"AgentObject"> | string
     description?: StringWithAggregatesFilter<"AgentObject"> | string
     userId?: StringNullableWithAggregatesFilter<"AgentObject"> | string | null
+    claimStatus?: StringNullableWithAggregatesFilter<"AgentObject"> | string | null
     createdAt?: DateTimeNullableWithAggregatesFilter<"AgentObject"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"AgentObject"> | Date | string | null
   }
@@ -9622,6 +9639,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     user?: UserCreateNestedOneWithoutAgentObjectsInput
@@ -9633,6 +9651,7 @@ export namespace Prisma {
     name: string
     description: string
     userId?: string | null
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     agentSecret?: AgentSecretUncheckedCreateNestedManyWithoutAgentObjectInput
@@ -9641,6 +9660,7 @@ export namespace Prisma {
   export type AgentObjectUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UserUpdateOneWithoutAgentObjectsNestedInput
@@ -9651,6 +9671,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     agentSecret?: AgentSecretUncheckedUpdateManyWithoutAgentObjectNestedInput
@@ -9661,6 +9682,7 @@ export namespace Prisma {
     name: string
     description: string
     userId?: string | null
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -9668,6 +9690,7 @@ export namespace Prisma {
   export type AgentObjectUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -9676,6 +9699,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10105,6 +10129,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    claimStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10114,6 +10139,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    claimStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10123,6 +10149,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    claimStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10779,6 +10806,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     agentSecret?: AgentSecretCreateNestedManyWithoutAgentObjectInput
@@ -10788,6 +10816,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     agentSecret?: AgentSecretUncheckedCreateNestedManyWithoutAgentObjectInput
@@ -10918,6 +10947,7 @@ export namespace Prisma {
     name?: StringFilter<"AgentObject"> | string
     description?: StringFilter<"AgentObject"> | string
     userId?: StringNullableFilter<"AgentObject"> | string | null
+    claimStatus?: StringNullableFilter<"AgentObject"> | string | null
     createdAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"AgentObject"> | Date | string | null
   }
@@ -11180,6 +11210,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     user?: UserCreateNestedOneWithoutAgentObjectsInput
@@ -11190,6 +11221,7 @@ export namespace Prisma {
     name: string
     description: string
     userId?: string | null
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -11213,6 +11245,7 @@ export namespace Prisma {
   export type AgentObjectUpdateWithoutAgentSecretInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UserUpdateOneWithoutAgentObjectsNestedInput
@@ -11222,6 +11255,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11262,6 +11296,7 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    claimStatus?: string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -11356,6 +11391,7 @@ export namespace Prisma {
   export type AgentObjectUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     agentSecret?: AgentSecretUpdateManyWithoutAgentObjectNestedInput
@@ -11364,6 +11400,7 @@ export namespace Prisma {
   export type AgentObjectUncheckedUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     agentSecret?: AgentSecretUncheckedUpdateManyWithoutAgentObjectNestedInput
@@ -11372,6 +11409,7 @@ export namespace Prisma {
   export type AgentObjectUncheckedUpdateManyWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    claimStatus?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
