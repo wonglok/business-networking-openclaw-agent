@@ -11,17 +11,17 @@ export default function Avatar(props: any) {
   const [canPlayNext, setCanPlayNext] = useState(true)
 
   // Load the GLTF model and animations
-  const { nodes, materials, animations } = useGLTF('/avatar/AnimationLibrary.glb')
-  const { ref, actions, mixer } = useAnimations(animations)
+  const { nodes, materials, animations }: any = useGLTF('/avatar/AnimationLibrary.glb')
+  const { ref, actions, mixer }: any = useAnimations(animations)
   const actionStore = useAnimationStore((state) => state.animationStatus)
 
   console.log('actionStore', actionStore)
 
   // Modify materials
-  materials.M_Joints.side = THREE.FrontSide
-  materials.M_Joints.color = new THREE.Color('#000000') // 0x00ffff, 0xAA0000
-  materials.M_Main.side = THREE.FrontSide
-  materials.M_Main.color = new THREE.Color('#818181') // 0xDEDEDE, 0x666666
+  // materials.M_Joints.side = THREE.FrontSide
+  // materials.M_Joints.color = new THREE.Color('#000000') // 0x00ffff, 0xAA0000
+  // materials.M_Main.side = THREE.FrontSide
+  // materials.M_Main.color = new THREE.Color('#818181') // 0xDEDEDE, 0x666666
 
   // Mapping store status to animation names in `actions`
   const statusToActionMap = {
@@ -93,7 +93,7 @@ export default function Avatar(props: any) {
   // Add event listener for animation finish
   useEffect(() => {
     // Reset canPlayNext when jump start or jump land finishes
-    const onFinished = (e) => {
+    const onFinished = (e: any) => {
       if (
         !canPlayNext &&
         (e.action._clip.name === statusToActionMap.JUMP_START || e.action._clip.name === statusToActionMap.JUMP_LAND)

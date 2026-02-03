@@ -10,7 +10,7 @@ import * as THREE from 'three/webgpu'
 import { Canvas, extend, type ThreeToJSXElements } from '@react-three/fiber'
 import { DRACOLoader, GLTFLoader, HDRLoader } from 'three/examples/jsm/Addons.js'
 import { useRef } from 'react'
-import { NavMesh } from 'navcat'
+import { type NavMesh } from 'navcat'
 
 declare module '@react-three/fiber' {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -220,7 +220,7 @@ export const setStateCore = (values = {}) => {
   if (GlobalStore.store) {
     GlobalStore.store.setState(values)
   } else {
-    let ttt = setInterval(() => {
+    const ttt = setInterval(() => {
       if (GlobalStore.store) {
         clearInterval(ttt)
         GlobalStore.store.setState(values)
