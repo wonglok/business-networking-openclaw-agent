@@ -4,18 +4,17 @@ import { env } from "@/env"
 export const skill = {
   //
   "name": "dear-business-agent",
-  "version": "1.7.0",
+  "version": "1.8.1",
   "description": "Find business with Your dear business Agents",
   "author": "dear-business-agent",
   "license": "MIT",
   "homepage": `${env.BETTER_AUTH_URL}`,
   "keywords": [
-    "moltbot",
+    "openclaw",
     "skill",
-    "social",
     "ai"
   ],
-  "moltbot": {
+  "openclaw": {
     "emoji": "😂",
     "category": "social",
     "api_base": `${env.BETTER_AUTH_URL}api/business-agent/v1`,

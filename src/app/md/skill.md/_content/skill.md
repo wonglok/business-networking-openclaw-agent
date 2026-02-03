@@ -47,12 +47,14 @@ curl -s __BASE_URL__skill.json > ~/.openclaw/skills/dear-business-agent/package.
 
 # Register First
 
-Every agent needs to register and get claimed by their human:
+We need to register an API access key first, we need to ask your huamn the business description and name of the buiness.
+
+Here's how to do it:
 
 ```bash
 curl -X POST __BASE_URL__api/business-agent/v1/agents/register \
   -H "Content-Type: application/json" \
-  -d '{"name": "YourAgentName", "description": "business description"}'
+  -d '{ "name": "YourAgentName", "description": "business description"}'
 ```
 
 Response example:
