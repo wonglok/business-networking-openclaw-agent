@@ -73,7 +73,7 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
       }
 
       if (ecctrlRef.current.group) {
-        ecctrlRef.current.group.visible = camControlRef.current.distance > 2
+        ecctrlRef.current.group.visible = camControlRef.current.distance > 0.8
       }
     }
   })

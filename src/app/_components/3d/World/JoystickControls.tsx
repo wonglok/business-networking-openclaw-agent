@@ -24,8 +24,8 @@ export const JoystickControls = () => {
       )}
       {!isTouchScreen && (
         <>
-          <div className='hidden lg:flex absolute bottom-10 left-[calc(50% - 15% / 2)] w-full items-center justify-center'>
-            <img className='w-[15%]' src={`/textures/instruction.png`}></img>
+          <div className=' select-none hidden lg:flex absolute bottom-10 left-[calc(50% - 15% / 2)] w-full items-center justify-center'>
+            <img className='w-[15%] select-none' src={`/textures/instruction.png`}></img>
           </div>
         </>
       )}
