@@ -10,6 +10,7 @@ import { LoginButton } from './_components/auth/LoginButton'
 import { LogoutButton } from './_components/auth/LogoutButton'
 // import { Suspense } from 'react'
 import { CheckClaim } from './_components/auth/CheckClaim'
+import { GamePage } from './_components/3d/World/GamePage'
 
 export default async function Home() {
   // const hello = await api.post.hello({ text: "from tRPC" });
@@ -18,18 +19,17 @@ export default async function Home() {
   return (
     <HydrateClient>
       <CheckClaim></CheckClaim>
-      <main className='flex min-h-screen flex-col items-center justify-center'>
-        <div className='container flex flex-col items-center justify-center gap-12 px-4 py-16'>
-          <div className='flex flex-col items-center gap-2'>
-            <div className='flex flex-col items-center justify-center gap-4'>
-              <div className='text-center text-2xl '>{session && <span>Logged in as {session?.user?.name}</span>}</div>
-              {!session ? <LoginButton></LoginButton> : <LogoutButton></LogoutButton>}
-            </div>
-          </div>
 
-          {/* <Suspense fallback={null}>{session?.user && <LatestPost />}</Suspense> */}
+      {session && (
+        <div className='w-full h-full'>
+          <GamePage></GamePage>
         </div>
-      </main>
+      )}
+
+      <div className=' absolute top-0 right-0'>
+        <div className='text-center text-2xl '>{session && <span>Logged in as {session?.user?.name}</span>}</div>
+        {!session ? <LoginButton></LoginButton> : <LogoutButton></LogoutButton>}
+      </div>
     </HydrateClient>
   )
 }
