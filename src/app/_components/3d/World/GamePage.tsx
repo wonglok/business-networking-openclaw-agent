@@ -17,8 +17,26 @@ export function GamePage() {
       <CanvasGPU webgpu>
         <Suspense fallback={null}>
           <Bvh firstHitOnly>
-            <EnvLoader url={`/hdr/default.hdr`}></EnvLoader>
-            <GameSystem sceneDisplay={<ContentGL></ContentGL>}></GameSystem>
+            {/*  */}
+
+            <EnvLoader
+              //
+              url={`/hdr/default.hdr`}
+            ></EnvLoader>
+
+            {/*  */}
+
+            <GameSystem
+              //
+              sceneDisplay={
+                <ContentGL
+                  //
+                  glbSRC={`/env/digital-palace-loklok.glb`}
+                ></ContentGL>
+              }
+            ></GameSystem>
+
+            {/*  */}
           </Bvh>
         </Suspense>
       </CanvasGPU>
@@ -28,8 +46,8 @@ export function GamePage() {
   )
 }
 
-function ContentGL() {
-  const glb = useGLTF('/env/digital-palace-loklok.glb') as any
+function ContentGL({ glbSRC = '/env/digital-palace-loklok.glb' }) {
+  const glb = useGLTF(glbSRC) as any
 
   const cloned = useMemo(() => {
     return clone(glb?.scene) as any
