@@ -28,9 +28,7 @@ export function Claim({ session }: any) {
 
   const claimId = params.claimId
 
-  const claim = api.agent.claimBot.useMutation({
-    //
-  })
+  const claim = api.agent.claimBot.useMutation({})
 
   const claimStatus = api.agent.checkClaimStatusOfCode.useQuery({
     claimId: `${claimId}`,
