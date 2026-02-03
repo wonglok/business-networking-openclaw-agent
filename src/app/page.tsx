@@ -30,7 +30,6 @@ export default async function Home() {
               <p className='text-center text-2xl text-white'>
                 {session && <span>Logged in as {session?.user?.name}</span>}
               </p>
-              {/*  */}
 
               {!session ? <LoginButton></LoginButton> : <LogoutButton></LogoutButton>}
             </div>
@@ -42,7 +41,3 @@ export default async function Home() {
     </HydrateClient>
   )
 }
-
-//
-//
-//

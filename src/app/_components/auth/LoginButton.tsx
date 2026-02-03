@@ -1,12 +1,13 @@
 'use client'
 
 import { authClient } from '@/server/better-auth/client'
+import { DoorOpen } from 'lucide-react'
 
 export function LoginButton() {
   return (
     <>
       <button
-        className=''
+        className='inline-flex'
         onClick={async () => {
           const response = await authClient.signIn.social({
             provider: 'google',
@@ -26,6 +27,7 @@ export function LoginButton() {
             fill='currentColor'
           />
         </svg> */}
+        <DoorOpen className='mr-2'></DoorOpen>
         Continue with Google
       </button>
     </>
