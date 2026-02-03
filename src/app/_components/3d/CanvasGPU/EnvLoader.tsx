@@ -69,10 +69,10 @@ export function EnvLoader({
     object.sunLight.shadow.camera.near = 0
     object.sunLight.shadow.camera.far = 150 * 2
 
-    object.sunLight.shadow.camera.left = -5.123 * 2.5
-    object.sunLight.shadow.camera.right = 5.123 * 2.5
-    object.sunLight.shadow.camera.bottom = -5.123 * 2.5
-    object.sunLight.shadow.camera.top = 5.123 * 2.5
+    object.sunLight.shadow.camera.left = -5.123 * 4
+    object.sunLight.shadow.camera.right = 5.123 * 4
+    object.sunLight.shadow.camera.bottom = -5.123 * 4
+    object.sunLight.shadow.camera.top = 5.123 * 4
 
     object.sunLight.shadow.mapSize.width = 1024
     object.sunLight.shadow.mapSize.height = 1024
