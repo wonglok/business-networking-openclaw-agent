@@ -31,17 +31,17 @@ export function Claim({ session }: any) {
   const claim = api.agent.claimBot.useMutation({
     //
   })
+  //
+
   const claimStatus = api.agent.checkClaimStatusOfCode.useQuery({
     claimId: `${claimId}`,
   })
 
   useEffect(() => {
     if (`${claimStatus.data}` === 'claimed') {
-      //
       if (claimId) {
         localStorage.setItem(`claimId`, `${claimId}`)
       }
-
       localStorage.removeItem('claimId')
     }
   }, [claimId, claimStatus])
