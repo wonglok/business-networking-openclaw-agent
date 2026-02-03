@@ -37,13 +37,8 @@ export function Claim({ session }: any) {
   })
 
   useEffect(() => {
-    if (`${claimStatus.data}` === 'claimed') {
-      if (claimId) {
-        localStorage.setItem(`claimId`, `${claimId}`)
-      }
-      localStorage.removeItem('claimId')
-    }
-  }, [claimId, claimStatus])
+    localStorage.removeItem('claimId')
+  }, [claimId])
 
   const [verificationCode, setCode] = useState('')
 
