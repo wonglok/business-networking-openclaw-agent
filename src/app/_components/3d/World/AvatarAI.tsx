@@ -20,13 +20,13 @@ export function AvatarAI() {
     walk: useFBX(`/avatar/ai-motion/walk.fbx`),
   }
 
-  const glb = useGLTF(`/avatar/army-transformed.glb`)
+  const glb = useGLTF(`/avatar/texture-fix-2-army-transformed.glb`)
 
-  glb.scene.traverse((it) => {
-    if (it) {
-      // it.name = it.name.replace('mixamorig', '')
-    }
-  })
+  // glb.scene.traverse((it) => {
+  //   if (it) {
+  //     // it.name = it.name.replace('mixamorig', '')
+  //   }
+  // })
 
   const clips = useMemo(() => {
     return [
