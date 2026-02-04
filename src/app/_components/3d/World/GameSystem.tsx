@@ -5,7 +5,7 @@ import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 // //
 // const meshes: Mesh[] = []
 
-import { CameraControls, KeyboardControls, useGLTF } from '@react-three/drei'
+import { CameraControls, KeyboardControls, useGLTF, useTexture } from '@react-three/drei'
 import BVHEcctrl, { characterStatus, StaticCollider, useEcctrlStore, type BVHEcctrlApi } from 'bvhecctrl'
 import { Suspense, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 // import { Group, Vector3 } from 'three'
@@ -15,8 +15,9 @@ import { useFrame } from '@react-three/fiber'
 // import Avatar from './Avatar'
 import { AvatarRPM } from './AvatarRPM'
 import { useAppState } from './useAppState'
-import { Scene, Vector3 } from 'three'
+import { Color, RepeatWrapping, Scene, Vector3 } from 'three'
 import { AvatarAI } from './AvatarAI'
+import { MeshPhysicalNodeMaterial } from 'three/webgpu'
 // import { findPathByObjects } from './simple-nav'
 // import { CatmullRomCurve3, Object3D, Vector3 } from 'three'
 // import { gsap } from 'gsap'
@@ -130,10 +131,40 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
 
   const { nodes, materials } = glb
 
+  // /textures/chip/Chip005_4K-PNG_Color.png
+  // /textures/chip/Chip005_4K-PNG_Metalness.png
+  // /textures/chip/Chip005_4K-PNG_NormalGL.png
+  // /textures/chip/Chip005_4K-PNG_Roughness.png
+  const textProps = useTexture(
+    {
+      emissiveMap: `/textures/chip/Chip005_4K-PNG_Color.png`,
+      map: `/textures/chip/Chip005_4K-PNG_Color.png`,
+      metalnessMap: `/textures/chip/Chip005_4K-PNG_Metalness.png`,
+      roughnessMap: `/textures/chip/Chip005_4K-PNG_Roughness.png`,
+      normalMap: `/textures/chip/Chip005_4K-PNG_NormalGL.png`,
+    },
+    (tex) => {
+      Object.values(tex).forEach((tex2) => {
+        tex2.repeat.set(20, 20)
+        tex2.wrapS = tex2.wrapT = RepeatWrapping
+      })
+    },
+  )
+
+  const mat = useMemo(() => {
+    const val = new MeshPhysicalNodeMaterial({
+      metalness: 0.0,
+      roughness: 0.0,
+    })
+    // val.setValues({ ...textProps })
+    return val
+  }, [textProps])
+
   return (
     <group dispose={null} position={[0, -2, 0]}>
       <mesh castShadow receiveShadow geometry={nodes.metal.geometry} material={materials.Detailing} />
-      <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={materials.Inner_plaza} />
+      {/* <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={materials.Inner_plaza} /> */}
+      <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={mat} />
       <mesh castShadow receiveShadow geometry={nodes.wall.geometry} material={materials.Outer_ring} />
       <mesh castShadow receiveShadow geometry={nodes.glass.geometry} material={materials.Glass} />
       <mesh castShadow receiveShadow geometry={nodes.trees.geometry} material={materials.Tress} />
