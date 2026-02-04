@@ -9,6 +9,7 @@ import { HydrateClient } from '@/trpc/server'
 import { CheckClaim } from './_components/auth/CheckClaim'
 import dynamic from 'next/dynamic'
 import { ServerAuthButton } from './_components/auth/ServerAuthButton'
+import { Banner } from './_components/auth/Banner'
 
 const GamePage = dynamic(() => import('./_components/3d/World/GamePage').then((r) => r.GamePage), {})
 
@@ -22,10 +23,15 @@ export default async function Home() {
       </div>
 
       <div
-        className=' absolute top-[28px] flex items-center  justify-center '
+        className=' absolute top-[28px] flex flex-col items-center  justify-center '
         style={{ width: `250px`, left: `calc(calc(50% - 250px / 2))` }}
       >
-        <ServerAuthButton></ServerAuthButton>
+        <div>
+          <Banner></Banner>
+        </div>
+        <div>
+          <ServerAuthButton></ServerAuthButton>
+        </div>
       </div>
     </HydrateClient>
   )
