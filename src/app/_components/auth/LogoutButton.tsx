@@ -8,7 +8,7 @@ export function LogoutButton() {
     <>
       <form>
         <button
-          className='inline-flex p-2 bg-white rounded-lg px-5'
+          className='inline-flex p-2 bg-[#4e4e4e55] border-2 border-white text-white rounded-lg px-5 select-none cursor-pointer'
           formAction={async () => {
             'use server'
             await auth.api.signOut({

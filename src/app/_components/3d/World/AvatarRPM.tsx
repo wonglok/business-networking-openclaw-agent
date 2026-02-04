@@ -170,6 +170,7 @@ export function AvatarRPM() {
       if (it) {
         it.castShadow = true
         it.receiveShadow = true
+        it.frustumCulled = false
       }
     })
   }, [glb])
