@@ -25,18 +25,18 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
 
   useEffect(() => {
     //
-    //
-    ecctrlRef.current?.group?.position.set(0, 5, 0)
+    ecctrlRef.current?.group?.position.set(0, 2.5, 0)
+    ecctrlRef.current?.resetLinVel()
+    ecctrlRef.current?.setLinVel(new Vector3(0, 7.5, 0))
 
     setTimeout(() => {
       const tt = setInterval(() => {
         if (ecctrlRef.current) {
           clearInterval(tt)
 
-          //
           ecctrlRef.current?.resetLinVel()
-          ecctrlRef.current?.setLinVel(new Vector3(0, 5, 0))
-          ecctrlRef.current?.group?.position.set(0, 5, 0)
+          ecctrlRef.current?.setLinVel(new Vector3(0, 7.5, 0))
+          ecctrlRef.current?.group?.position.set(0, 2.5, 0)
         }
       }, 1)
     }, 5)
@@ -83,8 +83,6 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
     }
   })
 
-  // const navMesh = useAppState((r) => r.navMesh)
-
   return (
     <>
       <CameraControls
@@ -123,29 +121,44 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
   }, [glb?.scene?.uuid])
 
   useEffect(() => {
-    cloned.position.y = -2.5
-    ;(cloned as Scene).traverse((it: any) => {
-      if (it.isMesh) {
-        it.castShadow = true
-        it.receiveShadow = true
-      }
-    })
     useAppState.setState({
       colliderSource: cloned,
     })
   }, [cloned.uuid])
 
+  const { nodes, materials } = glb
+
   return (
-    <>
-      <group
-        onClick={(ev) => {
-          console.log('clicked', ev.point.toArray(), ev.object.name)
-        }}
-      >
-        <primitive object={cloned}></primitive>
-      </group>
-    </>
+    <group dispose={null} position={[0, -2, 0]}>
+      <mesh castShadow receiveShadow geometry={nodes.metal.geometry} material={materials.Detailing} />
+      <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={materials.Inner_plaza} />
+      <mesh castShadow receiveShadow geometry={nodes.wall.geometry} material={materials.Outer_ring} />
+      <mesh castShadow receiveShadow geometry={nodes.glass.geometry} material={materials.Glass} />
+      <mesh castShadow receiveShadow geometry={nodes.trees.geometry} material={materials.Tress} />
+      <mesh castShadow receiveShadow geometry={nodes.inner001.geometry} material={materials.floor} />
+      <mesh castShadow receiveShadow geometry={nodes.waterpond.geometry} material={materials.water} />
+      <mesh castShadow receiveShadow geometry={nodes.waterpond001.geometry} material={materials.Inner_plaza} />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.waterpond002.geometry}
+        material={materials.water}
+        position={[0, 0.103, 0]}
+      />
+    </group>
   )
+
+  // return (
+  //   <>
+  //     <group
+  //       onClick={(ev) => {
+  //         console.log('clicked', ev.point.toArray(), ev.object.name)
+  //       }}
+  //     >
+  //       <primitive object={cloned}></primitive>
+  //     </group>
+  //   </>
+  // )
 }
 
 //

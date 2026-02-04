@@ -88,7 +88,7 @@ export function AvatarRPM() {
     if (nextActionName !== prevActionName && canPlayNext) {
       if (nextActionName === statusToActionMap.JUMP_START || nextActionName === statusToActionMap.JUMP_LAND) {
         setCanPlayNext(false)
-        nextAction.timeScale = 1.0
+        nextAction.timeScale = 0.5
         nextAction.reset().crossFadeFrom(actions[prevActionName], 0.1).setLoop(LoopOnce, 1).play()
         nextAction.clampWhenFinished = true
       } else {
@@ -132,16 +132,16 @@ export function AvatarRPM() {
       nextAction.timeScale = 0.45
     }
     if (ecctrlActionName === 'JUMP_START' && nextAction) {
-      nextAction.timeScale = 0.55
+      nextAction.timeScale = 0.44
     }
     if (ecctrlActionName === 'JUMP_LAND' && nextAction) {
-      nextAction.timeScale = 0.55
+      nextAction.timeScale = 0.44
     }
     if (ecctrlActionName === 'JUMP_IDLE' && nextAction) {
-      nextAction.timeScale = 0.55
+      nextAction.timeScale = 0.44
     }
     if (ecctrlActionName === 'JUMP_FALL' && nextAction) {
-      nextAction.timeScale = 0.55
+      nextAction.timeScale = 0.44
     }
   }, [ecctrlActionName, canPlayNext])
 
