@@ -137,9 +137,9 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
   // /textures/chip/Chip005_4K-PNG_Roughness.png
   const textProps = useTexture(
     {
-      emissiveMap: `/textures/chip/Chip005_4K-PNG_Color.png`,
-      map: `/textures/chip/Chip005_4K-PNG_Color.png`,
-      metalnessMap: `/textures/chip/Chip005_4K-PNG_Metalness.png`,
+      // emissiveMap: `/textures/chip/Chip005_4K-PNG_Color.png`,
+      // map: `/textures/chip/Chip005_4K-PNG_Color.png`,
+      // metalnessMap: `/textures/chip/Chip005_4K-PNG_Metalness.png`,
       roughnessMap: `/textures/chip/Chip005_4K-PNG_Roughness.png`,
       normalMap: `/textures/chip/Chip005_4K-PNG_NormalGL.png`,
     },
