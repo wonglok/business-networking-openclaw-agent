@@ -3,9 +3,9 @@ import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
 import FlipFadeText from '@/components/ui/flip-fade-text'
 
-import { Playfair_Display } from 'next/font/google'
+import { Bitcount_Single } from 'next/font/google'
 
-const display = Playfair_Display({
+const display = Bitcount_Single({
   weight: '400',
   subsets: ['latin-ext'],
 })
