@@ -99,8 +99,8 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
         <KeyboardControls map={keyboardMap}>
           <group position={[0, 0, 0]}>
             <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
-              {/* <AvatarRPM></AvatarRPM> */}
-              <AvatarAI></AvatarAI>
+              <AvatarRPM></AvatarRPM>
+              {/* <AvatarAI></AvatarAI> */}
             </BVHEcctrl>
           </group>
         </KeyboardControls>
