@@ -20,7 +20,7 @@ export function AvatarRPM() {
     walk: useFBX(`/avatar/motion/walk.fbx`),
   }
 
-  const glb = useGLTF(`/avatar/lok.glb`)
+  const glb = useGLTF(`/avatar/lok-tshirt.glb`)
 
   const clips = useMemo(() => {
     return [

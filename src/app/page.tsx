@@ -20,11 +20,11 @@ export default async function Home() {
     <HydrateClient>
       <CheckClaim></CheckClaim>
 
-      {session && (
+      {
         <div className='w-full h-full'>
-          <GamePage></GamePage>
+          <GamePage loggedIn={!!session?.user} user={session?.user}></GamePage>
         </div>
-      )}
+      }
 
       <div className=' absolute top-0 right-0'>
         <div className='text-center text-2xl '>{session && <span>Logged in as {session?.user?.name}</span>}</div>

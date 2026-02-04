@@ -32,8 +32,10 @@ glbLoader.setDRACOLoader(dracoLoader)
 export const CanvasGPU: any = ({
   webgpu = false,
   webgl = false,
+  antialias = false,
   children,
 }: {
+  antialias?: boolean
   webgpu?: boolean
   webgl?: boolean
   children?: any
@@ -63,7 +65,7 @@ export const CanvasGPU: any = ({
             const renderer = new THREE.WebGPURenderer({
               ...(props as any),
               // multiview: true,
-              antialias: false,
+              antialias: antialias,
               alpha: true,
               logarithmicDepthBuffer: false,
               forceWebGL: webgpu ? false : webgl,

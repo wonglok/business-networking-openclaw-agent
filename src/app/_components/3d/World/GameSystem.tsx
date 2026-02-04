@@ -24,6 +24,8 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
   const colliderSource = useAppState((r) => r.colliderSource)
 
   useEffect(() => {
+    //
+    //
     ecctrlRef.current?.group?.position.set(0, 5, 0)
 
     setTimeout(() => {
@@ -39,6 +41,7 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
       }, 1)
     }, 5)
     //
+    //
   }, [])
 
   const colliderMeshesArray = useEcctrlStore((state) => state.colliderMeshesArray)
@@ -47,14 +50,16 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
 
   const ecctrlRef = useRef<BVHEcctrlApi | null>(null)
 
-  const keyboardMap = [
-    { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
-    { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
-    { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
-    { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
-    { name: 'jump', keys: ['Space'] },
-    { name: 'run', keys: ['Shift'] },
-  ]
+  const keyboardMap = useMemo(() => {
+    return [
+      { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
+      { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
+      { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
+      { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
+      { name: 'jump', keys: ['Space'] },
+      { name: 'run', keys: ['Shift'] },
+    ]
+  }, [])
 
   useFrame((state, delta) => {
     if (camControlRef.current && ecctrlRef.current) {
@@ -142,3 +147,5 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
     </>
   )
 }
+
+//

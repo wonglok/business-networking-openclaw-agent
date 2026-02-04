@@ -16,17 +16,18 @@ import {
   directionToColor,
   colorToDirection,
   sample,
+  float,
+  mix,
 } from 'three/tsl'
 import { ssgi } from 'three/addons/tsl/display/SSGINode.js'
 import { traa } from 'three/addons/tsl/display/TRAANode.js'
 
 export function EnvLoader({
+  //
   url,
-  background = false,
   env = true,
 }: {
   url: string
-  background?: boolean
   env?: boolean
 }) {
   const [sun, setSun] = useState<ReactNode>(null)
@@ -35,25 +36,13 @@ export function EnvLoader({
   const renderer = useThree((r) => r.gl)
 
   const [fnc, setFnc] = useState(() => {
-    return () => {}
+    return () => {
+      renderer.render(scene, camera)
+    }
   })
+
   //
   useEffect(() => {
-    rgbeLoader.loadAsync(url).then((data) => {
-      data.mapping = EquirectangularReflectionMapping
-      scene.background = data
-
-      // scene.backgroundBlurriness = 0.5
-      if (background) {
-      }
-      if (env) {
-        scene.environment = data
-      }
-      console.log(data)
-    })
-
-    scene.environmentIntensity = 0.5
-
     const object: any = new Object3D()
 
     const dirL = new DirectionalLight(0xffffff, 1)
@@ -82,13 +71,7 @@ export function EnvLoader({
     object.sunLight.shadow.intensity = 1.0
     object.sunLight.intensity = 2.0
 
-    setSun(
-      <group name='light-player-target'>
-        <primitive object={object}></primitive>
-      </group>,
-    )
-
-    const postProcessing = new PostProcessing(renderer as any)
+    scene.environmentIntensity = 0.5
 
     const scenePass = pass(scene, camera)
     scenePass.setMRT(
@@ -103,54 +86,65 @@ export function EnvLoader({
     const scenePassColor = scenePass.getTextureNode('output')
     const scenePassDiffuse = scenePass.getTextureNode('diffuseColor')
     const scenePassDepth = scenePass.getTextureNode('depth')
-    // .toInspector('Depth', () => {
-    //   return scenePass.getLinearDepthNode()
-    // })
 
-    const scenePassNormal = scenePass.getTextureNode('normal') //.toInspector('Normal')
-    const scenePassVelocity = scenePass.getTextureNode('velocity') //.toInspector('Velocity')
+    const scenePassNormal = scenePass.getTextureNode('normal')
+    const scenePassVelocity = scenePass.getTextureNode('velocity')
 
-    // bandwidth optimization
+    // const diffuseTexture = scenePass.getTexture('diffuseColor')
+    // diffuseTexture.type = UnsignedByteType
 
-    const diffuseTexture = scenePass.getTexture('diffuseColor')
-    diffuseTexture.type = UnsignedByteType
-
-    const normalTexture = scenePass.getTexture('normal')
-    normalTexture.type = UnsignedByteType
+    // const normalTexture = scenePass.getTexture('normal')
+    // normalTexture.type = UnsignedByteType
 
     const sceneNormal = sample((uv) => {
       return colorToDirection(scenePassNormal.sample(uv))
     })
 
+    //
+
     // gi
     const giPass = ssgi(scenePassColor, scenePassDepth, sceneNormal, camera as any)
     giPass.sliceCount.value = 2
     giPass.stepCount.value = 8
+    giPass.backfaceLighting.value = 1
 
     // composite
-
-    const gi = giPass.rgb //.toInspector('SSGI')
-    const ao = giPass.a //.toInspector('AO')
+    const gi = giPass.rgb
+    const ao = giPass.a
 
     const compositePass = vec4(add(scenePassColor.rgb.mul(ao), scenePassDiffuse.rgb.mul(gi)), scenePassColor.a)
     compositePass.name = 'Composite'
 
     // traa
-
     const traaPass = traa(compositePass, scenePassDepth, scenePassVelocity, camera)
+
+    const postProcessing = new PostProcessing(renderer as any)
+
     postProcessing.outputNode = traaPass
 
-    setFnc(() => {
-      return () => {
-        postProcessing.render()
-      }
+    rgbeLoader.loadAsync(url).then((texture) => {
+      texture.mapping = EquirectangularReflectionMapping
+      scene.background = texture
+      scene.environment = texture
+
+      setSun(
+        <group name='light-player-target'>
+          <primitive object={object}></primitive>
+        </group>,
+      )
+
+      setFnc(() => {
+        return () => {
+          postProcessing.render()
+        }
+      })
     })
-    //
 
     return () => {
+      postProcessing.dispose()
       dirL.removeFromParent()
     }
-  }, [url, scene, env, background])
+  }, [url, scene, env])
 
   //
   useFrame(() => {

@@ -7,7 +7,7 @@ export function LoginButton() {
   return (
     <>
       <button
-        className='inline-flex'
+        className='inline-flex p-2 bg-white rounded-lg px-5'
         onClick={async () => {
           const response = await authClient.signIn.social({
             provider: 'google',
