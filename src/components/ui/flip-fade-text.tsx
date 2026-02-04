@@ -160,7 +160,7 @@ export function FlipFadeText({
         <AnimatePresence mode='wait'>
           <Word
             key={currentWord}
-            text={currentWord}
+            text={`${currentWord}`}
             staggerDelay={staggerDelay}
             exitStaggerDelay={exitStaggerDelay}
             letterDuration={letterDuration}
