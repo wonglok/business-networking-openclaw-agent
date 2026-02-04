@@ -9,10 +9,13 @@ import { Bvh } from '@react-three/drei'
 import { EnvLoader } from '../CanvasGPU/EnvLoader'
 import { JoystickControls } from './JoystickControls'
 import { GameSystem } from './GameSystem'
+import { useAppState } from './useAppState'
 // import { useAppState } from './useAppState'
 // import type { Scene } from 'three'
 
 export function GamePage() {
+  const visible = useAppState((r) => r.visible)
+
   return (
     <div className='w-full h-full relative'>
       <CanvasGPU webgpu>
@@ -23,7 +26,9 @@ export function GamePage() {
               url={`/hdr/default.hdr`}
             ></EnvLoader>
 
-            <GameSystem glbSRC={`/env/digital-palace-loklok.glb`}></GameSystem>
+            <group visible={visible}>
+              <GameSystem glbSRC={`/env/digital-palace-loklok.glb`}></GameSystem>
+            </group>
           </Bvh>
         </Suspense>
       </CanvasGPU>

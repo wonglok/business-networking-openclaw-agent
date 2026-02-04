@@ -21,6 +21,7 @@ import {
 } from 'three/tsl'
 import { ssgi } from 'three/addons/tsl/display/SSGINode.js'
 import { traa } from 'three/addons/tsl/display/TRAANode.js'
+import { useAppState } from '../World/useAppState'
 
 export function EnvLoader({
   //
@@ -41,7 +42,6 @@ export function EnvLoader({
     }
   })
 
-  //
   useEffect(() => {
     const object: any = new Object3D()
 
@@ -138,6 +138,8 @@ export function EnvLoader({
           postProcessing.render()
         }
       })
+
+      useAppState.setState({ visible: true })
     })
 
     return () => {
