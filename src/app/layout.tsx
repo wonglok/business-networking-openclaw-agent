@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 
 import { type Metadata } from 'next'
-import { Geist, Noto_Sans } from 'next/font/google'
+import { Noto_Sans } from 'next/font/google'
 
 import { TRPCReactProvider } from '@/trpc/react'
 import { Toaster } from '@/components/ui/sonner'

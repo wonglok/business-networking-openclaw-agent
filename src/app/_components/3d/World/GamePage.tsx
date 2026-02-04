@@ -12,7 +12,7 @@ import { GameSystem } from './GameSystem'
 // import { useAppState } from './useAppState'
 // import type { Scene } from 'three'
 
-export function GamePage({ loggedIn = false, user = false }: { loggedIn?: boolean; user: any }) {
+export function GamePage() {
   return (
     <div className='w-full h-full relative'>
       <CanvasGPU webgpu>

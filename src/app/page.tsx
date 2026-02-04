@@ -10,21 +10,20 @@ import { LoginButton } from './_components/auth/LoginButton'
 import { LogoutButton } from './_components/auth/LogoutButton'
 // import { Suspense } from 'react'
 import { CheckClaim } from './_components/auth/CheckClaim'
-import { GamePage } from './_components/3d/World/GamePage'
+import dynamic from 'next/dynamic'
+
+// import { GamePage } from './_components/3d/World/GamePage'
+
+// const GamePage = dynamic(() => import('./_components/3d/World/GamePage').then((r) => r.GamePage), {})
 
 export default async function Home() {
-  // const hello = await api.post.hello({ text: "from tRPC" });
   const session = await getSession()
 
   return (
     <HydrateClient>
       <CheckClaim></CheckClaim>
 
-      {
-        <div className='w-full h-full'>
-          <GamePage loggedIn={!!session?.user} user={session?.user}></GamePage>
-        </div>
-      }
+      {<div className='w-full h-full'>{/* <GamePage></GamePage> */}</div>}
 
       <div className=' absolute top-0 right-0'>
         <div className='text-center text-2xl '>{session && <span>Logged in as {session?.user?.name}</span>}</div>
