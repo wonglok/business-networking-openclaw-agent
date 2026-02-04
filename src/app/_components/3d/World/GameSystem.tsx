@@ -153,8 +153,10 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
 
   const mat = useMemo(() => {
     const val = new MeshPhysicalNodeMaterial({
-      metalness: 0.0,
+      metalness: 1.0,
       roughness: 0.0,
+      roughnessMap: textProps.roughnessMap,
+      normalMap: textProps.normalMap,
     })
     // val.setValues({ ...textProps })
     return val
