@@ -20,7 +20,7 @@ export function AvatarAI() {
     walk: useFBX(`/avatar/ai-motion/walk.fbx`),
   }
 
-  const glb = useGLTF(`/avatar/texture-fix-2-army-transformed.glb`)
+  const glb = useGLTF(`/avatar/fighter-raw-transformed.glb`)
 
   // glb.scene.traverse((it) => {
   //   if (it) {
