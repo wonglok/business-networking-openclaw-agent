@@ -16,6 +16,7 @@ import { useFrame } from '@react-three/fiber'
 import { AvatarRPM } from './AvatarRPM'
 import { useAppState } from './useAppState'
 import { Scene, Vector3 } from 'three'
+import { AvatarAI } from './AvatarAI'
 // import { findPathByObjects } from './simple-nav'
 // import { CatmullRomCurve3, Object3D, Vector3 } from 'three'
 // import { gsap } from 'gsap'
@@ -98,7 +99,8 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
         <KeyboardControls map={keyboardMap}>
           <group position={[0, 0, 0]}>
             <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
-              <AvatarRPM></AvatarRPM>
+              {/* <AvatarRPM></AvatarRPM> */}
+              <AvatarAI></AvatarAI>
             </BVHEcctrl>
           </group>
         </KeyboardControls>

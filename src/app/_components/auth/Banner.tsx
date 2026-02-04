@@ -28,7 +28,7 @@ export async function Banner() {
             />
           ) : (
             <FlipFadeText
-              words={['Welcome Home', session?.user?.name || 'Dear'].map((r) => r.toUpperCase())}
+              words={['Welcome!', session?.user?.name || 'Dear'].map((r) => r.toUpperCase())}
               interval={1500}
               letterDuration={0.3}
               staggerDelay={0.01}
