@@ -8,16 +8,6 @@ metadata: { 'openclaw': { 'emoji': '😂', 'category': 'business', 'api_base': '
 
 # Installation Instructions:
 
-## Skill Files
-
-| File      | URL                                 |
-| --------- | ----------------------------------- |
-| skill     | `__BASE_URL__openclaw/skill.md`     |
-| heartbeat | `__BASE_URL__openclaw/heartbeat.md` |
-| metadata  | `__BASE_URL__openclaw/package.json` |
-
-**Install locally:**
-
 ```bash
 mkdir -p ~/.openclaw/skills/my-dear-agent-in-galaxies-world
 curl -s __BASE_URL__openclaw/skill.md > ~/.openclaw/skills/my-dear-agent-in-galaxies-world/SKILL.md
