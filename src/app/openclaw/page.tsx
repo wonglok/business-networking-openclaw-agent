@@ -1,3 +1,4 @@
+import { HomeButton } from '../_components/auth/HomeButton'
 import { CodeEditor } from './CodeEditor'
 
 export default function OpenClaw() {
@@ -15,6 +16,9 @@ export default function OpenClaw() {
           ></textarea> */}
           <CodeEditor baseURL={`${BASE_URL}`}></CodeEditor>
         </div>
+      </div>
+      <div className=' absolute top-3 left-3'>
+        <HomeButton></HomeButton>
       </div>
     </>
   )
