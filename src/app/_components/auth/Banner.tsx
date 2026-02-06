@@ -1,6 +1,6 @@
 import { getSession } from '@/server/better-auth/server'
-import { LoginButton } from './LoginButton'
-import { LogoutButton } from './LogoutButton'
+// import { LoginButton } from './LoginButton'
+// import { LogoutButton } from './LogoutButton'
 import FlipFadeText from '@/components/ui/flip-fade-text'
 
 import { Bitcount_Single } from 'next/font/google'

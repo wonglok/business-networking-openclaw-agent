@@ -48,7 +48,7 @@ export function EnvLoader({
     const object: any = new Object3D()
 
     const dirL = new DirectionalLight(0xffffff, 15)
-    dirL.position.set(20, 10, 0)
+    dirL.position.set(-20, 10, 0)
 
     object.sunLight = dirL
     object.sunLight.castShadow = true
@@ -71,15 +71,15 @@ export function EnvLoader({
     object.sunLight.shadow.bias = -0.00035
 
     const dirR = new DirectionalLight(0xffffff, 15)
-    dirR.position.set(-20, 10, 0)
+    dirR.position.set(20, 10, 0)
 
     object.moonLight = dirR
-    object.moonLight.castShadow = true
+    object.moonLight.castShadow = false
 
     object.add(object.moonLight)
     object.add(object.moonLight.target)
 
-    object.moonLight.castShadow = true
+    object.moonLight.castShadow = false
     object.moonLight.shadow.camera.near = 0
     object.moonLight.shadow.camera.far = 150 * 2
 
