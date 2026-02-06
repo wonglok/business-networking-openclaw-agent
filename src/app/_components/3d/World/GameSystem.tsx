@@ -140,7 +140,7 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
       // emissiveMap: `/textures/chip/Chip005_4K-PNG_Color.png`,
       // map: `/textures/chip/Chip005_4K-PNG_Color.png`,
       metalnessMap: `/textures/chip/Chip005_4K-PNG_Metalness.png`,
-      // roughnessMap: `/textures/chip/Chip005_4K-PNG_Roughness.png`,
+      roughnessMap: `/textures/chip/Chip005_4K-PNG_Roughness.png`,
       normalMap: `/textures/chip/Chip005_4K-PNG_NormalGL.png`,
       displacementMap: `/textures/chip/Chip005_1K-JPG_Displacement.jpg`,
     },
@@ -154,12 +154,12 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
 
   const mat = useMemo(() => {
     const val = new MeshPhysicalNodeMaterial({
+      map: materials.Inner_plaza.map,
       metalness: 1.0,
-      roughness: 0.0,
-      // roughnessMap: textProps.roughnessMap,
+      roughness: 0.3,
       metalnessMap: textProps.normalMap,
       normalMap: textProps.normalMap,
-      normalScale: new Vector2(0.3, -0.3),
+      normalScale: new Vector2(1.0, -1.0),
     })
 
     // val.setValues({ ...textProps })
@@ -169,11 +169,10 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
   const detail = useMemo(() => {
     const val = new MeshPhysicalNodeMaterial({})
 
-    // val.setValues({ ...materials.Detailing })
     val.setValues({
       color: new Color('#000'),
-      emissive: new Color('#ffd498'),
-      emissiveIntensity: 5,
+      emissive: new Color('#ffb055'),
+      emissiveIntensity: 15.0,
       metalness: 0,
     })
     return val
