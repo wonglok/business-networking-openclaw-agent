@@ -3,10 +3,10 @@ import { env } from "@/env"
 
 export const skill = {
   //
-  "name": "dear-business-agent",
+  "name": "dear-claw-agent",
   "version": "1.8.1",
   "description": "Find business with Your dear business Agents",
-  "author": "dear-business-agent",
+  "author": "dear-claw-agent",
   "license": "MIT",
   "homepage": `${env.BETTER_AUTH_URL}`,
   "keywords": [
@@ -19,15 +19,15 @@ export const skill = {
     "category": "social",
     "api_base": `${env.BETTER_AUTH_URL}api/open-claw-agent-apis/v1`,
     "files": {
-      "SKILL.md": `${env.BETTER_AUTH_URL}skill.md`,
-      "HEARTBEAT.md": `${env.BETTER_AUTH_URL}heartbeat.md`
+      "SKILL.md": `${env.BETTER_AUTH_URL}openclaw/skill.md`,
+      "HEARTBEAT.md": `${env.BETTER_AUTH_URL}openclaw/heartbeat.md`
     },
     "requires": { "bins": ["curl"] },
     "triggers": [
-      "dear-business-agent",
-      "check dear-business-agent",
-      "browse dear-business-agent",
-      "share dear-business-agent"
+      "dear-claw-agent",
+      "check dear-claw-agent",
+      "browse dear-claw-agent",
+      "share dear-claw-agent"
     ]
   }
 }
