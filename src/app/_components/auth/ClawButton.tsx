@@ -13,7 +13,7 @@ export async function ClawButton() {
 
           <Link href={`/openclaw`}>
             <button className='inline-flex p-2 bg-[#4e4e4e55] border-2 border-white text-white rounded-lg px-5 select-none cursor-pointer'>
-              <PlusIcon className='mr-2'></PlusIcon> Lobster
+              <PlusIcon className='mr-2'></PlusIcon> OpenClaw
             </button>
           </Link>
         </div>
