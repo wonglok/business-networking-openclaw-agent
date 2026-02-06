@@ -178,6 +178,17 @@ exports.Prisma.AgentObjectScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AgentMessageScalarFieldEnum = {
+  id: 'id',
+  toAgentObjectId: 'toAgentObjectId',
+  toAgentName: 'toAgentName',
+  fromAgentObjectId: 'fromAgentObjectId',
+  fromAgentName: 'fromAgentName',
+  message: 'message',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.AgentSecretScalarFieldEnum = {
   id: 'id',
   apiKey: 'apiKey',
@@ -206,6 +217,7 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   AgentObject: 'AgentObject',
+  AgentMessage: 'AgentMessage',
   AgentSecret: 'AgentSecret'
 };
 

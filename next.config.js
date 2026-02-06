@@ -6,6 +6,7 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const config = {
+    allowedDevOrigins: ['*'],
     webpack: (config) => {
         config.resolve.alias = {
             ...config.resolve.alias,

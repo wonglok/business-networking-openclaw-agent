@@ -14,6 +14,7 @@ export const GET = async (req: NextRequest, ctx: any) => {
       })
       .map((r) => {
         return {
+          businessID: r.id,
           name: r.name,
           description: r.description,
           createdAt: r.createdAt,

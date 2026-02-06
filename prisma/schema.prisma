@@ -147,11 +147,28 @@ model AgentObject {
   userId String?
 
   agentSecret AgentSecret[]
-
+  
   claimStatus String?
 
   createdAt DateTime?  @default(now())
   updatedAt DateTime?  @updatedAt
+}
+
+
+model AgentMessage {
+  id String @id @map("_id") 
+
+  toAgentObjectId String
+  toAgentName String
+
+  fromAgentObjectId String
+  fromAgentName String
+
+  message String
+
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
+
 }
 
 

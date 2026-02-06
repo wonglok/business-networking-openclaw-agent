@@ -44,6 +44,11 @@ export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
  */
 export type AgentObject = $Result.DefaultSelection<Prisma.$AgentObjectPayload>
 /**
+ * Model AgentMessage
+ * 
+ */
+export type AgentMessage = $Result.DefaultSelection<Prisma.$AgentMessagePayload>
+/**
  * Model AgentSecret
  * 
  */
@@ -193,6 +198,16 @@ export class PrismaClient<
     * ```
     */
   get agentObject(): Prisma.AgentObjectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.agentMessage`: Exposes CRUD operations for the **AgentMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AgentMessages
+    * const agentMessages = await prisma.agentMessage.findMany()
+    * ```
+    */
+  get agentMessage(): Prisma.AgentMessageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.agentSecret`: Exposes CRUD operations for the **AgentSecret** model.
@@ -650,6 +665,7 @@ export namespace Prisma {
     Account: 'Account',
     Verification: 'Verification',
     AgentObject: 'AgentObject',
+    AgentMessage: 'AgentMessage',
     AgentSecret: 'AgentSecret'
   };
 
@@ -669,7 +685,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "post" | "user" | "session" | "account" | "verification" | "agentObject" | "agentSecret"
+      modelProps: "post" | "user" | "session" | "account" | "verification" | "agentObject" | "agentMessage" | "agentSecret"
       txIsolationLevel: never
     }
     model: {
@@ -1117,6 +1133,80 @@ export namespace Prisma {
           }
         }
       }
+      AgentMessage: {
+        payload: Prisma.$AgentMessagePayload<ExtArgs>
+        fields: Prisma.AgentMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AgentMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AgentMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.AgentMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AgentMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload>
+          }
+          findMany: {
+            args: Prisma.AgentMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload>[]
+          }
+          create: {
+            args: Prisma.AgentMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload>
+          }
+          createMany: {
+            args: Prisma.AgentMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AgentMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload>
+          }
+          update: {
+            args: Prisma.AgentMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.AgentMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AgentMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AgentMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AgentMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.AgentMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAgentMessage>
+          }
+          groupBy: {
+            args: Prisma.AgentMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AgentMessageGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.AgentMessageFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.AgentMessageAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.AgentMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<AgentMessageCountAggregateOutputType> | number
+          }
+        }
+      }
       AgentSecret: {
         payload: Prisma.$AgentSecretPayload<ExtArgs>
         fields: Prisma.AgentSecretFieldRefs
@@ -1276,6 +1366,7 @@ export namespace Prisma {
     account?: AccountOmit
     verification?: VerificationOmit
     agentObject?: AgentObjectOmit
+    agentMessage?: AgentMessageOmit
     agentSecret?: AgentSecretOmit
   }
 
@@ -7608,6 +7699,971 @@ export namespace Prisma {
 
 
   /**
+   * Model AgentMessage
+   */
+
+  export type AggregateAgentMessage = {
+    _count: AgentMessageCountAggregateOutputType | null
+    _min: AgentMessageMinAggregateOutputType | null
+    _max: AgentMessageMaxAggregateOutputType | null
+  }
+
+  export type AgentMessageMinAggregateOutputType = {
+    id: string | null
+    toAgentObjectId: string | null
+    toAgentName: string | null
+    fromAgentObjectId: string | null
+    fromAgentName: string | null
+    message: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AgentMessageMaxAggregateOutputType = {
+    id: string | null
+    toAgentObjectId: string | null
+    toAgentName: string | null
+    fromAgentObjectId: string | null
+    fromAgentName: string | null
+    message: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AgentMessageCountAggregateOutputType = {
+    id: number
+    toAgentObjectId: number
+    toAgentName: number
+    fromAgentObjectId: number
+    fromAgentName: number
+    message: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AgentMessageMinAggregateInputType = {
+    id?: true
+    toAgentObjectId?: true
+    toAgentName?: true
+    fromAgentObjectId?: true
+    fromAgentName?: true
+    message?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AgentMessageMaxAggregateInputType = {
+    id?: true
+    toAgentObjectId?: true
+    toAgentName?: true
+    fromAgentObjectId?: true
+    fromAgentName?: true
+    message?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AgentMessageCountAggregateInputType = {
+    id?: true
+    toAgentObjectId?: true
+    toAgentName?: true
+    fromAgentObjectId?: true
+    fromAgentName?: true
+    message?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AgentMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AgentMessage to aggregate.
+     */
+    where?: AgentMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AgentMessages to fetch.
+     */
+    orderBy?: AgentMessageOrderByWithRelationInput | AgentMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AgentMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AgentMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AgentMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AgentMessages
+    **/
+    _count?: true | AgentMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AgentMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AgentMessageMaxAggregateInputType
+  }
+
+  export type GetAgentMessageAggregateType<T extends AgentMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateAgentMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAgentMessage[P]>
+      : GetScalarType<T[P], AggregateAgentMessage[P]>
+  }
+
+
+
+
+  export type AgentMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AgentMessageWhereInput
+    orderBy?: AgentMessageOrderByWithAggregationInput | AgentMessageOrderByWithAggregationInput[]
+    by: AgentMessageScalarFieldEnum[] | AgentMessageScalarFieldEnum
+    having?: AgentMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AgentMessageCountAggregateInputType | true
+    _min?: AgentMessageMinAggregateInputType
+    _max?: AgentMessageMaxAggregateInputType
+  }
+
+  export type AgentMessageGroupByOutputType = {
+    id: string
+    toAgentObjectId: string
+    toAgentName: string
+    fromAgentObjectId: string
+    fromAgentName: string
+    message: string
+    createdAt: Date | null
+    updatedAt: Date | null
+    _count: AgentMessageCountAggregateOutputType | null
+    _min: AgentMessageMinAggregateOutputType | null
+    _max: AgentMessageMaxAggregateOutputType | null
+  }
+
+  type GetAgentMessageGroupByPayload<T extends AgentMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AgentMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AgentMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AgentMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], AgentMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AgentMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    toAgentObjectId?: boolean
+    toAgentName?: boolean
+    fromAgentObjectId?: boolean
+    fromAgentName?: boolean
+    message?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["agentMessage"]>
+
+
+
+  export type AgentMessageSelectScalar = {
+    id?: boolean
+    toAgentObjectId?: boolean
+    toAgentName?: boolean
+    fromAgentObjectId?: boolean
+    fromAgentName?: boolean
+    message?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AgentMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "toAgentObjectId" | "toAgentName" | "fromAgentObjectId" | "fromAgentName" | "message" | "createdAt" | "updatedAt", ExtArgs["result"]["agentMessage"]>
+
+  export type $AgentMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AgentMessage"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      toAgentObjectId: string
+      toAgentName: string
+      fromAgentObjectId: string
+      fromAgentName: string
+      message: string
+      createdAt: Date | null
+      updatedAt: Date | null
+    }, ExtArgs["result"]["agentMessage"]>
+    composites: {}
+  }
+
+  type AgentMessageGetPayload<S extends boolean | null | undefined | AgentMessageDefaultArgs> = $Result.GetResult<Prisma.$AgentMessagePayload, S>
+
+  type AgentMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AgentMessageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AgentMessageCountAggregateInputType | true
+    }
+
+  export interface AgentMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AgentMessage'], meta: { name: 'AgentMessage' } }
+    /**
+     * Find zero or one AgentMessage that matches the filter.
+     * @param {AgentMessageFindUniqueArgs} args - Arguments to find a AgentMessage
+     * @example
+     * // Get one AgentMessage
+     * const agentMessage = await prisma.agentMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AgentMessageFindUniqueArgs>(args: SelectSubset<T, AgentMessageFindUniqueArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AgentMessage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AgentMessageFindUniqueOrThrowArgs} args - Arguments to find a AgentMessage
+     * @example
+     * // Get one AgentMessage
+     * const agentMessage = await prisma.agentMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AgentMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, AgentMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AgentMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AgentMessageFindFirstArgs} args - Arguments to find a AgentMessage
+     * @example
+     * // Get one AgentMessage
+     * const agentMessage = await prisma.agentMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AgentMessageFindFirstArgs>(args?: SelectSubset<T, AgentMessageFindFirstArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AgentMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AgentMessageFindFirstOrThrowArgs} args - Arguments to find a AgentMessage
+     * @example
+     * // Get one AgentMessage
+     * const agentMessage = await prisma.agentMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AgentMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, AgentMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AgentMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AgentMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AgentMessages
+     * const agentMessages = await prisma.agentMessage.findMany()
+     * 
+     * // Get first 10 AgentMessages
+     * const agentMessages = await prisma.agentMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const agentMessageWithIdOnly = await prisma.agentMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AgentMessageFindManyArgs>(args?: SelectSubset<T, AgentMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AgentMessage.
+     * @param {AgentMessageCreateArgs} args - Arguments to create a AgentMessage.
+     * @example
+     * // Create one AgentMessage
+     * const AgentMessage = await prisma.agentMessage.create({
+     *   data: {
+     *     // ... data to create a AgentMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends AgentMessageCreateArgs>(args: SelectSubset<T, AgentMessageCreateArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AgentMessages.
+     * @param {AgentMessageCreateManyArgs} args - Arguments to create many AgentMessages.
+     * @example
+     * // Create many AgentMessages
+     * const agentMessage = await prisma.agentMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AgentMessageCreateManyArgs>(args?: SelectSubset<T, AgentMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AgentMessage.
+     * @param {AgentMessageDeleteArgs} args - Arguments to delete one AgentMessage.
+     * @example
+     * // Delete one AgentMessage
+     * const AgentMessage = await prisma.agentMessage.delete({
+     *   where: {
+     *     // ... filter to delete one AgentMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AgentMessageDeleteArgs>(args: SelectSubset<T, AgentMessageDeleteArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AgentMessage.
+     * @param {AgentMessageUpdateArgs} args - Arguments to update one AgentMessage.
+     * @example
+     * // Update one AgentMessage
+     * const agentMessage = await prisma.agentMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AgentMessageUpdateArgs>(args: SelectSubset<T, AgentMessageUpdateArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AgentMessages.
+     * @param {AgentMessageDeleteManyArgs} args - Arguments to filter AgentMessages to delete.
+     * @example
+     * // Delete a few AgentMessages
+     * const { count } = await prisma.agentMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AgentMessageDeleteManyArgs>(args?: SelectSubset<T, AgentMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AgentMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AgentMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AgentMessages
+     * const agentMessage = await prisma.agentMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AgentMessageUpdateManyArgs>(args: SelectSubset<T, AgentMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AgentMessage.
+     * @param {AgentMessageUpsertArgs} args - Arguments to update or create a AgentMessage.
+     * @example
+     * // Update or create a AgentMessage
+     * const agentMessage = await prisma.agentMessage.upsert({
+     *   create: {
+     *     // ... data to create a AgentMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AgentMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AgentMessageUpsertArgs>(args: SelectSubset<T, AgentMessageUpsertArgs<ExtArgs>>): Prisma__AgentMessageClient<$Result.GetResult<Prisma.$AgentMessagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AgentMessages that matches the filter.
+     * @param {AgentMessageFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const agentMessage = await prisma.agentMessage.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: AgentMessageFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a AgentMessage.
+     * @param {AgentMessageAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const agentMessage = await prisma.agentMessage.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: AgentMessageAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of AgentMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AgentMessageCountArgs} args - Arguments to filter AgentMessages to count.
+     * @example
+     * // Count the number of AgentMessages
+     * const count = await prisma.agentMessage.count({
+     *   where: {
+     *     // ... the filter for the AgentMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends AgentMessageCountArgs>(
+      args?: Subset<T, AgentMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AgentMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AgentMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AgentMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AgentMessageAggregateArgs>(args: Subset<T, AgentMessageAggregateArgs>): Prisma.PrismaPromise<GetAgentMessageAggregateType<T>>
+
+    /**
+     * Group by AgentMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AgentMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AgentMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AgentMessageGroupByArgs['orderBy'] }
+        : { orderBy?: AgentMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AgentMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAgentMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AgentMessage model
+   */
+  readonly fields: AgentMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AgentMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AgentMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AgentMessage model
+   */
+  interface AgentMessageFieldRefs {
+    readonly id: FieldRef<"AgentMessage", 'String'>
+    readonly toAgentObjectId: FieldRef<"AgentMessage", 'String'>
+    readonly toAgentName: FieldRef<"AgentMessage", 'String'>
+    readonly fromAgentObjectId: FieldRef<"AgentMessage", 'String'>
+    readonly fromAgentName: FieldRef<"AgentMessage", 'String'>
+    readonly message: FieldRef<"AgentMessage", 'String'>
+    readonly createdAt: FieldRef<"AgentMessage", 'DateTime'>
+    readonly updatedAt: FieldRef<"AgentMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AgentMessage findUnique
+   */
+  export type AgentMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which AgentMessage to fetch.
+     */
+    where: AgentMessageWhereUniqueInput
+  }
+
+  /**
+   * AgentMessage findUniqueOrThrow
+   */
+  export type AgentMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which AgentMessage to fetch.
+     */
+    where: AgentMessageWhereUniqueInput
+  }
+
+  /**
+   * AgentMessage findFirst
+   */
+  export type AgentMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which AgentMessage to fetch.
+     */
+    where?: AgentMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AgentMessages to fetch.
+     */
+    orderBy?: AgentMessageOrderByWithRelationInput | AgentMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AgentMessages.
+     */
+    cursor?: AgentMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AgentMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AgentMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AgentMessages.
+     */
+    distinct?: AgentMessageScalarFieldEnum | AgentMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AgentMessage findFirstOrThrow
+   */
+  export type AgentMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which AgentMessage to fetch.
+     */
+    where?: AgentMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AgentMessages to fetch.
+     */
+    orderBy?: AgentMessageOrderByWithRelationInput | AgentMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AgentMessages.
+     */
+    cursor?: AgentMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AgentMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AgentMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AgentMessages.
+     */
+    distinct?: AgentMessageScalarFieldEnum | AgentMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AgentMessage findMany
+   */
+  export type AgentMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * Filter, which AgentMessages to fetch.
+     */
+    where?: AgentMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AgentMessages to fetch.
+     */
+    orderBy?: AgentMessageOrderByWithRelationInput | AgentMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AgentMessages.
+     */
+    cursor?: AgentMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AgentMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AgentMessages.
+     */
+    skip?: number
+    distinct?: AgentMessageScalarFieldEnum | AgentMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AgentMessage create
+   */
+  export type AgentMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AgentMessage.
+     */
+    data: XOR<AgentMessageCreateInput, AgentMessageUncheckedCreateInput>
+  }
+
+  /**
+   * AgentMessage createMany
+   */
+  export type AgentMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AgentMessages.
+     */
+    data: AgentMessageCreateManyInput | AgentMessageCreateManyInput[]
+  }
+
+  /**
+   * AgentMessage update
+   */
+  export type AgentMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AgentMessage.
+     */
+    data: XOR<AgentMessageUpdateInput, AgentMessageUncheckedUpdateInput>
+    /**
+     * Choose, which AgentMessage to update.
+     */
+    where: AgentMessageWhereUniqueInput
+  }
+
+  /**
+   * AgentMessage updateMany
+   */
+  export type AgentMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AgentMessages.
+     */
+    data: XOR<AgentMessageUpdateManyMutationInput, AgentMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which AgentMessages to update
+     */
+    where?: AgentMessageWhereInput
+    /**
+     * Limit how many AgentMessages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AgentMessage upsert
+   */
+  export type AgentMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AgentMessage to update in case it exists.
+     */
+    where: AgentMessageWhereUniqueInput
+    /**
+     * In case the AgentMessage found by the `where` argument doesn't exist, create a new AgentMessage with this data.
+     */
+    create: XOR<AgentMessageCreateInput, AgentMessageUncheckedCreateInput>
+    /**
+     * In case the AgentMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AgentMessageUpdateInput, AgentMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * AgentMessage delete
+   */
+  export type AgentMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+    /**
+     * Filter which AgentMessage to delete.
+     */
+    where: AgentMessageWhereUniqueInput
+  }
+
+  /**
+   * AgentMessage deleteMany
+   */
+  export type AgentMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AgentMessages to delete
+     */
+    where?: AgentMessageWhereInput
+    /**
+     * Limit how many AgentMessages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AgentMessage findRaw
+   */
+  export type AgentMessageFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AgentMessage aggregateRaw
+   */
+  export type AgentMessageAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * AgentMessage without action
+   */
+  export type AgentMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AgentMessage
+     */
+    select?: AgentMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AgentMessage
+     */
+    omit?: AgentMessageOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model AgentSecret
    */
 
@@ -8694,6 +9750,20 @@ export namespace Prisma {
   export type AgentObjectScalarFieldEnum = (typeof AgentObjectScalarFieldEnum)[keyof typeof AgentObjectScalarFieldEnum]
 
 
+  export const AgentMessageScalarFieldEnum: {
+    id: 'id',
+    toAgentObjectId: 'toAgentObjectId',
+    toAgentName: 'toAgentName',
+    fromAgentObjectId: 'fromAgentObjectId',
+    fromAgentName: 'fromAgentName',
+    message: 'message',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AgentMessageScalarFieldEnum = (typeof AgentMessageScalarFieldEnum)[keyof typeof AgentMessageScalarFieldEnum]
+
+
   export const AgentSecretScalarFieldEnum: {
     id: 'id',
     apiKey: 'apiKey',
@@ -9197,6 +10267,73 @@ export namespace Prisma {
     claimStatus?: StringNullableWithAggregatesFilter<"AgentObject"> | string | null
     createdAt?: DateTimeNullableWithAggregatesFilter<"AgentObject"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"AgentObject"> | Date | string | null
+  }
+
+  export type AgentMessageWhereInput = {
+    AND?: AgentMessageWhereInput | AgentMessageWhereInput[]
+    OR?: AgentMessageWhereInput[]
+    NOT?: AgentMessageWhereInput | AgentMessageWhereInput[]
+    id?: StringFilter<"AgentMessage"> | string
+    toAgentObjectId?: StringFilter<"AgentMessage"> | string
+    toAgentName?: StringFilter<"AgentMessage"> | string
+    fromAgentObjectId?: StringFilter<"AgentMessage"> | string
+    fromAgentName?: StringFilter<"AgentMessage"> | string
+    message?: StringFilter<"AgentMessage"> | string
+    createdAt?: DateTimeNullableFilter<"AgentMessage"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentMessage"> | Date | string | null
+  }
+
+  export type AgentMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    toAgentObjectId?: SortOrder
+    toAgentName?: SortOrder
+    fromAgentObjectId?: SortOrder
+    fromAgentName?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AgentMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AgentMessageWhereInput | AgentMessageWhereInput[]
+    OR?: AgentMessageWhereInput[]
+    NOT?: AgentMessageWhereInput | AgentMessageWhereInput[]
+    toAgentObjectId?: StringFilter<"AgentMessage"> | string
+    toAgentName?: StringFilter<"AgentMessage"> | string
+    fromAgentObjectId?: StringFilter<"AgentMessage"> | string
+    fromAgentName?: StringFilter<"AgentMessage"> | string
+    message?: StringFilter<"AgentMessage"> | string
+    createdAt?: DateTimeNullableFilter<"AgentMessage"> | Date | string | null
+    updatedAt?: DateTimeNullableFilter<"AgentMessage"> | Date | string | null
+  }, "id">
+
+  export type AgentMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    toAgentObjectId?: SortOrder
+    toAgentName?: SortOrder
+    fromAgentObjectId?: SortOrder
+    fromAgentName?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AgentMessageCountOrderByAggregateInput
+    _max?: AgentMessageMaxOrderByAggregateInput
+    _min?: AgentMessageMinOrderByAggregateInput
+  }
+
+  export type AgentMessageScalarWhereWithAggregatesInput = {
+    AND?: AgentMessageScalarWhereWithAggregatesInput | AgentMessageScalarWhereWithAggregatesInput[]
+    OR?: AgentMessageScalarWhereWithAggregatesInput[]
+    NOT?: AgentMessageScalarWhereWithAggregatesInput | AgentMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AgentMessage"> | string
+    toAgentObjectId?: StringWithAggregatesFilter<"AgentMessage"> | string
+    toAgentName?: StringWithAggregatesFilter<"AgentMessage"> | string
+    fromAgentObjectId?: StringWithAggregatesFilter<"AgentMessage"> | string
+    fromAgentName?: StringWithAggregatesFilter<"AgentMessage"> | string
+    message?: StringWithAggregatesFilter<"AgentMessage"> | string
+    createdAt?: DateTimeNullableWithAggregatesFilter<"AgentMessage"> | Date | string | null
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"AgentMessage"> | Date | string | null
   }
 
   export type AgentSecretWhereInput = {
@@ -9704,6 +10841,79 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type AgentMessageCreateInput = {
+    id: string
+    toAgentObjectId: string
+    toAgentName: string
+    fromAgentObjectId: string
+    fromAgentName: string
+    message: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+  }
+
+  export type AgentMessageUncheckedCreateInput = {
+    id: string
+    toAgentObjectId: string
+    toAgentName: string
+    fromAgentObjectId: string
+    fromAgentName: string
+    message: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+  }
+
+  export type AgentMessageUpdateInput = {
+    toAgentObjectId?: StringFieldUpdateOperationsInput | string
+    toAgentName?: StringFieldUpdateOperationsInput | string
+    fromAgentObjectId?: StringFieldUpdateOperationsInput | string
+    fromAgentName?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AgentMessageUncheckedUpdateInput = {
+    toAgentObjectId?: StringFieldUpdateOperationsInput | string
+    toAgentName?: StringFieldUpdateOperationsInput | string
+    fromAgentObjectId?: StringFieldUpdateOperationsInput | string
+    fromAgentName?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AgentMessageCreateManyInput = {
+    id: string
+    toAgentObjectId: string
+    toAgentName: string
+    fromAgentObjectId: string
+    fromAgentName: string
+    message: string
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+  }
+
+  export type AgentMessageUpdateManyMutationInput = {
+    toAgentObjectId?: StringFieldUpdateOperationsInput | string
+    toAgentName?: StringFieldUpdateOperationsInput | string
+    fromAgentObjectId?: StringFieldUpdateOperationsInput | string
+    fromAgentName?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AgentMessageUncheckedUpdateManyInput = {
+    toAgentObjectId?: StringFieldUpdateOperationsInput | string
+    toAgentName?: StringFieldUpdateOperationsInput | string
+    fromAgentObjectId?: StringFieldUpdateOperationsInput | string
+    fromAgentName?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type AgentSecretCreateInput = {
     id: string
     apiKey: string
@@ -10150,6 +11360,39 @@ export namespace Prisma {
     description?: SortOrder
     userId?: SortOrder
     claimStatus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AgentMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    toAgentObjectId?: SortOrder
+    toAgentName?: SortOrder
+    fromAgentObjectId?: SortOrder
+    fromAgentName?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AgentMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    toAgentObjectId?: SortOrder
+    toAgentName?: SortOrder
+    fromAgentObjectId?: SortOrder
+    fromAgentName?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AgentMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    toAgentObjectId?: SortOrder
+    toAgentName?: SortOrder
+    fromAgentObjectId?: SortOrder
+    fromAgentName?: SortOrder
+    message?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
