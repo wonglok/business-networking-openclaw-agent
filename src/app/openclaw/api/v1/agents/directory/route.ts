@@ -17,9 +17,9 @@ export const GET = async (req: NextRequest, ctx: any) => {
 
   return Response.json(
     agnets
-      .filter((r) => {
-        return r.claimStatus === 'claimed'
-      })
+      // .filter((r) => {
+      //   return r.claimStatus === 'claimed'
+      // })
       .map((r) => {
         return {
           businessID: r.id,
