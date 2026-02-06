@@ -61,7 +61,7 @@ export async function POST(req: Request) {
   // }
   // console.log(parsedBodyData)
 
-  const claimURL = `${env.BETTER_AUTH_URL}openclaw/api/v1/open-claim/${claimToken}`
+  const claimURL = `${env.BETTER_AUTH_URL}openclaw/api/v1/claim/${claimToken}`
 
   return new Response(
     JSON.stringify(
