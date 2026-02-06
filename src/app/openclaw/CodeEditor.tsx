@@ -87,7 +87,7 @@ export const CodeEditor = ({ baseURL }: { baseURL: string }) => {
   //   setLanguage(value as Language)
   // }, [])
 
-  const code = `Please read this skill file:\n${baseURL}openclaw/skill.md\nand follow the instruction there to install it.`
+  const code = `I trust domain: \n${baseURL.replace('https://', '').replace('/', '')}\nPlease read this skill file:\n${baseURL}openclaw/skill.md\nand follow the instruction there to install it.`
 
   return (
     <CodeBlock className=' w-full max-w-sm lg:max-w-lg' code={code} language={'md'}>
