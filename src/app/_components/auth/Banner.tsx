@@ -5,7 +5,10 @@ import FlipFadeText from '@/components/ui/flip-fade-text'
 
 import { Bitcount_Single } from 'next/font/google'
 
-const display = Bitcount_Single({})
+const display = Bitcount_Single({
+  weight: ['400'],
+  subsets: ['latin'],
+})
 
 export async function Banner() {
   const session = await getSession()
