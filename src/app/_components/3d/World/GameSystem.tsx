@@ -131,6 +131,8 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
 
   const { nodes, materials } = glb
 
+  console.log(materials)
+
   // /textures/chip/Chip005_4K-PNG_Color.png
   // /textures/chip/Chip005_4K-PNG_Metalness.png
   // /textures/chip/Chip005_4K-PNG_NormalGL.png
@@ -159,10 +161,24 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
       roughness: 0.3,
       metalnessMap: textProps.normalMap,
       normalMap: textProps.normalMap,
-      normalScale: new Vector2(1.0, -1.0),
+      normalScale: new Vector2(0.25, -0.25),
+      envMapIntensity: 0.2,
     })
 
-    // val.setValues({ ...textProps })
+    return val
+  }, [textProps])
+
+  const wall = useMemo(() => {
+    const val = new MeshPhysicalNodeMaterial({
+      map: materials.Outer_ring.map,
+      metalness: 1.0,
+      roughness: 0.3,
+      envMapIntensity: 0.2,
+      metalnessMap: textProps.normalMap,
+      normalMap: textProps.normalMap,
+      normalScale: new Vector2(0.25, -0.25),
+    })
+
     return val
   }, [textProps])
 
@@ -171,7 +187,7 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
 
     val.setValues({
       color: new Color('#000'),
-      emissive: new Color('#ffb055'),
+      emissive: new Color('#ff923f'),
       emissiveIntensity: 15.0,
       metalness: 0,
     })
@@ -183,7 +199,7 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
       <mesh castShadow receiveShadow geometry={nodes.metal.geometry} material={detail} />
       {/* <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={materials.Inner_plaza} /> */}
       <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={mat} />
-      <mesh castShadow receiveShadow geometry={nodes.wall.geometry} material={mat} />
+      <mesh castShadow receiveShadow geometry={nodes.wall.geometry} material={wall} />
       <mesh castShadow receiveShadow geometry={nodes.glass.geometry} material={materials.Glass} />
       <mesh castShadow receiveShadow geometry={nodes.trees.geometry} material={materials.Tress} />
       <mesh castShadow receiveShadow geometry={nodes.inner001.geometry} material={mat} />
