@@ -10,6 +10,7 @@ export default async function Page({}) {
     return (
       <div className='w-full h-full flex items-center justify-center'>
         <div>
+          <div>Please login to claim / activate agent.</div>
           <MarkNeedRedirect></MarkNeedRedirect>
           <LoginButton></LoginButton>
         </div>
