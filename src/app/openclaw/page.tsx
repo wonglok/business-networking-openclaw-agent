@@ -1,4 +1,5 @@
 import { HomeButton } from '../_components/auth/HomeButton'
+import { ServerAuthButton } from '../_components/auth/ServerAuthButton'
 import { CodeEditor } from './CodeEditor'
 
 export default function OpenClaw() {
@@ -19,6 +20,9 @@ export default function OpenClaw() {
       </div>
       <div className=' absolute top-3 left-3'>
         <HomeButton></HomeButton>
+      </div>
+      <div className=' absolute top-3 right-3 '>
+        <ServerAuthButton></ServerAuthButton>
       </div>
     </>
   )
