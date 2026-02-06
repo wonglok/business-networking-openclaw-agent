@@ -15,6 +15,7 @@ import { ClawButton } from './_components/auth/ClawButton'
 const GamePage = dynamic(() => import('./_components/3d/World/GamePage').then((r) => r.GamePage), {})
 
 export default async function Home() {
+  //
   return (
     <HydrateClient>
       <CheckClaim></CheckClaim>

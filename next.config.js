@@ -18,6 +18,10 @@ const config = {
             config.devServer = config.devServer || {}
             config.devServer.allowedHosts = 'all'
 
+            config.devServer.client = {
+                progress: true,
+                webSocketURL: "ws://0.0.0.0:3000/ws",
+            }
         }
 
         return config
