@@ -15,7 +15,7 @@ import { useFrame } from '@react-three/fiber'
 // import Avatar from './Avatar'
 import { AvatarRPM } from './AvatarRPM'
 import { useAppState } from './useAppState'
-import { Color, RepeatWrapping, Scene, Vector3 } from 'three'
+import { Color, RepeatWrapping, Scene, Vector2, Vector3 } from 'three'
 import { AvatarAI } from './AvatarAI'
 import { MeshPhysicalNodeMaterial } from 'three/webgpu'
 // import { findPathByObjects } from './simple-nav'
@@ -139,9 +139,10 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
     {
       // emissiveMap: `/textures/chip/Chip005_4K-PNG_Color.png`,
       // map: `/textures/chip/Chip005_4K-PNG_Color.png`,
-      // metalnessMap: `/textures/chip/Chip005_4K-PNG_Metalness.png`,
+      metalnessMap: `/textures/chip/Chip005_4K-PNG_Metalness.png`,
       roughnessMap: `/textures/chip/Chip005_4K-PNG_Roughness.png`,
       normalMap: `/textures/chip/Chip005_4K-PNG_NormalGL.png`,
+      displacementMap: `/textures/chip/Chip005_1K-JPG_Displacement.jpg`,
     },
     (tex) => {
       Object.values(tex).forEach((tex2) => {
@@ -157,20 +158,35 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
       roughness: 0.0,
       roughnessMap: textProps.roughnessMap,
       normalMap: textProps.normalMap,
+      normalScale: new Vector2(0.3, -0.3),
     })
+
     // val.setValues({ ...textProps })
+    return val
+  }, [textProps])
+
+  const detail = useMemo(() => {
+    const val = new MeshPhysicalNodeMaterial({})
+
+    // val.setValues({ ...materials.Detailing })
+    val.setValues({
+      color: new Color('#000'),
+      emissive: new Color('#ffd498'),
+      emissiveIntensity: 2,
+      metalness: 0,
+    })
     return val
   }, [textProps])
 
   return (
     <group dispose={null} position={[0, -2, 0]}>
-      <mesh castShadow receiveShadow geometry={nodes.metal.geometry} material={materials.Detailing} />
+      <mesh castShadow receiveShadow geometry={nodes.metal.geometry} material={detail} />
       {/* <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={materials.Inner_plaza} /> */}
       <mesh castShadow receiveShadow geometry={nodes.inner.geometry} material={mat} />
-      <mesh castShadow receiveShadow geometry={nodes.wall.geometry} material={materials.Outer_ring} />
+      <mesh castShadow receiveShadow geometry={nodes.wall.geometry} material={mat} />
       <mesh castShadow receiveShadow geometry={nodes.glass.geometry} material={materials.Glass} />
       <mesh castShadow receiveShadow geometry={nodes.trees.geometry} material={materials.Tress} />
-      <mesh castShadow receiveShadow geometry={nodes.inner001.geometry} material={materials.floor} />
+      <mesh castShadow receiveShadow geometry={nodes.inner001.geometry} material={mat} />
       <mesh castShadow receiveShadow geometry={nodes.waterpond.geometry} material={materials.water} />
       <mesh castShadow receiveShadow geometry={nodes.waterpond001.geometry} material={materials.Inner_plaza} />
       <mesh

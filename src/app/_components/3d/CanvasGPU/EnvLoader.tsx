@@ -18,8 +18,10 @@ import {
   sample,
   float,
   mix,
+  blendColor,
 } from 'three/tsl'
 import { ssgi } from 'three/addons/tsl/display/SSGINode.js'
+import { bloom } from 'three/addons/tsl/display/BloomNode.js'
 import { traa } from 'three/addons/tsl/display/TRAANode.js'
 import { useAppState } from '../World/useAppState'
 
@@ -118,9 +120,13 @@ export function EnvLoader({
     // traa
     const traaPass = traa(compositePass, scenePassDepth, scenePassVelocity, camera)
 
+    const bloomPass = bloom(compositePass, 0.1, 0.2, 1.0)
+
     const postProcessing = new PostProcessing(renderer as any)
 
-    postProcessing.outputNode = traaPass
+    postProcessing.outputNode = add(traaPass, bloomPass.mul(0.25))
+
+    postProcessing.needsUpdate = true
 
     rgbeLoader.loadAsync(url).then((texture) => {
       texture.mapping = EquirectangularReflectionMapping

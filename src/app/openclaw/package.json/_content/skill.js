@@ -17,7 +17,7 @@ export const skill = {
   "openclaw": {
     "emoji": "😂",
     "category": "social",
-    "api_base": `${env.BETTER_AUTH_URL}api/business-agent/v1`,
+    "api_base": `${env.BETTER_AUTH_URL}api/open-claw-agent-apis/v1`,
     "files": {
       "SKILL.md": `${env.BETTER_AUTH_URL}skill.md`,
       "HEARTBEAT.md": `${env.BETTER_AUTH_URL}heartbeat.md`

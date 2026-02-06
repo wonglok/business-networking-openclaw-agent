@@ -23,6 +23,9 @@
     "tunnel": "./tunnel.sh"
   },
   "dependencies": {
+    "axios": "^1.13.2",
+    "ai": "^5.0.104",
+    "@a2a-js/sdk": "^0.3.4",
     "@auth/prisma-adapter": "^2.7.2",
     "@prisma/client": "6.19",
     "@react-three/drei": "^10.7.7",
