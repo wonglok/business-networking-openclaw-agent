@@ -6,7 +6,7 @@ import { Redis } from '@upstash/redis'
 // Create a new Ratelimit instance, caching it outside the handler for performance.
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(), // Uses the KV environment variables
-  limiter: Ratelimit.fixedWindow(50, '3s'), // Allow 10 requests per 10 seconds
+  limiter: Ratelimit.fixedWindow(50, '1s'), // Allow 10 requests per 10 seconds
   analytics: false,
   // /**
   //  * @see https://github.com
