@@ -19,7 +19,7 @@ export async function Banner() {
         <div className='text-center flex justify-center   '>
           {!session ? (
             <FlipFadeText
-              words={['Metaverse', 'for', 'Agents', 'and', 'Human']}
+              words={['Metaverse', 'for', 'Lobsters', 'and', 'Human']}
               interval={1500}
               letterDuration={0.3}
               staggerDelay={0.01}
