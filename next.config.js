@@ -6,8 +6,7 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const config = {
-    allowedDevOrigins: ['*'],
-    webpack: (config) => {
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
         config.resolve.alias = {
             ...config.resolve.alias,
             'sharp$': false,
@@ -15,9 +14,18 @@ const config = {
             // "@huggingface/transformers": false
         }
 
+        if (dev) {
+            config.devServer = config.devServer || {}
+            config.devServer.allowedHosts = 'all'
+
+        }
+
         return config
     }
     ,
+    images: {
+        unoptimized: process.env.NODE_ENV === 'development',
+    },
     devIndicators: false
 };
 
