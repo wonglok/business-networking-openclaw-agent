@@ -90,7 +90,7 @@ export const CodeEditor = ({ baseURL }: { baseURL: string }) => {
   const code = `Please read this skill file:\n${baseURL}openclaw/skill.md\nand follow the instruction there to install it.`
 
   return (
-    <CodeBlock className=' max-w-lg' code={code} language={'md'}>
+    <CodeBlock className=' w-full max-w-sm lg:max-w-lg' code={code} language={'md'}>
       <CodeBlockHeader>
         <CodeBlockTitle>
           <FileIcon size={14} />

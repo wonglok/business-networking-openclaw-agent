@@ -30,7 +30,6 @@ export default async function Home() {
         <div>
           <Banner></Banner>
         </div>
-        <div></div>
       </div>
 
       <div className=' absolute top-3 right-3 '>
