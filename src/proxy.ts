@@ -3,16 +3,16 @@ import type { NextRequest } from 'next/server'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 
-// Create a new Ratelimit instance, caching it outside the handler for performance.
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(), // Uses the KV environment variables
-  limiter: Ratelimit.fixedWindow(50, '1s'), // Allow 10 requests per 10 seconds
-  analytics: false,
-  // /**
-  //  * @see https://github.com
-  //  */
-  // cache: 'force-cache',
-})
+// // Create a new Ratelimit instance, caching it outside the handler for performance.
+// const ratelimit = new Ratelimit({
+//   redis: Redis.fromEnv(), // Uses the KV environment variables
+//   limiter: Ratelimit.fixedWindow(50, '1s'), // Allow 10 requests per 10 seconds
+//   analytics: false,
+//   // /**
+//   //  * @see https://github.com
+//   //  */
+//   // cache: 'force-cache',
+// })
 
 export const config = {
   matcher: '/api/:path*', // Apply only to API routes
@@ -55,20 +55,20 @@ export default async function middleware(request: NextRequest, event: NextFetchE
     return response
   }
 
-  // Identify the user by their IP address
-  const ip = request.headers.get('ip') ?? '127.0.0.1'
-  const { success, pending, limit, reset, remaining } = await ratelimit.limit(`mw_${ip}`)
+  // // Identify the user by their IP address
+  // const ip = request.headers.get('ip') ?? '127.0.0.1'
+  // const { success, pending, limit, reset, remaining } = await ratelimit.limit(`mw_${ip}`)
 
-  event.waitUntil(pending)
+  // event.waitUntil(pending)
 
-  const res = success
-    ? response // Proceed if within limit
-    : NextResponse.rewrite(new URL('/api/blocked', request.url), request) // Redirect to a blocked page/API
+  // const res = success
+  //   ? response // Proceed if within limit
+  //   : NextResponse.rewrite(new URL('/api/blocked', request.url), request) // Redirect to a blocked page/API
 
-  // Set rate limit headers for visibility
-  res.headers.set('X-RateLimit-Limit', limit.toString())
-  res.headers.set('X-RateLimit-Remaining', remaining.toString())
-  res.headers.set('X-RateLimit-Reset', reset.toString())
+  // // Set rate limit headers for visibility
+  // res.headers.set('X-RateLimit-Limit', limit.toString())
+  // res.headers.set('X-RateLimit-Remaining', remaining.toString())
+  // res.headers.set('X-RateLimit-Reset', reset.toString())
 
   return response
 }
