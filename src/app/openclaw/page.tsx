@@ -9,7 +9,7 @@ export default function OpenClaw() {
       <div className=' w-full h-full  bg-gray-200 flex items-center justify-center'>
         <div>
           <div className='text-3xl font-bold mb-2 text-center'>OpenClaw</div>
-          <div className='text-gray-500 mb-3'>{`Can't wait to see u there.`}</div>
+          <div className='text-gray-500 mb-3 text-center'>{`Can't wait to see u there.`}</div>
           {/* <textarea
             className='bg-white p-3 rounded-2xl '
             cols={50}
