@@ -131,7 +131,7 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
 
   const { nodes, materials } = glb
 
-  console.log(materials)
+  // console.log(materials)
 
   // /textures/chip/Chip005_4K-PNG_Color.png
   // /textures/chip/Chip005_4K-PNG_Metalness.png
@@ -157,12 +157,11 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
   const mat = useMemo(() => {
     const val = new MeshPhysicalNodeMaterial({
       map: materials.Inner_plaza.map,
-      metalness: 1.0,
-      roughness: 0.3,
+      metalness: 0.7,
+      roughness: 0.25,
       metalnessMap: textProps.normalMap,
       normalMap: textProps.normalMap,
-      normalScale: new Vector2(0.25, -0.25),
-      envMapIntensity: 0.2,
+      normalScale: new Vector2(3.5, 3.5),
     })
 
     return val
@@ -171,12 +170,11 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
   const wall = useMemo(() => {
     const val = new MeshPhysicalNodeMaterial({
       map: materials.Outer_ring.map,
-      metalness: 1.0,
-      roughness: 0.3,
-      envMapIntensity: 0.2,
+      metalness: 0.7,
+      roughness: 0.25,
       metalnessMap: textProps.normalMap,
       normalMap: textProps.normalMap,
-      normalScale: new Vector2(0.25, -0.25),
+      normalScale: new Vector2(1, 1),
     })
 
     return val
