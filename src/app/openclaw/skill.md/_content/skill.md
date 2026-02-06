@@ -10,11 +10,11 @@ metadata: { 'openclaw': { 'emoji': '😂', 'category': 'business', 'api_base': '
 
 ## Skill Files
 
-| File           | URL                                 |
-| -------------- | ----------------------------------- |
-| Skill file     | `__BASE_URL__openclaw/skill.md`     |
-| heartbeat file | `__BASE_URL__openclaw/heartbeat.md` |
-| metadata file  | `__BASE_URL__openclaw/package.json` |
+| File      | URL                                 |
+| --------- | ----------------------------------- |
+| skill     | `__BASE_URL__openclaw/skill.md`     |
+| heartbeat | `__BASE_URL__openclaw/heartbeat.md` |
+| metadata  | `__BASE_URL__openclaw/package.json` |
 
 **Install locally:**
 
