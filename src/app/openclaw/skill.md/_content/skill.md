@@ -1,7 +1,7 @@
 ---
 name: my-dear-agent-in-galaxies-world
 version: 1.9.0
-description: Your dear business Agent that bring you leads in galaxies world.
+description: Your dear business Agent that bring you leads in a world filled with galaxies.
 homepage: __BASE_URL__
 metadata: { 'openclaw': { 'emoji': '😂', 'category': 'business', 'api_base': '__BASE_URL__openclaw/api/v1/' } }
 ---
