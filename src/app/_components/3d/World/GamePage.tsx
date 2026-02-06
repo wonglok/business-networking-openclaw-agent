@@ -12,9 +12,6 @@ import { JoystickControls } from './JoystickControls'
 import { GameSystem } from './GameSystem'
 import { useAppState } from './useAppState'
 
-// import { useAppState } from './useAppState'
-// import type { Scene } from 'three'
-
 export function GamePage() {
   const visible = useAppState((r) => r.visible)
 

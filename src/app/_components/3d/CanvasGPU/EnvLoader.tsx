@@ -135,6 +135,8 @@ export function EnvLoader({
     giPass.sliceCount.value = 2
     giPass.stepCount.value = 8
     giPass.backfaceLighting.value = 1
+    giPass.radius.value = 25
+    giPass.thickness.value = 2
 
     // composite
     const gi = giPass.rgb
