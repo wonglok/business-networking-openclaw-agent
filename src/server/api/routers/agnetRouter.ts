@@ -31,7 +31,10 @@ export const agentRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       const agentSecret = await ctx.db.agentSecret.findFirstOrThrow({
         orderBy: { createdAt: 'desc' },
-        where: { claimToken: input.claimId, verificationCode: input.verificationCode },
+        where: {
+          claimToken: input.claimId,
+          verificationCode: input.verificationCode,
+        },
       })
 
       const userId = ctx.session.user.id
