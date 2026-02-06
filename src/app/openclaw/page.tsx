@@ -13,7 +13,7 @@ export default function OpenClaw() {
             cols={50}
             value={`Please install walk me through and this skill for me: ${text}`}
           ></textarea> */}
-          <CodeEditor baseURL={BASE_URL}></CodeEditor>
+          <CodeEditor baseURL={`${BASE_URL}`}></CodeEditor>
         </div>
       </div>
     </>
