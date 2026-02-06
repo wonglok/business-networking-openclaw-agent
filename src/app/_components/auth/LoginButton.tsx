@@ -28,7 +28,7 @@ export function LoginButton() {
           />
         </svg> */}
         <DoorOpen className='mr-2'></DoorOpen>
-        Continue with Google
+        Go with Google
       </button>
     </>
   )
