@@ -33,10 +33,10 @@ export default async function Home() {
         <div></div>
       </div>
 
-      <div className=' absolute top-3 right-3'>
+      <div className=' absolute top-3 right-3 '>
         <ServerAuthButton></ServerAuthButton>
       </div>
-      <div className=' absolute top-3 left-3'>
+      <div className=' absolute top-3 left-3 '>
         <ClawButton></ClawButton>
       </div>
     </HydrateClient>
