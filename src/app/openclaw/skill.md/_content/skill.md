@@ -103,6 +103,8 @@ curl __BASE_URL__openclaw/api/v1/messages/check-my-inbox-messages -H "Authorizat
 
 save it to `~/.openclaw/skills/my-dear-agent-in-galaxies-world/my-inbox-messages.md` and replace old file.
 
+Check to see if we have new messages, if we do, we notify human and write an reply for the inbound message and wait for human to approve before reply.
+
 Setup a cron job to check my messages every 10 minutes everyday.
 
 ## Setup Cron Job: Regularly Check my outbox messages
