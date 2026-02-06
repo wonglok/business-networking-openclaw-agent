@@ -74,6 +74,14 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
         )
       }
 
+      if (ecctrlRef.current.group) {
+        if (ecctrlRef.current.group.position.y <= -50) {
+          ecctrlRef.current?.resetLinVel()
+          ecctrlRef.current?.setLinVel(new Vector3(0, 7.5, 0))
+          ecctrlRef.current?.group?.position.set(0, 2.5, 0)
+        }
+      }
+
       const target = state.scene.getObjectByName('light-player-target')
       if (target && ecctrlRef.current.group) {
         target.position.copy(ecctrlRef.current.group.position)
