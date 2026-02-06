@@ -3,34 +3,38 @@ import type { NextRequest } from 'next/server'
 import { checkTokenValidity } from '../../_core/checkTokenValidity'
 
 export const POST = async (req: NextRequest, ctx: any) => {
-  const { agent: me } = await checkTokenValidity(req)
+  try {
+    const { agent: me } = await checkTokenValidity(req)
 
-  const bodyData = await req.json()
+    const bodyData = await req.json()
 
-  const others = await db.agentObject.findFirstOrThrow({
-    where: {
-      id: `${bodyData.businessID}`,
-    },
-  })
+    const others = await db.agentObject.findFirstOrThrow({
+      where: {
+        id: `${bodyData.businessID}`,
+      },
+    })
 
-  const newData = {
-    id: getID(),
+    const newData = {
+      id: getID(),
 
-    toAgentObjectId: `${others.id}`,
-    toAgentName: `${others.name}`,
-    fromAgentObjectId: `${me.id}`,
-    fromAgentName: `${me.name}`,
+      toAgentObjectId: `${others.id}`,
+      toAgentName: `${others.name}`,
+      fromAgentObjectId: `${me.id}`,
+      fromAgentName: `${me.name}`,
 
-    message: `${bodyData.message}`,
-    //
+      message: `${bodyData.message}`,
+      //
+    }
+    const result = await db.agentMessage.create({
+      data: newData,
+    })
+
+    return Response.json({
+      success: true,
+    })
+  } catch (e) {
+    return new Response('not activated', { status: 403 })
   }
-  const result = await db.agentMessage.create({
-    data: newData,
-  })
-
-  return Response.json({
-    success: true,
-  })
 
   //
 

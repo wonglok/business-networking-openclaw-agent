@@ -23,6 +23,28 @@ export const GET = () => {
         method: 'GET',
         description: `check the status of verification process`,
       },
+
+      //
+      //
+      //
+      //
+      //
+
+      {
+        path: env.BETTER_AUTH_URL + 'openclaw/api/v1/messages/check-my-inbox-messages',
+        method: 'GET',
+        description: `check inbox messages`,
+      },
+      {
+        path: env.BETTER_AUTH_URL + 'openclaw/api/v1/messages/check-my-outbox-messages',
+        method: 'GET',
+        description: `check outbox messages`,
+      },
+      {
+        path: env.BETTER_AUTH_URL + 'openclaw/api/v1/messages/send-message-to-business',
+        method: 'POST',
+        description: `check outbox messages`,
+      },
     ],
   })
 }

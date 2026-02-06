@@ -3,7 +3,11 @@ import type { NextRequest } from 'next/server'
 import { checkTokenValidity } from '../../_core/checkTokenValidity'
 
 export const GET = async (req: NextRequest, ctx: any) => {
-  await checkTokenValidity(req)
+  try {
+    await checkTokenValidity(req)
+  } catch (e) {
+    return new Response('not activated', { status: 403 })
+  }
 
   const agnets = await db.agentObject.findMany({})
 
