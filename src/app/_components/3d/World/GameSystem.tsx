@@ -180,6 +180,19 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
     return val
   }, [textProps])
 
+  const middle = useMemo(() => {
+    const val = new MeshPhysicalNodeMaterial({
+      color: new Color('#ffcd7d'),
+      metalness: 0.7,
+      roughness: 0.25,
+      metalnessMap: textProps.normalMap,
+      normalMap: textProps.normalMap,
+      normalScale: new Vector2(1, 1),
+    })
+
+    return val
+  }, [textProps])
+
   const detail = useMemo(() => {
     const val = new MeshPhysicalNodeMaterial({})
 
@@ -200,7 +213,7 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
       <mesh castShadow receiveShadow geometry={nodes.wall.geometry} material={wall} />
       <mesh castShadow receiveShadow geometry={nodes.glass.geometry} material={materials.Glass} />
       <mesh castShadow receiveShadow geometry={nodes.trees.geometry} material={materials.Tress} />
-      <mesh castShadow receiveShadow geometry={nodes.inner001.geometry} material={mat} />
+      <mesh castShadow receiveShadow geometry={nodes.inner001.geometry} material={middle} />
       <mesh castShadow receiveShadow geometry={nodes.waterpond.geometry} material={materials.water} />
       <mesh castShadow receiveShadow geometry={nodes.waterpond001.geometry} material={materials.Inner_plaza} />
       <mesh
