@@ -65,8 +65,8 @@ export function EnvLoader({
     object.sunLight.shadow.camera.bottom = -5.123 * 4
     object.sunLight.shadow.camera.top = 5.123 * 4
 
-    object.sunLight.shadow.mapSize.width = 1024
-    object.sunLight.shadow.mapSize.height = 1024
+    object.sunLight.shadow.mapSize.width = 512
+    object.sunLight.shadow.mapSize.height = 512
     object.sunLight.shadow.radius = 1
     object.sunLight.shadow.bias = -0.00035
 
@@ -88,18 +88,18 @@ export function EnvLoader({
     object.moonLight.shadow.camera.bottom = -5.123 * 4
     object.moonLight.shadow.camera.top = 5.123 * 4
 
-    object.moonLight.shadow.mapSize.width = 1024
-    object.moonLight.shadow.mapSize.height = 1024
+    object.moonLight.shadow.mapSize.width = 512
+    object.moonLight.shadow.mapSize.height = 512
     object.moonLight.shadow.radius = 1
     object.moonLight.shadow.bias = -0.00035
 
     //
     object.sunLight.shadow.intensity = 1.0
-    object.sunLight.intensity = 1.0
+    object.sunLight.intensity = 5.0
     object.moonLight.shadow.intensity = 1.0
-    object.moonLight.intensity = 1.0
+    object.moonLight.intensity = 5.0
 
-    scene.environmentIntensity = 1.0
+    scene.environmentIntensity = 0.35
 
     const scenePass = pass(scene, camera)
     scenePass.setMRT(
