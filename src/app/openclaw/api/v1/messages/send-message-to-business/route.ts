@@ -28,7 +28,9 @@ export const POST = async (req: NextRequest, ctx: any) => {
     data: newData,
   })
 
-  return result
+  return Response.json({
+    success: true,
+  })
 
   //
 
