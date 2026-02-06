@@ -47,7 +47,7 @@ export function EnvLoader({
   useEffect(() => {
     const object: any = new Object3D()
 
-    const dirL = new DirectionalLight(0xffffff, 1)
+    const dirL = new DirectionalLight(0xffffff, 15)
     dirL.position.set(20, 10, 0)
 
     object.sunLight = dirL
@@ -70,10 +70,36 @@ export function EnvLoader({
     object.sunLight.shadow.radius = 1
     object.sunLight.shadow.bias = -0.00035
 
-    object.sunLight.shadow.intensity = 1.0
-    object.sunLight.intensity = 2.0
+    const dirR = new DirectionalLight(0xffffff, 15)
+    dirR.position.set(-20, 10, 0)
 
-    scene.environmentIntensity = 0.5
+    object.moonLight = dirR
+    object.moonLight.castShadow = true
+
+    object.add(object.moonLight)
+    object.add(object.moonLight.target)
+
+    object.moonLight.castShadow = true
+    object.moonLight.shadow.camera.near = 0
+    object.moonLight.shadow.camera.far = 150 * 2
+
+    object.moonLight.shadow.camera.left = -5.123 * 4
+    object.moonLight.shadow.camera.right = 5.123 * 4
+    object.moonLight.shadow.camera.bottom = -5.123 * 4
+    object.moonLight.shadow.camera.top = 5.123 * 4
+
+    object.moonLight.shadow.mapSize.width = 1024
+    object.moonLight.shadow.mapSize.height = 1024
+    object.moonLight.shadow.radius = 1
+    object.moonLight.shadow.bias = -0.00035
+
+    //
+    object.sunLight.shadow.intensity = 1.0
+    object.sunLight.intensity = 1.0
+    object.moonLight.shadow.intensity = 1.0
+    object.moonLight.intensity = 1.0
+
+    scene.environmentIntensity = 1.0
 
     const scenePass = pass(scene, camera)
     scenePass.setMRT(

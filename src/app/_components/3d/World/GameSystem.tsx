@@ -140,13 +140,13 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
       // emissiveMap: `/textures/chip/Chip005_4K-PNG_Color.png`,
       // map: `/textures/chip/Chip005_4K-PNG_Color.png`,
       metalnessMap: `/textures/chip/Chip005_4K-PNG_Metalness.png`,
-      roughnessMap: `/textures/chip/Chip005_4K-PNG_Roughness.png`,
+      // roughnessMap: `/textures/chip/Chip005_4K-PNG_Roughness.png`,
       normalMap: `/textures/chip/Chip005_4K-PNG_NormalGL.png`,
       displacementMap: `/textures/chip/Chip005_1K-JPG_Displacement.jpg`,
     },
     (tex) => {
       Object.values(tex).forEach((tex2) => {
-        tex2.repeat.set(20, 20)
+        tex2.repeat.set(15, 15)
         tex2.wrapS = tex2.wrapT = RepeatWrapping
       })
     },
@@ -156,7 +156,8 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
     const val = new MeshPhysicalNodeMaterial({
       metalness: 1.0,
       roughness: 0.0,
-      roughnessMap: textProps.roughnessMap,
+      // roughnessMap: textProps.roughnessMap,
+      metalnessMap: textProps.normalMap,
       normalMap: textProps.normalMap,
       normalScale: new Vector2(0.3, -0.3),
     })
@@ -172,7 +173,7 @@ function ContentGL({ glbSRC }: { glbSRC: string }) {
     val.setValues({
       color: new Color('#000'),
       emissive: new Color('#ffd498'),
-      emissiveIntensity: 2,
+      emissiveIntensity: 5,
       metalness: 0,
     })
     return val
