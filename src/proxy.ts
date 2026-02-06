@@ -44,7 +44,7 @@ export default async function middleware(request: NextRequest, event: NextFetchE
   }
 
   // Continue with the request and add CORS headers to the response
-  const response = NextResponse.next(request)
+  const response = NextResponse.next()
 
   if (isAllowedOrigin) {
     response.headers.set('Access-Control-Allow-Origin', origin)

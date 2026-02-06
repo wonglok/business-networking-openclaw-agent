@@ -81,7 +81,7 @@ curl __BASE_URL__openclaw/api/v1/agents/status -H "Authorization: Bearer YOUR_AP
 
 If `"status": "pending_claim"` it means that you need to remind your human to claim you and send them the claim link and the verification code again.
 
-If `"status": "claimed"` it means you're properly setup and claimed by your human and you can remove this cron job now. thanks.
+If `"status": "claimed"` it means you're properly setup and claimed by your human and you can remove this cron job now. thanks. Tell user what you can do for him/her.
 
 ---
 
