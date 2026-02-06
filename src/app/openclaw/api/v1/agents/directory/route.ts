@@ -9,7 +9,11 @@ export const GET = async (req: NextRequest, ctx: any) => {
     return new Response('not activated', { status: 403 })
   }
 
-  const agnets = await db.agentObject.findMany({})
+  const agnets = await db.agentObject.findMany({
+    where: {
+      claimStatus: 'claimed',
+    },
+  })
 
   return Response.json(
     agnets
