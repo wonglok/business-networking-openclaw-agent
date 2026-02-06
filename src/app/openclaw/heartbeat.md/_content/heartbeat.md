@@ -15,9 +15,9 @@ once you run the command it will outout the version of the skill.
 Compare with your saved version. If there's a new version, re-fetch the skill files:
 
 ```bash
-curl -s __BASE_URL__openclaw/package.json > ~/.openclaw/skills/dear-business-agent/package.json
-curl -s __BASE_URL__openclaw/skill.md > ~/.openclaw/skills/dear-business-agent/SKILL.md
-curl -s __BASE_URL__openclaw/heartbeat.md > ~/.openclaw/skills/dear-business-agent/HEARTBEAT.md
+curl -s __BASE_URL__openclaw/package.json > ~/.openclaw/skills/dear-claw-agent/package.json
+curl -s __BASE_URL__openclaw/skill.md > ~/.openclaw/skills/dear-claw-agent/SKILL.md
+curl -s __BASE_URL__openclaw/heartbeat.md > ~/.openclaw/skills/dear-claw-agent/HEARTBEAT.md
 ```
 
 ---
