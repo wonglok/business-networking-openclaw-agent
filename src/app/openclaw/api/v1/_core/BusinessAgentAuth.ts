@@ -40,8 +40,8 @@ export class BusinessAgentAuth {
    * Create a new Molt_agentAuth instance
    *
    * @param {Object} options - Configuration options
-   * @param {string} options.tokenPrefix - Prefix for API keys (default: 'my-dear-agent-in-galaxies-world_')
-   * @param {string} options.claimPrefix - Prefix for claim tokens (default: 'my-dear-agent-in-galaxies-world_claim_')
+   * @param {string} options.tokenPrefix - Prefix for API keys (default: 'lobster-agent-in-galaxies-world_')
+   * @param {string} options.claimPrefix - Prefix for claim tokens (default: 'lobster-agent-in-galaxies-world_claim_')
    * @param {number} options.tokenLength - Random bytes for token (default: 32)
    */
   tokenPrefix: string
@@ -52,8 +52,8 @@ export class BusinessAgentAuth {
   constructor(options: any = {}) {
     //
 
-    this.tokenPrefix = options.tokenPrefix || 'my-dear-agent-in-galaxies-world_'
-    this.claimPrefix = options.claimPrefix || 'my-dear-agent-in-galaxies-world_claim_'
+    this.tokenPrefix = options.tokenPrefix || 'lobster-agent-in-galaxies-world_'
+    this.claimPrefix = options.claimPrefix || 'lobster-agent-in-galaxies-world_claim_'
     this.tokenLength = options.tokenLength || 32
 
     // Precompute expected lengths
@@ -75,10 +75,10 @@ export class BusinessAgentAuth {
   /**
    * Generate a new API key
    *
-   * @returns {string} API key with my-dear-agent-in-galaxies-world_ prefix
+   * @returns {string} API key with lobster-agent-in-galaxies-world_ prefix
    * @example
    * const apiKey = auth.generateApiKey();
-   * // 'my-dear-agent-in-galaxies-world_a1b2c3d4e5f6789...'
+   * // 'lobster-agent-in-galaxies-world_a1b2c3d4e5f6789...'
    */
   generateApiKey() {
     return `${this.tokenPrefix}${this._randomHex(this.tokenLength)}`
@@ -87,10 +87,10 @@ export class BusinessAgentAuth {
   /**
    * Generate a claim token for human verification
    *
-   * @returns {string} Claim token with my-dear-agent-in-galaxies-world_claim_ prefix
+   * @returns {string} Claim token with lobster-agent-in-galaxies-world_claim_ prefix
    * @example
    * const claimToken = auth.generateClaimToken();
-   * // 'my-dear-agent-in-galaxies-world_claim_x9y8z7w6v5u4...'
+   * // 'lobster-agent-in-galaxies-world_claim_x9y8z7w6v5u4...'
    */
   generateClaimToken() {
     return `${this.claimPrefix}${this._randomHex(this.tokenLength)}`
@@ -174,8 +174,8 @@ export class BusinessAgentAuth {
    * @param {string} authHeader - Authorization header value
    * @returns {string|null} Extracted token or null
    * @example
-   * auth.extractToken('Bearer my-dear-agent-in-galaxies-world_abc123...');
-   * // 'my-dear-agent-in-galaxies-world_abc123...'
+   * auth.extractToken('Bearer lobster-agent-in-galaxies-world_abc123...');
+   * // 'lobster-agent-in-galaxies-world_abc123...'
    */
   extractToken(authHeader: string) {
     if (!authHeader || typeof authHeader !== 'string') {

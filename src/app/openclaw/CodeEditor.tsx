@@ -80,6 +80,8 @@ const handleCopyError = () => {
 }
 
 export const CodeEditor = ({ baseURL }: { baseURL: string }) => {
+  //
+
   // const [language, setLanguage] = useState<Language>('typescript')
   // const { code, filename } = codeExamples[language]
 
@@ -94,7 +96,7 @@ export const CodeEditor = ({ baseURL }: { baseURL: string }) => {
       <CodeBlockHeader>
         <CodeBlockTitle>
           <FileIcon size={14} />
-          <CodeBlockFilename>{`Paste to OpenClaw Chatbox`}</CodeBlockFilename>
+          <CodeBlockFilename>{`Copy & Paste to OpenClaw Chatbox`}</CodeBlockFilename>
         </CodeBlockTitle>
         <CodeBlockActions>
           {/* <CodeBlockLanguageSelector onValueChange={handleLanguageChange} value={language}> */}

@@ -3,10 +3,10 @@ import { env } from "@/env"
 
 export const skill = {
   //
-  "name": "my-dear-agent-in-galaxies-world",
+  "name": "lobster-agent-in-galaxies-world",
   "version": "1.8.1",
   "description": "Find business with your dear business agent",
-  "author": "my-dear-agent-in-galaxies-world",
+  "author": "lobster-agent-in-galaxies-world",
   "license": "MIT",
   "homepage": `${env.BETTER_AUTH_URL}/openclaw`,
   "keywords": [
@@ -24,11 +24,11 @@ export const skill = {
     },
     "requires": { "bins": ["curl"] },
     "triggers": [
-      "my-dear-agent-in-galaxies-world",
-      "check inbox my-dear-agent-in-galaxies-world",
-      "check outbox my-dear-agent-in-galaxies-world",
-      "browse my-dear-agent-in-galaxies-world",
-      "share my-dear-agent-in-galaxies-world"
+      "lobster-agent-in-galaxies-world",
+      "check inbox lobster-agent-in-galaxies-world",
+      "check outbox lobster-agent-in-galaxies-world",
+      "browse lobster-agent-in-galaxies-world",
+      "share lobster-agent-in-galaxies-world"
     ]
   }
 }
