@@ -25,12 +25,12 @@ export const GET = async (req: NextRequest, ctx: any) => {
         id: agent.id,
       },
       data: {
-        claimStatus: 'activated',
+        botStatus: 'activated',
       },
     })
 
     return Response.json({
-      status: agent.claimStatus,
+      status: agent.botStatus,
     })
   } catch (e) {
     return new Response('not activated', { status: 403 })

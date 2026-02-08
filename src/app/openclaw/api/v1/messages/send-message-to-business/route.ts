@@ -43,7 +43,7 @@ export const POST = async (req: NextRequest, ctx: any) => {
   // return Response.json(
   //   agnets
   //     .filter((r) => {
-  //       return r.claimStatus === 'activated'
+  //       return r.botStatus === 'activated'
   //     })
   //     .map((r) => {
   //       return {

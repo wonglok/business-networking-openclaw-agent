@@ -99,7 +99,7 @@ export const agentRouter = createTRPCRouter({
           id: agentObjId,
           userId: ctx.session.user.id,
 
-          claimStatus: 'not-connected',
+          botStatus: 'not-connected',
           name: input.name,
           description: input.description,
         },
@@ -150,7 +150,7 @@ export const agentRouter = createTRPCRouter({
         },
       })
 
-      if (agentObject.claimStatus === 'activated') {
+      if (agentObject.botStatus === 'activated') {
         throw new TRPCError({
           message: 'Bot is already activated',
           code: 'FORBIDDEN',
@@ -170,7 +170,7 @@ export const agentRouter = createTRPCRouter({
         },
         data: {
           //
-          claimStatus: `activated`,
+          botStatus: `activated`,
           userId: userId,
           //
         },
@@ -181,7 +181,7 @@ export const agentRouter = createTRPCRouter({
       return { ok: true }
     }),
 
-  checkClaimStatusOfCode: protectedProcedure
+  checkbotStatusOfCode: protectedProcedure
     .input(
       z.object({
         //
@@ -200,7 +200,7 @@ export const agentRouter = createTRPCRouter({
         },
       })
 
-      return agentObject.claimStatus
+      return agentObject.botStatus
     }),
 
   // getSecretMessage: protectedProcedure.query(() => {

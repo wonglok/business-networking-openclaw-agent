@@ -30,7 +30,7 @@ export function Claim({ session }: any) {
 
   const claim = api.agent.claimBot.useMutation({})
 
-  const claimStatus = api.agent.checkClaimStatusOfCode.useQuery({
+  const botStatus = api.agent.checkbotStatusOfCode.useQuery({
     claimId: `${claimId}`,
   })
 
@@ -40,7 +40,7 @@ export function Claim({ session }: any) {
 
   const [verificationCode, setCode] = useState('')
 
-  if (claimStatus.isLoading) {
+  if (botStatus.isLoading) {
     return (
       <>
         <div className='p-5 w-6/12'>Loading...</div>
@@ -61,7 +61,7 @@ export function Claim({ session }: any) {
               <Input disabled value={claimId} />
             </Field>
 
-            {claimStatus.data !== 'activated' && (
+            {botStatus.data !== 'activated' && (
               <Field>
                 <FieldLabel htmlFor='verificationCode'>Verfiication Code</FieldLabel>
                 <FieldDescription>Claim the bot to be you.</FieldDescription>
@@ -76,7 +76,7 @@ export function Claim({ session }: any) {
               </Field>
             )}
 
-            {claimStatus.data !== 'activated' && (
+            {botStatus.data !== 'activated' && (
               <Field>
                 <Button
                   onClick={() => {
@@ -93,7 +93,7 @@ export function Claim({ session }: any) {
                           toast.success('Successfully claim the bot to be yours.', {
                             position: 'top-center',
                           })
-                          claimStatus.refetch()
+                          botStatus.refetch()
                         }
                       })
                   }}
@@ -103,13 +103,13 @@ export function Claim({ session }: any) {
               </Field>
             )}
 
-            {claimStatus.data === 'activated' && (
+            {botStatus.data === 'activated' && (
               <Field>
                 <Button disabled>This Bot is activated</Button>
               </Field>
             )}
 
-            {claimStatus.data === 'activated' && (
+            {botStatus.data === 'activated' && (
               <Field>
                 <>
                   <Link href={`/`}>
