@@ -16,6 +16,10 @@ export const auth = betterAuth({
     enabled: false,
   },
   socialProviders: {
+    linkedin: {
+      clientId: process.env.LINKEDIN_CLIENT_ID as string,
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string,
+    },
     google: {
       prompt: 'select_account',
       clientId: env.GOOGLE_CLIENT_ID as string,
@@ -31,5 +35,3 @@ export const auth = betterAuth({
 })
 
 export type Session = typeof auth.$Infer.Session
-
-//

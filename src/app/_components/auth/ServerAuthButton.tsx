@@ -1,6 +1,7 @@
 import { getSession } from '@/server/better-auth/server'
 import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
+import { LinkedinButton } from './LinkedinButton'
 
 export async function ServerAuthButton() {
   const session = await getSession()
@@ -9,7 +10,20 @@ export async function ServerAuthButton() {
     <>
       <div>
         <div className='flex justify-center'>
-          {!session ? <LoginButton></LoginButton> : <LogoutButton></LogoutButton>}
+          {!session ? (
+            <>
+              <div className=' flex justify-center flex-col items-center'>
+                <div className='mb-3 w-full'>
+                  <LoginButton></LoginButton>
+                </div>
+                <div className='w-full'>
+                  <LinkedinButton></LinkedinButton>
+                </div>
+              </div>
+            </>
+          ) : (
+            <LogoutButton></LogoutButton>
+          )}
         </div>
       </div>
     </>
