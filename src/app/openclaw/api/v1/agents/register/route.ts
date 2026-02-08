@@ -11,6 +11,7 @@ export async function POST(req: Request) {
     name: z.string(),
     description: z.string(),
   })
+
   const parsedBodyData = await SchemaForVerification.parseAsync(rawBodyData)
 
   const auth = new BusinessAgentAuth({
@@ -54,7 +55,7 @@ export async function POST(req: Request) {
 
   // const isKeyOk = auth.validateApiKey(`${token}`)
 
-  // const agent: { status: 'pending_claim' | 'claimed' } = { status: 'pending_claim' }
+  // const agent: { status: 'pending_claim' | 'activated' } = { status: 'pending_claim' }
 
   // if (agent.status === 'pending_claim') {
   //   return {

@@ -13,7 +13,7 @@
 //   NO_TOKEN: 'NO_TOKEN',
 //   INVALID_FORMAT: 'INVALID_FORMAT',
 //   INVALID_TOKEN: 'INVALID_TOKEN',
-//   NOT_CLAIMED: 'NOT_CLAIMED',
+//   NOT_activated: 'NOT_activated',
 // }
 
 // /**
@@ -35,9 +35,9 @@
 //     error: 'Invalid or expired token',
 //     hint: 'Check your API key or register for a new one',
 //   },
-//   [ErrorCodes.NOT_CLAIMED]: {
+//   [ErrorCodes.NOT_activated]: {
 //     status: 403,
-//     error: 'Agent not yet claimed',
+//     error: 'Agent not yet activated',
 //     hint: 'Have your human visit the claim URL and verify via tweet',
 //   },
 // }
@@ -65,7 +65,7 @@
 //  * @param {boolean} options.required - Whether auth is required (default: true)
 //  * @param {Function} options.getUserByToken - Custom user lookup function
 //  * @param {Function} options.onError - Custom error handler
-//  * @param {boolean} options.checkClaimed - Check if agent is claimed (default: false)
+//  * @param {boolean} options.checkactivated - Check if agent is activated (default: false)
 //  * @returns {Function} Express middleware
 //  *
 //  * @example
@@ -81,7 +81,7 @@
 //  * app.get('/api/v1/posts', authMiddleware(auth, { required: false }), handler);
 //  */
 // function authMiddleware(auth, options = {}) {
-//   const { required = true, getUserByToken = null, onError = null, checkClaimed = false } = options
+//   const { required = true, getUserByToken = null, onError = null, checkactivated = false } = options
 
 //   return async (req, res, next) => {
 //     // Extract token from header
@@ -122,9 +122,9 @@
 //           return sendError(res, ErrorCodes.INVALID_TOKEN, onError)
 //         }
 
-//         // Check if claimed (if required)
-//         if (checkClaimed && agent.status === 'pending_claim') {
-//           return sendError(res, ErrorCodes.NOT_CLAIMED, onError)
+//         // Check if activated (if required)
+//         if (checkactivated && agent.status === 'pending_claim') {
+//           return sendError(res, ErrorCodes.NOT_activated, onError)
 //         }
 
 //         // Attach agent to request (without exposing API key)
@@ -165,18 +165,18 @@
 // }
 
 // /**
-//  * Create middleware that requires claimed status
+//  * Create middleware that requires activated status
 //  * Convenience wrapper around authMiddleware
 //  *
 //  * @param {MoltbookAuth} auth - MoltbookAuth instance
 //  * @param {Object} options - Additional options
 //  * @returns {Function} Express middleware
 //  */
-// function requireClaimed(auth: BusinessAgentAuth, options = {}) {
+// function requireactivated(auth: BusinessAgentAuth, options = {}) {
 //   return authMiddleware(auth, {
 //     ...options,
 //     required: true,
-//     checkClaimed: true,
+//     checkactivated: true,
 //   })
 // }
 
@@ -195,4 +195,4 @@
 //   })
 // }
 
-// export { authMiddleware, requireClaimed, optionalAuth, ErrorCodes, ErrorMessages, sanitizeAgent }
+// export { authMiddleware, requireactivated, optionalAuth, ErrorCodes, ErrorMessages, sanitizeAgent }

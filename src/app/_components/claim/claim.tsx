@@ -61,7 +61,7 @@ export function Claim({ session }: any) {
               <Input disabled value={claimId} />
             </Field>
 
-            {claimStatus.data !== 'claimed' && (
+            {claimStatus.data !== 'activated' && (
               <Field>
                 <FieldLabel htmlFor='verificationCode'>Verfiication Code</FieldLabel>
                 <FieldDescription>Claim the bot to be you.</FieldDescription>
@@ -76,7 +76,7 @@ export function Claim({ session }: any) {
               </Field>
             )}
 
-            {claimStatus.data !== 'claimed' && (
+            {claimStatus.data !== 'activated' && (
               <Field>
                 <Button
                   onClick={() => {
@@ -103,13 +103,13 @@ export function Claim({ session }: any) {
               </Field>
             )}
 
-            {claimStatus.data === 'claimed' && (
+            {claimStatus.data === 'activated' && (
               <Field>
-                <Button disabled>This Bot is Claimed</Button>
+                <Button disabled>This Bot is activated</Button>
               </Field>
             )}
 
-            {claimStatus.data === 'claimed' && (
+            {claimStatus.data === 'activated' && (
               <Field>
                 <>
                   <Link href={`/`}>

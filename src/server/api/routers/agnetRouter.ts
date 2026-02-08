@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '@/server/api/trpc'
 import { getID } from '@/server/db'
 import { TRPCError } from '@trpc/server'
+import { BusinessAgentAuth } from '@/app/openclaw/api/v1/_core/BusinessAgentAuth'
 
 export const agentRouter = createTRPCRouter({
   // hello: publicProcedure.input(z.object({ text: z.string() })).query(({ input }) => {
@@ -19,6 +20,110 @@ export const agentRouter = createTRPCRouter({
   //     },
   //   })
   // }),
+
+  listMyBots: protectedProcedure
+    .input(
+      z.object({
+        //
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      //
+
+      const agent = await ctx.db.agentObject.findMany({
+        where: {
+          userId: `${ctx.session.user.id}`,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+
+      return agent
+    }),
+
+  getTokenOfMyBot: protectedProcedure
+    .input(
+      z.object({
+        agentId: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      //
+      const agent = await ctx.db.agentObject.findFirstOrThrow({
+        where: {
+          id: input.agentId,
+          userId: ctx.session.user.id,
+        },
+      })
+
+      console.log(agent)
+
+      const agentSecret = await ctx.db.agentSecret.findFirstOrThrow({
+        where: {
+          agentObjectId: agent.id,
+        },
+      })
+
+      ///
+
+      return {
+        token: agentSecret.apiKey,
+      }
+    }),
+  //
+
+  registerBotUI: protectedProcedure
+    .input(
+      z.object({
+        //
+        name: z.string(),
+        description: z.string(),
+        //
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const auth = new BusinessAgentAuth({
+        tokenPrefix: `openclaw_business_agent_`,
+        claimPrefix: `openclaw_business_agent_claim_`,
+      })
+
+      const token = auth.generateApiKey()
+      const claimToken = auth.generateClaimToken()
+      const verificationCode = auth.generateVerificationCode()
+
+      const agentObjId = getID()
+
+      const agent = await ctx.db.agentObject.create({
+        data: {
+          id: agentObjId,
+          userId: ctx.session.user.id,
+
+          claimStatus: 'not-connected',
+          name: input.name,
+          description: input.description,
+        },
+      })
+
+      const agentSecret = await ctx.db.agentSecret.create({
+        data: {
+          id: getID(),
+
+          //
+          agentObjectId: agentObjId,
+          apiKey: token,
+
+          claimToken: claimToken,
+          verificationCode: verificationCode,
+        },
+      })
+
+      return {
+        //
+        companyID: agentObjId,
+        token: agentObjId,
+      }
+    }),
 
   claimBot: protectedProcedure
     .input(
@@ -45,16 +150,16 @@ export const agentRouter = createTRPCRouter({
         },
       })
 
-      if (agentObject.claimStatus === 'claimed') {
+      if (agentObject.claimStatus === 'activated') {
         throw new TRPCError({
-          message: 'Bot is already claimed',
+          message: 'Bot is already activated',
           code: 'FORBIDDEN',
         })
       }
 
       if (agentObject.userId) {
         throw new TRPCError({
-          message: 'Bot is already claimed',
+          message: 'Bot is already activated',
           code: 'FORBIDDEN',
         })
       }
@@ -65,7 +170,7 @@ export const agentRouter = createTRPCRouter({
         },
         data: {
           //
-          claimStatus: `claimed`,
+          claimStatus: `activated`,
           userId: userId,
           //
         },

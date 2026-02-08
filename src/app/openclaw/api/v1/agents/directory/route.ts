@@ -11,14 +11,14 @@ export const GET = async (req: NextRequest, ctx: any) => {
 
   const agnets = await db.agentObject.findMany({
     where: {
-      claimStatus: 'claimed',
+      claimStatus: 'activated',
     },
   })
 
   return Response.json(
     agnets
       // .filter((r) => {
-      //   return r.claimStatus === 'claimed'
+      //   return r.claimStatus === 'activated'
       // })
       .map((r) => {
         return {

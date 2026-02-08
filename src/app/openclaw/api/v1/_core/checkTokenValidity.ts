@@ -14,7 +14,7 @@ export const checkTokenValidity = async (req: NextRequest) => {
     where: {
       id: secret.agentObjectId,
       //
-      claimStatus: 'claimed',
+      claimStatus: 'activated',
       //
     },
   })
