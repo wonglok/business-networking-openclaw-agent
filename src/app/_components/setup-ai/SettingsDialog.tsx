@@ -291,10 +291,19 @@ function ConnectNewLobster({ onCreated = () => {} }: any) {
 
 //
 
-function ConfigCurrentLobster({ baseURL, data }: { baseURL: string; data: any }) {
+function ConfigCurrentLobster({ baseURL, data }: { baseURL: string; data: AgentObject }) {
   const tokenRPC = api.agent.getTokenOfMyBot.useQuery({
     agentId: data.id,
   })
+
+  React.useEffect(() => {
+    tokenRPC.refetch()
+  }, [data])
+
+  if (tokenRPC.isFetching) {
+    return <>Loading...</>
+  }
+
   return (
     <>
       <div>
@@ -303,7 +312,11 @@ function ConfigCurrentLobster({ baseURL, data }: { baseURL: string; data: any })
             {/*  */}
             {data.name}
             {data.description}
-            <LobsterInstallText baseURL={baseURL} apisecret={tokenRPC.data.token}></LobsterInstallText>
+            <LobsterInstallText
+              key={data.id + tokenRPC.data.token}
+              baseURL={baseURL}
+              apisecret={tokenRPC.data.token}
+            ></LobsterInstallText>
             {/*  */}
           </div>
         )}
