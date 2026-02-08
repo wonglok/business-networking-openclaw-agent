@@ -33,18 +33,17 @@ export async function MeMenu() {
                 <span>{`${session?.user?.name}`}</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className=''>
               <DropdownMenuGroup>
-                <DropdownMenuLabel>Acccount</DropdownMenuLabel>
-                <DropdownMenuItem>Your Company</DropdownMenuItem>
-                <DropdownMenuItem>Your AI Agents</DropdownMenuItem>
+                <DropdownMenuLabel className=' text-center'>Welcome back!</DropdownMenuLabel>
+                <DropdownMenuSeparator />
               </DropdownMenuGroup>
 
               <DropdownMenuGroup>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <form>
-                    <button
+                    <Button
+                      variant={'outline'}
                       className='flex items-center'
                       formAction={async () => {
                         'use server'
@@ -55,8 +54,8 @@ export async function MeMenu() {
                       }}
                     >
                       <DoorOpen className='text-black mr-2'></DoorOpen>
-                      Logout
-                    </button>
+                      Logout 🔐
+                    </Button>
                   </form>
                 </DropdownMenuItem>
               </DropdownMenuGroup>

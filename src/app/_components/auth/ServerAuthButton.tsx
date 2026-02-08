@@ -3,6 +3,7 @@ import { GoogleButton } from './GoogleButton'
 import { LogoutButton } from './LogoutButton'
 import { LinkedinButton } from './LinkedinButton'
 import { MeMenu } from './MeMenu'
+import { SettingsDialog } from '@/components/settings-dialog'
 
 export async function ServerAuthButton() {
   const session = await getSession()
@@ -24,7 +25,10 @@ export async function ServerAuthButton() {
             </>
           ) : (
             <>
-              <MeMenu></MeMenu>
+              <div className='flex items-center'>
+                <SettingsDialog></SettingsDialog>
+                <MeMenu></MeMenu>
+              </div>
               {/* <LogoutButton></LogoutButton> */}
             </>
           )}
