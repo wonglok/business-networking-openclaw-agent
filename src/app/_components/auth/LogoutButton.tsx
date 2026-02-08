@@ -1,9 +1,10 @@
 import { auth } from '@/server/better-auth'
+import { getSession } from '@/server/better-auth/server'
 import { DoorOpen } from 'lucide-react'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export function LogoutButton() {
+export async function LogoutButton() {
   return (
     <>
       <form>
@@ -23,7 +24,3 @@ export function LogoutButton() {
     </>
   )
 }
-
-//
-
-//

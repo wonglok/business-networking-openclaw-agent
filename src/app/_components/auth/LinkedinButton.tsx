@@ -6,7 +6,7 @@ export function LinkedinButton() {
   return (
     <>
       <button
-        className='w-full justify-start items-center inline-flex p-2 bg-[#4e4e4e55] border-2 border-white text-white rounded-lg px-5 select-none cursor-pointer'
+        className='w-full justify-between items-center inline-flex p-2 bg-[#4e4e4e55] border-2 border-white text-white rounded-lg px-5 select-none cursor-pointer'
         onClick={async () => {
           const response = await authClient.signIn.social({
             provider: 'linkedin',
@@ -29,7 +29,7 @@ export function LinkedinButton() {
             fill='currentColor'
           />
         </svg> */}
-        <svg className='h-[18px] mr-2' viewBox='0 0 512 509.64' version='1.1'>
+        <svg className='w-[17px] mr-2' viewBox='0 0 512 509.64' version='1.1'>
           <g stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
             <g transform='translate(0.000000, -6.000000)' fill='#FFFFFF' fillRule='nonzero'>
               <g transform='translate(0.000000, 6.000000)'>
