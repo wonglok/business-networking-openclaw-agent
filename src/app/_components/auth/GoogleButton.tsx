@@ -3,7 +3,7 @@
 import { authClient } from '@/server/better-auth/client'
 // import { DoorOpen, TvIcon } from 'lucide-react'
 
-export function LoginButton() {
+export function GoogleButton() {
   return (
     <>
       <button

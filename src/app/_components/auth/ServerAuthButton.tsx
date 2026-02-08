@@ -1,7 +1,8 @@
 import { getSession } from '@/server/better-auth/server'
-import { LoginButton } from './LoginButton'
+import { GoogleButton } from './GoogleButton'
 import { LogoutButton } from './LogoutButton'
 import { LinkedinButton } from './LinkedinButton'
+import { MeMenu } from './MeMenu'
 
 export async function ServerAuthButton() {
   const session = await getSession()
@@ -14,7 +15,7 @@ export async function ServerAuthButton() {
             <>
               <div className=' flex justify-center flex-col items-center'>
                 <div className='mb-3 w-full'>
-                  <LoginButton></LoginButton>
+                  <GoogleButton></GoogleButton>
                 </div>
                 <div className='w-full'>
                   <LinkedinButton></LinkedinButton>
@@ -22,7 +23,10 @@ export async function ServerAuthButton() {
               </div>
             </>
           ) : (
-            <LogoutButton></LogoutButton>
+            <>
+              <MeMenu></MeMenu>
+              {/* <LogoutButton></LogoutButton> */}
+            </>
           )}
         </div>
       </div>

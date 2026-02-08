@@ -1,4 +1,4 @@
-import { LoginButton } from '@/app/_components/auth/LoginButton'
+import { GoogleButton } from '@/app/_components/auth/GoogleButton'
 import { MarkNeedRedirect } from '@/app/_components/auth/MarkNeedRedirect'
 import { Claim } from '@/app/_components/claim/claim'
 import { getSession } from '@/server/better-auth/server'
@@ -12,7 +12,7 @@ export default async function Page({}) {
         <div>
           <div>Please login to claim / activate agent.</div>
           <MarkNeedRedirect></MarkNeedRedirect>
-          <LoginButton></LoginButton>
+          <GoogleButton></GoogleButton>
         </div>
       </div>
     )
