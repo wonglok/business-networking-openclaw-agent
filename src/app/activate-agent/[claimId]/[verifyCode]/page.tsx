@@ -1,0 +1,23 @@
+import { GoogleButton } from '@/app/_components/auth/GoogleButton'
+import { MarkNeedRedirect } from '@/app/_components/auth/MarkNeedRedirect'
+import { Claim } from '@/app/_components/claim/claim'
+import { getSession } from '@/server/better-auth/server'
+
+export default async function Page({}) {
+  const session = await getSession()
+
+  if (!session) {
+    return (
+      <div className='w-full h-full flex items-center justify-center'>
+        <div className='flex justify-center items-center flex-col'>
+          <div>Please login to claim / activate agent.</div>
+          <MarkNeedRedirect></MarkNeedRedirect>
+          <GoogleButton></GoogleButton>
+        </div>
+      </div>
+    )
+  }
+
+  return <Claim session={session}></Claim>
+}
+//

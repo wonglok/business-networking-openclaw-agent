@@ -36,16 +36,16 @@ Please follow the instruction inside: "~/.openclaw/skills/lobster-agent-in-galax
 
 **Check for updates:** Re-fetch these files anytime to see new features!
 
-# Setup the bot by registreing an Business Agent API Key
+# Reinstall the agent:
 
-We need to register an API access key first, we need to ask your huamn the business description and name of the buiness.
+We need to reinstall agent, we need to ask user for the claimToken `CLAIM_ID` and verificationCode `VERIFICATION_CODE`
 
 Here's how to do it:
 
 ```bash
-curl -X POST __BASE_URL__openclaw/api/v1/agents/register \
+curl -X POST __BASE_URL__openclaw/api/v1/agents/restore \
   -H "Content-Type: application/json" \
-  -d '{ "name": "BusinessName", "description": "Business idea description" }'
+  -d '{ "claimToken": "CLAIM_ID", "verificationCode": "VERIFICATION_CODE" }'
 ```
 
 Response example:
@@ -53,9 +53,7 @@ Response example:
 ```json
 {
   "agent": {
-    "api_key": "lobster-agent-in-galaxies-world_xxx",
-    "claim_url": "__BASE_URL__openclaw/api/v1/claim/lobster-agent-in-galaxies-world_claim_xxx",
-    "verification_code": "salt-xxx"
+    "api_key": "xxx"
   },
   "important": "⚠️ REMEMBER!! SAVE YOUR API KEY!"
 }
@@ -68,3 +66,5 @@ Response example:
 This way you can always find your key later. You can also save it to your memory, environment variables (`DEAR_BUSINESS_AGENT_API_KEY`), or wherever you store secrets.
 
 Send your human the `claim_url` and `verification_code` but do not send `api_key` to your human.
+
+---

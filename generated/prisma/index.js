@@ -82,7 +82,7 @@ Prisma.NullTypes = {
 
 
 
-const path = require('path')
+  const path = require('path')
 
 /**
  * Enums
@@ -242,7 +242,7 @@ const config = {
     }
   },
   "inlineSchema": "// Prisma schema for Better Auth\n// learn more: https://better-auth.com/docs/concepts/database\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Post {\n  id   String @id @map(\"_id\")\n  name String\n\n  //\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  createdBy   User   @relation(fields: [createdById], references: [id])\n  createdById String\n\n  @@index([name])\n}\n\nmodel User {\n  id            String    @id @map(\"_id\")\n  name          String //@db.Text\n  email         String\n  emailVerified Boolean   @default(false)\n  image         String? //@db.Text\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime  @default(now()) @updatedAt\n  sessions      Session[]\n  accounts      Account[]\n  posts         Post[]\n\n  agentObjects AgentObject[]\n\n  @@unique([email])\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id @map(\"_id\")\n  expiresAt DateTime\n  token     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  ipAddress String? //@db.Text\n  userAgent String? //@db.Text\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([token])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id @map(\"_id\")\n  accountId             String //@db.Text\n  providerId            String //@db.Text\n  userId                String\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  accessToken           String? //@db.Text\n  refreshToken          String? //@db.Text\n  idToken               String? //@db.Text\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String? //@db.Text\n  password              String? //@db.Text\n  createdAt             DateTime  @default(now())\n  updatedAt             DateTime  @updatedAt\n\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String   @id @map(\"_id\")\n  identifier String //@db.Text\n  value      String //@db.Text\n  expiresAt  DateTime\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @default(now()) @updatedAt\n\n  @@map(\"verification\")\n}\n\n//\n\n// model Team {\n//   id               String            @id @map(\"_id\") \n//   name             String\n//   slug             String            @unique\n//   description      String?\n//   teamMembers      TeamMember[]\n//   teamVault         TeamVault[]\n\n//   createdAt             DateTime?  @default(now())\n//   updatedAt             DateTime?  @updatedAt\n// }\n\n// model TeamVault {\n//   id    String @id @map(\"_id\") \n\n//   // \n//   openRouterAPIKey  String\n//   replicateAPIKey String\n//   falAPIKey String\n\n//   team   Team   @relation(fields: [teamId], references: [id])\n//   teamId String\n// }\n\n// model TeamMember {\n//   id    String @id @map(\"_id\") \n//   email String\n//   role  String\n\n//   team   Team   @relation(fields: [teamId], references: [id])\n//   teamId String\n\n//   @@index([email])\n// }\n\n// type S3MetaData {\n//   userID String\n//   fileName String\n//   bucket String\n//   url String\n//   fileKey String\n//   cdn String\n//   uploadURL String\n// }\n//   thumbFile S3MetaData?\n\nmodel AgentObject {\n  id String @id @map(\"_id\")\n\n  name        String\n  description String\n\n  user   User?   @relation(fields: [userId], references: [id])\n  userId String?\n\n  agentSecret AgentSecret[]\n\n  botStatus String?\n\n  createdAt DateTime? @default(now())\n  updatedAt DateTime? @updatedAt\n}\n\nmodel AgentMessage {\n  id String @id @map(\"_id\")\n\n  toAgentObjectId String\n  toAgentName     String\n\n  fromAgentObjectId String\n  fromAgentName     String\n\n  message String\n\n  createdAt DateTime? @default(now())\n  updatedAt DateTime? @updatedAt\n}\n\nmodel AgentSecret {\n  id String @id @map(\"_id\")\n\n  apiKey           String\n  claimToken       String\n  verificationCode String\n\n  agentObject   AgentObject @relation(fields: [agentObjectId], references: [id])\n  agentObjectId String\n\n  createdAt DateTime? @default(now())\n  updatedAt DateTime? @updatedAt\n}\n",
-  "inlineSchemaHash": "1b817616ad76643e921c7df303fd6aed3f372dfe686818e8299263f8bf769f00",
+  "inlineSchemaHash": "d6727920083026ef59b24962b56733a1d336984d708b82dc08c59b77a636b37a",
   "copyEngine": true
 }
 
@@ -254,7 +254,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
     "generated/prisma",
     "prisma",
   ]
-
+  
   const alternativePath = alternativePaths.find((altPath) => {
     return fs.existsSync(path.join(process.cwd(), altPath, 'schema.prisma'))
   }) ?? alternativePaths[0]
@@ -272,8 +272,8 @@ config.compilerWasm = undefined
 const { warnEnvConflicts } = require('./runtime/library.js')
 
 warnEnvConflicts({
-  rootEnvPath: config.relativeEnvPaths.rootEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.rootEnvPath),
-  schemaEnvPath: config.relativeEnvPaths.schemaEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.schemaEnvPath)
+    rootEnvPath: config.relativeEnvPaths.rootEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.rootEnvPath),
+    schemaEnvPath: config.relativeEnvPaths.schemaEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.schemaEnvPath)
 })
 
 const PrismaClient = getPrismaClient(config)

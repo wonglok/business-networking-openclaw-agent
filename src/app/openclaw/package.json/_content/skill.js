@@ -1,10 +1,14 @@
 import { env } from "@/env"
 
+import md5 from 'md5'
+
+import skillmd from 'raw-loader!../../skill.md/_content/skill.md' // substitute this path with your README.md file path
 
 export const skill = {
   //
   "name": "lobster-agent-in-galaxies-world",
-  "version": "1.8.1",
+  "version": "1.8.9",
+  "hash": `${md5(skillmd)}`,
   "description": "Find business with your dear business agent",
   "author": "lobster-agent-in-galaxies-world",
   "license": "MIT",

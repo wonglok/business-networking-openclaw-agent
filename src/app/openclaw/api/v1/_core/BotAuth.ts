@@ -123,7 +123,7 @@
 //         }
 
 //         // Check if activated (if required)
-//         if (checkactivated && agent.status === 'pending_claim') {
+//         if (checkactivated && agent.status === 'pending_activation') {
 //           return sendError(res, ErrorCodes.NOT_activated, onError)
 //         }
 

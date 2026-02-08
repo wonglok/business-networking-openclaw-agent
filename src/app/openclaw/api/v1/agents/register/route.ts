@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     data: {
       id: agentObjId,
 
-      botStatus: 'pending_claim',
+      botStatus: 'pending_activation',
       name: parsedBodyData.name,
       description: parsedBodyData.description,
     },
@@ -45,24 +45,7 @@ export async function POST(req: Request) {
     },
   })
 
-  // const agentObj = db.age
-
-  // const authHeader = req.headers.get('authorization')?.toString()
-
-  // const token = auth.extractToken(`${authHeader}`)?.toString()
-
-  // const isKeyOk = auth.validateApiKey(`${token}`)
-
-  // const agent: { status: 'pending_claim' | 'activated' } = { status: 'pending_claim' }
-
-  // if (agent.status === 'pending_claim') {
-  //   return {
-  //     //
-  //   }
-  // }
-  // console.log(parsedBodyData)
-
-  const claimURL = `${env.BETTER_AUTH_URL}openclaw/api/v1/claim/${claimToken}`
+  const claimURL = `${env.BETTER_AUTH_URL}openclaw/api/v1/claim/${claimToken}/${verificationCode}`
 
   return new Response(
     JSON.stringify(

@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '@/server/api/trpc'
 import { getID } from '@/server/db'
 import { TRPCError } from '@trpc/server'
-import { BusinessAgentAuth } from '@/app/openclaw/api/v1/_core/BusinessAgentAuth'
+// import { BusinessAgentAuth } from '@/app/openclaw/api/v1/_core/BusinessAgentAuth'
 
 export const agentRouter = createTRPCRouter({
   // hello: publicProcedure.input(z.object({ text: z.string() })).query(({ input }) => {
@@ -42,6 +42,64 @@ export const agentRouter = createTRPCRouter({
       return agent
     }),
 
+  listBotInbox: protectedProcedure
+    .input(
+      z.object({
+        //
+        agentId: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      //
+
+      const agent = await ctx.db.agentObject.findFirstOrThrow({
+        where: {
+          id: input.agentId,
+          userId: `${ctx.session.user.id}`,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+
+      const msgs = await ctx.db.agentMessage.findMany({
+        where: {
+          toAgentObjectId: agent.id,
+        },
+      })
+
+      return msgs
+    }),
+
+  listBotOutbox: protectedProcedure
+    .input(
+      z.object({
+        //
+        agentId: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      //
+
+      const agent = await ctx.db.agentObject.findFirstOrThrow({
+        where: {
+          id: input.agentId,
+          userId: `${ctx.session.user.id}`,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+
+      const msgs = await ctx.db.agentMessage.findMany({
+        where: {
+          fromAgentObjectId: agent.id,
+        },
+      })
+
+      return msgs
+    }),
+
   getTokenOfMyBot: protectedProcedure
     .input(
       z.object({
@@ -65,17 +123,18 @@ export const agentRouter = createTRPCRouter({
         },
       })
 
-      ///
-
       return {
-        token: agentSecret.apiKey,
+        claimID: agentSecret.claimToken,
+        verifyCode: agentSecret.verificationCode,
+        // token: agentSecret.apiKey,
       }
     }),
   //
 
-  registerBotUI: protectedProcedure
+  updateBotUI: protectedProcedure
     .input(
       z.object({
+        agentId: z.string(),
         //
         name: z.string(),
         description: z.string(),
@@ -83,47 +142,84 @@ export const agentRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const auth = new BusinessAgentAuth({
-        tokenPrefix: `openclaw_business_agent_`,
-        claimPrefix: `openclaw_business_agent_claim_`,
+      //
+      const agent = await ctx.db.agentObject.findFirstOrThrow({
+        where: {
+          id: input.agentId,
+          userId: ctx.session.user.id,
+        },
       })
 
-      const token = auth.generateApiKey()
-      const claimToken = auth.generateClaimToken()
-      const verificationCode = auth.generateVerificationCode()
+      console.log(agent)
 
-      const agentObjId = getID()
-
-      const agent = await ctx.db.agentObject.create({
+      await ctx.db.agentObject.update({
+        where: {
+          id: agent.id,
+        },
         data: {
-          id: agentObjId,
-          userId: ctx.session.user.id,
-
-          botStatus: 'not-connected',
           name: input.name,
           description: input.description,
         },
       })
 
-      const agentSecret = await ctx.db.agentSecret.create({
-        data: {
-          id: getID(),
-
-          //
-          agentObjectId: agentObjId,
-          apiKey: token,
-
-          claimToken: claimToken,
-          verificationCode: verificationCode,
-        },
-      })
+      //
 
       return {
-        //
-        companyID: agentObjId,
-        token: agentObjId,
+        ok: true,
       }
     }),
+
+  // registerBotUI: protectedProcedure
+  //   .input(
+  //     z.object({
+  //       //
+  //       name: z.string(),
+  //       description: z.string(),
+  //       //
+  //     }),
+  //   )
+  //   .mutation(async ({ ctx, input }) => {
+  //     const auth = new BusinessAgentAuth({
+  //       tokenPrefix: `openclaw_business_agent_`,
+  //       claimPrefix: `openclaw_business_agent_claim_`,
+  //     })
+
+  //     const token = auth.generateApiKey()
+  //     const claimToken = auth.generateClaimToken()
+  //     const verificationCode = auth.generateVerificationCode()
+
+  //     const agentObjId = getID()
+
+  //     const agent = await ctx.db.agentObject.create({
+  //       data: {
+  //         id: agentObjId,
+  //         userId: ctx.session.user.id,
+
+  //         botStatus: 'not-connected',
+  //         name: input.name,
+  //         description: input.description,
+  //       },
+  //     })
+
+  //     const agentSecret = await ctx.db.agentSecret.create({
+  //       data: {
+  //         id: getID(),
+
+  //         //
+  //         agentObjectId: agentObjId,
+  //         apiKey: token,
+
+  //         claimToken: claimToken,
+  //         verificationCode: verificationCode,
+  //       },
+  //     })
+
+  //     return {
+  //       //
+  //       companyID: agentObjId,
+  //       token: agentObjId,
+  //     }
+  //   }),
 
   claimBot: protectedProcedure
     .input(

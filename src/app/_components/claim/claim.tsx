@@ -1,7 +1,7 @@
 'use client'
 
 import { api } from '@/trpc/react'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import {
@@ -27,6 +27,7 @@ export function Claim({ session }: any) {
   const params = useParams()
 
   const claimId = params.claimId
+  const verifyCode = params.verifyCode
 
   const claim = api.agent.claimBot.useMutation({})
 
@@ -38,7 +39,7 @@ export function Claim({ session }: any) {
     localStorage.removeItem('claimId')
   }, [claimId])
 
-  const [verificationCode, setCode] = useState('')
+  const [verificationCode, setCode] = useState(`${verifyCode}`)
 
   if (botStatus.isLoading) {
     return (

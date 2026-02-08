@@ -25,6 +25,7 @@ import {
   Paintbrush,
   Settings,
   SparkleIcon,
+  Table,
   Video,
 } from 'lucide-react'
 
@@ -42,12 +43,14 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarHeader,
+  SidebarInput,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
 } from '@/components/ui/sidebar'
-import { LobsterInstallText } from './LobsterInstallText'
+import { InstallSkillText, ReinstallSkillText, VerifyContent } from './InstallSkillText'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -77,6 +80,9 @@ import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
 import type { AgentObject } from 'generated/prisma'
 // import { Switch } from '@/components/ui/switch'
+import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@/components/ui/button-group'
+import { Switch } from '@/components/ui/switch'
+import { Label } from '@/components/ui/label'
 
 const SetupNewLobster = {
   name: 'Setup AI Lobster',
@@ -207,33 +213,32 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
             </div>
           </div>
 
-          {/*  */}
-
           <div className='w-full h-full overflow-scroll p-5'>
             {tab === 'setup' && (
               <>
-                <div className='bg-muted/50 w-full rounded-xl p-5 py-3 mb-5 text-3xl'>Setup New AI Agent</div>
                 <div className='bg-muted/50 w-full rounded-xl p-5 '>
-                  <ConnectNewLobster
-                    data={lobstersRPC.data?.find((r) => r.id === tab)}
-                    onCreated={() => {
-                      //
-                      lobstersRPC.refetch().then(() => {
-                        const last = (lobstersRPC.data || [])[0]
+                  <div className='mb-3 text-xl'>Setup brand new agent:</div>
+                  {baseURL && <InstallSkillText baseURL={baseURL}></InstallSkillText>}
 
-                        if (last) {
-                          setTab(last.id)
-                        }
-                      })
-                    }}
-                  ></ConnectNewLobster>
+                  <div className='mb-3 mt-3 text-xl'>Restore existing agent:</div>
+                  <div className='text-gray-500'>Please click the agent you want to restore on the sidebar.</div>
                 </div>
               </>
             )}
 
             {tab !== 'setup' && (
               <div className='bg-muted/50 w-full rounded-xl p-5 '>
-                {data && <ConfigCurrentLobster data={data} baseURL={baseURL}></ConfigCurrentLobster>}
+                {data && (
+                  <UpdateLobsterInfo
+                    baseURL={baseURL}
+                    onUpdated={() => {
+                      //
+                      lobstersRPC.refetch()
+                    }}
+                    key={data.id + 'config'}
+                    data={data}
+                  ></UpdateLobsterInfo>
+                )}
               </div>
             )}
           </div>
@@ -243,86 +248,59 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
   )
 }
 
-function ConnectNewLobster({ onCreated = () => {} }: any) {
-  const register = api.agent.registerBotUI.useMutation({})
-
-  return (
-    <>
-      <form
-        id='ConnectNewLobster'
-        onSubmit={(ev) => {
-          ev.preventDefault()
-          const $name = document.querySelector('#ConnectNewLobster #name') as HTMLInputElement
-          const $description = document.querySelector('#ConnectNewLobster #description') as HTMLInputElement
-          register
-            .mutateAsync({
-              name: $name.value,
-              description: $description.value,
-            })
-            .then(() => {
-              toast('Successfully register your agent!')
-              onCreated()
-            })
-        }}
-      >
-        <FieldSet
-          onKeyDownCapture={(ev) => {
-            ev.stopPropagation()
-          }}
-        >
-          <FieldLegend>Connect to my OpenClaw AI Agent</FieldLegend>
-          <FieldDescription>Please enter the description of your business.</FieldDescription>
-          <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor='name'>Business name</FieldLabel>
-              <Input id='name' autoComplete='off' placeholder='Pure Lobster AI' />
-              <FieldDescription>Business id, name, and description is visible to everyone.</FieldDescription>
-            </Field>
-            <Field>
-              <FieldLabel htmlFor='description'>Business Description</FieldLabel>
-              <Textarea id='description' placeholder='Pure lobster AI' autoComplete='off' />
-              <FieldDescription>Treat the description as a advertisement post.</FieldDescription>
-            </Field>
-            <Field>
-              <Button type='submit'>
-                Create new Business AI Agent<SparkleIcon></SparkleIcon>
-              </Button>
-            </Field>
-          </FieldGroup>
-        </FieldSet>
-      </form>
-    </>
-  )
-}
-
-//
-
-function ConfigCurrentLobster({ baseURL, data }: { baseURL: string; data: AgentObject }) {
-  const tokenRPC = api.agent.getTokenOfMyBot.useQuery({
-    agentId: data.id,
-  })
-
-  React.useEffect(() => {
-    tokenRPC.refetch()
-  }, [data])
-
-  if (tokenRPC.isFetching) {
-    return <>Loading...</>
-  }
+function UpdateLobsterInfo({
+  baseURL,
+  onUpdated = () => {},
+  data,
+}: {
+  baseURL: string
+  onUpdated: () => void
+  data: AgentObject
+}) {
+  const [tab, setTab] = React.useState('update')
 
   return (
     <>
       <div>
-        {baseURL && tokenRPC.data && (
+        <div className='mb-3 flex justify-center'>
+          <ButtonGroup>
+            <Button
+              onClick={() => {
+                setTab('update')
+              }}
+              variant={tab === 'update' ? `default` : `outline`}
+            >
+              Bot Info
+            </Button>
+            <Button
+              onClick={() => {
+                setTab('restore')
+              }}
+              variant={tab === 'restore' ? `default` : `outline`}
+            >
+              Restore Agent
+            </Button>
+          </ButtonGroup>
+        </div>
+        {tab === 'update' && (
           <div className='bg-muted/50 aspect-video max-w-3xl rounded-xl p-4'>
             {/*  */}
-            {data.name}
-            {data.description}
-            <LobsterInstallText
-              key={data.id + tokenRPC.data.token}
-              baseURL={baseURL}
-              apisecret={tokenRPC.data.token}
-            ></LobsterInstallText>
+            <UpdateBot
+              onUpdated={() => {
+                //
+                onUpdated()
+              }}
+              key={data.id + 'botupdate'}
+              data={data}
+            ></UpdateBot>
+            {/*  */}
+          </div>
+        )}
+
+        {tab === 'restore' && (
+          <div className='bg-muted/50 aspect-video max-w-3xl rounded-xl p-4'>
+            {/*  */}
+            <Restore baseURL={baseURL} key={data.id + 'botupdate'} data={data}></Restore>
             {/*  */}
           </div>
         )}
@@ -334,3 +312,96 @@ function ConfigCurrentLobster({ baseURL, data }: { baseURL: string; data: AgentO
 //
 //
 //
+//
+
+function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
+  //
+  const botToken = api.agent.getTokenOfMyBot.useQuery({
+    agentId: data.id,
+  })
+
+  console.log(botToken.data)
+
+  return (
+    <>
+      {baseURL && <ReinstallSkillText baseURL={baseURL}></ReinstallSkillText>}
+
+      {botToken.data && (
+        <div className='mt-4'>
+          <VerifyContent
+            text={`
+claimToken: ${botToken.data?.claimID}
+verificationCode: ${botToken.data?.verifyCode}`.trim()}
+          ></VerifyContent>
+        </div>
+      )}
+
+      {/*  */}
+      {/*  */}
+    </>
+  )
+}
+
+function UpdateBot({ onUpdated = () => {}, data }: { onUpdated: () => void; data: AgentObject }) {
+  const updateBotUI = api.agent.updateBotUI.useMutation({
+    onSuccess: () => {
+      onUpdated()
+    },
+  })
+
+  return (
+    <>
+      <form
+        id='UpdateLobster'
+        onSubmit={(ev) => {
+          ev.preventDefault()
+          const $name = document.querySelector('#UpdateLobster #name') as HTMLInputElement
+          const $description = document.querySelector('#UpdateLobster #description') as HTMLInputElement
+
+          updateBotUI
+            .mutateAsync({
+              agentId: data.id,
+              name: $name.value,
+              description: $description.value,
+            })
+            .then(() => {
+              toast('Successfully updated your agent!', { position: 'top-center' })
+              // onCreated()
+            })
+        }}
+      >
+        <FieldSet
+          onKeyDownCapture={(ev) => {
+            ev.stopPropagation()
+          }}
+        >
+          <FieldLegend>Update Agent Info</FieldLegend>
+          <FieldDescription>Please enter the description of your business.</FieldDescription>
+
+          <FieldGroup>
+            <Field>
+              <FieldLabel htmlFor='name'>Business name</FieldLabel>
+              <Input id='name' defaultValue={data.name} autoComplete='off' placeholder='Pure Lobster AI' />
+              <FieldDescription>Business id, name, and description is visible to everyone.</FieldDescription>
+            </Field>
+            <Field>
+              <FieldLabel htmlFor='description'>Business Description</FieldLabel>
+              <Textarea
+                id='description'
+                defaultValue={data.description}
+                placeholder='Pure lobster AI'
+                autoComplete='off'
+              />
+              <FieldDescription>Treat the description as a advertisement post.</FieldDescription>
+            </Field>
+            <Field>
+              <Button type='submit'>
+                Update Info <SparkleIcon></SparkleIcon>
+              </Button>
+            </Field>
+          </FieldGroup>
+        </FieldSet>
+      </form>
+    </>
+  )
+}
