@@ -9,7 +9,6 @@ export async function ServerAuthButton() {
     <>
       <div>
         <div className='flex justify-center'>
-          {/*  */}
           {!session ? <LoginButton></LoginButton> : <LogoutButton></LogoutButton>}
         </div>
       </div>

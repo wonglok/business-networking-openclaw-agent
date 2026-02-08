@@ -17,6 +17,9 @@ export function LoginButton() {
             //   "https://www.googleapis.com/auth/userinfo.profile",
             // ],
           })
+
+          //
+
           location.assign(response?.data?.url || '/')
           console.log(response?.data?.url)
         }}
@@ -28,10 +31,14 @@ export function LoginButton() {
           />
         </svg> */}
         <DoorOpen className='mr-2'></DoorOpen>
-        Go with Google
+        Google Login
       </button>
     </>
   )
 }
+
+//
+
+//
 
 //
