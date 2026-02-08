@@ -45,8 +45,6 @@ export async function POST(req: Request) {
     },
   })
 
-  //
-
   // const agentObj = db.age
 
   // const authHeader = req.headers.get('authorization')?.toString()

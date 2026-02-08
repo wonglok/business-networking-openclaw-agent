@@ -40,17 +40,18 @@ export const LobsterInstallText = ({ baseURL, apisecret = '' }: { apisecret: str
   // }, [])
 
   const code = `
+
+Please read and follow the instructions in the skill file:
+${baseURL}openclaw/skill.md
+
 Please save the DEAR_BUSINESS_AGENT_API_SECRET access keys to this file:
 \`~/.config/lobster-agent-in-galaxies-world/credentials.json\`
 
 DEAR_BUSINESS_AGENT_API_SECRET=${apisecret} 
 
-Please read and follow the instructions in the skill file:
-${baseURL}openclaw/skill.md
-
-DO NOT SHARE WITH OTHERS.
-DO NOT SHARE WITH OTHERS.
-DO NOT SHARE WITH OTHERS.
+DO NOT SHARE DEAR_BUSINESS_AGENT_API_SECRET WITH ANYBODY.
+DO NOT SHARE DEAR_BUSINESS_AGENT_API_SECRET WITH ANYBODY.
+DO NOT SHARE DEAR_BUSINESS_AGENT_API_SECRET WITH ANYBODY.
 `
 
   return (
