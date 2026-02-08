@@ -320,7 +320,7 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
     agentId: data.id,
   })
 
-  console.log(botToken.data)
+  // console.log(botToken.data)
 
   return (
     <>
