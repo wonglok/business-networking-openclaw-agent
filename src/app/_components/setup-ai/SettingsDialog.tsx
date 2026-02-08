@@ -92,6 +92,12 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
     input: {},
   })
 
+  React.useEffect(() => {
+    if (lobstersRPC.data) {
+      //
+    }
+  }, [lobstersRPC.data])
+
   const data = lobstersRPC.data?.find((r) => r.id === tab)
 
   return (
