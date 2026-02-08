@@ -91,7 +91,7 @@ const SetupNewLobster = {
 }
 
 export function SettingsDialog({ baseURL }: { baseURL: string }) {
-  const [open, setOpen] = React.useState(true)
+  const [open, setOpen] = React.useState(false)
   const [tab, setTab] = React.useState('setup')
 
   const lobstersRPC = api.agent.listMyBots.useQuery({
