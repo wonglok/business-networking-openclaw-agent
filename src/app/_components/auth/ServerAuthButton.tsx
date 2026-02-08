@@ -3,10 +3,12 @@ import { GoogleButton } from './GoogleButton'
 import { LogoutButton } from './LogoutButton'
 import { LinkedinButton } from './LinkedinButton'
 import { MeMenu } from './MeMenu'
-import { SettingsDialog } from '@/components/settings-dialog'
+import { SettingsDialog } from '@/app/_components/setup-ai/SettingsDialog'
+import { env } from '@/env'
 
 export async function ServerAuthButton() {
   const session = await getSession()
+  const baseURL = env.BETTER_AUTH_URL
 
   return (
     <>
@@ -26,10 +28,9 @@ export async function ServerAuthButton() {
           ) : (
             <>
               <div className='flex items-center'>
-                <SettingsDialog></SettingsDialog>
+                <SettingsDialog baseURL={baseURL}></SettingsDialog>
                 <MeMenu></MeMenu>
               </div>
-              {/* <LogoutButton></LogoutButton> */}
             </>
           )}
         </div>
