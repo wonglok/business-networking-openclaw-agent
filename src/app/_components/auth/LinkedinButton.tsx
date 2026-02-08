@@ -43,11 +43,3 @@ export function LinkedinButton() {
     </>
   )
 }
-
-//
-
-//
-
-//
-//https%3A%2F%2Flaptop.smile-with-jesus.com%2Fapi%2Fauth%2Fcallback%2Flinkedin
-// https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=86wx5fn40l5z3k&state=X_WH8yiftVTjJ1gx2yRbeQ7K5HAjgTaB&scope=profile+email+openid+profile+email&redirect_uri=
