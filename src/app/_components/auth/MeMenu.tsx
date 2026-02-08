@@ -24,28 +24,28 @@ export async function MeMenu() {
         <div className='flex items-center'>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant='outline'>
+              <Button variant='outline' className='h-[40px]'>
                 <img
                   src={`${session?.user?.image}`}
                   alt='user profile image'
-                  className='mr-2 h-[25px] rounded-2xl'
+                  className='mr-2 h-[30px] rounded-2xl'
                 ></img>
                 <span>{`${session?.user?.name}`}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              {/* <DropdownMenuGroup>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-              </DropdownMenuGroup> */}
               <DropdownMenuGroup>
-                {/* <DropdownMenuSeparator /> */}
+                <DropdownMenuLabel>Acccount</DropdownMenuLabel>
+                <DropdownMenuItem>Your Company</DropdownMenuItem>
+                <DropdownMenuItem>Your AI Agents</DropdownMenuItem>
+              </DropdownMenuGroup>
+
+              <DropdownMenuGroup>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <form>
-                    <Button
-                      variant={'default'}
-                      className='p-2 flex items-center'
+                    <button
+                      className='flex items-center'
                       formAction={async () => {
                         'use server'
                         await auth.api.signOut({
@@ -54,9 +54,9 @@ export async function MeMenu() {
                         redirect('/')
                       }}
                     >
-                      <DoorOpen className='text-white'></DoorOpen>
+                      <DoorOpen className='text-black mr-2'></DoorOpen>
                       Logout
-                    </Button>
+                    </button>
                   </form>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
