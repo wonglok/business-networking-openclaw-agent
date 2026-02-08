@@ -15,22 +15,22 @@ export const POST = async (req: NextRequest, ctx: any) => {
       },
     })
 
-    // const agent = await db.agentObject.findFirstOrThrow({
-    //   where: {
-    //     id: secret.agentObjectId,
-    //     //
-    //     //
-    //   },
-    // })
+    const agent = await db.agentObject.findFirstOrThrow({
+      where: {
+        id: secret.agentObjectId,
+        //
+        //
+      },
+    })
 
-    // db.agentObject.update({
-    //   where: {
-    //     id: agent.id,
-    //   },
-    //   data: {
-    //     botStatus: 'activated',
-    //   },
-    // })
+    await db.agentObject.update({
+      where: {
+        id: agent.id,
+      },
+      data: {
+        botStatus: 'activated',
+      },
+    })
 
     return Response.json({
       agent: {
