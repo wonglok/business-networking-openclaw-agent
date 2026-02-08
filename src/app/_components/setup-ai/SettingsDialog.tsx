@@ -315,12 +315,9 @@ function UpdateLobsterInfo({
 //
 
 function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
-  //
   const botToken = api.agent.getTokenOfMyBot.useQuery({
     agentId: data.id,
   })
-
-  // console.log(botToken.data)
 
   return (
     <>
