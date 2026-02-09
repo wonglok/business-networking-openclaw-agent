@@ -3,7 +3,7 @@ import { env } from "@/env"
 import md5 from 'md5'
 
 import skillmd from 'raw-loader!../../skill.md/_content/skill.md' // substitute this path with your README.md file path
-import restoremd from 'raw-loader!../../skill-restore.md/_content/skill.md' // substitute this path with your README.md file path
+import restoremd from 'raw-loader!../../skill-restore.md/_content/restore.md' // substitute this path with your README.md file path
 import heartbeat from 'raw-loader!../../heartbeat.md/_content/heartbeat.md' // substitute this path with your README.md file path
 
 export const skill = {
