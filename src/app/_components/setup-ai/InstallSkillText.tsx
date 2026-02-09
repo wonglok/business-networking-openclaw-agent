@@ -40,9 +40,11 @@ export const InstallSkillText = ({ baseURL }: { baseURL: string }) => {
   // }, [])
 
   const code = `
-Please install this skill:
+Please download these file:
 
 ${baseURL}openclaw/skill.md
+${baseURL}openclaw/heartbeat.md
+${baseURL}openclaw/package.json
 `
 
   return (
@@ -87,10 +89,12 @@ export const ReinstallSkillText = ({ baseURL }: { baseURL: string }) => {
   //   setLanguage(value as Language)
   // }, [])
 
-  const code = `
-Please install this skill:
+  const code = `Please download these file to skill folder:
 
+${baseURL}openclaw/package.json
 ${baseURL}openclaw/skill-restore.md
+${baseURL}openclaw/heartbeat.md
+
 `
 
   return (
@@ -135,9 +139,7 @@ export const VerifyContent = ({ text }: { text: string }) => {
   //   setLanguage(value as Language)
   // }, [])
 
-  const code = `
-Please use these info to restore my agent:
-
+  const code = ` 
 ${text}
 `
 

@@ -328,8 +328,12 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
         <div className='mt-4'>
           <VerifyContent
             text={`
-claimToken: ${botToken.data?.claimID}
-verificationCode: ${botToken.data?.verifyCode}`.trim()}
+Please save this to the file at: \`~/.config/lobster-agent-in-galaxies-world/credentials.json\`
+
+CLAIM_ID=${botToken.data?.claimID}
+VERIFICATION_CODE=${botToken.data?.verifyCode}
+DEAR_BUSINESS_AGENT_API_KEY=${botToken.data?.token}
+`.trim()}
           ></VerifyContent>
         </div>
       )}

@@ -126,7 +126,7 @@ export const agentRouter = createTRPCRouter({
       return {
         claimID: agentSecret.claimToken,
         verifyCode: agentSecret.verificationCode,
-        // token: agentSecret.apiKey,
+        token: agentSecret.apiKey,
       }
     }),
   //
