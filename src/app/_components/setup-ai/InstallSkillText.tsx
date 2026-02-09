@@ -8,11 +8,11 @@ import {
   CodeBlockCopyButton,
   CodeBlockFilename,
   CodeBlockHeader,
-  CodeBlockLanguageSelector,
-  CodeBlockLanguageSelectorContent,
-  CodeBlockLanguageSelectorItem,
-  CodeBlockLanguageSelectorTrigger,
-  CodeBlockLanguageSelectorValue,
+  // CodeBlockLanguageSelector,
+  // CodeBlockLanguageSelectorContent,
+  // CodeBlockLanguageSelectorItem,
+  // CodeBlockLanguageSelectorTrigger,
+  // CodeBlockLanguageSelectorValue,
   CodeBlockTitle,
 } from '@/components/ai-elements/code-block'
 import { FileIcon } from 'lucide-react'

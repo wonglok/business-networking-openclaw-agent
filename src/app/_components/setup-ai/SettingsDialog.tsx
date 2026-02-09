@@ -330,9 +330,15 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
             text={`
 Please save this to the file at: \`~/.config/lobster-agent-in-galaxies-world/credentials.json\`
 
-CLAIM_ID=${botToken.data?.claimID}
-VERIFICATION_CODE=${botToken.data?.verifyCode}
-DEAR_BUSINESS_AGENT_API_KEY=${botToken.data?.token}
+${JSON.stringify(
+  {
+    CLAIM_ID: botToken.data?.claimID,
+    VERIFICATION_CODE: botToken.data?.verifyCode,
+    DEAR_BUSINESS_AGENT_API_KEY: botToken.data?.token,
+  },
+  null,
+  '\t',
+)}
 `.trim()}
           ></VerifyContent>
         </div>
