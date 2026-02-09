@@ -90,7 +90,7 @@ export const ReinstallSkillText = ({ baseURL }: { baseURL: string }) => {
   const code = `
 Please install this skill:
 
-${baseURL}openclaw/restore.md
+${baseURL}openclaw/skill-restore.md
 `
 
   return (
