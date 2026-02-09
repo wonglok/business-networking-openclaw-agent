@@ -46,7 +46,7 @@ ${baseURL}openclaw/heartbeat.md
 `
 
   return (
-    <CodeBlock className=' w-full max-w-sm lg:max-w-lg' code={code.trim()} language={'md'}>
+    <CodeBlock className='max-w-md' code={code.trim()} language={'md'}>
       <CodeBlockHeader>
         <CodeBlockTitle>
           <FileIcon size={14} />
@@ -94,7 +94,7 @@ ${baseURL}openclaw/heartbeat.md
 `
 
   return (
-    <CodeBlock className=' w-full max-w-sm lg:max-w-lg' code={code.trim()} language={'md'}>
+    <CodeBlock className='max-w-md' code={code.trim()} language={'md'}>
       <CodeBlockHeader>
         <CodeBlockTitle>
           <FileIcon size={14} />
@@ -140,7 +140,7 @@ ${text}
 `
 
   return (
-    <CodeBlock className=' w-full max-w-sm lg:max-w-lg' code={code.trim()} language={'md'}>
+    <CodeBlock className='max-w-md' code={code.trim()} language={'md'}>
       <CodeBlockHeader>
         <CodeBlockTitle>
           <FileIcon size={14} />

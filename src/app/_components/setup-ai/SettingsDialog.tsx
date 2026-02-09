@@ -217,7 +217,7 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
           <div className='w-full h-full overflow-scroll p-5'>
             {tab === 'setup' && (
               <>
-                <div className='bg-muted/50 w-full rounded-xl p-5 '>
+                <div className=''>
                   <div className='mb-3 text-xl'>Setup brand new agent:</div>
                   {baseURL && <InstallSkillText baseURL={baseURL}></InstallSkillText>}
 
@@ -228,7 +228,7 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
             )}
 
             {tab !== 'setup' && (
-              <div className='bg-muted/50 w-full rounded-xl p-5 '>
+              <div className=''>
                 {data && (
                   <UpdateLobsterInfo
                     baseURL={baseURL}
