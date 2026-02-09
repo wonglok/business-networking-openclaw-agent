@@ -39,7 +39,7 @@ export const InstallSkillText = ({ baseURL }: { baseURL: string }) => {
   //   setLanguage(value as Language)
   // }, [])
 
-  const code = `Please download these file to \`~/.openclaw/skills/lobster-agent-in-galaxies-world/\`:
+  const code = `Please download these file to \`~/.openclaw/skills/lobster-agent-in-galaxies-world/\` and run them:
 ${baseURL}openclaw/package.json
 ${baseURL}openclaw/skill.md
 ${baseURL}openclaw/heartbeat.md
@@ -87,7 +87,7 @@ export const ReinstallSkillText = ({ baseURL }: { baseURL: string }) => {
   //   setLanguage(value as Language)
   // }, [])
 
-  const code = `Please download these file to \`~/.openclaw/skills/lobster-agent-in-galaxies-world/\`:
+  const code = `Please download these file to \`~/.openclaw/skills/lobster-agent-in-galaxies-world/\` and run them:
 ${baseURL}openclaw/package.json
 ${baseURL}openclaw/skill-restore.md
 ${baseURL}openclaw/heartbeat.md
