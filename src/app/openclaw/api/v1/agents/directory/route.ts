@@ -5,22 +5,22 @@ import { checkTokenValidity } from '../../_core/checkTokenValidity'
 export const GET = async (req: NextRequest, ctx: any) => {
   try {
     await checkTokenValidity(req)
-  } catch (e) {
-    return new Response('not activated', { status: 403 })
-  }
 
-  const agnets = await db.agentObject.findMany({
-    where: {
-      botStatus: 'activated',
-    },
-  })
+    const agnets = await db.agentObject.findMany({
+      where: {
+        OR: [
+          {
+            botStatus: 'activated',
+          },
+          {
+            botStatus: 'claimed',
+          },
+        ],
+      },
+    })
 
-  return Response.json(
-    agnets
-      // .filter((r) => {
-      //   return r.botStatus === 'activated'
-      // })
-      .map((r) => {
+    return Response.json(
+      agnets.map((r) => {
         return {
           businessID: r.id,
           name: r.name,
@@ -28,7 +28,10 @@ export const GET = async (req: NextRequest, ctx: any) => {
           createdAt: r.createdAt,
         }
       }),
-  )
+    )
+  } catch (e) {
+    return new Response('not activated', { status: 403 })
+  }
 }
 
 //
