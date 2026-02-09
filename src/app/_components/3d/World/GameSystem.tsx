@@ -110,6 +110,7 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
             <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
               {/* <AvatarRPM></AvatarRPM> */}
               <AvatarAI></AvatarAI>
+              <group name='main-player'></group>
             </BVHEcctrl>
           </group>
         </KeyboardControls>

@@ -11,6 +11,7 @@ import { EnvLoader } from '../CanvasGPU/EnvLoader'
 import { JoystickControls } from './JoystickControls'
 import { GameSystem } from './GameSystem'
 import { useAppState } from './useAppState'
+import { SkinedMeshEffect } from '../../SkinnedMesh/SkinedMeshEffect'
 
 export function GamePage() {
   const visible = useAppState((r) => r.visible)
@@ -27,6 +28,8 @@ export function GamePage() {
 
             <group visible={visible}>
               <GameSystem glbSRC={`/env/digital-palace-loklok.glb`}></GameSystem>
+
+              <SkinedMeshEffect masterName='main-player'></SkinedMeshEffect>
             </group>
           </Bvh>
         </Suspense>
