@@ -63,7 +63,7 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
 
   console.log('vertexCounter', vertexCounter)
 
-  const particleCount = vertexCounter * 2
+  const particleCount = vertexCounter * 1
 
   // const size = uniform(1)
   // ui.on('size', (num) => {
