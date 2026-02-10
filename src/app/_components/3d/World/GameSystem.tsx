@@ -20,7 +20,7 @@ import { AvatarAI } from './AvatarAI'
 import { MeshPhysicalNodeMaterial } from 'three/webgpu'
 import { AvatarLobsterAI } from './AvatarLobsterAI'
 import copy from 'copy-to-clipboard'
-import { WaterMesh } from 'three/addons/objects/WaterMesh.js'
+import { ObjectWater } from './ObjectWater'
 // import { findPathByObjects } from './simple-nav'
 // import { CatmullRomCurve3, Object3D, Vector3 } from 'three'
 // import { gsap } from 'gsap'
@@ -154,7 +154,9 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
                       const pt = ev.intersections[0]?.point.toArray()
                       console.log('obj', pt)
                       //
-                      copy(`<group name="near-" position={${JSON.stringify(pt)}}>\n\n\n\n\n</group>`)
+                      copy(
+                        `<group name="near-" position={${JSON.stringify(pt)}}>\n\n\t<Suspense fallback={null}>\n\n\n\n\n\t</Suspense>\n\n</group>`,
+                      )
                     },
                   }
                 : {})}
@@ -170,43 +172,6 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
           </group>
         </Suspense>
       </>
-    </>
-  )
-}
-
-// waternormals
-function ObjectWater() {
-  //
-  const [api, setAPI] = useState<any>({})
-
-  useEffect(() => {
-    const geo = new PlaneGeometry(1000, 1000)
-    const water = new WaterMesh(geo, {
-      sunDirection: new Vector3(0, 1, 0),
-      sunColor: 0xffffff,
-      waterColor: 0x001e0f,
-      distortionScale: 3.7,
-      waterNormals: new TextureLoader().load(`/textures/waternormals.jpg`),
-    })
-    water.position.y = -10
-    water.rotation.x = Math.PI * -0.5
-    setAPI({
-      func: () => {},
-      display: <primitive object={water}></primitive>,
-    })
-  }, [])
-
-  useFrame(() => {
-    if (api?.func) {
-      api?.func()
-    }
-  })
-
-  return (
-    <>
-      {api.display}
-      {/*  */}
-      {/*  */}
     </>
   )
 }

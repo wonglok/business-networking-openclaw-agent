@@ -13,6 +13,14 @@ export function AnimatedLobster({
 
   const glbScene = useMemo(() => {
     const o3d = clone(glb.scene)
+
+    o3d.traverse((it) => {
+      //
+      it.castShadow = true
+      //
+      it.receiveShadow = true
+    })
+
     const dispaly = <primitive object={o3d}></primitive>
     return {
       o3d: o3d,
@@ -26,5 +34,9 @@ export function AnimatedLobster({
     ani.actions[ani.names[0] as string]?.play()
   }, [ani])
 
-  return <>{glbScene.dispaly}</>
+  return (
+    <>
+      <group castShadow>{glbScene.dispaly}</group>
+    </>
+  )
 }

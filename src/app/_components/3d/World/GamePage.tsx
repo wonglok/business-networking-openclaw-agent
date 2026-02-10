@@ -6,7 +6,7 @@
 
 import { Suspense } from 'react'
 import { CanvasGPU } from '../CanvasGPU/CanvasGPU'
-import { Bvh, Gltf } from '@react-three/drei'
+import { Bvh, Center, Gltf } from '@react-three/drei'
 import { EnvLoader } from '../CanvasGPU/EnvLoader'
 import { JoystickControls } from './JoystickControls'
 import { GameSystem } from './GameSystem'
@@ -32,7 +32,7 @@ export function GamePage() {
 
             <group position={[0, -1.999, 0]}>
               <Suspense fallback={null}>
-                <Gltf src={`/avatar/lobsters/others/lobsterland-transformed.glb`}></Gltf>
+                <Gltf castShadow src={`/avatar/lobsters/others/lobsterland-transformed.glb`}></Gltf>
               </Suspense>
             </group>
 
@@ -82,6 +82,14 @@ export function GamePage() {
                   ></AnimatedLobster>
                 </Suspense>
               </group>
+
+              {/* <group name='near-' position={[5.540832661423739, -1.9999580383300781, -13.618021457390823]}>
+                <Suspense fallback={null}>
+                  <Center scale={2} top>
+                    <Gltf src={`/avatar/lobsters/others/desk.glb`}></Gltf>
+                  </Center>
+                </Suspense>
+              </group> */}
 
               <GameSystem glbSRC={`/env/digital-palace-loklok.glb`}></GameSystem>
 
