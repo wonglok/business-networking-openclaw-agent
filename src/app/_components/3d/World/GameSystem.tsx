@@ -18,6 +18,8 @@ import { useAppState } from './useAppState'
 import { Color, RepeatWrapping, Scene, Vector2, Vector3 } from 'three'
 import { AvatarAI } from './AvatarAI'
 import { MeshPhysicalNodeMaterial } from 'three/webgpu'
+import { AvatarLobsterAI } from './AvatarLobsterAI'
+import copy from 'copy-to-clipboard'
 // import { findPathByObjects } from './simple-nav'
 // import { CatmullRomCurve3, Object3D, Vector3 } from 'three'
 // import { gsap } from 'gsap'
@@ -109,15 +111,33 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
           <group position={[0, 0, 0]}>
             <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
               {/* <AvatarRPM></AvatarRPM> */}
-              <AvatarAI></AvatarAI>
+              {/* <AvatarAI></AvatarAI> */}
+              <AvatarLobsterAI
+                //
+                lobsterURL={`/avatar/lobsters/guy/lobster-mixamo-transformed.glb`}
+              ></AvatarLobsterAI>
               <group name='main-player'></group>
             </BVHEcctrl>
           </group>
         </KeyboardControls>
 
         <StaticCollider uuid={colliderSource?.uuid}>
-          <group visible={true} onClick={(ev) => {}}>
-            {glbSRC && <ContentGL glbSRC={glbSRC}></ContentGL>}
+          <group visible={true}>
+            <group
+              {...(process.env.NODE_ENV === 'development'
+                ? {
+                    onClick: (ev) => {
+                      //
+                      const pt = ev.intersections[0]?.point.toArray()
+                      console.log('obj', pt)
+                      //
+                      copy(`<group name="near-" position={${JSON.stringify(pt)}}>\n\n\n\n\n</group>`)
+                    },
+                  }
+                : {})}
+            >
+              {glbSRC && <ContentGL glbSRC={glbSRC}></ContentGL>}
+            </group>
           </group>
         </StaticCollider>
       </>

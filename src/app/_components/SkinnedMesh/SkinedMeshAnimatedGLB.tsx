@@ -5,10 +5,16 @@ import { AnimationMixer, Clock, Mesh, Object3D, Sprite, Vector3 } from 'three'
 import { float, Fn, hash, If, instancedArray, instanceIndex, mix, shapeCircle, uniform, uv, vec3 } from 'three/tsl'
 import { WebGPURenderer } from 'three/webgpu'
 import { DRACOLoader, FBXLoader, GLTFLoader } from 'three/examples/jsm/Addons.js'
-import { setupSkinMesh } from '../SkinnedMesh/SkinnedMeshParticles'
+import { setupSkinMesh } from './SkinnedMeshParticles'
+import { setupLobsterParticles } from './LobsterParticles'
 // import { useGame } from '../WASDGame/useGame'
 
-export function SkinedMeshEffect({ masterName = 'pet01' }) {
+export function SkinedMeshAnimatedGLB({
+  //
+  fbxURL = `/avatar/lobsters/chef/motion/happy-state.fbx`,
+  glbURL = `/avatar/lobsters/chef/mixa-lobster-transformed.glb`,
+  masterName = 'pet01',
+}) {
   const [api, setAPI] = useState<any>({
     glb: false,
     isReady: false,
@@ -24,6 +30,7 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
   const gp = useRef<Mesh>(null)
   //   const player = useGame((r) => r.player)
   const v3 = new Vector3()
+
   useFrame((st, dt) => {
     if (api.isReady) {
       if (gp.current) {
@@ -39,25 +46,25 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
       api.update(st, dt)
     }
 
-    const player = st.scene.getObjectByName(masterName)
-    if (player && api.glb) {
-      //
-      player.getWorldPosition(api.glb.scene.position)
-      player.getWorldQuaternion(api.glb.scene.quaternion)
+    // const player = st.scene.getObjectByName(masterName)
+    // if (player && api.glb) {
+    //   //
+    //   player.getWorldPosition(api.glb.scene.position)
+    //   player.getWorldQuaternion(api.glb.scene.quaternion)
 
-      v3.set(0, 0, -0.25)
-      v3.applyQuaternion(api.glb.scene.quaternion)
-      api.glb.scene.position.add(v3)
+    //   v3.set(0, 0, -0.25)
+    //   v3.applyQuaternion(api.glb.scene.quaternion)
+    //   api.glb.scene.position.add(v3)
 
-      //
+    //   //
 
-      api.glb.scene.rotation.y += Math.PI * 0.0
+    //   api.glb.scene.rotation.y += Math.PI * 0.0
 
-      api.glb.scene.scale.setScalar(1 / 50)
-      api.glb.scene.position.y += 0.5
+    //   api.glb.scene.scale.setScalar(1 / 50)
+    //   api.glb.scene.position.y += 0.5
 
-      // api.
-    }
+    //   // api.
+    // }
   })
 
   useEffect(() => {
@@ -76,19 +83,18 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
       const loader = new GLTFLoader()
       loader.setDRACOLoader(draco)
 
-      // const fbx = new FBXLoader()
-      // const run = await fbx.loadAsync(`/exp/locomotion/run.fbx`)
+      const fbx = new FBXLoader()
+      const happyState = await fbx.loadAsync(fbxURL)
 
       loader
-        .loadAsync(`/skin/wing1.glb`)
-        // .loadAsync(`/exp/rpm-loklok.glb`)
-        // .loadAsync(`/exp/avatar/Chick_Animations.glb`)
-        // .loadAsync(`/exp/avatar/Rooster_Animatdions.glb`)
+        .loadAsync(glbURL)
         //
         .then(async (glb) => {
+          glb.scene.scale.setScalar(5)
           glb.scene.traverse((it: any) => {
             if (it.isSkinnedMesh) {
-              setupSkinMesh({
+              it.geometry.computeVertexNormals()
+              setupLobsterParticles({
                 skinnedMesh: it,
                 mounter: mounter,
                 renderer: gl,
@@ -102,12 +108,15 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
               //   it.material.wireframe = false
               // }
 
-              if (it.material) {
-                it.material.depthWrite = false
-                it.material.depthTest = false
-                it.material.opacity = 0
-                it.material.wireframe = true
-              }
+              // if (it.material) {
+              //   // it.visible = false
+              //   it.material.depthWrite = true
+              //   it.material.depthTest = true
+              //   it.material.opacity = 0
+              //   it.material.transparent = true
+              //   it.material.alphaTest = 1
+              //   it.material.wireframe = true
+              // }
             }
           })
           //
@@ -116,7 +125,8 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
 
           const mixer = new AnimationMixer(glb.scene)
 
-          const action = glb.animations.find((r) => `${r.name}`.toLowerCase().includes('fly')) || glb.animations[0]
+          const action = happyState.animations[0]
+
           if (action) {
             const anim = mixer.clipAction(action, glb.scene)
             anim.play()
@@ -135,15 +145,18 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
                 tasks.forEach((t) => t(st, dt))
               },
               hit: () => {},
-              display: <primitive object={mounter}></primitive>,
+              display: (
+                <group scale={1}>
+                  <primitive object={mounter}></primitive>
+                </group>
+              ),
             })
           }
         })
 
-      //
-      // public/skin/wing1.glb
-
       return () => {
+        mounter.clear()
+        mounter.removeFromParent()
         setAPI((r: any) => {
           return { ...r, isReady: false }
         })

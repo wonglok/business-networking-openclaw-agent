@@ -26,6 +26,7 @@ import {
   sin,
   storage,
   sub,
+  texture,
   time,
   uniform,
   uv,
@@ -58,7 +59,7 @@ import {
 // import type { BufferGeometry } from 'three'
 //
 
-export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: any) => {
+export const setupLobsterParticles = async ({ skinnedMesh, mounter, renderer, onLoop }: any) => {
   const boundingBoxSize = new THREE.Vector3()
 
   skinnedMesh.geometry.boundingBox.getSize(boundingBoxSize)
@@ -87,6 +88,7 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
     }
   }
 
+  const uvBuffer = createBuffer({ itemSize: 2, type: 'vec2' })
   const positionBuffer = createBuffer({ itemSize: 3, type: 'vec3' })
   const velocityBuffer = createBuffer({ itemSize: 3, type: 'vec3' })
   const colorBuffer = createBuffer({ itemSize: 3, type: 'vec3' })
@@ -96,6 +98,7 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
   const birthNormalBuffer = createBuffer({ itemSize: 3, type: 'vec3' })
 
   const bindMatrixNode = uniform(skinnedMesh.bindMatrix, 'mat4')
+
   // const bindMatrixInverseNode = uniform(
   //   skinnedMesh.bindMatrixInverse,
   //   "mat4"
@@ -142,6 +145,18 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
 
       birthNormalBuffer.attr.setXYZ(i, x, y, z)
       birthNormalBuffer.attr.needsUpdate = true
+    }
+  }
+  {
+    for (let i = 0; i < particleCount; i++) {
+      let yo = i % localCount
+
+      let x = geo.attributes.uv.getX(yo)
+      let y = geo.attributes.uv.getY(yo)
+      let z = geo.attributes.uv.getZ(yo)
+
+      uvBuffer.attr.setXYZ(i, x, y, z)
+      uvBuffer.attr.needsUpdate = true
     }
   }
 
@@ -225,6 +240,7 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
   })().compute(particleCount)
 
   const mouseV3 = new THREE.Vector3(0, 1.5, 0)
+
   const mouseUni = uniform(mouseV3)
 
   const computeUpdate = Fn(() => {
@@ -237,13 +253,21 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
 
     // const dist = mouseUni.sub(position).length().mul(1)
 
-    // spinner
-
+    // // motion push
     velocity.addAssign(
       skinPosition
         .sub(position)
         .normalize()
         .mul(0.003 * 0.5 * 1.0),
+    )
+
+    velocity.addAssign(
+      vec3(
+        //
+        0,
+        0.0015,
+        0,
+      ),
     )
 
     const addVel = velocity
@@ -267,7 +291,10 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
   const velAttr = velNode
   const posAttr = positionBuffer.node.toAttribute()
 
-  const finalColor = mix(color('#ffffff'), color('#9d9d9d'), velAttr.xz.length().mul(10))
+  const uvVal = uvBuffer.node.element(instanceIndex)
+  const lobsterColor = texture(skinnedMesh.material.map, uvVal)
+
+  const finalColor = lobsterColor ///mix(color('#ffffff'), color('#9d9d9d'), velAttr.xz.length().mul(10))
 
   const instGeometry = new InstancedBufferGeometry()
   instGeometry.instanceCount = particleCount
@@ -339,19 +366,22 @@ export let setupSkinMesh = async ({ skinnedMesh, mounter, renderer, onLoop }: an
     const mat4ry = rotation3d(vec3(0, 1, 0), velocity.y.mul(Math.PI * 2.0))
     const mat4rz = rotation3d(vec3(0, 0, 1), velocity.z.mul(Math.PI * 2.0))
 
-    const life = lifeBuffer.node.element(instanceIndex)
+    // const life = lifeBuffer.node.element(instanceIndex)
 
-    const unitScale = pow(
-      float(0)
-        //
-        .add(velocity.x.abs())
-        .add(velocity.y.abs())
-        .add(velocity.z.abs())
-        .add(0.0125),
-      2.1,
-    )
-      .mul(20)
-      .mul(life.y)
+    // const unitScale = pow(
+    //   float(0)
+    //     //
+    //     .add(velocity.x.abs())
+    //     .add(velocity.y.abs())
+    //     .add(velocity.z.abs())
+    //     .add(0.0125),
+    //   2.1,
+    // )
+    //   .mul(20)
+    //   .mul(life.y)
+    //   .add(1.0)
+
+    const unitScale = float(0.02)
 
     const unitGeo = positionGeometry.mul(unitScale).mul(mat4rx).mul(mat4ry).mul(mat4rz)
 
