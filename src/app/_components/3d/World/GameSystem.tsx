@@ -15,11 +15,12 @@ import { useFrame } from '@react-three/fiber'
 // import Avatar from './Avatar'
 import { AvatarRPM } from './AvatarRPM'
 import { useAppState } from './useAppState'
-import { Color, RepeatWrapping, Scene, Vector2, Vector3 } from 'three'
+import { Color, PlaneGeometry, RepeatWrapping, Scene, TextureLoader, Vector2, Vector3 } from 'three'
 import { AvatarAI } from './AvatarAI'
 import { MeshPhysicalNodeMaterial } from 'three/webgpu'
 import { AvatarLobsterAI } from './AvatarLobsterAI'
 import copy from 'copy-to-clipboard'
+import { WaterMesh } from 'three/addons/objects/WaterMesh.js'
 // import { findPathByObjects } from './simple-nav'
 // import { CatmullRomCurve3, Object3D, Vector3 } from 'three'
 // import { gsap } from 'gsap'
@@ -113,13 +114,15 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
           <group position={[0, 0, 0]}>
             <Suspense fallback={null}>
               <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
+                {/*  */}
+
                 {/* <AvatarRPM></AvatarRPM> */}
+
                 {/* <AvatarAI></AvatarAI> */}
 
                 {chosenLobster === 'guy' && (
                   <>
                     <AvatarLobsterAI
-                      //
                       lobsterURL={`/avatar/lobsters/guy/lobster-mixamo-transformed.glb`}
                     ></AvatarLobsterAI>
                   </>
@@ -127,10 +130,11 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
 
                 {chosenLobster === 'lady' && (
                   <>
-                    <AvatarLobsterAI
-                      //
-                      lobsterURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
-                    ></AvatarLobsterAI>
+                    <group position={[0, 0.075, 0]}>
+                      <AvatarLobsterAI
+                        lobsterURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
+                      ></AvatarLobsterAI>
+                    </group>
                   </>
                 )}
 
@@ -159,7 +163,50 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
             </group>
           </group>
         </StaticCollider>
+
+        <Suspense fallback={null}>
+          <group position={[0, 0, 0]}>
+            <ObjectWater></ObjectWater>
+          </group>
+        </Suspense>
       </>
+    </>
+  )
+}
+
+// waternormals
+function ObjectWater() {
+  //
+  const [api, setAPI] = useState<any>({})
+
+  useEffect(() => {
+    const geo = new PlaneGeometry(1000, 1000)
+    const water = new WaterMesh(geo, {
+      sunDirection: new Vector3(0, 1, 0),
+      sunColor: 0xffffff,
+      waterColor: 0x001e0f,
+      distortionScale: 3.7,
+      waterNormals: new TextureLoader().load(`/textures/waternormals.jpg`),
+    })
+    water.position.y = -10
+    water.rotation.x = Math.PI * -0.5
+    setAPI({
+      func: () => {},
+      display: <primitive object={water}></primitive>,
+    })
+  }, [])
+
+  useFrame(() => {
+    if (api?.func) {
+      api?.func()
+    }
+  })
+
+  return (
+    <>
+      {api.display}
+      {/*  */}
+      {/*  */}
     </>
   )
 }

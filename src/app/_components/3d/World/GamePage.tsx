@@ -31,6 +31,8 @@ export function GamePage() {
             ></EnvLoader>
 
             <group visible={visible}>
+              {/*  */}
+
               {/* <SkinedMeshAnimatedGLB
                 fbxURL={`/avatar/lobsters/chef/motion/happy-state.fbx`}
                 glbURL={`/avatar/lobsters/chef/mixa-lobster-transformed.glb`}
@@ -48,8 +50,6 @@ export function GamePage() {
                   ></AnimatedLobster>
                 </Suspense>
               </group>
-
-              {/* public/ */}
 
               <group
                 name='near-water'
@@ -71,7 +71,7 @@ export function GamePage() {
               >
                 <Suspense fallback={null}>
                   <AnimatedLobster
-                    glbURL={`/avatar/lobsters/lady/lady-lobster-mixa-transformed.glb`}
+                    glbURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
                     fbxURL={`/avatar/lobsters/chef/motion/happy-state.fbx`}
                   ></AnimatedLobster>
                 </Suspense>
