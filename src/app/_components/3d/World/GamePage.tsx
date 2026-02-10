@@ -11,10 +11,10 @@ import { EnvLoader } from '../CanvasGPU/EnvLoader'
 import { JoystickControls } from './JoystickControls'
 import { GameSystem } from './GameSystem'
 import { useAppState } from './useAppState'
-import { SkinedMeshEffect } from '../../SkinnedMesh/SkinedMeshEffect'
-import { SkinedMeshAnimatedGLB } from '../../SkinnedMesh/SkinedMeshAnimatedGLB'
+// import { SkinedMeshEffect } from '../../SkinnedMesh/SkinedMeshEffect'
+// import { SkinedMeshAnimatedGLB } from '../../SkinnedMesh/SkinedMeshAnimatedGLB'
 import { AnimatedLobster } from '../../SkinnedMesh/AnimatedLobster'
-import copy from 'copy-to-clipboard'
+// import copy from 'copy-to-clipboard'
 
 export function GamePage() {
   const visible = useAppState((r) => r.visible)
@@ -52,7 +52,7 @@ export function GamePage() {
 
               <group
                 name='near-water'
-                scale={5}
+                scale={7}
                 position={[-0.09289114319543201, -1.3125008792877197, -31.45930003386298]}
               >
                 <AnimatedLobster
