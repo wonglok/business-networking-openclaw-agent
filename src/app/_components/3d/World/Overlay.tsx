@@ -5,6 +5,8 @@ import { useAppState } from './useAppState'
 import { Environment, PerspectiveCamera, Stage } from '@react-three/drei'
 import { AnimatedLobster } from '../../SkinnedMesh/AnimatedLobster'
 import { Suspense } from 'react'
+import { Button } from '@/components/ui/button'
+import { CanvasGPU } from '../CanvasGPU/CanvasGPU'
 
 export function Overlay() {
   const overlay = useAppState((r) => r.overlay)
@@ -17,10 +19,11 @@ export function Overlay() {
             <div className='flex w-full'>
               <div className='w-full h-[500px]'>
                 <Canvas>
-                  <PerspectiveCamera makeDefault position={[0, 0.5, 2]}></PerspectiveCamera>
                   <Suspense fallback={null}>
+                    <PerspectiveCamera makeDefault position={[0, 0.5, 2]}></PerspectiveCamera>
                     <>
                       <Environment files={[`/hdr/default.hdr`]}></Environment>
+
                       <group
                         onClick={() => {
                           useAppState.setState({
@@ -32,7 +35,7 @@ export function Overlay() {
                       >
                         <AnimatedLobster
                           glbURL={`/avatar/lobsters/guy/lobster-mixamo-transformed.glb`}
-                          fbxURL={`/avatar/lobsters/chef/motion/happy-state.fbx`}
+                          fbxURL={`/avatar/lobsters/chef/motion/twist-dance.fbx`}
                         ></AnimatedLobster>
                       </group>
 
@@ -47,7 +50,7 @@ export function Overlay() {
                       >
                         <AnimatedLobster
                           glbURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
-                          fbxURL={`/avatar/lobsters/chef/motion/idle-happy.fbx`}
+                          fbxURL={`/avatar/lobsters/chef/motion/happy-state.fbx`}
                         ></AnimatedLobster>
                       </group>
                     </>
@@ -62,5 +65,23 @@ export function Overlay() {
         </div>
       )}
     </>
+  )
+}
+
+export const AvatarPickerButton = () => {
+  return (
+    <Button
+      variant='outline'
+      className='h-[40px] mr-2'
+      onClick={() => {
+        ///
+
+        useAppState.setState({
+          overlay: 'avatarpicker',
+        })
+      }}
+    >
+      Wardrobe
+    </Button>
   )
 }

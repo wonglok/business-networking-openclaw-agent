@@ -7,23 +7,24 @@ export function AnimatedLobster({
   fbxURL = `/avatar/lobsters/chef/motion/thriller3.fbx`,
 }) {
   const motion = {
-    thriller: useFBX(fbxURL),
+    motion1: useFBX(fbxURL),
   }
   const glb = useGLTF(glbURL)
 
   const glbScene = useMemo(() => {
-    return clone(glb.scene)
+    const o3d = clone(glb.scene)
+    const dispaly = <primitive object={o3d}></primitive>
+    return {
+      o3d: o3d,
+      dispaly,
+    }
   }, [glb.scene])
 
-  const ani = useAnimations([...motion.thriller.animations], glbScene)
+  const ani = useAnimations([...motion.motion1.animations], glbScene.o3d)
 
   useEffect(() => {
     ani.actions[ani.names[0] as string]?.play()
   }, [ani])
 
-  return (
-    <>
-      <primitive object={glbScene}></primitive>
-    </>
-  )
+  return <>{glbScene.dispaly}</>
 }
