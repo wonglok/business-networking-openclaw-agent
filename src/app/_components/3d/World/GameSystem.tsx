@@ -95,6 +95,8 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
     }
   })
 
+  const chosenLobster = useAppState((r) => r.chosenLobster)
+
   return (
     <>
       <CameraControls
@@ -109,15 +111,32 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
       <>
         <KeyboardControls map={keyboardMap}>
           <group position={[0, 0, 0]}>
-            <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
-              {/* <AvatarRPM></AvatarRPM> */}
-              {/* <AvatarAI></AvatarAI> */}
-              <AvatarLobsterAI
-                //
-                lobsterURL={`/avatar/lobsters/guy/lobster-mixamo-transformed.glb`}
-              ></AvatarLobsterAI>
-              <group name='main-player'></group>
-            </BVHEcctrl>
+            <Suspense fallback={null}>
+              <BVHEcctrl ref={ecctrlRef} position={[0, 5, 0]} colliderCapsuleArgs={[0.3, 0.8, 4, 8]}>
+                {/* <AvatarRPM></AvatarRPM> */}
+                {/* <AvatarAI></AvatarAI> */}
+
+                {chosenLobster === 'guy' && (
+                  <>
+                    <AvatarLobsterAI
+                      //
+                      lobsterURL={`/avatar/lobsters/guy/lobster-mixamo-transformed.glb`}
+                    ></AvatarLobsterAI>
+                  </>
+                )}
+
+                {chosenLobster === 'lady' && (
+                  <>
+                    <AvatarLobsterAI
+                      //
+                      lobsterURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
+                    ></AvatarLobsterAI>
+                  </>
+                )}
+
+                <group name='main-player'></group>
+              </BVHEcctrl>
+            </Suspense>
           </group>
         </KeyboardControls>
 

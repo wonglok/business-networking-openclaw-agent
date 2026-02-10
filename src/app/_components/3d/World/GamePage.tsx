@@ -14,6 +14,7 @@ import { useAppState } from './useAppState'
 // import { SkinedMeshEffect } from '../../SkinnedMesh/SkinedMeshEffect'
 // import { SkinedMeshAnimatedGLB } from '../../SkinnedMesh/SkinedMeshAnimatedGLB'
 import { AnimatedLobster } from '../../SkinnedMesh/AnimatedLobster'
+import { Overlay } from './Overlay'
 // import copy from 'copy-to-clipboard'
 
 export function GamePage() {
@@ -55,10 +56,12 @@ export function GamePage() {
                 scale={7}
                 position={[-0.09289114319543201, -1.3125008792877197, -31.45930003386298]}
               >
-                <AnimatedLobster
-                  glbURL={`/avatar/lobsters/chef/mixa-lobster-transformed.glb`}
-                  fbxURL={`/avatar/lobsters/chef/motion/standing-clap.fbx`}
-                ></AnimatedLobster>
+                <Suspense fallback={null}>
+                  <AnimatedLobster
+                    glbURL={`/avatar/lobsters/chef/mixa-lobster-transformed.glb`}
+                    fbxURL={`/avatar/lobsters/chef/motion/standing-clap.fbx`}
+                  ></AnimatedLobster>
+                </Suspense>
               </group>
 
               <group

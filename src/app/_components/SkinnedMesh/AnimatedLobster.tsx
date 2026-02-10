@@ -13,7 +13,7 @@ export function AnimatedLobster({
 
   const glbScene = useMemo(() => {
     return clone(glb.scene)
-  }, [glb.scene.uuid])
+  }, [glb.scene])
 
   const ani = useAnimations([...motion.thriller.animations], glbScene)
 
