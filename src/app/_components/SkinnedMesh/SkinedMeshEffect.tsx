@@ -88,6 +88,7 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
         .then(async (glb) => {
           //
 
+          //
           // const playerGLB = (await new Promise((resolve) => {
           //   const tt = setInterval(() => {
           //     const res = scene.getObjectByName('main-player-glb')
@@ -97,6 +98,7 @@ export function SkinedMeshEffect({ masterName = 'pet01' }) {
           //     }
           //   }, 0)
           // })) as Object3D
+          //
 
           glb.scene.traverse((it: any) => {
             if (it.isSkinnedMesh) {
