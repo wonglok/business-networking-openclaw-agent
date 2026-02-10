@@ -14,7 +14,7 @@ import { useAppState } from './useAppState'
 // import { SkinedMeshEffect } from '../../SkinnedMesh/SkinedMeshEffect'
 // import { SkinedMeshAnimatedGLB } from '../../SkinnedMesh/SkinedMeshAnimatedGLB'
 import { AnimatedLobster } from '../../SkinnedMesh/AnimatedLobster'
-import { Overlay } from './Overlay'
+// import { Overlay } from './Overlay'
 // import copy from 'copy-to-clipboard'
 
 export function GamePage() {
