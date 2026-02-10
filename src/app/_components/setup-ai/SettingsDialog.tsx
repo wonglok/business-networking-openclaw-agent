@@ -118,11 +118,9 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
             setOpen(true)
           }}
         >
-          {`My AI Lobsters 🦞`}
+          {`My 🦞 AI`}
         </Button>
       </>
-
-      {/*  */}
 
       <DialogContent className='overflow-hidden p-0 max-h-[650px] md:max-w-[700px] lg:max-w-[800px]'>
         <DialogTitle className='sr-only'>Lobster Settings</DialogTitle>
