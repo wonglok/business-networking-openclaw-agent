@@ -6,7 +6,7 @@
 
 import { Suspense } from 'react'
 import { CanvasGPU } from '../CanvasGPU/CanvasGPU'
-import { Bvh } from '@react-three/drei'
+import { Bvh, Gltf } from '@react-three/drei'
 import { EnvLoader } from '../CanvasGPU/EnvLoader'
 import { JoystickControls } from './JoystickControls'
 import { GameSystem } from './GameSystem'
@@ -29,6 +29,12 @@ export function GamePage() {
               //
               url={`/hdr/default.hdr`}
             ></EnvLoader>
+
+            <group position={[0, -1.999, 0]}>
+              <Suspense fallback={null}>
+                <Gltf src={`/avatar/lobsters/others/lobsterland-transformed.glb`}></Gltf>
+              </Suspense>
+            </group>
 
             <group visible={visible}>
               {/*  */}
