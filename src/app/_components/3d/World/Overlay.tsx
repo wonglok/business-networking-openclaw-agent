@@ -1,12 +1,12 @@
 'use client'
 
-import { Canvas } from '@react-three/fiber'
+// import { Canvas } from '@react-three/fiber'
 import { useAppState } from './useAppState'
-import { Environment, PerspectiveCamera, Stage, View } from '@react-three/drei'
-import { AnimatedLobster } from '../../SkinnedMesh/AnimatedLobster'
-import { Suspense } from 'react'
+// import { Environment, PerspectiveCamera, Stage, View } from '@react-three/drei'
+// import { AnimatedLobster } from '../../SkinnedMesh/AnimatedLobster'
+// import { Suspense } from 'react'
 import { Button } from '@/components/ui/button'
-import { CanvasGPU } from '../CanvasGPU/CanvasGPU'
+// import { CanvasGPU } from '../CanvasGPU/CanvasGPU'
 import Image from 'next/image'
 
 export function Overlay() {
@@ -37,7 +37,7 @@ export function Overlay() {
                     className='w-8/12 lg:w-1/3 aspect-square rounded-2xl cursor-pointer'
                     width={500}
                     height={500}
-                    src={`/avatar/lobsters/guy/guy.png`}
+                    src={`/avatar/lobsters/cowboy/cowboy.jpeg`}
                     alt='lady lobster with dress'
                     onClick={() => {
                       useAppState.setState({
