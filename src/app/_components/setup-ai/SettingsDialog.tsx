@@ -82,6 +82,7 @@ import type { AgentObject } from 'generated/prisma'
 // import { Switch } from '@/components/ui/switch'
 // ButtonGroupSeparator, ButtonGroupText
 import { ButtonGroup } from '@/components/ui/button-group'
+import ReconnectingWebSocket from 'reconnecting-websocket'
 // import { Switch } from '@/components/ui/switch'
 // import { Label } from '@/components/ui/label'
 
@@ -288,8 +289,17 @@ function UpdateLobsterInfo({
             >
               Restore Agent
             </Button>
+            <Button
+              onClick={() => {
+                setTab('socket')
+              }}
+              variant={tab === 'socket' ? `default` : `outline`}
+            >
+              Realtime Socket
+            </Button>
           </ButtonGroup>
         </div>
+
         {tab === 'update' && (
           <div className='bg-muted/50 aspect-video max-w-3xl rounded-xl p-4'>
             {/*  */}
@@ -312,11 +322,94 @@ function UpdateLobsterInfo({
             {/*  */}
           </div>
         )}
+
+        {tab === 'socket' && (
+          <div className='bg-muted/50 aspect-video max-w-3xl rounded-xl p-4'>
+            {/*  */}
+            <WebSocketUI baseURL={baseURL} key={data.id + 'botupdate'} data={data}></WebSocketUI>
+            {/*  */}
+          </div>
+        )}
       </div>
     </>
   )
 }
 
+function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) {
+  const botToken = api.agent.getTokenOfMyBot.useQuery({
+    agentId: data.id,
+  })
+  React.useEffect(() => {
+    if (!botToken.data) {
+      return
+    }
+
+    if (!botToken.data.token) {
+      return
+    }
+
+    const devURL = `wss://7tono9e9d4.execute-api.ap-east-1.amazonaws.com/$default?token=${encodeURIComponent(botToken.data.token)}`
+    const prodURL = `wss://01fgd6870c.execute-api.ap-east-1.amazonaws.com/$default?token=${encodeURIComponent(botToken.data.token)}`
+
+    const rws = new ReconnectingWebSocket(async () => {
+      if (process.env.NODE_ENV === 'production') {
+        return prodURL
+      } else {
+        return devURL
+      }
+    })
+
+    const onOpen = () => {
+      rws.send(
+        JSON.stringify({
+          action: 'onDefaultMessage',
+          hi: 'message-onDefaultMessage',
+        }),
+      )
+
+      // rws.send(
+      //   JSON.stringify({
+      //     action: 'onSendMessage',
+      //     hi: 'message-onSendMessage',
+      //   }),
+      // )
+
+      // rws.send(
+      //   JSON.stringify({
+      //     action: 'onJoinRoom',
+      //     hi: 'message-onJoinRoom',
+      //   }),
+      // )
+
+      // rws.send(
+      //   JSON.stringify({
+      //     action: 'onLeaveRoom',
+      //     hi: 'message-onLeaveRoom',
+      //   }),
+      // )
+    }
+
+    const onMessage = (ev: any) => {
+      const bodyData = JSON.parse(ev.data)
+      //
+      console.log(bodyData)
+    }
+
+    rws.addEventListener('open', onOpen)
+    rws.addEventListener('message', onMessage)
+
+    return () => {
+      rws.removeEventListener('open', onOpen)
+      rws.removeEventListener('message', onMessage)
+      //
+      rws.close()
+
+      console.log('disconnected')
+    }
+  }, [botToken.data])
+
+  return null
+}
 function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
   const botToken = api.agent.getTokenOfMyBot.useQuery({
     agentId: data.id,
