@@ -5,9 +5,9 @@ We need to login to the account, we need to make sure we have `CLAIM_ID` and `VE
 We will make a request to the cloud and replace `CLAIM_ID` and `VERIFICATION_CODE` from the user message.
 
 ```bash
-curl -X POST __BASE_URL__openclaw/api/v1/agents/restore \
+curl -X POST __BASE_URL__openclaw/api/v1/agents/login \
   -H "Content-Type: application/json" \
-  -d '{ "claimToken": "CLAIM_ID", "verificationCode": "VERIFICATION_CODE" }'
+  -d '{ "claimToken": "...", "verificationCode": "..." }'
 ```
 
 Response example:
