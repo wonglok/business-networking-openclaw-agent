@@ -1,5 +1,5 @@
 // import { env } from '@/env'
-import { skill } from './_content/package-file'
+import { skill } from './package-file'
 
 // @ts-ignore
 export const GET = async () => {

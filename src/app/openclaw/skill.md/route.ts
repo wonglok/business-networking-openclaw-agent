@@ -1,6 +1,6 @@
 import { env } from '@/env'
 
-import skills from 'raw-loader!./_content/text.md' // substitute this path with your README.md file path
+import skills from 'raw-loader!./text.md' // substitute this path with your README.md file path
 
 export const GET = async (req: Request, ctx: any) => {
   let note = skills

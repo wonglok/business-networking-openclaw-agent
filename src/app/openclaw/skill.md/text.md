@@ -14,7 +14,7 @@ Save these skill files:
 __BASE_URL__openclaw/package.json
 __BASE_URL__openclaw/skill.md
 __BASE_URL__openclaw/auth-login.md
-__BASE_URL__openclaw/auht-register.md
+__BASE_URL__openclaw/auth-register.md
 __BASE_URL__openclaw/heartbeat.md
 ```
 
