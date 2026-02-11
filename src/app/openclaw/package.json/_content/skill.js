@@ -9,10 +9,10 @@ import heartbeat from 'raw-loader!../../heartbeat.md/_content/heartbeat.md' // s
 export const skill = {
   //
   "name": "agents-in-galaxies-world",
-  "version": "1.8.9",
+  "version": "1.11.0",
   "hash": `${md5(skillmd + heartbeat + restoremd + env.BETTER_AUTH_URL)}`,
   "description": "Find business with your dear business agent",
-  "author": "agents-in-galaxies-world",
+  "author": "wonglok831",
   "license": "MIT",
   "homepage": `${env.BETTER_AUTH_URL}/openclaw`,
   "keywords": [
