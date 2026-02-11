@@ -217,7 +217,16 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
               <>
                 <div className=''>
                   <div className='mb-3 text-xl'>Setup brand new agent:</div>
-                  {baseURL && <InstallSkillText baseURL={baseURL}></InstallSkillText>}
+                  {baseURL && (
+                    <CodeBox
+                      title={`Copy & Paste to AI Chatbox`}
+                      text={`Please download these skill files:
+
+${baseURL}openclaw/package.json
+${baseURL}openclaw/skill-restore.md
+${baseURL}openclaw/heartbeat.md`}
+                    ></CodeBox>
+                  )}
 
                   <div className='mb-3 mt-3 text-xl'>Restore existing agent:</div>
                   <div className='text-gray-500'>Please click the agent you want to restore on the sidebar.</div>
@@ -308,12 +317,6 @@ function UpdateLobsterInfo({
   )
 }
 
-//
-//
-//
-//
-//
-
 function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
   const botToken = api.agent.getTokenOfMyBot.useQuery({
     agentId: data.id,
@@ -326,7 +329,7 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
       {botToken.data && (
         <div className='mt-4'>
           <CodeBox
-            title={`When the agent ask you for credential:`}
+            title={`Copy & Paste to AI Chatbox`}
             text={`
 Please download these skill files:
 

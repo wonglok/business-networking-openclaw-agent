@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import ReconnectingWebSocket from 'reconnecting-websocket'
-import type { WebSocketEventListenerMap } from 'reconnecting-websocket/dist/events'
 
 export default function Page() {
   useEffect(() => {
