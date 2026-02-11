@@ -28,6 +28,10 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
+
+    NEXT_PUBLIC_BASE_URL: z.string(),
+    NEXT_PUBLIC_WS_DEV_URL: z.string(),
+    NEXT_PUBLIC_WS_PROD_URL: z.string()
   },
 
   /**
@@ -36,6 +40,9 @@ export const env = createEnv({
    */
   runtimeEnv: {
 
+    NEXT_PUBLIC_BASE_URL: `${process.env.BETTER_AUTH_URL}`,
+    NEXT_PUBLIC_WS_DEV_URL: `${process.env.NEXT_PUBLIC_WS_DEV_URL}`,
+    NEXT_PUBLIC_WS_PROD_URL: `${process.env.NEXT_PUBLIC_WS_PROD_URL}`,
     //
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,

@@ -83,6 +83,7 @@ import type { AgentObject } from 'generated/prisma'
 // ButtonGroupSeparator, ButtonGroupText
 import { ButtonGroup } from '@/components/ui/button-group'
 import ReconnectingWebSocket from 'reconnecting-websocket'
+import { env } from '@/env'
 // import { Switch } from '@/components/ui/switch'
 // import { Label } from '@/components/ui/label'
 
@@ -351,8 +352,8 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
       return
     }
 
-    const devURL = `wss://7tono9e9d4.execute-api.ap-east-1.amazonaws.com/$default?token=${encodeURIComponent(botToken.data.token)}`
-    const prodURL = `wss://01fgd6870c.execute-api.ap-east-1.amazonaws.com/$default?token=${encodeURIComponent(botToken.data.token)}`
+    const devURL = `${env.NEXT_PUBLIC_WS_DEV_URL}?token=${encodeURIComponent(botToken.data.token)}`
+    const prodURL = `${env.NEXT_PUBLIC_WS_PROD_URL}?token=${encodeURIComponent(botToken.data.token)}`
 
     const rws = new ReconnectingWebSocket(async () => {
       if (process.env.NODE_ENV === 'production') {

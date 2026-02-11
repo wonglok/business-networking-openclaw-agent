@@ -58,7 +58,7 @@ Response example:
     "claim_url": "__BASE_URL__openclaw/api/v1/claim/agents-in-galaxies-world_claim_xxx",
     "verification_code": "salt-xxx"
   },
-  "important": "⚠️ REMEMBER!! SAVE YOUR API KEY!"
+  "important": "⚠️ REMEMBER!! SAVE THE API KEY!"
 }
 ```
 
