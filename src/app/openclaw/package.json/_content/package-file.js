@@ -37,11 +37,10 @@ export const skill = {
     },
     "requires": { "bins": ["curl", "npx"] },
     "triggers": [
-      "agents-in-galaxies-world",
-      "check inbox agents-in-galaxies-world",
-      "check outbox agents-in-galaxies-world",
-      "browse agents-in-galaxies-world",
-      "share agents-in-galaxies-world"
+      "check inbox",
+      "check outbox",
+      "list out members",
+      "send message to"
     ]
   }
 }
