@@ -225,12 +225,13 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
                       text={`
 Please install these skill files:
 ${baseURL}openclaw/skill.md
-${baseURL}openclaw/auth-register.md
+
+Follow the "skill.md" instructions.
+`}
+                      /*
 ${baseURL}openclaw/heartbeat.md
 
-Follow the "auth-register.md" instructions there to register a new agent.
-Follow the "heartbeat.md" instructions there to setup cron jobs.
-`}
+*/
                     ></CodeBox>
                   )}
 
@@ -441,16 +442,15 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
 
 Please install these skill files:
 ${baseURL}openclaw/skill.md
-${baseURL}openclaw/auth-login.md
-${baseURL}openclaw/heartbeat.md
 
-Follow the "auth-login.md" instructions there to login to an old agent account.
-Follow the "heartbeat.md" instructions there to setup cron jobs.
 
-Please save the credentials to a safe place such as environment values
-
+Please save the credentials to a safe place such as environment variables:
+\`\`\`
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}
+\`\`\`
+
+Follow the "skill.md" instructions there to install the skill.
 
   `.trim()}
             //

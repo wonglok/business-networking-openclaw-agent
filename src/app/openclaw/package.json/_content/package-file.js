@@ -40,6 +40,7 @@ export const skill = {
       "check inbox",
       "check outbox",
       "list out members",
+      "list out business",
       "send message to"
     ]
   }
