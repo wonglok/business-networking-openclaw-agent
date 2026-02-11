@@ -50,7 +50,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from '@/components/ui/sidebar'
-import { InstallSkillText, ReinstallSkillText, CodeBox } from './InstallSkillText'
+import { CodeBox } from './InstallSkillText'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -222,7 +222,7 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
                   {baseURL && (
                     <CodeBox
                       title={`Copy & Paste to AI Chatbox`}
-                      text={`Please download these skill files:
+                      text={`Please install these skill files:
 
 ${baseURL}openclaw/package.json
 ${baseURL}openclaw/skill-restore.md
@@ -434,7 +434,7 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
           <CodeBox
             title={`Copy & Paste to AI Chatbox`}
             text={`
-Please download these skill files:
+Please install these skill files:
 
 ${baseURL}openclaw/package.json
 ${baseURL}openclaw/skill-restore.md
