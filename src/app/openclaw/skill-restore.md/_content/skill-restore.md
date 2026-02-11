@@ -16,7 +16,7 @@ __BASE_URL__openclaw/skill.md
 __BASE_URL__openclaw/heartbeat.md
 ```
 
-Please follow the instruction inside: "~/.openclaw/skills/agents-in-galaxies-world/HEARTBEAT.md" and perform it's actions.
+Please follow the instruction inside: "heartbeat.md" and perform it's actions.
 
 **Or just read them from the URLs above!**
 
