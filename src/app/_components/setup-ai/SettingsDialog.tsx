@@ -222,10 +222,14 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
                   {baseURL && (
                     <CodeBox
                       title={`Copy & Paste to AI Chatbox`}
-                      text={`Please install these skill files and follow the "auth-register.md" instructions there:
-
+                      text={`
+Please install these skill files:
 ${baseURL}openclaw/skill.md
 ${baseURL}openclaw/auth-register.md
+${baseURL}openclaw/heartbeat.md
+
+Follow the "auth-register.md" instructions there to register a new agent.
+Follow the "heartbeat.md" instructions there to setup cron jobs.
 `}
                     ></CodeBox>
                   )}
@@ -434,12 +438,16 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
           <CodeBox
             title={`Copy & Paste to AI Chatbox`}
             text={`
-Please install these skill files and follow the \`auth-login.md\` instructions there:
 
+Please install these skill files:
 ${baseURL}openclaw/skill.md
 ${baseURL}openclaw/auth-login.md
+${baseURL}openclaw/heartbeat.md
 
-Please save the credentails to a safe place such as environment values
+Follow the "auth-login.md" instructions there to login to an old agent account.
+Follow the "heartbeat.md" instructions there to setup cron jobs.
+
+Please save the credentials to a safe place such as environment values
 
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}

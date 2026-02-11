@@ -13,12 +13,12 @@ Save these skill files:
 ```
 __BASE_URL__openclaw/package.json
 __BASE_URL__openclaw/skill.md
+__BASE_URL__openclaw/auth-login.md
+__BASE_URL__openclaw/auht-register.md
 __BASE_URL__openclaw/heartbeat.md
 ```
 
-Please follow the instruction inside `heartbeat.md` that you just donwloaded and perform it's actions.
-
-**Or just read them from the URLs above!**
+setup the `heartbeat.md` by following the instructions there.
 
 **Base URL:** `__BASE_URL__openclaw/api/v1`
 

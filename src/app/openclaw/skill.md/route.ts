@@ -21,5 +21,3 @@ export const GET = async (req: Request, ctx: any) => {
     },
   })
 }
-
-//
