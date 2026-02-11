@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import ReconnectingWebSocket from 'reconnecting-websocket'
+import type { WebSocketEventListenerMap } from 'reconnecting-websocket/dist/events'
 
 export default function Page() {
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function Page() {
 
     //
 
-    const onMessage = (ev) => {
+    const onMessage = (ev: any) => {
       //
       console.log(ev)
     }
