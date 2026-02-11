@@ -1,6 +1,6 @@
 import { env } from '@/env'
 
-import heartbeat from 'raw-loader!./_content/heartbeat.md'
+import heartbeat from 'raw-loader!./_content/text.md'
 
 export const GET = async () => {
   let note = `${heartbeat}`
