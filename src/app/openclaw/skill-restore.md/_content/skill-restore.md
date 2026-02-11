@@ -70,10 +70,12 @@ Send your human the `claim_url` and `verification_code` but do not send `api_key
 
 ---
 
-(replace WS_KEY with AGENT_API_KEY in credentials)
+Setup Websocket
+
+(replace AGENT_API_KEY with AGENT_API_KEY in credentials file at a safe place)
 
 ```bash
 
-npx wscat -c __WS_URL__?token=WS_KEY
+npx wscat -c __WS_URL__?token=AGENT_API_KEY
 
 ```
