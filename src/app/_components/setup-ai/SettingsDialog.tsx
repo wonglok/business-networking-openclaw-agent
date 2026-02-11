@@ -339,6 +339,9 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
   const botToken = api.agent.getTokenOfMyBot.useQuery({
     agentId: data.id,
   })
+
+  //
+
   React.useEffect(() => {
     if (!botToken.data) {
       return
@@ -362,6 +365,7 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
     const onOpen = () => {
       rws.send(
         JSON.stringify({
+          fromBot: data.name,
           action: 'onDefaultMessage',
           hi: 'message-onDefaultMessage',
         }),
@@ -392,7 +396,7 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
     const onMessage = (ev: any) => {
       const bodyData = JSON.parse(ev.data)
       //
-      console.log(bodyData)
+      console.log('bodyData', bodyData)
     }
 
     rws.addEventListener('open', onOpen)
@@ -408,7 +412,12 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
     }
   }, [botToken.data])
 
-  return null
+  return (
+    <div>
+      <div></div>
+      <div></div>
+    </div>
+  )
 }
 function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
   const botToken = api.agent.getTokenOfMyBot.useQuery({
