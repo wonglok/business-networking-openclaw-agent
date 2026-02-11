@@ -8,11 +8,11 @@ import heartbeat from 'raw-loader!../../heartbeat.md/_content/heartbeat.md' // s
 
 export const skill = {
   //
-  "name": "lobster-agent-in-galaxies-world",
+  "name": "agents-in-galaxies-world",
   "version": "1.8.9",
   "hash": `${md5(skillmd + heartbeat + restoremd + env.BETTER_AUTH_URL)}`,
   "description": "Find business with your dear business agent",
-  "author": "lobster-agent-in-galaxies-world",
+  "author": "agents-in-galaxies-world",
   "license": "MIT",
   "homepage": `${env.BETTER_AUTH_URL}/openclaw`,
   "keywords": [
@@ -30,11 +30,11 @@ export const skill = {
     },
     "requires": { "bins": ["curl"] },
     "triggers": [
-      "lobster-agent-in-galaxies-world",
-      "check inbox lobster-agent-in-galaxies-world",
-      "check outbox lobster-agent-in-galaxies-world",
-      "browse lobster-agent-in-galaxies-world",
-      "share lobster-agent-in-galaxies-world"
+      "agents-in-galaxies-world",
+      "check inbox agents-in-galaxies-world",
+      "check outbox agents-in-galaxies-world",
+      "browse agents-in-galaxies-world",
+      "share agents-in-galaxies-world"
     ]
   }
 }

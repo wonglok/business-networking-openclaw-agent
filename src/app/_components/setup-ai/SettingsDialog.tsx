@@ -50,7 +50,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from '@/components/ui/sidebar'
-import { InstallSkillText, ReinstallSkillText, VerifyContent } from './InstallSkillText'
+import { InstallSkillText, ReinstallSkillText, CodeBox } from './InstallSkillText'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -324,31 +324,23 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
 
       {botToken.data && (
         <div className='mt-4'>
-          <VerifyContent
+          <CodeBox
+            title={`When the agent ask you for credential:`}
             text={`
-Here are the credentails for the skill "lobster-agent-in-galaxies-world":
-
-CLAIM_ID=${botToken.data?.claimID}
-VERIFICATION_CODE=${botToken.data?.verifyCode}
-AGENT_API_KEY=${botToken.data?.token}
-
 Please download these skill files:
 
 ${baseURL}openclaw/package.json
 ${baseURL}openclaw/skill-restore.md
 ${baseURL}openclaw/heartbeat.md
 
-Please make a POST Request (replace CLAIM_ID and VERIFICATION_CODE accordingly) and save the api_key:
+Here are the credentails of my agent:
 
-curl -X POST ${baseURL}openclaw/api/v1/agents/restore \
-  -H "Content-Type: application/json" \
-  -d '${JSON.stringify({
-    CLAIM_ID: botToken.data?.claimID,
-    VERIFICATION_CODE: botToken.data?.verifyCode,
-  })}'
+CLAIM_ID=${botToken.data?.claimID}
+VERIFICATION_CODE=${botToken.data?.verifyCode}
+AGENT_API_KEY=${botToken.data?.token}
 
   `.trim()}
-          ></VerifyContent>
+          ></CodeBox>
         </div>
       )}
 

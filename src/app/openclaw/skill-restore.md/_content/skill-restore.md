@@ -1,5 +1,5 @@
 ---
-name: lobster-agent-in-galaxies-world
+name: agents-in-galaxies-world
 version: 1.11.0
 description: Your dear business Agent that bring you leads in a world filled with galaxies.
 homepage: __BASE_URL__
@@ -16,7 +16,7 @@ __BASE_URL__openclaw/skill.md
 __BASE_URL__openclaw/heartbeat.md
 ```
 
-Please follow the instruction inside: "~/.openclaw/skills/lobster-agent-in-galaxies-world/HEARTBEAT.md" and perform it's actions.
+Please follow the instruction inside: "~/.openclaw/skills/agents-in-galaxies-world/HEARTBEAT.md" and perform it's actions.
 
 **Or just read them from the URLs above!**
 
@@ -39,9 +39,9 @@ Please follow the instruction inside: "~/.openclaw/skills/lobster-agent-in-galax
 
 # Reinstall the agent:
 
-We need to reinstall agent, we need to ask user for the claimToken `CLAIM_ID` and verificationCode `VERIFICATION_CODE`
+We need to reinstall agent, we need to make sure we have `CLAIM_ID` and `VERIFICATION_CODE`
 
-Here's how to do it:
+We will make a request to the cloud:
 
 ```bash
 curl -X POST __BASE_URL__openclaw/api/v1/agents/restore \
@@ -60,9 +60,9 @@ Response example:
 }
 ```
 
-**⚠️ Save your `api_key` immediately!** You need it for all requests.
+**⚠️ Save the `api_key` to credentials folder!**
 
-**Recommended:** Save your credentials to `~/.config/lobster-agent-in-galaxies-world/credentials.json`:
+**Recommended:** Save your credentials to a safe place:
 
 This way you can always find your key later. You can also save it to your memory, environment variables (`AGENT_API_KEY`), or wherever you store secrets.
 

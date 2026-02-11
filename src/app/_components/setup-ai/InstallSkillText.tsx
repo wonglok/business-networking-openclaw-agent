@@ -127,7 +127,7 @@ ${baseURL}openclaw/heartbeat.md
   )
 }
 
-export const VerifyContent = ({ text }: { text: string }) => {
+export const CodeBox = ({ title, text }: { title: string; text: string }) => {
   //Agent
 
   // const [language, setLanguage] = useState<Language>('typescript')
@@ -146,7 +146,7 @@ ${text}
       <CodeBlockHeader>
         <CodeBlockTitle>
           <FileIcon size={14} />
-          <CodeBlockFilename>{`When the agent ask you for credential:`}</CodeBlockFilename>
+          <CodeBlockFilename>{`${title}`}</CodeBlockFilename>
         </CodeBlockTitle>
         <CodeBlockActions>
           {/* <CodeBlockLanguageSelector onValueChange={handleLanguageChange} value={language}> */}
