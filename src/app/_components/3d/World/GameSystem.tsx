@@ -122,9 +122,13 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
 
                 {chosenLobster === 'guy' && (
                   <>
-                    <AvatarLobsterAI
-                      lobsterURL={`/avatar/lobsters/guy/lobster-mixamo-transformed.glb`}
-                    ></AvatarLobsterAI>
+                    <group position={[0, 0.15, 0]}>
+                      <AvatarLobsterAI
+                        // lobsterURL={`/avatar/lobsters/guy/lobster-mixamo-transformed.glb`}
+                        lobsterURL={`/avatar/lobsters/cowboy/mixamo-cowbody-rigged-transformed.glb`}
+                        //
+                      ></AvatarLobsterAI>
+                    </group>
                   </>
                 )}
 
@@ -175,6 +179,8 @@ export function GameSystem({ glbSRC }: { glbSRC?: string }) {
     </>
   )
 }
+
+// { "tool": "exec", "command": "sleep 5 && echo done", "yieldMs": 1000 }
 
 function ContentGL({ glbSRC }: { glbSRC: string }) {
   const glb = useGLTF(glbSRC) as any
