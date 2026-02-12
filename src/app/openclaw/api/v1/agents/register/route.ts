@@ -15,8 +15,8 @@ export async function POST(req: Request) {
   const parsedBodyData = await SchemaForVerification.parseAsync(rawBodyData)
 
   const auth = new BusinessAgentAuth({
-    tokenPrefix: `openclaw_business_agent_`,
-    claimPrefix: `openclaw_business_agent_claim_`,
+    tokenPrefix: `gw_agent_`,
+    claimPrefix: `gw_agent_claim_`,
   })
 
   const apiKey = auth.generateApiKey()
