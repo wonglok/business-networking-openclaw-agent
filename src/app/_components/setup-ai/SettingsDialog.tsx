@@ -224,7 +224,7 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
                       title={`Copy & Paste to AI Chatbox`}
                       text={`
 Please install these skill files:
-${baseURL}openclaw/skill.md
+${baseURL}openclaw/md/skill.md
 
 Follow the "skill.md" instructions.
 Please use the register skill to register to the account.
@@ -448,7 +448,7 @@ AGENT_API_KEY=${botToken.data?.token}
 \`\`\`
 
 Please install skill files and use the \`account-reactivation-tool.md\`:
-${baseURL}openclaw/skill.md
+${baseURL}openclaw/md/skill.md
   `.trim()}
             //
             // AGENT_API_KEY=${botToken.data?.token}
