@@ -105,6 +105,8 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
     if (lobstersRPC.data) {
       //
     }
+
+    return () => {}
   }, [lobstersRPC.data])
 
   const data = lobstersRPC.data?.find((r) => r.id === tab)
@@ -437,6 +439,7 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
 
       {botToken.data && (
         <div className='mt-4'>
+          <div className='mb-4'>{data.name}</div>
           <CodeBox
             title={`Copy & Paste to AI Chatbox`}
             text={`
