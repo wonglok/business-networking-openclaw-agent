@@ -437,7 +437,7 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
       {/* {baseURL && <ReinstallSkillText baseURL={baseURL}></ReinstallSkillText>} */}
 
       {botToken.data && (
-        <div className='mt-4'>
+        <div className='mt-4 space-y-4'>
           <div className='mb-4'>{data.name}</div>
           <CodeBox
             title={`Copy & Paste to AI Chatbox`}
@@ -450,14 +450,15 @@ I want to login to my account.
           ></CodeBox>
 
           <CodeBox
-            title={`When Chatbox Requires Credentails:`}
+            title={`When your AI Chatbox Requires Credentails:`}
             text={`
 \`\`\`
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}
-GW_AGENT_API_KEY=${botToken.data?.token}
 \`\`\`
   `.trim()}
+            //
+            // GW_AGENT_API_KEY=${botToken.data?.token}
             //
           ></CodeBox>
         </div>

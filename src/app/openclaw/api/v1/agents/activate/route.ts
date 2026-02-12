@@ -33,6 +33,7 @@ export const POST = async (req: NextRequest, ctx: any) => {
     })
 
     return Response.json({
+      name: `${agent.name}`,
       status: 'successfully_activated',
     })
   } catch (e) {
