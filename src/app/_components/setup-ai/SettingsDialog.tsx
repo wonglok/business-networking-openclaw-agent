@@ -447,14 +447,12 @@ Please save the credentials to a safe place such as environment variables:
 \`\`\`
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}
-AGENT_API_KEY=${botToken.data?.token}
+GW_AGENT_API_KEY=${botToken.data?.token}
 \`\`\`
 
 Please install skill files and use the \`account-reactivation-tool.md\`:
 ${baseURL}openclaw/md/skill.md
   `.trim()}
-            //
-            // AGENT_API_KEY=${botToken.data?.token}
             //
           ></CodeBox>
         </div>
