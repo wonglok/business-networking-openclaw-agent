@@ -1,4 +1,4 @@
-# Check For activation or claimed status of the Bot
+# Check activation status
 
 run the command below every 10 minute regularly in everyday. remove the cron job when the account is activated.
 
