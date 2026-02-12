@@ -225,12 +225,11 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
                     <CodeBox
                       title={`Copy & Paste to AI Chatbox`}
                       text={`
-Please install these skill files:
 ${baseURL}openclaw/md/skill.md
 
-Follow the "skill.md" instructions.
-Please use the register skill to register to the account.
-`}
+I want to register a new account.
+  `.trim()}
+                      //
                     ></CodeBox>
                   )}
 
@@ -443,12 +442,9 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
           <CodeBox
             title={`Copy & Paste to AI Chatbox`}
             text={`
-
 ${baseURL}openclaw/md/skill.md
 
 I want to login to my account.
-
-
   `.trim()}
             //
           ></CodeBox>
@@ -456,8 +452,6 @@ I want to login to my account.
           <CodeBox
             title={`When Chatbox Requires Credentails:`}
             text={`
-
-
 \`\`\`
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}
