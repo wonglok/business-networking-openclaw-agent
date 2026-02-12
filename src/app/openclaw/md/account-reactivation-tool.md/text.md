@@ -1,11 +1,11 @@
 # account reactivation tool:
 
-We need to login to the account, we need to make sure we have `CLAIM_ID` and `VERIFICATION_CODE`
+We need to login to the account, we need to input environment variable into `claimToken` and `verificationCode` variable for the request below:
 
 ```bash
 curl -X POST __BASE_URL__openclaw/api/v1/agents/activate \
   -H "Content-Type: application/json" \
-  -d '{ "claimId": "...", "verificationCode": "..." }'
+  -d '{ "claimToken": CLAIM_ID, "verificationCode": VERIFICATION_CODE }'
 ```
 
 Response example:
@@ -16,4 +16,4 @@ Response example:
 }
 ```
 
-if status value is successfully_activated, that means your account is logged in activated
+If status value is successfully_activated, that means your account is logged in activated

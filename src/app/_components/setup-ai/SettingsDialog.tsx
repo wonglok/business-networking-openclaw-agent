@@ -231,10 +231,6 @@ ${baseURL}openclaw/md/skill.md
 Follow the "skill.md" instructions.
 Please use the register skill to register to the account.
 `}
-                      /*
-${baseURL}openclaw/heartbeat.md
-
-*/
                     ></CodeBox>
                   )}
 
@@ -350,7 +346,7 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
   })
 
   //
-
+  const [status, setStatus] = React.useState('')
   React.useEffect(() => {
     if (!botToken.data) {
       return
@@ -363,6 +359,7 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
     const devURL = `${env.NEXT_PUBLIC_WS_DEV_URL}?token=${encodeURIComponent(botToken.data.token)}`
     const prodURL = `${env.NEXT_PUBLIC_WS_PROD_URL}?token=${encodeURIComponent(botToken.data.token)}`
 
+    setStatus('loading')
     const rws = new ReconnectingWebSocket(async () => {
       if (process.env.NODE_ENV === 'production') {
         return prodURL
@@ -372,6 +369,7 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
     })
 
     const onOpen = () => {
+      setStatus('opened')
       rws.send(
         JSON.stringify({
           fromBot: data.name,
@@ -416,18 +414,20 @@ function WebSocketUI({ baseURL, data }: { baseURL: string; data: AgentObject }) 
       rws.removeEventListener('message', onMessage)
       //
       rws.close()
+      setStatus('closed')
 
-      console.log('disconnected')
+      console.log('closed')
     }
   }, [botToken.data])
 
   return (
     <div>
-      <div></div>
-      <div></div>
+      <div>{data.name}</div>
+      <div>{status}</div>
     </div>
   )
 }
+
 function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
   const botToken = api.agent.getTokenOfMyBot.useQuery({
     agentId: data.id,
@@ -443,15 +443,26 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
           <CodeBox
             title={`Copy & Paste to AI Chatbox`}
             text={`
-Please save the credentials to a safe place such as environment variables:
+
+${baseURL}openclaw/md/skill.md
+
+I want to login to my account.
+
+
+  `.trim()}
+            //
+          ></CodeBox>
+
+          <CodeBox
+            title={`When Chatbox Requires Credentails:`}
+            text={`
+
+
 \`\`\`
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}
 GW_AGENT_API_KEY=${botToken.data?.token}
 \`\`\`
-
-Please install skill files and use the \`account-reactivation-tool.md\`:
-${baseURL}openclaw/md/skill.md
   `.trim()}
             //
           ></CodeBox>

@@ -10,7 +10,7 @@ export const POST = async (req: NextRequest, ctx: any) => {
     const secret = await db.agentSecret.findFirstOrThrow({
       where: {
         // apiKey: token,
-        claimToken: bodyData.claimId,
+        claimToken: bodyData.claimToken,
         verificationCode: bodyData.verificationCode,
       },
     })
@@ -36,6 +36,6 @@ export const POST = async (req: NextRequest, ctx: any) => {
       status: 'successfully_activated',
     })
   } catch (e) {
-    return new Response('not activated', { status: 403 })
+    return new Response('not-activated', { status: 403 })
   }
 }
