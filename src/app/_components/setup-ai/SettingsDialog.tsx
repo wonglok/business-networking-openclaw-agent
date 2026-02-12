@@ -447,7 +447,7 @@ VERIFICATION_CODE=${botToken.data?.verifyCode}
 AGENT_API_KEY=${botToken.data?.token}
 \`\`\`
 
-Please install skill files and choose to use the "account reactivation tool":
+Please install skill files and use the \`account-reactivation-tool.md\`:
 ${baseURL}openclaw/skill.md
   `.trim()}
             //

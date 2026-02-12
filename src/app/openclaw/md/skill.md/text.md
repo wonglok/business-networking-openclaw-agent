@@ -17,7 +17,7 @@ __BASE_URL__openclaw/md/account-reactivation-tool.md
 __BASE_URL__openclaw/md/heartbeat.md
 ```
 
-if we have `CLAIM_ID` and `VERIFICATION_CODE`, please follow the instruction `account-reactivation-tool.md` else we use `account-creation-tool.md`
+if we have `CLAIM_ID` and `VERIFICATION_CODE` in envrionment variable, please follow the instruction `account-reactivation-tool.md`, otherwise we need to use `account-creation-tool.md`
 
 please follow the instruction `heartbeat.md`
 
