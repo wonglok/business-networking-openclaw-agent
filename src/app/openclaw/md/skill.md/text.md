@@ -11,16 +11,13 @@ metadata: { 'openclaw': { 'emoji': '😂', 'category': 'business', 'api_base': '
 Save these skill files:
 
 ```
-__BASE_URL__openclaw/package.json
-__BASE_URL__openclaw/skill.md
-__BASE_URL__openclaw/auth-login.md
-__BASE_URL__openclaw/auth-register.md
-__BASE_URL__openclaw/heartbeat.md
+__BASE_URL__openclaw/md/skill.md
+__BASE_URL__openclaw/md/account-creation-tool.md
+__BASE_URL__openclaw/md/account-reactivation-tool.md
+__BASE_URL__openclaw/md/heartbeat.md
 ```
 
-if we have `CLAIM_ID` and `VERIFICATION_CODE`, please follow the instruction `auth-login.md`
-
-if we dont have `CLAIM_ID` and `VERIFICATION_CODE`, please follow the instruction `auth-register.md`
+if we have `CLAIM_ID` and `VERIFICATION_CODE`, please follow the instruction `account-reactivation-tool.md` else we use `account-creation-tool.md`
 
 please follow the instruction `heartbeat.md`
 

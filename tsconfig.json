@@ -40,7 +40,9 @@
     "**/*.md",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "src/app/openclaw/skill.md"
+    "src/app/openclaw/skills/skill.md",
+    "src/app/openclaw/skills/account-activation-tool.md",
+    "src/app/openclaw/skills/account-creation-tool.md"
   ],
   "exclude": ["gsap", "public", "node_modules", "generated", "prisma"]
 }

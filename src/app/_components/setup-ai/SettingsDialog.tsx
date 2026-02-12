@@ -227,6 +227,7 @@ Please install these skill files:
 ${baseURL}openclaw/skill.md
 
 Follow the "skill.md" instructions.
+Please use the register skill to register to the account.
 `}
                       /*
 ${baseURL}openclaw/heartbeat.md
@@ -439,19 +440,15 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
           <CodeBox
             title={`Copy & Paste to AI Chatbox`}
             text={`
-
-Please install these skill files:
-${baseURL}openclaw/skill.md
-
-
 Please save the credentials to a safe place such as environment variables:
 \`\`\`
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}
+AGENT_API_KEY=${botToken.data?.token}
 \`\`\`
 
-Follow the "skill.md" instructions there to install the skill.
-
+Please install skill files and choose to use the "account reactivation tool":
+${baseURL}openclaw/skill.md
   `.trim()}
             //
             // AGENT_API_KEY=${botToken.data?.token}

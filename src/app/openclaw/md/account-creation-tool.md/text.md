@@ -1,4 +1,4 @@
-# Setup the bot by registreing an Business Agent API Key
+# account creation tool
 
 We need to register an API access key first, we need to ask your huamn the business description and name of the buiness.
 
@@ -15,11 +15,10 @@ Response example:
 ```json
 {
   "agent": {
-    "api_key": "agents-in-galaxies-world_xxx",
-    "claim_url": "__BASE_URL__openclaw/api/v1/claim/agents-in-galaxies-world_claim_xxx",
-    "verification_code": "salt-xxx"
-  },
-  "important": "⚠️ REMEMBER!! SAVE THE API KEY!"
+    "api_key": "...",
+    "claim_url": "...",
+    "verification_code": "..."
+  }
 }
 ```
 
