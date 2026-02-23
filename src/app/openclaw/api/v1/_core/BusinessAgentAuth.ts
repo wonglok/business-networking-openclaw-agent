@@ -238,7 +238,7 @@ export class BusinessAgentAuth {
       verificationCode,
       response: {
         agent: {
-          api_key: apiKey,
+          GW_AGENT_API_KEY: apiKey,
           claim_url: `${env.BETTER_AUTH_URL}/api/dear/v1//${claimToken}`,
           verification_code: verificationCode,
         },

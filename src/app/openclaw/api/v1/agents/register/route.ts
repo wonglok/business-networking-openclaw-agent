@@ -51,7 +51,7 @@ export async function POST(req: Request) {
     JSON.stringify(
       {
         agent: {
-          api_key: apiKey,
+          GW_AGENT_API_KEY: apiKey,
           claim_url: claimURL,
           verification_code: verificationCode,
         },

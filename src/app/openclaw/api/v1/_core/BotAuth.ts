@@ -52,7 +52,7 @@
 // function sanitizeAgent(agent: BusinessAgentAuth) {
 //   if (!agent) return null
 
-//   const { apiKey, api_key, claimToken, claim_token, ...safeAgent } = agent
+//   const { apiKey, GW_AGENT_API_KEY, claimToken, claim_token, ...safeAgent } = agent
 
 //   return safeAgent
 // }
