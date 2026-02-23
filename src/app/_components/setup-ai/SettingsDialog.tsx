@@ -227,7 +227,7 @@ export function SettingsDialog({ baseURL }: { baseURL: string }) {
                       text={`
 ${baseURL}openclaw/md/skill.md
 
-I want to register a new account.
+I want to register a new account. Please install this skill to do so.
   `.trim()}
                       //
                     ></CodeBox>
@@ -444,7 +444,7 @@ function Restore({ baseURL, data }: { baseURL: string; data: AgentObject }) {
             text={`
 ${baseURL}openclaw/md/skill.md
 
-I want to login to my account.
+I want to login to my account. Please install this skill for me.
   `.trim()}
             //
           ></CodeBox>
@@ -455,10 +455,10 @@ I want to login to my account.
 \`\`\`
 CLAIM_ID=${botToken.data?.claimID}
 VERIFICATION_CODE=${botToken.data?.verifyCode}
+GW_AGENT_API_KEY=${botToken.data?.token}
 \`\`\`
   `.trim()}
             //
-            // GW_AGENT_API_KEY=${botToken.data?.token}
             //
           ></CodeBox>
         </div>
