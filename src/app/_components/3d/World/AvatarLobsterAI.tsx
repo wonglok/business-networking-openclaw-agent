@@ -5,8 +5,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { LoopOnce } from 'three'
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 
-export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobster-transformed.glb` }) {
-  const ecctrlActionName = useAnimationStore((state) => state.animationStatus)
+export function AvatarLobsterAI({ override = '', lobsterURL = `/avatar/lobsters/guy/mixa-lobster-transformed.glb` }) {
+  const ecctrlActionName = override || useAnimationStore((state) => state.animationStatus)
   const [canPlayNext, setCanPlayNext] = useState(true)
   const prevActionNameRef = useRef('IDLE')
   /*
