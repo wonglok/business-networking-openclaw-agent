@@ -1,4 +1,5 @@
 import { type NavMesh } from 'navcat'
+import type ReconnectingWebSocket from 'reconnecting-websocket'
 import { Group } from 'three'
 import { create } from 'zustand'
 export const useAppState = create(() => {
@@ -9,5 +10,9 @@ export const useAppState = create(() => {
     navMesh: null as NavMesh | null,
     chosenLobster: 'guy',
     overlay: 'avatarpicker',
+    signature: '',
+
+    otherPlayers: [],
+    socket: false as ReconnectingWebSocket | false,
   }
 })

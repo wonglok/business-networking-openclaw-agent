@@ -10,7 +10,7 @@
     "db:migrate": "prisma migrate deploy",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "dev": "prisma generate; next dev --webpack",
+    "dev": "prisma generate; PORT=3000 next dev --webpack",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "postinstall": "prisma generate",
@@ -18,9 +18,7 @@
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "tunnel:ngrok": "ngrok http --url=laptop.wonglok.com 3000",
-    "tunnel": "./tunnel.sh"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@a2a-js/sdk": "^0.3.4",

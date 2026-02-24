@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { useAnimationStore } from 'bvhecctrl'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { LoopOnce } from 'three'
+import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 
 export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobster-transformed.glb` }) {
   const ecctrlActionName = useAnimationStore((state) => state.animationStatus)
@@ -22,6 +23,9 @@ export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobste
   }
 
   const glb = useGLTF(lobsterURL)
+  const glbScene = useMemo(() => {
+    return clone(glb.scene)
+  }, [glb.scene])
 
   // glb.scene.traverse((it) => {
   //   if (it) {
@@ -61,7 +65,7 @@ export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobste
     ]
   }, [])
 
-  const { ref, actions, mixer }: any = useAnimations(clips, glb.scene)
+  const { ref, actions, mixer }: any = useAnimations(clips, glbScene)
 
   //
 
@@ -173,7 +177,7 @@ export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobste
   })
 
   useEffect(() => {
-    glb.scene.traverse((it) => {
+    glbScene.traverse((it) => {
       if (it) {
         it.castShadow = true
         it.receiveShadow = true
@@ -191,7 +195,7 @@ export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobste
         scale={1.5}
         position={[0, -0.9, 0]}
       >
-        <primitive object={glb.scene}></primitive>
+        <primitive object={glbScene}></primitive>
       </group>
       <group position={[0, -0.9, 0]}>
         <group ref={ref} visible={false} dispose={null}>
