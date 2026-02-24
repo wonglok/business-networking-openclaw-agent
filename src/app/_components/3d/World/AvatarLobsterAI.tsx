@@ -5,7 +5,13 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { LoopOnce } from 'three'
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js'
 
-export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobster-transformed.glb` }) {
+export function AvatarLobsterAI({
+  forceIdle = false,
+  lobsterURL = `/avatar/lobsters/guy/mixa-lobster-transformed.glb`,
+}: {
+  forceIdle?: boolean
+  lobsterURL: string
+}) {
   const ecctrlActionName = useAnimationStore((state) => state.animationStatus)
   const [canPlayNext, setCanPlayNext] = useState(true)
   const prevActionNameRef = useRef('IDLE')
@@ -89,7 +95,10 @@ export function AvatarLobsterAI({ lobsterURL = `/avatar/lobsters/guy/mixa-lobste
 
   useEffect(() => {
     const nextActionName = statusToActionMap[ecctrlActionName]
-    const nextAction = actions[nextActionName]
+    let nextAction = actions[nextActionName]
+    if (forceIdle) {
+      nextAction = actions['IDLE']
+    }
     if (!nextAction) {
       return
     }

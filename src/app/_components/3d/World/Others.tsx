@@ -136,6 +136,7 @@ export function Others({ roomID = 'lobby' }) {
                       <Suspense fallback={null}>
                         <group position={[0, 0.15, 0]}>
                           <AvatarLobsterAI
+                            forceIdle
                             key={player.itemID + 'pl'}
                             lobsterURL={`/avatar/lobsters/cowboy/mixamo-cowbody-rigged-transformed.glb`}
                           ></AvatarLobsterAI>
@@ -149,6 +150,7 @@ export function Others({ roomID = 'lobby' }) {
                       <Suspense fallback={null}>
                         <group position={[0, 0.075, 0]}>
                           <AvatarLobsterAI
+                            forceIdle
                             key={player.itemID + 'pl'}
                             lobsterURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
                           ></AvatarLobsterAI>
