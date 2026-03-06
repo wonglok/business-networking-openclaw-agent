@@ -27,6 +27,8 @@ export function Others({ roomID = 'lobby' }) {
         signature,
       })
 
+      //
+
       // const mainPlayer = scene.getObjectByName('main-player')
       // if (mainPlayer) {
       //   //
@@ -169,7 +171,7 @@ function OtherPlayers() {
                       <group position={[0, 0.15, 0]}>
                         <AvatarLobsterAI
                           forceIdle
-                          key={player.itemID + 'pl'}
+                          key={player.itemID + 'plsir'}
                           lobsterURL={`/avatar/lobsters/cowboy/mixamo-cowbody-rigged-transformed.glb`}
                         ></AvatarLobsterAI>
                       </group>
@@ -183,7 +185,7 @@ function OtherPlayers() {
                       <group position={[0, 0.075, 0]}>
                         <AvatarLobsterAI
                           forceIdle
-                          key={player.itemID + 'pl'}
+                          key={player.itemID + 'pllady'}
                           lobsterURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
                         ></AvatarLobsterAI>
                       </group>
