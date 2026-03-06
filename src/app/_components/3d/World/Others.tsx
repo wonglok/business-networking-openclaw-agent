@@ -11,9 +11,6 @@ import { AvatarLobsterAI } from './AvatarLobsterAI'
 //
 
 export function Others({ roomID = 'lobby' }) {
-  const otherPlayers = useAppState((r) => r.otherPlayers)
-  const signature = useAppState((r) => r.signature)
-  const socket2 = useAppState((r) => r.socket)
   const scene = useThree((r) => r.scene)
   useEffect(() => {
     const url = env.NEXT_PUBLIC_ENV === 'production' ? NEXT_PUBLIC_WS_PROD_URL : NEXT_PUBLIC_WS_DEV_URL
@@ -30,33 +27,51 @@ export function Others({ roomID = 'lobby' }) {
         signature,
       })
 
-      const mainPlayer = scene.getObjectByName('main-player')
-      if (mainPlayer) {
-        //
-        const o3 = new Object3D()
+      // const mainPlayer = scene.getObjectByName('main-player')
+      // if (mainPlayer) {
+      //   //
+      //   const o3 = new Object3D()
 
-        mainPlayer.getWorldPosition(o3.position)
-        mainPlayer.getWorldQuaternion(o3.quaternion)
+      //   mainPlayer.getWorldPosition(o3.position)
+      //   mainPlayer.getWorldQuaternion(o3.quaternion)
 
-        socket.send(
-          JSON.stringify({
-            action: 'onJoinRoom',
-            roomID: roomID,
-            signature: signature,
+      //   socket.send(
+      //     JSON.stringify({
+      //       action: 'onJoinRoom',
+      //       roomID: roomID,
+      //       signature: signature,
 
-            chosenLobster: useAppState.getState().chosenLobster,
-            //
-            quaternion: o3.quaternion.toArray(),
-            target: o3.position.toArray(),
-            position: o3.position.toArray(),
-          }),
-        )
-      }
+      //       chosenLobster: useAppState.getState().chosenLobster,
+      //       //
+      //       quaternion: o3.quaternion.toArray(),
+      //       target: o3.position.toArray(),
+      //       position: o3.position.toArray(),
+      //     }),
+      //   )
+      // }
     }
 
-    // let sig = ''
+    let sig = ''
+    let needsUpdate = true
+    const repeatChecker = setInterval(() => {
+      const o3 = new Object3D()
+      const mainPlayer = scene.getObjectByName('main-player')
+      if (mainPlayer) {
+        mainPlayer.getWorldPosition(o3.position)
+        const now = JSON.stringify({
+          p: o3.position.toArray().map((r) => r.toFixed(2)),
+        })
+        if (sig === now) {
+          return
+        }
 
-    const repeat = setInterval(() => {
+        needsUpdate = true
+
+        sig = now
+      }
+    }, 100)
+
+    const repeatSync = setInterval(() => {
       //
       const mainPlayer = scene.getObjectByName('main-player')
       if (mainPlayer) {
@@ -67,15 +82,8 @@ export function Others({ roomID = 'lobby' }) {
 
         // console.log(socket.readyState, socket.OPEN)
 
-        if (socket.readyState === socket.OPEN) {
-          // const now = JSON.stringify({
-          //   p: o3.position.toArray().map((r) => r.toFixed(2)),
-          // })
-          // if (sig === now) {
-          //   return
-          // }
-
-          // sig = now
+        if (socket.readyState === socket.OPEN && needsUpdate) {
+          needsUpdate = false
 
           socket.send(
             JSON.stringify({
@@ -106,14 +114,15 @@ export function Others({ roomID = 'lobby' }) {
     }
 
     return () => {
-      clearInterval(repeat)
+      clearInterval(repeatChecker)
+      clearInterval(repeatSync)
 
-      socket.send(
-        JSON.stringify({
-          action: 'onLeaveRoom',
-          roomID: roomID,
-        }),
-      )
+      // socket.send(
+      //   JSON.stringify({
+      //     action: 'onLeaveRoom',
+      //     roomID: roomID,
+      //   }),
+      // )
 
       socket.close()
     }
@@ -121,50 +130,73 @@ export function Others({ roomID = 'lobby' }) {
 
   return (
     <>
-      {socket2 &&
-        otherPlayers
-          .filter((r: any) => r.signature !== signature)
-          .map((player: any) => {
-            return (
-              <group key={player.itemID}>
-                {/*  */}
-
-                <LerpPos quaternion={player.quaternion} position={player.position}>
-                  {player.chosenLobster === 'guy' && (
-                    <>
-                      <Suspense fallback={null}>
-                        <group position={[0, 0.15, 0]}>
-                          <AvatarLobsterAI
-                            forceIdle
-                            key={player.itemID + 'pl'}
-                            lobsterURL={`/avatar/lobsters/cowboy/mixamo-cowbody-rigged-transformed.glb`}
-                          ></AvatarLobsterAI>
-                        </group>
-                      </Suspense>
-                    </>
-                  )}
-
-                  {player.chosenLobster === 'lady' && (
-                    <>
-                      <Suspense fallback={null}>
-                        <group position={[0, 0.075, 0]}>
-                          <AvatarLobsterAI
-                            forceIdle
-                            key={player.itemID + 'pl'}
-                            lobsterURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
-                          ></AvatarLobsterAI>
-                        </group>
-                      </Suspense>
-                    </>
-                  )}
-                </LerpPos>
-              </group>
-            )
-          })}
+      <OtherPlayers></OtherPlayers>
     </>
   )
 }
 
+function OtherPlayers() {
+  const otherPlayers = useAppState((r) => r.otherPlayers)
+  const signature = useAppState((r) => r.signature)
+  const map = useMemo(() => {
+    return new Map()
+  }, [])
+
+  return (
+    <>
+      {otherPlayers
+        .filter((r: any) => r.signature !== signature)
+        .reduce((acc, val, key) => {
+          if (acc.length === 0) {
+            map.clear()
+          }
+          if (!map.has(`i-${key}`)) {
+            map.set(`i-${key}`, val)
+            acc.push(val)
+          }
+
+          return acc
+        }, [])
+        .map((player: any) => {
+          return (
+            <group key={player.itemID}>
+              {/*  */}
+
+              <LerpPos quaternion={player.quaternion} position={player.position}>
+                {player.chosenLobster === 'guy' && (
+                  <>
+                    <Suspense fallback={null}>
+                      <group position={[0, 0.15, 0]}>
+                        <AvatarLobsterAI
+                          forceIdle
+                          key={player.itemID + 'pl'}
+                          lobsterURL={`/avatar/lobsters/cowboy/mixamo-cowbody-rigged-transformed.glb`}
+                        ></AvatarLobsterAI>
+                      </group>
+                    </Suspense>
+                  </>
+                )}
+
+                {player.chosenLobster === 'lady' && (
+                  <>
+                    <Suspense fallback={null}>
+                      <group position={[0, 0.075, 0]}>
+                        <AvatarLobsterAI
+                          forceIdle
+                          key={player.itemID + 'pl'}
+                          lobsterURL={`/avatar/lobsters/lady-withdress/lady-mixamo-transformed.glb`}
+                        ></AvatarLobsterAI>
+                      </group>
+                    </Suspense>
+                  </>
+                )}
+              </LerpPos>
+            </group>
+          )
+        })}
+    </>
+  )
+}
 //
 
 function LerpPos({ position, quaternion, children }: any) {
