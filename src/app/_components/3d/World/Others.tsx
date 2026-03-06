@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useMemo, useRef } from 'react'
 import { useAppState } from './useAppState'
 import { env } from '@/env'
-import ReconnectingWebSocket from 'reconnecting-websocket'
+// import ReconnectingWebSocket from 'reconnecting-websocket'
 import { NEXT_PUBLIC_WS_DEV_URL, NEXT_PUBLIC_WS_PROD_URL } from 'socket.config'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Object3D, Quaternion, Vector3 } from 'three'
@@ -18,7 +18,7 @@ export function Others({ roomID = 'lobby' }) {
   useEffect(() => {
     const url = env.NEXT_PUBLIC_ENV === 'production' ? NEXT_PUBLIC_WS_PROD_URL : NEXT_PUBLIC_WS_DEV_URL
 
-    const socket = new ReconnectingWebSocket(`${url}`)
+    const socket = new WebSocket(`${url}`)
 
     const signature = `_${Math.random().toString(36).slice(2, 9)}`
 
@@ -54,7 +54,7 @@ export function Others({ roomID = 'lobby' }) {
       }
     }
 
-    let sig = ''
+    // let sig = ''
 
     const repeat = setInterval(() => {
       //
@@ -68,14 +68,15 @@ export function Others({ roomID = 'lobby' }) {
         // console.log(socket.readyState, socket.OPEN)
 
         if (socket.readyState === socket.OPEN) {
-          const now = JSON.stringify({
-            p: o3.position.toArray().map((r) => r.toFixed(2)),
-          })
-          if (sig === now) {
-            return
-          }
+          // const now = JSON.stringify({
+          //   p: o3.position.toArray().map((r) => r.toFixed(2)),
+          // })
+          // if (sig === now) {
+          //   return
+          // }
 
-          sig = now
+          // sig = now
+
           socket.send(
             JSON.stringify({
               action: 'onMove',
@@ -107,14 +108,12 @@ export function Others({ roomID = 'lobby' }) {
     return () => {
       clearInterval(repeat)
 
-      if (socket.readyState === socket.OPEN) {
-        socket.send(
-          JSON.stringify({
-            action: 'onLeaveRoom',
-            roomID: roomID,
-          }),
-        )
-      }
+      socket.send(
+        JSON.stringify({
+          action: 'onLeaveRoom',
+          roomID: roomID,
+        }),
+      )
 
       socket.close()
     }
@@ -181,8 +180,8 @@ function LerpPos({ position, quaternion, children }: any) {
   q.fromArray(quaternion)
 
   useFrame(() => {
-    ref.current.position.lerp(p, 0.1)
-    ref.current.quaternion.slerp(q, 0.1)
+    ref.current.position.lerp(p, 0.05)
+    ref.current.quaternion.slerp(q, 0.05)
   })
 
   return <group ref={ref}>{children}</group>

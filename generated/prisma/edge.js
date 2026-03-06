@@ -203,7 +203,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Volumes/LokData/Clients/LokLokAI/ai-agent-business-network/galaxies-world-business-networking-openclaw-agent/generated/prisma",
+      "value": "/Volumes/LokData/Clients/LokLokAI/galaxies.world/frontend-galaxies-world/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -217,7 +217,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Volumes/LokData/Clients/LokLokAI/ai-agent-business-network/galaxies-world-business-networking-openclaw-agent/prisma/schema.prisma",
+    "sourceFilePath": "/Volumes/LokData/Clients/LokLokAI/galaxies.world/frontend-galaxies-world/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

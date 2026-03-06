@@ -13,6 +13,6 @@ export const useAppState = create(() => {
     signature: '',
 
     otherPlayers: [],
-    socket: false as ReconnectingWebSocket | false,
+    socket: false as WebSocket | false,
   }
 })
